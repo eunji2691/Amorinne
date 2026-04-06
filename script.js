@@ -495,3 +495,336 @@ function updateEndTime() {
 
   document.getElementById("endTime").value = endTimeStr;
 }
+
+
+
+/* =========================
+   아모린느 - 무인 셀프 스튜디오 예약
+   Google Sheets 저장 + 카카오 채널 연결
+========================= */
+
+/* ===== 1. 여기 3개는 꼭 네 값으로 바꿔야 함 ===== */
+const APPS_SCRIPT_URL = '여기에_구글앱스크립트_웹앱_URL';
+const KAKAO_JS_KEY = '여기에_카카오_자바스크립트키';
+const KAKAO_CHANNEL_ID = 'cxhePn'; // 추천: 언더바 없이 입력. 예) cxhePn
+/* ===== 설정값 끝 ===== */
+
+// 카카오 SDK 초기화
+if (window.Kakao && !Kakao.isInitialized()) {
+  Kakao.init(KAKAO_JS_KEY);
+}
+
+// 가격표
+const STUDIO_PRICES = {
+  weekday: { '1': 60000, '2': 100000 },
+  weekend: { '1': 70000, '2': 120000 }
+};
+
+const TABLE_PRICES = {
+  '퓨어테이블_35000': 35000,
+  '로얄테이블WHITE_40000': 40000,
+  '로얄테이블YELLOW_40000': 40000,
+  '서린상_45000': 45000,
+  '다온상_40000': 40000,
+  '하연상_35000': 35000,
+  '사파리테이블_35000': 35000,
+  '프리미엄연화상_85000': 85000,
+  '브라이덜샤워_50000': 50000
+};
+
+const CAMERA_PRICES = {
+  '': 0,
+  'mirrorless': 20000,
+  'polaroid': 20000
+};
+
+function formatPrice(num) {
+  return Number(num || 0).toLocaleString('ko-KR') + '원';
+}
+
+// 종료 시간 계산
+function updateEndTime() {
+  const reservationDate = document.getElementById('reservationDate')?.value;
+  const reservationTime = document.getElementById('reservationTime')?.value;
+  const rentalHours = document.getElementById('rentalHours')?.value;
+  const endTimeInput = document.getElementById('endTime');
+
+  if (!endTimeInput) return;
+
+  if (reservationDate && reservationTime && rentalHours) {
+    const startDateTime = new Date(`${reservationDate}T${reservationTime}:00`);
+    startDateTime.setHours(startDateTime.getHours() + parseInt(rentalHours, 10));
+
+    const endHours = String(startDateTime.getHours()).padStart(2, '0');
+    const endMinutes = String(startDateTime.getMinutes()).padStart(2, '0');
+    endTimeInput.value = `${endHours}:${endMinutes}`;
+  } else {
+    endTimeInput.value = '';
+  }
+}
+
+// 테이블 상세 열기/닫기
+function toggleTableSettingDetails() {
+  const memoTableSetting = document.getElementById('memoTableSetting');
+  const tableSettingDetailsGroup = document.getElementById('tableSettingDetailsGroup');
+  const detailSelect = document.getElementById('memoTableSettingDetails');
+
+  if (!memoTableSetting || !tableSettingDetailsGroup || !detailSelect) return;
+
+  if (memoTableSetting.checked) {
+    tableSettingDetailsGroup.classList.remove('hidden');
+  } else {
+    tableSettingDetailsGroup.classList.add('hidden');
+    detailSelect.value = '';
+  }
+}
+
+// 가격 계산
+function updateStudioPrice() {
+  const reservationDateStr = document.getElementById('reservationDate')?.value;
+  const rentalHours = document.getElementById('rentalHours')?.value;
+  const totalPriceEl = document.getElementById('studioTotalPrice');
+
+  let basePrice = 0;
+
+  if (reservationDateStr && rentalHours) {
+    const reservationDate = new Date(reservationDateStr);
+    const dayOfWeek = reservationDate.getDay();
+    const dayType = (dayOfWeek === 0 || dayOfWeek === 6) ? 'weekend' : 'weekday';
+    basePrice = STUDIO_PRICES[dayType][rentalHours] || 0;
+  }
+
+  let tablePrice = 0;
+  const memoTableSetting = document.getElementById('memoTableSetting')?.checked;
+  const memoTableSettingDetails = document.getElementById('memoTableSettingDetails')?.value;
+  if (memoTableSetting && memoTableSettingDetails) {
+    tablePrice = TABLE_PRICES[memoTableSettingDetails] || 0;
+  }
+
+  let optionPrice = 0;
+  const checkOptions = [
+    { id: 'baeksilHanbok', price: 15000 },
+    { id: 'dolDressClothing', price: 35000 },
+    { id: 'iphoneSnap', price: 50000 },
+    { id: 'screenBackground', price: 30000 },
+    { id: 'calligraphyCard', price: 9900 },
+    { id: 'numberBalloon', price: 5000 }
+  ];
+
+  checkOptions.forEach(option => {
+    const el = document.getElementById(option.id);
+    if (el && el.checked) optionPrice += option.price;
+  });
+
+  const cameraRentalElement = document.querySelector('input[name="cameraRental"]:checked');
+  const cameraValue = cameraRentalElement ? cameraRentalElement.value : '';
+  optionPrice += CAMERA_PRICES[cameraValue] || 0;
+
+  const totalPrice = basePrice + tablePrice + optionPrice;
+
+  if (totalPriceEl) {
+    totalPriceEl.textContent = formatPrice(totalPrice);
+  }
+
+  updateEndTime();
+}
+
+// 카카오 채널 열기
+function openKakaoChannel() {
+  const cleanChannelId = KAKAO_CHANNEL_ID.startsWith('_')
+    ? KAKAO_CHANNEL_ID
+    : `_${KAKAO_CHANNEL_ID}`;
+
+  if (window.Kakao && Kakao.isInitialized() && Kakao.Channel) {
+    Kakao.Channel.chat({
+      channelPublicId: cleanChannelId
+    });
+  } else {
+    window.open(`https://pf.kakao.com/${cleanChannelId}/chat`, '_blank');
+  }
+}
+
+// 최종 제출
+async function submitStudioForm(event) {
+  event.preventDefault();
+
+  const form = event.target;
+  const submitBtn = document.getElementById('studioSubmitBtn');
+  const formData = new FormData(form);
+
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = '저장 중...';
+  }
+
+  try {
+    const data = {};
+
+    // 기본값
+    data.customerName = formData.get('customerName');
+    data.phone = formData.get('phone');
+    data.reservationDate = formData.get('reservationDate');
+    data.reservationTime = formData.get('reservationTime');
+    data.rentalHours = formData.get('rentalHours');
+    data.adultCount = formData.get('adultCount') || '0';
+    data.babyCount = formData.get('babyCount') || '0';
+    data.notes = formData.get('notes') || '';
+
+    // 필수값 검사
+    if (!data.customerName || !data.phone || !data.reservationDate || !data.reservationTime || !data.rentalHours) {
+      throw new Error('필수 입력 항목을 모두 채워주세요.');
+    }
+
+    updateEndTime();
+    data.endTime = document.getElementById('endTime')?.value || '';
+
+    // 평일/주말 판별
+    const reservationDate = new Date(data.reservationDate);
+    const dayOfWeek = reservationDate.getDay();
+    const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+    data.dayType = isWeekend ? '주말' : '평일';
+
+    // 금액 계산
+    const basePrice = STUDIO_PRICES[isWeekend ? 'weekend' : 'weekday'][data.rentalHours] || 0;
+
+    let tablePrice = 0;
+    data.memoTableSetting = document.getElementById('memoTableSetting')?.checked ? 'Y' : 'N';
+    data.memoTableSettingDetails = '';
+
+    if (data.memoTableSetting === 'Y') {
+      const selectedTable = document.getElementById('memoTableSettingDetails')?.value || '';
+      if (!selectedTable) {
+        throw new Error('기념일 테이블 셋팅을 선택해주세요.');
+      }
+      data.memoTableSettingDetails = selectedTable.split('_')[0];
+      tablePrice = TABLE_PRICES[selectedTable] || 0;
+    }
+
+    let optionPrice = 0;
+    const optionSummary = [];
+    const priceDetails = [];
+
+    priceDetails.push(`기본 ${data.rentalHours}시간 (${data.dayType}): ${formatPrice(basePrice)}`);
+
+    if (tablePrice > 0) {
+      priceDetails.push(`테이블 (${data.memoTableSettingDetails}): ${formatPrice(tablePrice)}`);
+    }
+
+    const paidOptions = [
+      { id: 'baeksilHanbok', name: '백일한복', price: 15000 },
+      { id: 'dolDressClothing', name: '돌 한복/드레스/정장', price: 35000 },
+      { id: 'iphoneSnap', name: '아이폰 스냅', price: 50000 },
+      { id: 'screenBackground', name: '병풍 추가', price: 30000 },
+      { id: 'calligraphyCard', name: '자체제작 금박 캘리그라피 카드', price: 9900 },
+      { id: 'numberBalloon', name: '대형 숫자 풍선', price: 5000 }
+    ];
+
+    paidOptions.forEach(option => {
+      const el = document.getElementById(option.id);
+      if (el && el.checked) {
+        data[option.id] = 'Y';
+        optionPrice += option.price;
+        optionSummary.push(option.name);
+        priceDetails.push(`${option.name}: ${formatPrice(option.price)}`);
+      } else {
+        data[option.id] = 'N';
+      }
+    });
+
+    const cameraRentalElement = document.querySelector('input[name="cameraRental"]:checked');
+    const cameraValue = cameraRentalElement ? cameraRentalElement.value : '';
+    const cameraNameMap = {
+      '': '없음',
+      mirrorless: '미러리스',
+      polaroid: '폴라로이드'
+    };
+
+    data.cameraRental = cameraNameMap[cameraValue] || '없음';
+
+    const cameraPrice = CAMERA_PRICES[cameraValue] || 0;
+    optionPrice += cameraPrice;
+
+    if (cameraPrice > 0) {
+      optionSummary.push(`카메라: ${data.cameraRental}`);
+      priceDetails.push(`카메라 (${data.cameraRental}): ${formatPrice(cameraPrice)}`);
+    }
+
+    data.optionSummary = optionSummary.join(', ');
+    data.priceDetails = priceDetails.join('\n');
+    data.basePrice = basePrice;
+    data.tablePrice = tablePrice;
+    data.optionPrice = optionPrice;
+    data.totalPrice = basePrice + tablePrice + optionPrice;
+
+    data.reservationType = '무인 셀프 스튜디오';
+    data.clientCreatedAt = new Date().toISOString();
+    data.referrer = window.location.href;
+
+    // 카카오 문구
+    data.kakaoMessage =
+`[무인 셀프 스튜디오 예약]
+예약자: ${data.customerName}
+연락처: ${data.phone}
+예약일: ${data.reservationDate} ${data.reservationTime} (${data.dayType})
+대여시간: ${data.rentalHours}시간 (종료: ${data.endTime})
+성인/아기: ${data.adultCount}명 / ${data.babyCount}명
+기념일 테이블: ${data.memoTableSetting === 'Y' ? data.memoTableSettingDetails : '없음'}
+추가 옵션: ${data.optionSummary || '없음'}
+총 예상 금액: ${formatPrice(data.totalPrice)}
+요청사항: ${data.notes || '없음'}`;
+
+    data.originalJSON = JSON.stringify(data);
+
+    // 시트 저장
+    const response = await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8'
+      },
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    if (result.result !== 'success') {
+      throw new Error(result.error || '예약 저장 실패');
+    }
+
+    // 클립보드 복사
+    await navigator.clipboard.writeText(data.kakaoMessage);
+
+    alert('예약 정보가 저장되었어요. 카카오톡 채널 채팅창이 열리면 붙여넣어 전송해주세요.');
+
+    // 카카오 채널 열기
+    openKakaoChannel();
+
+    // 초기화
+    form.reset();
+    const endTimeInput = document.getElementById('endTime');
+    if (endTimeInput) endTimeInput.value = '';
+    updateStudioPrice();
+    toggleTableSettingDetails();
+
+    if (typeof closeModal === 'function') {
+      closeModal('studioModal');
+    }
+
+  } catch (error) {
+    console.error(error);
+    alert(error.message || '예약 저장 중 오류가 발생했습니다.');
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = '예약 접수';
+    }
+  }
+}
+
+// 초기화
+document.addEventListener('DOMContentLoaded', function () {
+  const studioForm = document.getElementById('studioForm');
+  if (studioForm) {
+    updateStudioPrice();
+    toggleTableSettingDetails();
+  }
+});
