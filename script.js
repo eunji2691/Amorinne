@@ -788,14 +788,16 @@ async function submitStudioForm(event) {
     data.referrer = window.location.href;
 
     // 카카오 문구
-    data.kakaoMessage =
+data.kakaoMessage =
 `[무인 셀프 스튜디오 예약]
 예약자: ${data.customerName}
 연락처: ${data.phone}
 예약일: ${data.reservationDate} ${data.reservationTime} (${data.dayType})
 대여시간: ${data.rentalHours}시간 (종료: ${data.endTime})
 성인/아기: ${data.adultCount}명 / ${data.babyCount}명
-기념일 테이블: ${data.memoTableSetting === 'Y' ? data.memoTableSettingDetails : '없음'}
+기념일 테이블: ${document.getElementById('memoTableSetting').checked
+  ? (document.getElementById('memoTableSettingDetails').options[document.getElementById('memoTableSettingDetails').selectedIndex]?.text || '없음')
+  : '없음'}
 추가 옵션: ${data.optionSummary || '없음'}
 총 예상 금액: ${formatPrice(data.totalPrice)}
 요청사항: ${data.notes || '없음'}`;
