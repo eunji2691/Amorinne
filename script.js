@@ -705,14 +705,27 @@ async function submitStudioForm(event) {
     data.memoTableSetting = document.getElementById('memoTableSetting')?.checked ? 'Y' : 'N';
     data.memoTableSettingDetails = '';
 
-    if (data.memoTableSetting === 'Y') {
-      const selectedTable = document.getElementById('memoTableSettingDetails')?.value || '';
-      if (!selectedTable) {
-        throw new Error('기념일 테이블 셋팅을 선택해주세요.');
-      }
-      data.memoTableSettingDetails = selectedTable.split('_')[0];
-      tablePrice = TABLE_PRICES[selectedTable] || 0;
-    }
+ if (data.memoTableSetting === 'Y') {
+  const selectedTable = document.getElementById('memoTableSettingDetails')?.value || '';
+  if (!selectedTable) {
+    throw new Error('기념일 테이블 셋팅을 선택해주세요.');
+  }
+
+  const tableNameMap = {
+    '퓨어테이블_35000': '퓨어테이블',
+    '로얄테이블WHITE_40000': '로얄 테이블(WHITE)',
+    '로얄테이블YELLOW_40000': '로얄 테이블(YELLOW)',
+    '서린상_45000': '서린상',
+    '다온상_40000': '다온상',
+    '하연상_35000': '하연상',
+    '사파리테이블_35000': '사파리테이블',
+    '프리미엄연화상_85000': '프리미엄 연화상(스튜디오 전용)',
+    '브라이덜샤워_50000': '브라이덜샤워'
+  };
+
+  data.memoTableSettingDetails = tableNameMap[selectedTable] || selectedTable;
+  tablePrice = TABLE_PRICES[selectedTable] || 0;
+}
 
     let optionPrice = 0;
     const optionSummary = [];
@@ -803,7 +816,7 @@ async function submitStudioForm(event) {
     if (result.result !== 'success') {
       throw new Error(result.error || '예약 저장 실패');
     }
-alert(data.kakaoMessage);
+
     // 클립보드 복사
     await navigator.clipboard.writeText(data.kakaoMessage);
 
