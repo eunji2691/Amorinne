@@ -1118,34 +1118,44 @@ button {
   align-items: start;
 }
 
+/* ===== NOTICE OVERRIDE ===== */
+.notice-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 24px !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  align-items: start !important;
+}
+
 .notice-card {
-  background: #fff;
-  border-radius: 20px;
-  overflow: hidden;
-  padding: 12px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  background: #fff !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  padding: 12px !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08) !important;
 }
 
 .notice-card img {
-  width: 100%;
-  height: auto;
-  max-height: 420px;
-  object-fit: contain;
-  display: block;
-  cursor: pointer;
-  transition: transform 0.2s ease;
+  width: 100% !important;
+  height: auto !important;
+  max-height: 420px !important;
+  object-fit: contain !important;
+  display: block !important;
+  cursor: pointer !important;
+  transition: transform 0.2s ease !important;
 }
 
 .notice-card img:hover {
-  transform: scale(1.02);
+  transform: scale(1.02) !important;
 }
 
 @media (max-width: 768px) {
   .notice-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
 
   .notice-card img {
-    max-height: none;
+    max-height: none !important;
   }
 }
