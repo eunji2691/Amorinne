@@ -475,3 +475,23 @@ function openImageModal(src) {
 function closeImageModal() {
   document.getElementById("imageModal").style.display = "none";
 }
+
+function updateEndTime() {
+  const form = document.getElementById("studioForm");
+
+  const startTime = form.reservationTime.value;
+  const hours = form.rentalHours.value;
+
+  if (!startTime || !hours) {
+    document.getElementById("endTime").value = "";
+    return;
+  }
+
+  const [h, m] = startTime.split(":").map(Number);
+  let endHour = h + parseInt(hours);
+
+  const endTimeStr =
+    String(endHour).padStart(2, "0") + ":" + String(m).padStart(2, "0");
+
+  document.getElementById("endTime").value = endTimeStr;
+}
