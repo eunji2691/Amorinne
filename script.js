@@ -818,7 +818,7 @@ data.kakaoMessage =
     if (result.result !== 'success') {
       throw new Error(result.error || '예약 저장 실패');
     }
-
+alert('테스트성공999');
     // 클립보드 복사
     await navigator.clipboard.writeText(data.kakaoMessage);
 
