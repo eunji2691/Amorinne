@@ -2,14 +2,14 @@
 
 // ===== DATA =====
 const TABLE_DATA = [
-  { id: "pure", name: "퓨어 테이블", desc: "차분한 화이트 톤에 은은한 온기를 더한 테이블", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/IMG_7476_37f5ed3a.JPG", studioPrice: 35000, milestonePrice: 69000 },
-  { id: "royal-white", name: "로얄 테이블 (WHITE)", desc: "아모린느의 시그니처 감성을 가장 우아하게 담아낸 테이블", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/IMG_7479_a4e6e1f2.JPG", studioPrice: 40000, milestonePrice: 89000 },
-  { id: "royal-yellow", name: "로얄 테이블 (YELLOW)", desc: "아모린느 시그니처 라인에 따뜻함을 더한 테이블", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/IMG_7480_b5f7f2g3.JPG", studioPrice: 40000, milestonePrice: 89000 },
-  { id: "seorin", name: "서린상", desc: "'상서로울 서' '맑을 린', 좋은 기운이 겹겹이 스며들기를 바라는 마음을 담았습니다", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/IMG_7481_c6g8g3h4.JPG", studioPrice: 45000, milestonePrice: 99000 },
-  { id: "daon", name: "다온상", desc: "'많을 다' '따뜻할 온', 차분함 속에 아이의 순간을 온기있게 담아냈습니다.", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/IMG_7482_d7h9h4i5.JPG", studioPrice: 40000, milestonePrice: 89000 },
-  { id: "hayeon", name: "하연상", desc: "맑고 단정한 백색의 아름다움에 전통미를 더했습니다.", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/IMG_7483_e8i0i5j6.JPG", studioPrice: 35000, milestonePrice: 79000 },
-  { id: "safari", name: "사파리 테이블", desc: "생기 넘치는 동물 소품과 자연스러운 우드감이 조화를 이루는 테이블", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/IMG_7484_f9j1j6k7.JPG", studioPrice: 35000, milestonePrice: 69000 },
-  { id: "bridal", name: "브라이덜 샤워", desc: "예비 신부의 특별한 하루를 깨끗하고 우아한 분위기로 채워줍니다.", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/IMG_7485_g0k2k7l8.JPG", studioPrice: 50000, milestonePrice: 80000 }
+  { id: "pure", name: "퓨어 테이블", desc: "차분한 화이트 톤에 은은한 온기를 더한 테이블", img: "images/pure.jpg", studioPrice: 35000, milestonePrice: 69000 },
+  { id: "royal-white", name: "로얄 테이블 (WHITE)", desc: "아모린느의 시그니처 감성을 가장 우아하게 담아낸 테이블", img: "images/royalwhite.jpg", studioPrice: 40000, milestonePrice: 89000 },
+  { id: "royal-yellow", name: "로얄 테이블 (YELLOW)", desc: "아모린느 시그니처 라인에 따뜻함을 더한 테이블", img: "images/royalyellow.jpg", studioPrice: 40000, milestonePrice: 89000 },
+  { id: "seorin", name: "서린상", desc: "'상서로울 서' '맑을 린', 좋은 기운이 겹겹이 스며들기를 바라는 마음을 담았습니다", img: "images/seorin.jpg", studioPrice: 45000, milestonePrice: 99000 },
+  { id: "daon", name: "다온상", desc: "'많을 다' '따뜻할 온', 차분함 속에 아이의 순간을 온기있게 담아냈습니다.", img: "images/daon.jpg", studioPrice: 40000, milestonePrice: 89000 },
+  { id: "hayeon", name: "하연상", desc: "맑고 단정한 백색의 아름다움에 전통미를 더했습니다.", img: "images/hayeon.jpg", studioPrice: 35000, milestonePrice: 79000 },
+  { id: "safari", name: "사파리 테이블", desc: "생기 넘치는 동물 소품과 자연스러운 우드감이 조화를 이루는 테이블", img: "images/safari.jpg", studioPrice: 35000, milestonePrice: 69000 },
+  { id: "bridal", name: "브라이덜 샤워", desc: "예비 신부의 특별한 하루를 깨끗하고 우아한 분위기로 채워줍니다.", img: "images/bridal.jpg", studioPrice: 50000, milestonePrice: 80000 }
 ];
 
 const STUDIO_OPTIONS = [
@@ -21,7 +21,7 @@ const STUDIO_OPTIONS = [
 ];
 
 const MILESTONE_OPTIONS_DATA = [
-  { name: "돌잡이 세트", desc: "전통 돌잡이 소품 세트", price: 10000, img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/IMG_8282_e2e4f6a8.JPG" },
+  { name: "돌잡이 세트", desc: "전통 돌잡이 소품 세트", price: 10000, img: "images/toy.jpg" },
   { name: "범보의자/양털의자/돌방석", desc: "아기 의자 또는 돌방석", price: 5000 },
   { name: "접이식 테이블", desc: "추가 테이블", price: 10000 },
   { name: "고급 모형 과일", desc: "촬영용 모형 과일 세트", price: 10000 },
@@ -34,28 +34,28 @@ const MILESTONE_OPTIONS_DATA = [
 ];
 
 const HANBOK_ACCESSORY_DATA = [
-  { name: "정자관", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/IMG_8278_a1b2c3d4.JPG", price: 5000 },
-  { name: "일반갓", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/IMG_8279_b2c3d4e5.JPG", price: 5000 },
-  { name: "유건", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/IMG_8280_c3d4e5f6.JPG", price: 5000 },
-  { name: "가채", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/IMG_8281_d4e5f6g7.JPG", price: 5000 }
+  { name: "정자관", img: "images/acc1.jpg", price: 5000 },
+  { name: "일반갓", img: "images/acc2.jpg", price: 5000 },
+  { name: "유건", img: "images/acc3.jpg", price: 5000 },
+  { name: "가채", img: "images/acc4.jpg", price: 5000 }
 ];
 
 const BAEKIL_HANBOK_DATA = [
-  { name: "백일한복 1", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/IMG_8249_a1b2c3d4.JPG" },
-  { name: "백일한복 2", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/IMG_8250_b2c3d4e5.JPG" },
-  { name: "백일한복 3", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/IMG_8251_c3d4e5f6.JPG" },
-  { name: "백일한복 4", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/IMG_8252_d4e5f6g7.JPG" },
-  { name: "백일한복 5", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/IMG_8253_e5f6g7h8.JPG" },
-  { name: "백일한복 6", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/IMG_8254_f6g7h8i9.JPG" },
-  { name: "백일한복 7", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/IMG_8255_g7h8i9j0.JPG" },
-  { name: "백일한복 8", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/IMG_8256_h8i9j0k1.JPG" }
+  { name: "백일한복 1", img: "images/b100beige.jpg" },
+  { name: "백일한복 2", img: "images/b100sky.jpg" },
+  { name: "백일한복 3", img: "images/b100yellow.jpg" },
+  { name: "백일한복 4", img: "images/b100green.jpg" },
+  { name: "백일한복 5", img: "images/g100beige.jpg" },
+  { name: "백일한복 6", img: "images/g100yellow.jpg" },
+  { name: "백일한복 7", img: "images/g100mint.jpg" },
+  { name: "백일한복 8", img: "images/g100colorful.jpg" }
 ];
 
 const DOL_HANBOK_DATA = [
-  { name: "돌한복 1", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/IMG_8259_i9j0k1l2.JPG" },
-  { name: "돌한복 2", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/IMG_8260_j0k1l2m3.JPG" },
-  { name: "돌한복 3", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/IMG_8261_k1l2m3n4.JPG" },
-  { name: "돌한복 4", img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/IMG_8262_l2m3n4o5.JPG" }
+  { name: "돌한복 1", img: "images/b1yellow.jpg" },
+  { name: "돌한복 2", img: "images/b1sky.jpg" },
+  { name: "돌한복 3", img: "images/g1colorful.jpg" },
+  { name: "돌한복 4", img: "images/g1haru.jpg" }
 ];
 
 // ===== MOBILE MENU =====
