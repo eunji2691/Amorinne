@@ -404,20 +404,21 @@
     <option value="19:00">19:00</option>
   </select>
 </div>
-          
-        </div>
-        <div class="form-group">
-          <label class="form-label">대여 시간 *</label>
-          <select class="form-select" name="rentalHours" required onchange="updateStudioPrice(); updateEndTime()">
-            <div class="form-group">
+
+<div class="form-group">
+  <label class="form-label">대여 시간 *</label>
+  <select class="form-select" name="rentalHours" required onchange="updateStudioPrice(); updateEndTime()">
+    <option value="">선택해주세요</option>
+    <option value="1">1시간</option>
+    <option value="2">2시간</option>
+  </select>
+</div>
+
+<div class="form-group">
   <label class="form-label">종료 시간</label>
   <input type="text" class="form-input" id="endTime" readonly placeholder="자동 계산됩니다" />
 </div>
-            <option value="">선택해주세요</option>
-            <option value="1">1시간</option>
-            <option value="2">2시간</option>
-          </select>
-        </div>
+          
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
           <div class="form-group">
             <label class="form-label">성인 인원</label>
