@@ -504,8 +504,8 @@ function updateEndTime() {
 ========================= */
 
 /* ===== 1. 여기 3개는 꼭 네 값으로 바꿔야 함 ===== */
-const APPS_SCRIPT_URL = '여기에_구글앱스크립트_웹앱_URL';
-const KAKAO_JS_KEY = '여기에_카카오_자바스크립트키';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzUKinT_MonHT9Wg254mBDDn0TJvXadTlbxpBU73g9jNjT3j41hOJS5g5y5Y3lbwCN0/exec';
+const KAKAO_JS_KEY = '0363cbf7ba6ce9b5aff68c07b1c8b248';
 const KAKAO_CHANNEL_ID = 'cxhePn'; // 추천: 언더바 없이 입력. 예) cxhePn
 /* ===== 설정값 끝 ===== */
 
