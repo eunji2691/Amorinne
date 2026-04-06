@@ -1080,64 +1080,27 @@ button {
   }
 }
 
-/* ===== NOTICE GRID ===== */
-.notice-grid {
+/* ===== NOTICE SECTION NEW ===== */
+.notice-grid-new {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-/* 카드 */
-.notice-card {
-  background: #fff;
-  border-radius: 16px;
-  overflow: hidden;
-  padding: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-
-/* 이미지 */
-.notice-card img {
-  width: 100%;
-  height: auto !important;
-  object-fit: contain;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-/* 호버 */
-.notice-card img:hover {
-  transform: scale(1.03);
-}
-
-/* 모바일 */
-@media (max-width: 768px) {
-  .notice-inline-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-
-/* ===== NOTICE SECTION RESET ===== */
-.notice-wrap {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
   max-width: 1100px;
   margin: 0 auto;
 }
 
-.notice-item {
-  display: block;
+.notice-card-new {
   background: #fff;
   border-radius: 16px;
   padding: 10px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 
-.notice-item img {
+.notice-card-new a {
+  display: block;
+}
+
+.notice-card-new img {
   display: block;
   width: 100%;
   height: auto;
@@ -1145,7 +1108,7 @@ button {
 }
 
 @media (max-width: 768px) {
-  .notice-wrap {
+  .notice-grid-new {
     grid-template-columns: 1fr;
   }
 }
