@@ -463,3 +463,15 @@ document.addEventListener("DOMContentLoaded", function() {
   renderStudioOptions();
   renderMilestoneOptions();
 });
+
+function openImageModal(src) {
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("modalImg");
+
+  modal.style.display = "flex";
+  modalImg.src = src;
+}
+
+function closeImageModal() {
+  document.getElementById("imageModal").style.display = "none";
+}
