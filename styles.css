@@ -1114,7 +1114,7 @@ button {
 
 /* 모바일 */
 @media (max-width: 768px) {
-  .notice-grid {
-    grid-template-columns: 1fr;
+  .notice-inline-grid {
+    grid-template-columns: 1fr !important;
   }
 }
