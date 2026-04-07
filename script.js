@@ -1,5 +1,5 @@
 // 1. 설정값 (맨 위에 배치)
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyR67v5pP_qP8QvS_1X-fF-7C9n-Y-P-Y-P-Y/exec'; // 본인의 GAS URL로 교체
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxiz6G4RqStsipTiHY32LK5uppI-KxmRiY-INn1TkmCte59zzlweYE0gK9gh7_HcNIE5g/exec'; // 본인의 GAS URL로 교체
 const KAKAO_CHANNEL_URL = 'https://pf.kakao.com/_cxhePn/chat';
 
 const TABLE_PRICES = {
