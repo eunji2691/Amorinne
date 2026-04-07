@@ -71,62 +71,53 @@ function calculateStudio() {
     }
 }
 
-// 3. 이벤트 위임 (100% 작동 보장)
-document.addEventListener('change', function(e) {
-    if (e.target.closest('#studioForm')) {
-        calculateStudio();
+// 3. 폼 제출 및 카톡 연결 (수정본)
+document.addEventListener('DOMContentLoaded', function() {
+    // 실시간 가격 계산 연결
+    const studioForm = document.getElementById('studioForm');
+    if (studioForm) {
+        studioForm.addEventListener('change', calculateStudio);
     }
-});
 
-document.addEventListener('submit', function(e) {
-    const form = e.target.closest('#studioForm');
-    if (!form) return;
+    // 폼 제출 시 작동
+    if (studioForm) {
+        studioForm.onsubmit = function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(studioForm);
+            const totalPrice = document.getElementById('studioTotalPrice').innerText;
+            
+            // 1. 카톡 메시지 복사용 텍스트 생성
+            const msg = `[아모린느 스튜디오 예약]\n성함: ${formData.get('customerName')}\n날짜: ${formData.get('reservationDate')}\n시간: ${formData.get('reservationTime')}\n금액: ${totalPrice}\n\n내용이 복사되었습니다. 채팅창에 붙여넣어주세요!`;
 
-    e.preventDefault();
-    
-    const formData = new FormData(form);
-    const totalPrice = document.getElementById('studioTotalPrice').innerText;
-    
-    // 카톡 메시지 생성
-    const msg = `[아모린느 스튜디오 예약]\n성함: ${formData.get('customerName')}\n날짜: ${formData.get('reservationDate')}\n시간: ${formData.get('reservationTime')} (${formData.get('rentalHours')}시간)\n금액: ${totalPrice}\n\n내용이 복사되었습니다. 채팅창에 붙여넣어주세요!`;
+            // 2. 클립보드 복사 실행
+            const textArea = document.createElement("textarea");
+            textArea.value = msg;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
 
-    // 클립보드 복사
-    const textArea = document.createElement("textarea");
-    textArea.value = msg;
-    document.body.appendChild(textArea);
-    textArea.select();
-    try { document.execCommand('copy'); } catch (err) { console.error(err); }
-    document.body.removeChild(textArea);
+            // 3. 구글 시트 전송 (백그라운드)
+            fetch(APPS_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(Object.fromEntries(formData)) });
 
-    // 구글 시트 전송 (백그라운드)
-    fetch(APPS_URL, { 
-        method: 'POST', 
-        mode: 'no-cors',
-        body: JSON.stringify(Object.fromEntries(formData)) 
-    }).catch(err => console.error("전송 실패:", err));
-
-    // 즉시 카톡 팝업 표시
-    const layerHtml = `
-        <div id="finalLayer" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:999999;display:flex;align-items:center;justify-content:center;padding:20px;">
-            <div style="background:white;padding:30px;border-radius:20px;text-align:center;max-width:340px;width:100%;box-shadow:0 20px 40px rgba(0,0,0,0.4);">
-                <div style="font-size:40px;margin-bottom:15px;">✨</div>
-                <h3 style="margin-bottom:15px;font-size:20px;font-weight:bold;color:#333;">예약 접수 완료!</h3>
-                <p style="margin-bottom:25px;line-height:1.6;color:#666;font-size:15px;">
-                    예약 정보가 <b>복사</b>되었습니다.<br>
-                    아래 버튼을 눌러 카카오톡 채팅창에<br>
-                    <span style="color:#E64A19;font-weight:bold;">'붙여넣기'</span>만 해주시면 끝납니다!
-                </p>
-                <a href="${KAKAO_URL}" target="_blank" style="display:block;background:#fee500;padding:16px;text-decoration:none;color:#3c1e1e;font-weight:bold;border-radius:12px;font-size:17px;margin-bottom:10px;">카카오톡 열기</a>
-                <button onclick="document.getElementById('finalLayer').remove()" style="width:100%;background:#f5f5f5;border:none;padding:12px;border-radius:10px;color:#888;cursor:pointer;font-size:14px;">닫기</button>
-            </div>
-        </div>
-    `;
-    document.body.insertAdjacentHTML('beforeend', layerHtml);
-
-    // 정리
-    closeModal('studioModal');
-    form.reset();
-    document.getElementById('studioTotalPrice').innerText = "0원";
+            // 4. 즉시 카톡 안내 레이어 띄우기
+            const layerHtml = `
+                <div id="finalLayer" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:999999;display:flex;align-items:center;justify-content:center;padding:20px;">
+                    <div style="background:white;padding:30px;border-radius:20px;text-align:center;max-width:340px;width:100%;box-shadow:0 10px 30px rgba(0,0,0,0.5);">
+                        <div style="font-size:40px;margin-bottom:15px;">✨</div>
+                        <h3 style="margin-bottom:15px;font-weight:bold;color:#333;">예약 접수 완료!</h3>
+                        <p style="margin-bottom:25px;line-height:1.6;color:#666;">예약 정보가 <b>복사</b>되었습니다.<br>아래 버튼을 눌러 카톡 채팅창에<br><span style="color:#E64A19;font-weight:bold;">'붙여넣기'</span>만 해주시면 끝납니다!</p>
+                        <a href="${KAKAO_URL}" target="_blank" style="display:block;background:#fee500;padding:16px;text-decoration:none;color:#3c1e1e;font-weight:bold;border-radius:12px;font-size:17px;margin-bottom:10px;">카카오톡 열기</a>
+                        <button onclick="location.reload()" style="width:100%;background:#f5f5f5;border:none;padding:12px;border-radius:10px;color:#888;cursor:pointer;">창 닫기</button>
+                    </div>
+                </div>`;
+            document.body.insertAdjacentHTML('beforeend', layerHtml);
+            
+            // 모달 닫기
+            closeModal('studioModal');
+        };
+    }
 });
 
 // 4. 기존 모달 기능 유지 (milestone, dress 등)
