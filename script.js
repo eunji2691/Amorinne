@@ -109,6 +109,7 @@ function updateMilestonePrice() {
 // 4. 드레스 가격 계산
 function updateDressPrice() {
     const form = document.getElementById('dressForm');
+    if (!form) return;
     let total = 0;
     if (form.niceSocks.checked) total += 4000;
     if (form.tights.checked) total += 6000;
