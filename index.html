@@ -16,11 +16,13 @@
       <img src="images/logo.png" alt="Amorinne Logo" />
       <h1>아모린느</h1>
     </a>
+
     <div class="nav-links">
       <a href="#services">서비스</a>
       <a href="#notice">공지사항</a>
       <a href="#about">소개</a>
       <a href="#contact">연락처</a>
+
       <div class="dropdown">
         <a href="javascript:void(0)" class="dropbtn">예약하기 ▼</a>
         <div class="dropdown-content">
@@ -30,16 +32,18 @@
         </div>
       </div>
     </div>
-    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">&#9776;</button>
+
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="메뉴 열기">☰</button>
   </div>
+
   <div class="mobile-menu" id="mobileMenu">
     <a href="#services" onclick="closeMobileMenu()">서비스</a>
     <a href="#notice" onclick="closeMobileMenu()">공지사항</a>
     <a href="#about" onclick="closeMobileMenu()">소개</a>
     <a href="#contact" onclick="closeMobileMenu()">연락처</a>
-    <a href="javascript:void(0)" onclick="openModal('studioModal');closeMobileMenu()">무인 셀프 스튜디오 예약</a>
-    <a href="javascript:void(0)" onclick="openModal('milestoneModal');closeMobileMenu()">백일상·돌상 대여 예약</a>
-    <a href="javascript:void(0)" onclick="openModal('dressModal');closeMobileMenu()">정장·드레스 대여 예약</a>
+    <a href="javascript:void(0)" onclick="openModal('studioModal'); closeMobileMenu()">무인 셀프 스튜디오 예약</a>
+    <a href="javascript:void(0)" onclick="openModal('milestoneModal'); closeMobileMenu()">백일상·돌상 대여 예약</a>
+    <a href="javascript:void(0)" onclick="openModal('dressModal'); closeMobileMenu()">정장·드레스 대여 예약</a>
   </div>
 </nav>
 
@@ -52,7 +56,7 @@
     <p>조용하고 편안한 공간에서<br />가장 사랑스러운 순간을 담아보세요</p>
     <div class="hero-buttons">
       <div class="dropdown">
-        <button class="btn btn-white btn-lg">예약하기 ▼</button>
+        <button class="btn btn-white btn-lg" type="button">예약하기 ▼</button>
         <div class="dropdown-content">
           <a href="javascript:void(0)" onclick="openModal('studioModal')">무인 셀프 스튜디오</a>
           <a href="javascript:void(0)" onclick="openModal('milestoneModal')">백일상·돌상 대여</a>
@@ -68,29 +72,30 @@
 <section id="services" class="section">
   <div class="container">
     <div class="section-title">
-      <h2>Amorine Services</h2>
+      <h2>Amorinne Services</h2>
       <p>촬영부터 상차림, 의상까지<br />특별한 순간을 위한 모든 준비를 담았습니다</p>
     </div>
 
     <div class="tabs">
-      <button class="tab-btn active" data-tab="studio">무인 셀프 스튜디오</button>
-      <button class="tab-btn" data-tab="milestone">백일상·돌상 대여</button>
-      <button class="tab-btn" data-tab="party">정장·드레스 대여</button>
+      <button class="tab-btn active" data-tab="studio" type="button">무인 셀프 스튜디오</button>
+      <button class="tab-btn" data-tab="milestone" type="button">백일상·돌상 대여</button>
+      <button class="tab-btn" data-tab="party" type="button">정장·드레스 대여</button>
     </div>
 
     <div class="service-grid">
       <div>
         <!-- STUDIO TAB -->
-        <div id="tab-studio" class="tab-content active">
+        <div id="tab-studio" class="main-tab-content active">
           <h3 class="tab-title">무인 셀프 스튜디오</h3>
+
           <div class="sub-tabs">
-            <button class="sub-tab-btn active" data-subtab="studio-overview" data-parent="studio">서비스 소개</button>
-            <button class="sub-tab-btn" data-subtab="studio-tables" data-parent="studio">테이블보기</button>
-            <button class="sub-tab-btn" data-subtab="studio-clothes" data-parent="studio">무료의상보기</button>
-            <button class="sub-tab-btn" data-subtab="studio-options" data-parent="studio">유료 추가 옵션</button>
+            <button class="sub-tab-btn active" data-subtab="studio-overview" data-parent="studio" type="button">서비스 소개</button>
+            <button class="sub-tab-btn" data-subtab="studio-tables" data-parent="studio" type="button">테이블보기</button>
+            <button class="sub-tab-btn" data-subtab="studio-clothes" data-parent="studio" type="button">무료의상보기</button>
+            <button class="sub-tab-btn" data-subtab="studio-options" data-parent="studio" type="button">유료 추가 옵션</button>
           </div>
 
-          <div id="subtab-studio-overview" class="tab-content active">
+          <div id="subtab-studio-overview" class="sub-tab-content active">
             <h4 class="sub-title">기념일 준비로 지치셨나요?</h4>
             <p class="text-muted mb-6">바쁘고 귀찮을 때 아무 준비도 하지 말고 그냥 오세요.<br />몸만 와도 예쁘게 완성되는 곳, 아모린느입니다.</p>
             <ul class="check-list mb-6">
@@ -100,41 +105,67 @@
               <li><span class="check-mark">✓</span>아기 기념일 네이밍 카드 제공</li>
               <li><span class="check-mark">✓</span>테이블 예약시, 모형 떡 과일 무료</li>
             </ul>
+
             <table class="price-table">
-              <thead><tr><th>구분</th><th>1시간</th><th>2시간</th></tr></thead>
+              <thead>
+                <tr>
+                  <th>구분</th>
+                  <th>1시간</th>
+                  <th>2시간</th>
+                </tr>
+              </thead>
               <tbody>
-                <tr><td>평일</td><td>60,000원</td><td>100,000원</td></tr>
-                <tr><td>주말</td><td>70,000원</td><td>120,000원</td></tr>
+                <tr>
+                  <td>평일</td>
+                  <td>60,000원</td>
+                  <td>100,000원</td>
+                </tr>
+                <tr>
+                  <td>주말</td>
+                  <td>70,000원</td>
+                  <td>120,000원</td>
+                </tr>
               </tbody>
             </table>
           </div>
 
-          <div id="subtab-studio-tables" class="tab-content">
+          <div id="subtab-studio-tables" class="sub-tab-content">
             <div class="image-list">
               <div class="image-item">
                 <img src="images/pure.jpg" alt="퓨어 테이블" />
-                <div class="image-info"><span>퓨어 테이블</span><span>35,000원</span></div>
+                <div class="image-info">
+                  <span>퓨어 테이블</span>
+                  <span>35,000원</span>
+                </div>
                 <p class="image-desc">차분한 화이트 톤에 은은한 온기를 더한 테이블</p>
               </div>
+
               <div class="image-item">
                 <img src="images/royalwhite.jpg" alt="로얄 테이블 (WHITE)" />
-                <div class="image-info"><span>로얄 테이블 (WHITE)</span><span>40,000원</span></div>
+                <div class="image-info">
+                  <span>로얄 테이블 (WHITE)</span>
+                  <span>40,000원</span>
+                </div>
                 <p class="image-desc">아모린느의 시그니처 감성을 가장 우아하게 담아낸 테이블</p>
               </div>
+
               <div class="image-item">
                 <img src="images/royalyellow.jpg" alt="로얄 테이블 (YELLOW)" />
-                <div class="image-info"><span>로얄 테이블 (YELLOW)</span><span>40,000원</span></div>
+                <div class="image-info">
+                  <span>로얄 테이블 (YELLOW)</span>
+                  <span>40,000원</span>
+                </div>
                 <p class="image-desc">아모린느 시그니처 라인에 따뜻함을 더한 테이블</p>
               </div>
             </div>
           </div>
 
-          <div id="subtab-studio-clothes" class="tab-content">
+          <div id="subtab-studio-clothes" class="sub-tab-content">
             <img src="images/free.jpg" alt="무료의상" class="full-img mb-4" />
             <p class="text-muted">약 30벌 가량의 5kg부터 13kg까지 착용 가능한 다양한 의상, 사랑스러운 분위기를 더해주는 악세사리와 모자, 헤어밴드까지 모두 마련되어 있답니다.</p>
           </div>
 
-          <div id="subtab-studio-options" class="tab-content">
+          <div id="subtab-studio-options" class="sub-tab-content">
             <div class="option-gallery">
               <h5>백일 한복 (15,000원)</h5>
               <div class="grid-4">
@@ -147,6 +178,7 @@
                 <img src="images/hanbok7.jpg" alt="백일한복 7" />
                 <img src="images/hanbok8.jpg" alt="백일한복 8" />
               </div>
+
               <h5 class="mt-6">돌 한복/드레스/정장 (35,000원)</h5>
               <div class="grid-4">
                 <img src="images/dol1.jpg" alt="돌의상 1" />
@@ -156,18 +188,21 @@
               </div>
             </div>
           </div>
-          <button class="btn btn-primary btn-full mt-6" onclick="openModal('studioModal')">예약하기</button>
+
+          <button class="btn btn-primary btn-full mt-6" type="button" onclick="openModal('studioModal')">예약하기</button>
         </div>
 
         <!-- MILESTONE TAB -->
-        <div id="tab-milestone" class="tab-content">
+        <div id="tab-milestone" class="main-tab-content">
           <h3 class="tab-title">백일상·돌상 대여</h3>
+
           <div class="sub-tabs">
-            <button class="sub-tab-btn active" data-subtab="milestone-overview" data-parent="milestone">서비스 소개</button>
-            <button class="sub-tab-btn" data-subtab="milestone-tables" data-parent="milestone">테이블보기</button>
-            <button class="sub-tab-btn" data-subtab="milestone-options" data-parent="milestone">유료 추가 옵션</button>
+            <button class="sub-tab-btn active" data-subtab="milestone-overview" data-parent="milestone" type="button">서비스 소개</button>
+            <button class="sub-tab-btn" data-subtab="milestone-tables" data-parent="milestone" type="button">테이블보기</button>
+            <button class="sub-tab-btn" data-subtab="milestone-options" data-parent="milestone" type="button">유료 추가 옵션</button>
           </div>
-          <div id="subtab-milestone-overview" class="tab-content active">
+
+          <div id="subtab-milestone-overview" class="sub-tab-content active">
             <p class="text-muted mb-4">아기의 소중한 순간을 담을 수 있도록 다양한 스타일의 백일상과 돌상을 준비했습니다.</p>
             <ul class="check-list">
               <li><span class="check-mark">✓</span>다양한 테마 선택 가능</li>
@@ -175,35 +210,62 @@
               <li><span class="check-mark">✓</span>간편한 무인 픽업 · 반납 시스템</li>
             </ul>
           </div>
-          <div id="subtab-milestone-tables" class="tab-content">
+
+          <div id="subtab-milestone-tables" class="sub-tab-content">
             <div class="image-list">
-              <div class="image-item"><img src="images/seorin.jpg" alt="서린상" /><div class="image-info"><span>서린상</span><span>99,000원</span></div></div>
-              <div class="image-item"><img src="images/daon.jpg" alt="다온상" /><div class="image-info"><span>다온상</span><span>89,000원</span></div></div>
-              <div class="image-item"><img src="images/hayeon.jpg" alt="하연상" /><div class="image-info"><span>하연상</span><span>79,000원</span></div></div>
+              <div class="image-item">
+                <img src="images/seorin.jpg" alt="서린상" />
+                <div class="image-info">
+                  <span>서린상</span>
+                  <span>99,000원</span>
+                </div>
+              </div>
+              <div class="image-item">
+                <img src="images/daon.jpg" alt="다온상" />
+                <div class="image-info">
+                  <span>다온상</span>
+                  <span>89,000원</span>
+                </div>
+              </div>
+              <div class="image-item">
+                <img src="images/hayeon.jpg" alt="하연상" />
+                <div class="image-info">
+                  <span>하연상</span>
+                  <span>79,000원</span>
+                </div>
+              </div>
             </div>
           </div>
-          <div id="subtab-milestone-options" class="tab-content">
-             <p class="text-muted">다양한 한복 악세사리와 소품이 준비되어 있습니다. 예약 폼에서 확인해주세요.</p>
+
+          <div id="subtab-milestone-options" class="sub-tab-content">
+            <p class="text-muted">다양한 한복 악세사리와 소품이 준비되어 있습니다. 예약 폼에서 확인해주세요.</p>
           </div>
-          <button class="btn btn-primary btn-full mt-6" onclick="openModal('milestoneModal')">예약하기</button>
+
+          <button class="btn btn-primary btn-full mt-6" type="button" onclick="openModal('milestoneModal')">예약하기</button>
         </div>
 
         <!-- PARTY TAB -->
-        <div id="tab-party" class="tab-content">
+        <div id="tab-party" class="main-tab-content">
           <h3 class="tab-title">정장·드레스 대여</h3>
           <p class="text-muted mb-4">중요한 순간에 어울리는 의상을 직접 피팅 후 선택할 수 있습니다.</p>
           <ul class="check-list">
             <li><span class="check-mark">✓</span>돌 드레스, 한복, 정장 등 다양한 스타일</li>
             <li><span class="check-mark">✓</span>직접 피팅 후 선택 가능</li>
           </ul>
-          <button class="btn btn-primary btn-full mt-6" onclick="openModal('dressModal')">예약하기</button>
+          <button class="btn btn-primary btn-full mt-6" type="button" onclick="openModal('dressModal')">예약하기</button>
         </div>
       </div>
 
       <div class="service-images-wrap">
-        <div id="service-img-studio" class="service-image active"><img src="images/studio.jpg" alt="Studio" /></div>
-        <div id="service-img-milestone" class="service-image"><img src="images/table.JPG" alt="Table" /></div>
-        <div id="service-img-party" class="service-image"><img src="images/dresssuit.jpg" alt="Dress" /></div>
+        <div id="service-img-studio" class="service-image active">
+          <img src="images/studio.jpg" alt="Studio" />
+        </div>
+        <div id="service-img-milestone" class="service-image">
+          <img src="images/table.JPG" alt="Table" />
+        </div>
+        <div id="service-img-party" class="service-image">
+          <img src="images/dresssuit.jpg" alt="Dress" />
+        </div>
       </div>
     </div>
   </div>
@@ -304,6 +366,7 @@
           <label class="form-label">연락처 *</label>
           <input type="tel" name="phone" class="form-input" required placeholder="010-0000-0000" />
         </div>
+
         <div class="form-row-3">
           <div class="form-group">
             <label class="form-label">아기 이름</label>
@@ -322,20 +385,28 @@
             </select>
           </div>
         </div>
+
         <div class="form-group">
           <label class="form-label">예약 날짜 *</label>
           <input type="date" name="reservationDate" class="form-input" required />
         </div>
+
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">시작 시간 *</label>
             <select name="reservationTime" class="form-select" required>
-              <option value="09:00">09:00</option><option value="10:00">10:00</option>
-              <option value="11:00">11:00</option><option value="12:00">12:00</option>
-              <option value="13:00">13:00</option><option value="14:00">14:00</option>
-              <option value="15:00">15:00</option><option value="16:00">16:00</option>
-              <option value="17:00">17:00</option><option value="18:00">18:00</option>
-              <option value="19:00">19:00</option><option value="20:00">20:00</option>
+              <option value="09:00">09:00</option>
+              <option value="10:00">10:00</option>
+              <option value="11:00">11:00</option>
+              <option value="12:00">12:00</option>
+              <option value="13:00">13:00</option>
+              <option value="14:00">14:00</option>
+              <option value="15:00">15:00</option>
+              <option value="16:00">16:00</option>
+              <option value="17:00">17:00</option>
+              <option value="18:00">18:00</option>
+              <option value="19:00">19:00</option>
+              <option value="20:00">20:00</option>
             </select>
           </div>
           <div class="form-group">
@@ -347,6 +418,7 @@
             </select>
           </div>
         </div>
+
         <div class="form-group">
           <label class="form-label">인원 (성인/아기) *</label>
           <div class="form-row">
@@ -354,8 +426,12 @@
             <input type="number" name="babyCount" class="form-input" value="1" min="0" />
           </div>
         </div>
+
         <div class="form-group">
-          <label class="checkbox-label"><input type="checkbox" name="memoTableSetting" id="useTable"> 기념일 테이블 세팅 (유료)</label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="memoTableSetting" id="useTable" />
+            기념일 테이블 세팅 (유료)
+          </label>
           <div id="studioTableSelectWrap" class="hidden mt-2">
             <select name="memoTableSettingDetails" class="form-select">
               <option value="pure">퓨어(3.5만)</option>
@@ -369,16 +445,19 @@
             </select>
           </div>
         </div>
+
         <div class="option-list">
-          <label class="checkbox-label"><input type="checkbox" name="baeksilHanbok"> 백일 한복 (1.5만)</label>
-          <label class="checkbox-label"><input type="checkbox" name="dolDressClothing"> 돌 의상 (3.5만)</label>
-          <label class="checkbox-label"><input type="checkbox" name="iphoneSnap"> 아이폰 스냅 (5만)</label>
-          <label class="checkbox-label"><input type="checkbox" name="cameraRental"> 카메라 대여 (2만)</label>
+          <label class="checkbox-label"><input type="checkbox" name="baeksilHanbok" /> 백일 한복 (1.5만)</label>
+          <label class="checkbox-label"><input type="checkbox" name="dolDressClothing" /> 돌 의상 (3.5만)</label>
+          <label class="checkbox-label"><input type="checkbox" name="iphoneSnap" /> 아이폰 스냅 (5만)</label>
+          <label class="checkbox-label"><input type="checkbox" name="cameraRental" /> 카메라 대여 (2만)</label>
         </div>
+
         <div class="price-box">
           <span>총 예상 금액:</span>
           <strong id="studioTotalPrice">0원</strong>
         </div>
+
         <button type="submit" class="btn btn-primary btn-full mt-4">예약 접수 및 카카오톡 이동</button>
       </form>
     </div>
@@ -419,10 +498,12 @@
             <option value="브라이덜샤워">브라이덜 샤워 (80,000원)</option>
           </select>
         </div>
+
         <div class="price-box">
           <span>총 예상 금액:</span>
           <strong id="milestoneTotalPrice">0원</strong>
         </div>
+
         <button type="submit" class="btn btn-primary btn-full mt-4">예약 접수 및 카카오톡 이동</button>
       </form>
     </div>
@@ -454,10 +535,12 @@
           <label class="form-label">대여 상품명</label>
           <input type="text" name="rentalProduct" class="form-input" placeholder="피팅 후 결정 가능" />
         </div>
+
         <div class="price-box">
           <span>총 예상 금액:</span>
           <strong id="dressTotalPrice">0원</strong>
         </div>
+
         <button type="submit" class="btn btn-primary btn-full mt-4">예약 접수 및 카카오톡 이동</button>
       </form>
     </div>
