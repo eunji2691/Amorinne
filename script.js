@@ -1,19 +1,19 @@
-/* ===== Amorinne Static Website Script (Final Stable Version 3.0) ===== */
+/* ===== Amorinne Static Website Script (Final Robust Version 4.0) ===== */
 
-// ===== 1. 설정값 =====
+// ===== 1. 설정값 (이 부분만 수정하세요) =====
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzUKinT_MonHT9Wg254mBDDn0TJvXadTlbxpBU73g9jNjT3j41hOJS5g5y5Y3lbwCN0/exec';
 const KAKAO_CHANNEL_URL = 'https://pf.kakao.com/_cxhePn/chat';
 
 // ===== 2. 데이터 정의 =====
 const TABLE_DATA = [
-  { id: "pure", name: "퓨어 테이블", studioPrice: 35000, milestonePrice: 69000 },
-  { id: "royal-white", name: "로얄 테이블 (WHITE)", studioPrice: 40000, milestonePrice: 89000 },
-  { id: "royal-yellow", name: "로얄 테이블 (YELLOW)", studioPrice: 40000, milestonePrice: 89000 },
-  { id: "seorin", name: "서린상", studioPrice: 45000, milestonePrice: 99000 },
-  { id: "daon", name: "다온상", studioPrice: 40000, milestonePrice: 89000 },
-  { id: "hayeon", name: "하연상", studioPrice: 35000, milestonePrice: 79000 },
-  { id: "safari", name: "사파리 테이블", studioPrice: 35000, milestonePrice: 69000 },
-  { id: "bridal", name: "브라이덜 샤워", studioPrice: 50000, milestonePrice: 80000 }
+  { id: "pure", name: "퓨어 테이블", studioPrice: 35000 },
+  { id: "royal-white", name: "로얄 테이블 (WHITE)", studioPrice: 40000 },
+  { id: "royal-yellow", name: "로얄 테이블 (YELLOW)", studioPrice: 40000 },
+  { id: "seorin", name: "서린상", studioPrice: 45000 },
+  { id: "daon", name: "다온상", studioPrice: 40000 },
+  { id: "hayeon", name: "하연상", studioPrice: 35000 },
+  { id: "safari", name: "사파리 테이블", studioPrice: 35000 },
+  { id: "bridal", name: "브라이덜 샤워", studioPrice: 50000 }
 ];
 
 // ===== 3. 공통 UI 제어 =====
@@ -192,17 +192,22 @@ async function submitStudioForm(event) {
       } catch (err) { console.error(err); }
 
       // 2. 성공 안내 UI 표시 (팝업 차단 방지를 위해 버튼 클릭 유도)
+      // 기존 성공 모달이 있다면 제거
+      const oldModal = document.getElementById('successModal');
+      if (oldModal) oldModal.remove();
+
       const successModalHtml = `
-        <div id="successModal" class="modal-backdrop" style="z-index:10000;">
-          <div class="modal" style="text-align:center; padding:2rem;">
-            <h3 style="margin-bottom:1rem; color:var(--primary);">예약 접수 완료!</h3>
-            <p style="margin-bottom:1.5rem; font-size:0.9rem; line-height:1.6;">
-              예약 내용이 클립보드에 복사되었습니다.<br>
-              아래 버튼을 눌러 카카오톡 채널 채팅창에<br>
-              <b>'붙여넣기'</b>를 해서 보내주시면 예약이 확정됩니다.
+        <div id="successModal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:99999; display:flex; align-items:center; justify-content:center; padding:20px;">
+          <div style="background:white; width:100%; max-width:400px; border-radius:12px; padding:30px; text-align:center; box-shadow:0 10px 25px rgba(0,0,0,0.2);">
+            <div style="font-size:40px; margin-bottom:15px;">✅</div>
+            <h3 style="margin-bottom:15px; font-size:20px; font-weight:700; color:#333;">예약 접수 완료!</h3>
+            <p style="margin-bottom:25px; font-size:15px; line-height:1.6; color:#666;">
+              예약 내용이 자동으로 복사되었습니다.<br>
+              아래 버튼을 눌러 카카오톡 채팅창에<br>
+              <span style="color:#d32f2f; font-weight:700;">'붙여넣기'</span>를 해서 보내주세요!
             </p>
-            <button onclick="location.href='${KAKAO_CHANNEL_URL}'" class="btn btn-primary" style="width:100%; margin-bottom:0.5rem;">카카오톡으로 내용 보내기</button>
-            <button onclick="document.getElementById('successModal').remove();" class="btn btn-outline" style="width:100%;">닫기</button>
+            <a href="${KAKAO_CHANNEL_URL}" target="_blank" style="display:block; background:#fee500; color:#3c1e1e; text-decoration:none; padding:15px; border-radius:8px; font-weight:700; font-size:16px; margin-bottom:10px; border:none; cursor:pointer;">카카오톡으로 내용 보내기</a>
+            <button onclick="document.getElementById('successModal').remove();" style="display:block; width:100%; background:#f5f5f5; color:#666; padding:12px; border-radius:8px; font-size:14px; border:none; cursor:pointer;">닫기</button>
           </div>
         </div>
       `;
