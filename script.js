@@ -1,5 +1,5 @@
 // [주의] 구글 앱스 스크립트 주소를 본인 것으로 수정하세요!
-const APPS_URL = 'https://script.google.com/macros/s/AKfycbxiz6G4RqStsipTiHY32LK5uppI-KxmRiY-INn1TkmCte59zzlweYE0gK9gh7_HcNIE5g/exec'; 
+const APPS_URL = 'https://script.google.com/macros/s/AKfycbxiz6G4RqStsipTiHY32LK5uppI-KxmRiY-INn1TkmCte59zzlweYE0gK9gh7_HcNIE5g/exec';
 const KAKAO_URL = 'https://pf.kakao.com/_cxhePn/chat';
 
 // 모달 열기/닫기
