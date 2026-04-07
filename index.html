@@ -268,20 +268,7 @@
 <section id="about" class="section">
   <div class="container">
     <div class="about-grid">
-      <div class="about-text">
-        <h2 style="font-size:3rem;font-weight:700;margin-bottom:1.5rem;">Amorinne story</h2>
-        <p>아모린느는<br />단순히 촬영만을 위한 공간이 아니라,<br />백일상과 돌상, 의상까지<br />아이의 소중한 순간을 온전히 담아낼 수 있도록 준비된 공간입니다.</p>
-        <p>아이를 키우며<br />지나가는 하루하루가 얼마나 소중한지 알기에,<br />그 작은 순간 하나까지도 예쁘게 남기고 싶다는 마음에서 시작했습니다.</p>
-        <p>부담스럽지 않게,<br />우리끼리 편안하게 머무르며<br />자연스러운 모습 그대로를 담을 수 있도록<br />아모린느는 그 하루를 함께 완성해드립니다.</p>
-        <p>사진 한 장이 아니라,<br />오래도록 꺼내보게 될 기억으로 남을 수 있도록</p>
-      </div>
-      <div class="about-image">
-        <img src="images/black.jpg" alt="Amorinne Studio Interior" />
-      </div>
-    </div>
-  </div>
-</section>
-
+      <div class="about-text">ㅗㅑ
 <!-- ===== Contact Section ===== -->
 <section id="contact" class="section section-accent">
   <div class="container">
@@ -424,16 +411,16 @@
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">성인 인원 *</label>
-            <input type="number" class="form-input" name="adultCount" value="2" min="0" required />
+            <input type="number" class="form-input" name="adultCount" value="2" min="0" />
           </div>
           <div class="form-group">
             <label class="form-label">아기 인원 *</label>
-            <input type="number" class="form-input" name="babyCount" value="1" min="0" required />
+            <input type="number" class="form-input" name="babyCount" value="1" min="0" />
           </div>
         </div>
 
-        <div class="form-section" style="margin-top:10px;">
-          <label style="font-weight:bold;"><input type="checkbox" name="memoTableSetting" id="useTable"> 기념일 테이블 세팅 (유료)</label>
+        <div class="form-section">
+          <label><input type="checkbox" name="memoTableSetting" id="useTable"> 기념일 테이블 세팅 (유료)</label>
           <div id="studioTableSelectWrap" class="hidden" style="margin-top:10px;">
             <select class="form-select" name="memoTableSettingDetails">
               <option value="">테이블 선택</option>
@@ -456,19 +443,16 @@
           <label style="display:block;"><input type="checkbox" name="cameraRental"> 카메라 대여 (2만)</label>
         </div>
 
-        <textarea class="form-textarea" name="notes" placeholder="기타 요청사항" style="width:100%; height:80px; margin-top:10px;"></textarea>
-
-        <div style="background:#f9f9f9; padding:15px; border-radius:10px; margin-top:15px; text-align:right;">
-          <strong>총 예상 금액: </strong>
-          <span id="studioTotalPrice" style="color:#e74c3c; font-size:1.2em; font-weight:bold;">0원</span>
+        <div class="price-display" style="background:#f8f9fa; padding:15px; border-radius:8px; margin-top:20px; text-align:right;">
+          <span style="font-weight:bold;">총 예상 금액: </span>
+          <span id="studioTotalPrice" style="font-size:1.2rem; color:#d9534f; font-weight:bold;">0원</span>
         </div>
 
-        <button type="submit" id="studioSubmitBtn" class="btn btn-primary" style="width:100%; margin-top:15px; padding:15px; font-size:16px;">예약 접수 및 카카오톡 이동</button>
+        <button type="submit" class="btn btn-primary" id="studioSubmitBtn" style="width:100%; margin-top:20px; padding:15px;">예약 접수 및 카카오톡 이동</button>
       </form>
     </div>
   </div>
 </div>
-
 
 <!-- ===== Milestone Reservation Modal ===== -->
 <div class="modal-backdrop hidden" id="milestoneModal" onclick="closeModal('milestoneModal')">
