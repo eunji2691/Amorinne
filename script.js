@@ -629,34 +629,7 @@ function updateStudioPrice() {
   updateEndTime();
 }
 
-// 카카오 채널 열기
-function openKakaoChannel() {
-  const cleanChannelId = KAKAO_CHANNEL_ID.startsWith('_')
-    ? KAKAO_CHANNEL_ID
-    : `_${KAKAO_CHANNEL_ID}`;
 
-  if (window.Kakao && Kakao.isInitialized() && Kakao.Channel) {
-function openKakaoChannel() {
-  const cleanChannelId = KAKAO_CHANNEL_ID.startsWith('_')
-    ? KAKAO_CHANNEL_ID
-    : `_${KAKAO_CHANNEL_ID}`;
-
-  try {
-    if (window.Kakao && Kakao.isInitialized()) {
-      Kakao.Channel.chat({
-        channelPublicId: cleanChannelId
-      });
-    } else {
-      window.open(`https://pf.kakao.com/${cleanChannelId}/chat`, '_blank');
-    }
-  } catch (e) {
-    window.open(`https://pf.kakao.com/${cleanChannelId}/chat`, '_blank');
-  }
-}
-  } else {
-    window.open(`https://pf.kakao.com/${cleanChannelId}/chat`, '_blank');
-  }
-}
 
 // 최종 제출
 async function submitStudioForm(event) {
@@ -815,17 +788,21 @@ data.kakaoMessage =
 
     const result = await response.json();
 
+// 저장 성공 확인
 if (result.result !== 'success') {
   throw new Error(result.error || '예약 저장 실패');
 }
 
-// 카카오톡 채널로 바로 이동
-window.location.href = 'https://pf.kakao.com/_cxhePn/chat';
+// 사용자 안내
+alert('예약 접수가 완료되었습니다.\n카카오톡 채널로 이동합니다.');
 
-// 복사는 실패해도 무시
+// 클립보드 복사
 try {
   await navigator.clipboard.writeText(data.kakaoMessage);
 } catch (err) {}
+
+// 카카오톡 채널 열기
+window.open('https://pf.kakao.com/_cxhePn/chat', '_blank');
 
 
     
