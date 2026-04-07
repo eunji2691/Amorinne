@@ -818,15 +818,20 @@ data.kakaoMessage =
     if (result.result !== 'success') {
       throw new Error(result.error || '예약 저장 실패');
     }
-alert('테스트성공999');
-    // 클립보드 복사
-    await navigator.clipboard.writeText(data.kakaoMessage);
-
+// 카카오 먼저 열기
 openKakaoChannel();
+
+// 복사는 실패해도 무시
+try {
+  await navigator.clipboard.writeText(data.kakaoMessage);
+} catch (err) {}
 
 setTimeout(() => {
   alert('예약 정보가 저장되었어요.\n카카오톡 채널 채팅창에서 붙여넣어 전송해주세요.');
 }, 300);
+
+
+    
 
     // 초기화
     form.reset();
