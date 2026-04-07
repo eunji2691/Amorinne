@@ -4,68 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
   <title>아모린느 (Amorinne) - 세종시 무인 셀프 스튜디오 & 백일상·돌상 대여</title>
-
-  <!-- SEO 기본 메타 태그 -->
   <meta name="description" content="세종시 보람동 무인 셀프 스튜디오 아모린느. 백일상·돌상 대여, 정장·드레스 대여, 한복 대여까지. 조용하고 편안한 공간에서 아이의 소중한 순간을 담아보세요. 100% 예약제 운영." />
-  <meta name="keywords" content="아모린느, Amorinne, 세종시 셀프스튜디오, 무인스튜디오, 백일상 대여, 돌상 대여, 세종시 돌잔치, 백일 사진, 돌 사진, 한복 대여, 정장 대여, 드레스 대여, 보람동, 세종특별자치시" />
-  <meta name="author" content="아모린느 (Amorinne)" />
-  <meta name="robots" content="index, follow" />
-  <meta name="naver-site-verification" content="4a85de0eeeb2751e62819d50b016a84366860e3e" />
-
-  <!-- Open Graph (페이스북, 카카오톡 공유) -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="아모린느 (Amorinne) - 세종시 무인 셀프 스튜디오" />
-  <meta property="og:description" content="백일상·돌상 대여, 정장·드레스 대여, 한복 대여까지. 조용하고 편안한 공간에서 아이의 소중한 순간을 담아보세요." />
-  <meta property="og:image" content="https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/2025_07_06_11_19_IMG_1009_ccd20ab1.jpeg" />
-  <meta property="og:site_name" content="아모린느 Amorinne" />
-  <meta property="og:locale" content="ko_KR" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="아모린느 (Amorinne) - 세종시 무인 셀프 스튜디오" />
-  <meta name="twitter:description" content="백일상·돌상 대여, 정장·드레스 대여, 한복 대여까지. 조용하고 편안한 공간에서 아이의 소중한 순간을 담아보세요." />
-  <meta name="twitter:image" content="https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/2025_07_06_11_19_IMG_1009_ccd20ab1.jpeg" />
-
-  <!-- 구조화 데이터 (JSON-LD) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "아모린느 (Amorinne)",
-    "description": "세종시 보람동 무인 셀프 스튜디오. 백일상·돌상 대여, 정장·드레스 대여, 한복 대여 서비스를 제공합니다.",
-    "image": "https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/2025_07_06_11_19_IMG_1009_ccd20ab1.jpeg",
-    "telephone": "0507-1384-2691",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "한누리대로 2129 스타힐타워B동 210호",
-      "addressLocality": "세종특별자치시",
-      "addressRegion": "세종",
-      "postalCode": "30127",
-      "addressCountry": "KR"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 36.5040,
-      "longitude": 127.0000
-    },
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-      "opens": "09:00",
-      "closes": "21:00"
-    },
-    "priceRange": "$$",
-    "sameAs": [
-      "https://www.instagram.com/amor_inne/",
-      "http://pf.kakao.com/_cxhePn"
-    ]
-  }
-  </script>
-
-  <link rel="stylesheet" href="styles.css" />
-  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.5/kakao.min.js"
-  integrity="sha384-dok87au0gKqJdxs7msv1yc6eS10j8SDvwYdr8rYtrdAu4L4n+4uGoF0rd5byiTmv"
-  crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -78,30 +18,48 @@
     </a>
     <div class="nav-links">
       <a href="#services">서비스</a>
-        <a href="#notice">공지사항</a>
+      <a href="#notice">공지사항</a>
       <a href="#about">소개</a>
       <a href="#contact">연락처</a>
+      <div class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">예약하기 ▼</a>
+        <div class="dropdown-content">
+          <a href="javascript:void(0)" onclick="openModal('studioModal')">무인 셀프 스튜디오</a>
+          <a href="javascript:void(0)" onclick="openModal('milestoneModal')">백일상·돌상 대여</a>
+          <a href="javascript:void(0)" onclick="openModal('dressModal')">정장·드레스 대여</a>
+        </div>
+      </div>
     </div>
-    <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="메뉴">&#9776;</button>
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">&#9776;</button>
   </div>
   <div class="mobile-menu" id="mobileMenu">
     <a href="#services" onclick="closeMobileMenu()">서비스</a>
-      <a href="#notice" onclick="closeMobileMenu()">공지사항</a>
+    <a href="#notice" onclick="closeMobileMenu()">공지사항</a>
     <a href="#about" onclick="closeMobileMenu()">소개</a>
     <a href="#contact" onclick="closeMobileMenu()">연락처</a>
+    <a href="javascript:void(0)" onclick="openModal('studioModal');closeMobileMenu()">무인 셀프 스튜디오 예약</a>
+    <a href="javascript:void(0)" onclick="openModal('milestoneModal');closeMobileMenu()">백일상·돌상 대여 예약</a>
+    <a href="javascript:void(0)" onclick="openModal('dressModal');closeMobileMenu()">정장·드레스 대여 예약</a>
   </div>
 </nav>
 
 <!-- ===== Hero Section ===== -->
 <section class="hero">
- <img class="hero-bg" src="images/hero.jpg" alt="Amorinne Hero" />
+  <img class="hero-bg" src="images/hero.jpg" alt="Amorinne Hero" />
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <h2>Lovely Moments, Made Special</h2>
     <p>조용하고 편안한 공간에서<br />가장 사랑스러운 순간을 담아보세요</p>
     <div class="hero-buttons">
-      <a href="#services" class="btn btn-white btn-lg">예약하기 &#9660;</a>
-        <a href="#notice" class="btn btn-outline btn-lg">공지사항</a>
+      <div class="dropdown">
+        <button class="btn btn-white btn-lg">예약하기 ▼</button>
+        <div class="dropdown-content">
+          <a href="javascript:void(0)" onclick="openModal('studioModal')">무인 셀프 스튜디오</a>
+          <a href="javascript:void(0)" onclick="openModal('milestoneModal')">백일상·돌상 대여</a>
+          <a href="javascript:void(0)" onclick="openModal('dressModal')">정장·드레스 대여</a>
+        </div>
+      </div>
+      <a href="#notice" class="btn btn-outline btn-lg">공지사항</a>
     </div>
   </div>
 </section>
@@ -114,18 +72,17 @@
       <p>촬영부터 상차림, 의상까지<br />특별한 순간을 위한 모든 준비를 담았습니다</p>
     </div>
 
-    <!-- Main Service Tabs -->
     <div class="tabs">
       <button class="tab-btn active" data-tab="studio">무인 셀프 스튜디오</button>
       <button class="tab-btn" data-tab="milestone">백일상·돌상 대여</button>
       <button class="tab-btn" data-tab="party">정장·드레스 대여</button>
     </div>
 
-    <!-- ===== STUDIO TAB ===== -->
     <div class="service-grid">
       <div>
+        <!-- STUDIO TAB -->
         <div id="tab-studio" class="tab-content active">
-          <h3 style="font-size:1.875rem;font-weight:700;margin-bottom:1rem;">무인 셀프 스튜디오</h3>
+          <h3 class="tab-title">무인 셀프 스튜디오</h3>
           <div class="sub-tabs">
             <button class="sub-tab-btn active" data-subtab="studio-overview" data-parent="studio">서비스 소개</button>
             <button class="sub-tab-btn" data-subtab="studio-tables" data-parent="studio">테이블보기</button>
@@ -133,16 +90,15 @@
             <button class="sub-tab-btn" data-subtab="studio-options" data-parent="studio">유료 추가 옵션</button>
           </div>
 
-          <!-- Studio Overview -->
           <div id="subtab-studio-overview" class="tab-content active">
-            <h3 style="font-size:1.5rem;font-weight:700;margin-bottom:0.75rem;">기념일 준비로 지치셨나요?</h3>
-            <p class="text-muted text-sm mb-6">바쁘고 귀찮을 때 아무 준비도 하지 말고 그냥 오세요.<br />몸만 와도 예쁘게 완성되는 곳, 아모린느입니다.</p>
+            <h4 class="sub-title">기념일 준비로 지치셨나요?</h4>
+            <p class="text-muted mb-6">바쁘고 귀찮을 때 아무 준비도 하지 말고 그냥 오세요.<br />몸만 와도 예쁘게 완성되는 곳, 아모린느입니다.</p>
             <ul class="check-list mb-6">
-              <li><span class="check-mark">&#10003;</span><span>다양한 테마의 감성 포토존</span></li>
-              <li><span class="check-mark">&#10003;</span><span>약 30벌의 아기 의상 및 악세사리 제공</span></li>
-              <li><span class="check-mark">&#10003;</span><span>돌상 예약시, 돌잡이 세트 무료</span></li>
-              <li><span class="check-mark">&#10003;</span><span>아기 기념일 네이밍 카드 제공</span></li>
-              <li><span class="check-mark">&#10003;</span><span>테이블 예약시, 모형 떡 과일 무료</span></li>
+              <li><span class="check-mark">✓</span>다양한 테마의 감성 포토존</li>
+              <li><span class="check-mark">✓</span>약 30벌의 아기 의상 및 악세사리 제공</li>
+              <li><span class="check-mark">✓</span>돌상 예약시, 돌잡이 세트 무료</li>
+              <li><span class="check-mark">✓</span>아기 기념일 네이밍 카드 제공</li>
+              <li><span class="check-mark">✓</span>테이블 예약시, 모형 떡 과일 무료</li>
             </ul>
             <table class="price-table">
               <thead><tr><th>구분</th><th>1시간</th><th>2시간</th></tr></thead>
@@ -153,107 +109,116 @@
             </table>
           </div>
 
-          <!-- Studio Tables -->
           <div id="subtab-studio-tables" class="tab-content">
-            <div class="space-y-4" id="studio-tables-list"></div>
+            <div class="image-list">
+              <div class="image-item">
+                <img src="images/pure.jpg" alt="퓨어 테이블" />
+                <div class="image-info"><span>퓨어 테이블</span><span>35,000원</span></div>
+                <p class="image-desc">차분한 화이트 톤에 은은한 온기를 더한 테이블</p>
+              </div>
+              <div class="image-item">
+                <img src="images/royalwhite.jpg" alt="로얄 테이블 (WHITE)" />
+                <div class="image-info"><span>로얄 테이블 (WHITE)</span><span>40,000원</span></div>
+                <p class="image-desc">아모린느의 시그니처 감성을 가장 우아하게 담아낸 테이블</p>
+              </div>
+              <div class="image-item">
+                <img src="images/royalyellow.jpg" alt="로얄 테이블 (YELLOW)" />
+                <div class="image-info"><span>로얄 테이블 (YELLOW)</span><span>40,000원</span></div>
+                <p class="image-desc">아모린느 시그니처 라인에 따뜻함을 더한 테이블</p>
+              </div>
+            </div>
           </div>
 
-          <!-- Studio Clothes -->
           <div id="subtab-studio-clothes" class="tab-content">
-       <img src="images/free.jpg" alt="무료의상" style="width:100%;border-radius:var(--radius);margin-bottom:1rem;" />
-            <p class="text-muted" style="line-height:1.8;">약 30벌 가량의<br />5kg부터 13kg까지 착용 가능한 다양한 의상,<br />사랑스러운 분위기를 더해주는 악세사리와 모자,<br />헤어밴드까지 모두 마련되어 있답니다.</p>
-            <p class="text-muted text-sm" style="margin-top:1rem;line-height:1.8;">사진 속 의상 외에도 스튜디오에는<br />다양한 아기 의상이 준비되어 있어요.<br />앞으로도 예쁜 옷들이 계속 추가될 예정이에요</p>
+            <img src="images/free.jpg" alt="무료의상" class="full-img mb-4" />
+            <p class="text-muted">약 30벌 가량의 5kg부터 13kg까지 착용 가능한 다양한 의상, 사랑스러운 분위기를 더해주는 악세사리와 모자, 헤어밴드까지 모두 마련되어 있답니다.</p>
           </div>
 
-          <!-- Studio Options -->
           <div id="subtab-studio-options" class="tab-content">
-            <div id="studio-options-list"></div>
+            <div class="option-gallery">
+              <h5>백일 한복 (15,000원)</h5>
+              <div class="grid-4">
+                <img src="images/hanbok1.jpg" alt="백일한복 1" />
+                <img src="images/hanbok2.jpg" alt="백일한복 2" />
+                <img src="images/hanbok3.jpg" alt="백일한복 3" />
+                <img src="images/hanbok4.jpg" alt="백일한복 4" />
+                <img src="images/hanbok5.jpg" alt="백일한복 5" />
+                <img src="images/hanbok6.jpg" alt="백일한복 6" />
+                <img src="images/hanbok7.jpg" alt="백일한복 7" />
+                <img src="images/hanbok8.jpg" alt="백일한복 8" />
+              </div>
+              <h5 class="mt-6">돌 한복/드레스/정장 (35,000원)</h5>
+              <div class="grid-4">
+                <img src="images/dol1.jpg" alt="돌의상 1" />
+                <img src="images/dol2.jpg" alt="돌의상 2" />
+                <img src="images/dol3.jpg" alt="돌의상 3" />
+                <img src="images/dol4.jpg" alt="돌의상 4" />
+              </div>
+            </div>
           </div>
-
           <button class="btn btn-primary btn-full mt-6" onclick="openModal('studioModal')">예약하기</button>
         </div>
 
-        <!-- ===== MILESTONE TAB ===== -->
+        <!-- MILESTONE TAB -->
         <div id="tab-milestone" class="tab-content">
-          <h3 style="font-size:1.875rem;font-weight:700;margin-bottom:1rem;">백일상·돌상·기념일테이블 대여</h3>
+          <h3 class="tab-title">백일상·돌상 대여</h3>
           <div class="sub-tabs">
             <button class="sub-tab-btn active" data-subtab="milestone-overview" data-parent="milestone">서비스 소개</button>
             <button class="sub-tab-btn" data-subtab="milestone-tables" data-parent="milestone">테이블보기</button>
             <button class="sub-tab-btn" data-subtab="milestone-options" data-parent="milestone">유료 추가 옵션</button>
           </div>
-
           <div id="subtab-milestone-overview" class="tab-content active">
-            <p class="text-muted" style="line-height:1.8;margin-bottom:1rem;">아기의 소중한 순간을 담을 수 있도록 다양한 스타일의 백일상과 돌상을 준비했습니다.<br />전문가 세팅으로 더욱 특별한 사진을 만들어보세요.</p>
-            <ul class="check-list" style="list-style:none;">
-              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;margin-bottom:0.5rem;"><span class="bullet"></span>다양한 테마 선택 가능</li>
-              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;margin-bottom:0.5rem;"><span class="bullet"></span>접이식 테이블, 범보의자, 모형 떡·과일 등 촬영 소품은 필요 시 추가 가능</li>
-              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;margin-bottom:0.5rem;"><span class="bullet"></span>아이 컨디션에 맞춰 시간에 구애받지 않고 편하게 촬영 가능</li>
-              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;margin-bottom:0.5rem;"><span class="bullet"></span>간편한 무인 픽업 · 반납 시스템으로 부담 없이 이용</li>
+            <p class="text-muted mb-4">아기의 소중한 순간을 담을 수 있도록 다양한 스타일의 백일상과 돌상을 준비했습니다.</p>
+            <ul class="check-list">
+              <li><span class="check-mark">✓</span>다양한 테마 선택 가능</li>
+              <li><span class="check-mark">✓</span>접이식 테이블, 범보의자 등 소품 추가 가능</li>
+              <li><span class="check-mark">✓</span>간편한 무인 픽업 · 반납 시스템</li>
             </ul>
           </div>
-
           <div id="subtab-milestone-tables" class="tab-content">
-            <div class="space-y-4" id="milestone-tables-list"></div>
+            <div class="image-list">
+              <div class="image-item"><img src="images/seorin.jpg" alt="서린상" /><div class="image-info"><span>서린상</span><span>99,000원</span></div></div>
+              <div class="image-item"><img src="images/daon.jpg" alt="다온상" /><div class="image-info"><span>다온상</span><span>89,000원</span></div></div>
+              <div class="image-item"><img src="images/hayeon.jpg" alt="하연상" /><div class="image-info"><span>하연상</span><span>79,000원</span></div></div>
+            </div>
           </div>
-
           <div id="subtab-milestone-options" class="tab-content">
-            <div id="milestone-options-list"></div>
+             <p class="text-muted">다양한 한복 악세사리와 소품이 준비되어 있습니다. 예약 폼에서 확인해주세요.</p>
           </div>
-
           <button class="btn btn-primary btn-full mt-6" onclick="openModal('milestoneModal')">예약하기</button>
         </div>
 
-        <!-- ===== PARTY TAB ===== -->
+        <!-- PARTY TAB -->
         <div id="tab-party" class="tab-content">
-          <h3 style="font-size:1.875rem;font-weight:700;margin-bottom:1rem;">정장·드레스 대여</h3>
-          <p class="text-muted" style="line-height:1.8;margin-bottom:1rem;">돌잡이, 화동 등 중요한 순간에 어울리는 의상을<br />직접 입혀보고 선택할 수 있어<br />아이에게 가장 잘 맞는 스타일로 준비할 수 있어요.</p>
-          <ul class="check-list" style="list-style:none;">
-            <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;margin-bottom:0.5rem;"><span class="bullet"></span>돌 드레스, 한복, 정장 등 다양한 스타일 준비</li>
-            <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;margin-bottom:0.5rem;"><span class="bullet"></span>직접 피팅 후 선택 가능</li>
+          <h3 class="tab-title">정장·드레스 대여</h3>
+          <p class="text-muted mb-4">중요한 순간에 어울리는 의상을 직접 피팅 후 선택할 수 있습니다.</p>
+          <ul class="check-list">
+            <li><span class="check-mark">✓</span>돌 드레스, 한복, 정장 등 다양한 스타일</li>
+            <li><span class="check-mark">✓</span>직접 피팅 후 선택 가능</li>
           </ul>
           <button class="btn btn-primary btn-full mt-6" onclick="openModal('dressModal')">예약하기</button>
         </div>
       </div>
 
-      <!-- Service Image (right side) -->
-      <div>
-        <div id="service-img-studio" class="service-image" style="display:block;">
-          <img src="images/studio.jpg" alt="Self Studio" />
-          <div class="service-image-overlay"><div class="service-image-text"><p>공간 대여</p><p>가격 문의</p></div></div>
-        </div>
-        <div id="service-img-milestone" class="service-image" style="display:none;">
-          <img src="images/table.JPG" alt="Baby Photo Session" />
-          <div class="service-image-overlay"><div class="service-image-text"><p>테이블 대여</p><p>가격 문의</p></div></div>
-        </div>
-        <div id="service-img-party" class="service-image" style="display:none;">
-          <img src="images/dresssuit.jpg" alt="Party Room" />
-          <div class="service-image-overlay"><div class="service-image-text"><p>의상 대여</p><p>가격 문의</p></div></div>
-        </div>
+      <div class="service-images-wrap">
+        <div id="service-img-studio" class="service-image active"><img src="images/studio.jpg" alt="Studio" /></div>
+        <div id="service-img-milestone" class="service-image"><img src="images/table.JPG" alt="Table" /></div>
+        <div id="service-img-party" class="service-image"><img src="images/dresssuit.jpg" alt="Dress" /></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ===== Notice Section ===== -->
-<section id="notice" class="section">
+<section id="notice" class="section section-accent">
   <div class="container">
     <div class="section-title">
       <h2>NOTICE</h2>
       <p>이용 전 꼭 확인해주세요</p>
     </div>
-
-    <div style="display:flex; gap:24px; justify-content:center; align-items:flex-start; flex-wrap:nowrap;">
-      <div style="flex:1; max-width:520px; background:#fff; border-radius:16px; padding:10px; box-shadow:0 4px 14px rgba(0,0,0,0.08);">
-        <a href="images/notice1.jpg" target="_blank" rel="noopener noreferrer">
-          <img src="images/notice1.jpg" alt="아모린느 공지사항 1" style="display:block; width:100%; height:auto; border-radius:12px;" />
-        </a>
-      </div>
-
-      <div style="flex:1; max-width:520px; background:#fff; border-radius:16px; padding:10px; box-shadow:0 4px 14px rgba(0,0,0,0.08);">
-        <a href="images/notice2.jpg" target="_blank" rel="noopener noreferrer">
-          <img src="images/notice2.jpg" alt="아모린느 공지사항 2" style="display:block; width:100%; height:auto; border-radius:12px;" />
-        </a>
-      </div>
+    <div class="notice-grid">
+      <img src="images/notice1.jpg" alt="Notice 1" />
+      <img src="images/notice2.jpg" alt="Notice 2" />
     </div>
   </div>
 </section>
@@ -261,14 +226,10 @@
 <!-- ===== About Section ===== -->
 <section id="about" class="section">
   <div class="container">
-    <div class="section-title">
-      <h2>Amorinne Story</h2>
-      <p>아모린느가 전하는 따뜻한 이야기</p>
-    </div>
-    <div style="text-align:center; max-width:800px; margin:0 auto; line-height:2;">
-      <p class="text-muted">아이의 첫 번째 생일, 백일, 그리고 수많은 소중한 날들.<br />
-      그 소중한 순간들이 더욱 빛날 수 있도록 아모린느가 함께합니다.<br />
-      번거로운 준비는 저희에게 맡기시고, 오직 아이와의 행복한 시간에만 집중하세요.</p>
+    <div class="about-content">
+      <h2>Amorinne story</h2>
+      <p>아모린느는 단순히 촬영만을 위한 공간이 아니라, 백일상과 돌상, 의상까지 아이의 소중한 순간을 온전히 담아낼 수 있도록 준비된 공간입니다.</p>
+      <p>아이를 키우며 지나가는 하루하루가 얼마나 소중한지 알기에, 그 작은 순간 하나까지도 예쁘게 남기고 싶다는 마음에서 시작했습니다.</p>
     </div>
   </div>
 </section>
@@ -282,30 +243,24 @@
     </div>
     <div class="contact-grid">
       <div class="contact-card">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div class="icon">📍</div>
         <h3>위치</h3>
-        <p>세종특별자치시 한누리대로 2129<br />스타힐타워B동 210호<br />(보람동 먹자골목)</p>
+        <p>세종특별자치시 한누리대로 2129 스타힐타워B동 210호</p>
       </div>
       <div class="contact-card">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div class="icon">🕒</div>
         <h3>영업시간</h3>
-        <p>매일 09:00 - 21:00<br />(100% 예약제)<br /><span style="font-size:0.75rem;opacity:0.75;">연중무휴</span></p>
+        <p>매일 09:00 - 21:00 (100% 예약제)</p>
       </div>
       <div class="contact-card">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <div class="icon">📞</div>
         <h3>문의</h3>
-        <p><a href="tel:05071384269">0507-1384-2691</a><br /><span style="font-size:0.75rem;opacity:0.75;">(24시간 응답 가능)</span></p>
+        <p>0507-1384-2691</p>
       </div>
     </div>
-    <div class="contact-buttons">
-      <a href="http://pf.kakao.com/_cxhePn" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-        카카오채널 문의
-      </a>
-      <a href="https://www.instagram.com/amor_inne/" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-lg">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-        인스타그램 방문
-      </a>
+    <div class="contact-btns">
+      <a href="http://pf.kakao.com/_cxhePn/chat" target="_blank" class="btn btn-primary btn-lg">카카오채널 문의</a>
+      <a href="https://www.instagram.com/amor_inne/" target="_blank" class="btn btn-outline btn-lg">인스타그램 방문</a>
     </div>
   </div>
 </section>
@@ -313,36 +268,17 @@
 <!-- ===== Footer ===== -->
 <footer class="footer">
   <div class="container">
-    <div class="footer-grid">
-      <div>
+    <div class="footer-content">
+      <div class="footer-info">
         <h3>AMORINNE</h3>
         <p>소중한 순간을 함께 만들어가는 아모린느</p>
+        <p class="mt-4 text-sm opacity-70">세종특별자치시 한누리대로 2129 스타힐타워B동 210호 | 대표: ㅇㅇㅇ | 사업자번호: 000-00-00000</p>
       </div>
-      <div>
-        <h4>서비스</h4>
-        <ul>
-          <li><a href="#services">무인 셀프 스튜디오</a></li>
-          <li><a href="#services">백일상·돌상·기념일테이블 대여</a></li>
-          <li><a href="#services">정장·드레스 대여</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>정보</h4>
-        <ul>
-          <li><a href="#about">Amorinne story</a></li>
-          <li><a href="#contact">Contacts</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>팔로우</h4>
-        <div class="footer-social">
-          <a href="https://www.instagram.com/amor_inne/" target="_blank" rel="noopener noreferrer">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-          </a>
-          <a href="http://pf.kakao.com/_cxhePn" target="_blank" rel="noopener noreferrer">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
-          </a>
-        </div>
+      <div class="footer-links">
+        <a href="#services">서비스</a>
+        <a href="#notice">공지사항</a>
+        <a href="#about">소개</a>
+        <a href="#contact">연락처</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -351,67 +287,49 @@
   </div>
 </footer>
 
-<!-- ===== Image Modal ===== -->
-<div class="modal-backdrop hidden" id="imageModal" onclick="closeImageModal()">
-  <div class="modal" onclick="event.stopPropagation()" style="max-width:42rem;">
-    <div class="modal-header">
-      <h3 id="imageModalTitle"></h3>
-      <button class="modal-close" onclick="closeImageModal()">&times;</button>
-    </div>
-    <div class="modal-body">
-      <img id="imageModalImg" src="" alt="" style="width:100%;border-radius:var(--radius);" />
-    </div>
-  </div>
-</div>
-
-<!-- ===== Studio Reservation Modal ===== -->
-<div class="modal-backdrop hidden" id="studioModal" onclick="closeModal('studioModal')">
-  <div class="modal" onclick="event.stopPropagation()">
+<!-- ===== Studio Modal ===== -->
+<div class="modal-backdrop hidden" id="studioModal">
+  <div class="modal">
     <div class="modal-header">
       <h3>무인 셀프 스튜디오 예약</h3>
-      <button type="button" class="modal-close" onclick="closeModal('studioModal')">&times;</button>
+      <button class="modal-close" onclick="closeModal('studioModal')">&times;</button>
     </div>
     <div class="modal-body">
       <form id="studioForm">
         <div class="form-group">
           <label class="form-label">예약자 성함 *</label>
-          <input type="text" class="form-input" name="customerName" required />
+          <input type="text" name="customerName" class="form-input" required />
         </div>
         <div class="form-group">
           <label class="form-label">연락처 *</label>
-          <input type="tel" class="form-input" name="phone" required placeholder="010-0000-0000" />
+          <input type="tel" name="phone" class="form-input" required placeholder="010-0000-0000" />
         </div>
-        
-        <!-- 아기 정보 추가 -->
-        <div class="form-row">
+        <div class="form-row-3">
           <div class="form-group">
             <label class="form-label">아기 이름</label>
-            <input type="text" class="form-input" name="babyName" placeholder="이름" />
+            <input type="text" name="babyName" class="form-input" />
           </div>
           <div class="form-group">
             <label class="form-label">영문 이름</label>
-            <input type="text" class="form-input" name="babyEnglishName" placeholder="English" />
+            <input type="text" name="babyEnglishName" class="form-input" />
           </div>
           <div class="form-group">
             <label class="form-label">성별</label>
-            <select class="form-select" name="babyGender">
+            <select name="babyGender" class="form-select">
               <option value="">선택</option>
               <option value="남">남</option>
               <option value="여">여</option>
             </select>
           </div>
         </div>
-
         <div class="form-group">
           <label class="form-label">예약 날짜 *</label>
-          <input type="date" class="form-input" name="reservationDate" required />
+          <input type="date" name="reservationDate" class="form-input" required />
         </div>
-        
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">시작 시간 *</label>
-            <select class="form-select" name="reservationTime" required>
-              <option value="">선택</option>
+            <select name="reservationTime" class="form-select" required>
               <option value="09:00">09:00</option><option value="10:00">10:00</option>
               <option value="11:00">11:00</option><option value="12:00">12:00</option>
               <option value="13:00">13:00</option><option value="14:00">14:00</option>
@@ -422,37 +340,24 @@
           </div>
           <div class="form-group">
             <label class="form-label">대여 시간 *</label>
-            <select class="form-select" name="rentalHours" required>
-              <option value="">선택</option>
+            <select name="rentalHours" class="form-select" required>
               <option value="1">1시간</option>
               <option value="2">2시간</option>
+              <option value="3">3시간</option>
             </select>
           </div>
-          <div class="form-group">
-            <label class="form-label">종료 시간</label>
-            <input type="text" class="form-input" id="endTime" readonly placeholder="자동계산" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">인원 (성인/아기) *</label>
+          <div class="form-row">
+            <input type="number" name="adultCount" class="form-input" value="2" min="1" />
+            <input type="number" name="babyCount" class="form-input" value="1" min="0" />
           </div>
         </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">성인 인원 *</label>
-            <input type="number" class="form-input" name="adultCount" value="2" min="0" />
-          </div>
-          <div class="form-group">
-            <label class="form-label">아기 인원 *</label>
-            <input type="number" class="form-input" name="babyCount" value="1" min="0" />
-          </div>
-        </div>
-
-        <div class="form-section">
-          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
-            <input type="checkbox" name="memoTableSetting" id="useTable"> 
-            기념일 테이블 세팅 (유료)
-          </label>
-          <div id="studioTableSelectWrap" class="hidden" style="margin-top:10px;">
-            <select class="form-select" name="memoTableSettingDetails">
-              <option value="">테이블 선택</option>
+        <div class="form-group">
+          <label class="checkbox-label"><input type="checkbox" name="memoTableSetting" id="useTable"> 기념일 테이블 세팅 (유료)</label>
+          <div id="studioTableSelectWrap" class="hidden mt-2">
+            <select name="memoTableSettingDetails" class="form-select">
               <option value="pure">퓨어(3.5만)</option>
               <option value="royal-white">로얄 WHITE(4만)</option>
               <option value="royal-yellow">로얄 YELLOW(4만)</option>
@@ -464,33 +369,25 @@
             </select>
           </div>
         </div>
-
-        <div class="form-section" style="margin-top:15px;display:flex;flex-direction:column;gap:8px;">
-          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox" name="baeksilHanbok"> 백일 한복 (1.5만)</label>
-          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox" name="dolDressClothing"> 돌 의상 (3.5만)</label>
-          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox" name="iphoneSnap"> 아이폰 스냅 (5만)</label>
-          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox" name="cameraRental"> 카메라 대여 (2만)</label>
+        <div class="option-list">
+          <label class="checkbox-label"><input type="checkbox" name="baeksilHanbok"> 백일 한복 (1.5만)</label>
+          <label class="checkbox-label"><input type="checkbox" name="dolDressClothing"> 돌 의상 (3.5만)</label>
+          <label class="checkbox-label"><input type="checkbox" name="iphoneSnap"> 아이폰 스냅 (5만)</label>
+          <label class="checkbox-label"><input type="checkbox" name="cameraRental"> 카메라 대여 (2만)</label>
         </div>
-
-        <div class="form-group" style="margin-top:15px;">
-          <label class="form-label">요청사항</label>
-          <textarea class="form-textarea" name="notes" placeholder="추가 요청사항을 입력해주세요"></textarea>
+        <div class="price-box">
+          <span>총 예상 금액:</span>
+          <strong id="studioTotalPrice">0원</strong>
         </div>
-
-        <div class="price-display" style="background:#f8f9fa; padding:15px; border-radius:12px; margin-top:20px; text-align:right; border:1px solid #eee;">
-          <span style="font-weight:bold;color:#666;">총 예상 금액: </span>
-          <span id="studioTotalPrice" style="font-size:1.4rem; color:#d9534f; font-weight:bold;">0원</span>
-        </div>
-
-        <button type="submit" class="btn btn-primary" id="studioSubmitBtn" style="width:100%; margin-top:20px; padding:18px; font-size:1.1rem; font-weight:bold; border-radius:12px; box-shadow:0 4px 12px rgba(217,83,79,0.2);">예약 접수 및 카카오톡 이동</button>
+        <button type="submit" class="btn btn-primary btn-full mt-4">예약 접수 및 카카오톡 이동</button>
       </form>
     </div>
   </div>
 </div>
 
-<!-- ===== Milestone Reservation Modal ===== -->
-<div class="modal-backdrop hidden" id="milestoneModal" onclick="closeModal('milestoneModal')">
-  <div class="modal" onclick="event.stopPropagation()">
+<!-- Milestone Modal -->
+<div class="modal-backdrop hidden" id="milestoneModal">
+  <div class="modal">
     <div class="modal-header">
       <h3>백일상·돌상 대여 예약</h3>
       <button class="modal-close" onclick="closeModal('milestoneModal')">&times;</button>
@@ -499,37 +396,19 @@
       <form id="milestoneForm">
         <div class="form-group">
           <label class="form-label">예약자 성함 *</label>
-          <input type="text" class="form-input" name="customerName" required />
+          <input type="text" name="customerName" class="form-input" required />
         </div>
         <div class="form-group">
           <label class="form-label">연락처 *</label>
-          <input type="tel" class="form-input" name="phone" required placeholder="010-0000-0000" />
+          <input type="tel" name="phone" class="form-input" required />
         </div>
-        
-        <!-- 아기 정보 추가 -->
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">아기 이름</label>
-            <input type="text" class="form-input" name="babyName" placeholder="이름" />
-          </div>
-          <div class="form-group">
-            <label class="form-label">성별</label>
-            <select class="form-select" name="babyGender">
-              <option value="">선택</option>
-              <option value="남">남</option>
-              <option value="여">여</option>
-            </select>
-          </div>
-        </div>
-
         <div class="form-group">
           <label class="form-label">행사 날짜 *</label>
-          <input type="date" class="form-input" name="eventDate" required />
+          <input type="date" name="eventDate" class="form-input" required />
         </div>
         <div class="form-group">
           <label class="form-label">테이블 선택 *</label>
-          <select class="form-select" name="tableSelection" required>
-            <option value="">선택해주세요</option>
+          <select name="tableSelection" class="form-select" required>
             <option value="퓨어테이블">퓨어 테이블 (69,000원)</option>
             <option value="로얄 테이블(WHITE)">로얄 테이블 WHITE (89,000원)</option>
             <option value="로얄 테이블(YELLOW)">로얄 테이블 YELLOW (89,000원)</option>
@@ -540,103 +419,19 @@
             <option value="브라이덜샤워">브라이덜 샤워 (80,000원)</option>
           </select>
         </div>
-
-        <div class="form-section">
-          <h3>유료 추가 옵션</h3>
-          <div class="checkbox-group">
-            <input type="checkbox" id="msClothing" name="baekil100Clothing" />
-            <label for="msClothing">백일 의상 (10,000원)</label>
-          </div>
-          <div class="checkbox-group">
-            <input type="checkbox" id="msHanbok" name="baekil100Hanbok" />
-            <label for="msHanbok">백일 한복 (15,000원)</label>
-          </div>
-          <div class="checkbox-group">
-            <input type="checkbox" id="msDolHanbok" name="dolHanbok" />
-            <label for="msDolHanbok">돌 한복/드레스/정장 (35,000원)</label>
-          </div>
-          <div class="form-group" style="margin-top:0.5rem;">
-            <label class="form-label">한복 악세사리 (각 5,000원)</label>
-            <div style="margin-left:1.5rem;display:flex;flex-direction:column;gap:0.5rem;margin-top:0.5rem;">
-              <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;cursor:pointer;"><input type="checkbox" name="acc_jeongjagwan" /> 정자관</label>
-              <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;cursor:pointer;"><input type="checkbox" name="acc_ilbangat" /> 일반갓</label>
-              <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;cursor:pointer;"><input type="checkbox" name="acc_yugeon" /> 유건</label>
-              <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;cursor:pointer;"><input type="checkbox" name="acc_gachae" /> 가채</label>
-              <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;cursor:pointer;"><input type="checkbox" name="acc_meoritti" /> 머리띠</label>
-            </div>
-          </div>
-          <div class="checkbox-group">
-            <input type="checkbox" id="msBambo" name="bamboChair" />
-            <label for="msBambo">범보의자/양털의자/돌방석 (5,000원)</label>
-          </div>
-          <div class="checkbox-group">
-            <input type="checkbox" id="msCushion" name="dolCushion" />
-            <label for="msCushion">돌방석 (5,000원)</label>
-          </div>
-          <div class="checkbox-group">
-            <input type="checkbox" id="msMat" name="waterproofMat" />
-            <label for="msMat">방수요(베개 추가 +5,000) (5,000원)</label>
-          </div>
-          <div class="checkbox-group">
-            <input type="checkbox" id="msTable" name="foldingTable" />
-            <label for="msTable">접이식 테이블 (10,000원)</label>
-          </div>
-          <div class="checkbox-group">
-            <input type="checkbox" id="msGrabbing" name="dolGrabbingSet" />
-            <label for="msGrabbing">돌잡이 세트 (10,000원)</label>
-          </div>
-          <div class="checkbox-group">
-            <input type="checkbox" id="msFruit" name="premiumModelFruit" />
-            <label for="msFruit">고급 모형 과일 (10,000원)</label>
-          </div>
-          <div class="checkbox-group">
-            <input type="checkbox" id="msBaekseolgi" name="modelBaekseolgi" />
-            <label for="msBaekseolgi">모형 백설기 (5,000원)</label>
-          </div>
-          <div class="checkbox-group">
-            <input type="checkbox" id="msWoodBaekseolgi" name="modelWoodBaekseolgi" />
-            <label for="msWoodBaekseolgi">모형 우드 백설기 (10,000원)</label>
-          </div>
-          <div class="checkbox-group">
-            <input type="checkbox" id="msCake" name="modelBaekseolgiCake" />
-            <label for="msCake">모형 백설기 케이크 (10,000원)</label>
-          </div>
-          <div class="checkbox-group">
-            <input type="checkbox" id="msSiru" name="modelSiruTteok" />
-            <label for="msSiru">모형 시루떡 (5,000원)</label>
-          </div>
-          <div class="checkbox-group">
-            <input type="checkbox" id="msPlate" name="modelPlateTeok" />
-            <label for="msPlate">접시형 모형 떡 (7,000원)</label>
-          </div>
-          <div class="checkbox-group">
-            <input type="checkbox" id="msCalligraphy" name="calligraphyCard" />
-            <label for="msCalligraphy">자체제작 금박 캘리그라피 카드 (9,900원)</label>
-          </div>
+        <div class="price-box">
+          <span>총 예상 금액:</span>
+          <strong id="milestoneTotalPrice">0원</strong>
         </div>
-
-        <div class="form-group">
-          <label class="form-label">요청사항</label>
-          <textarea class="form-textarea" name="notes" placeholder="추가 요청사항을 입력해주세요"></textarea>
-        </div>
-
-        <div class="price-display" style="background:#f8f9fa; padding:15px; border-radius:12px; margin-top:20px; text-align:right; border:1px solid #eee;">
-          <span style="font-weight:bold;color:#666;">총 예상 금액: </span>
-          <span id="milestoneTotalPrice" style="font-size:1.4rem; color:#d9534f; font-weight:bold;">0원</span>
-        </div>
-
-        <div class="form-buttons" style="margin-top:20px; display:flex; gap:10px;">
-          <button type="submit" class="btn btn-primary" style="flex:1;">예약 접수</button>
-          <button type="button" class="btn btn-outline" onclick="closeModal('milestoneModal')" style="flex:1;">취소</button>
-        </div>
+        <button type="submit" class="btn btn-primary btn-full mt-4">예약 접수 및 카카오톡 이동</button>
       </form>
     </div>
   </div>
 </div>
 
-<!-- ===== Dress Reservation Modal ===== -->
-<div class="modal-backdrop hidden" id="dressModal" onclick="closeModal('dressModal')">
-  <div class="modal" onclick="event.stopPropagation()">
+<!-- Dress Modal -->
+<div class="modal-backdrop hidden" id="dressModal">
+  <div class="modal">
     <div class="modal-header">
       <h3>정장·드레스 대여 예약</h3>
       <button class="modal-close" onclick="closeModal('dressModal')">&times;</button>
@@ -645,89 +440,25 @@
       <form id="dressForm">
         <div class="form-group">
           <label class="form-label">예약자 성함 *</label>
-          <input type="text" class="form-input" name="customerName" required />
+          <input type="text" name="customerName" class="form-input" required />
         </div>
         <div class="form-group">
           <label class="form-label">연락처 *</label>
-          <input type="tel" class="form-input" name="phone" required placeholder="010-0000-0000" />
-        </div>
-        
-        <!-- 아기 정보 추가 -->
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">아기 이름</label>
-            <input type="text" class="form-input" name="babyName" placeholder="이름" />
-          </div>
-          <div class="form-group">
-            <label class="form-label">성별</label>
-            <select class="form-select" name="babyGender">
-              <option value="">선택</option>
-              <option value="남">남</option>
-              <option value="여">여</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">피팅 날짜 *</label>
-          <input type="date" class="form-input" name="fittingDate" required />
+          <input type="tel" name="phone" class="form-input" required />
         </div>
         <div class="form-group">
           <label class="form-label">행사 날짜 *</label>
-          <input type="date" class="form-input" name="eventDate" required />
+          <input type="date" name="eventDate" class="form-input" required />
         </div>
         <div class="form-group">
           <label class="form-label">대여 상품명</label>
-          <input type="text" class="form-input" name="rentalProduct" placeholder="피팅 없이 대여하고 싶으신 경우 상품명을 입력해주세요." />
-          <p class="form-hint" style="font-size:0.8rem;color:#999;margin-top:5px;">피팅을 통해 직접 선택하시려면 빈칸으로 두셔도 됩니다.</p>
+          <input type="text" name="rentalProduct" class="form-input" placeholder="피팅 후 결정 가능" />
         </div>
-
-        <div class="form-section">
-          <h3>필요시 유료 추가 옵션</h3>
-          <div class="checkbox-group">
-            <input type="checkbox" id="dressNiceSocks" name="niceSocks" />
-            <label for="dressNiceSocks">니삭스 (4,000원)</label>
-          </div>
-          <div id="dressSocksColorWrap" class="sub-select hidden" style="margin-left:20px;margin-bottom:10px;">
-            <select class="form-select" name="niceSocksColor">
-              <option value="black">검정</option>
-              <option value="white">화이트</option>
-            </select>
-          </div>
-          <div class="checkbox-group">
-            <input type="checkbox" id="dressTights" name="tights" />
-            <label for="dressTights">타이즈 (6,000원)</label>
-          </div>
-          <div id="dressTightsColorWrap" class="sub-select hidden" style="margin-left:20px;margin-bottom:10px;">
-            <select class="form-select" name="tightsColor">
-              <option value="black">검정</option>
-              <option value="white">화이트</option>
-            </select>
-          </div>
-          <div class="checkbox-group">
-            <input type="checkbox" id="dressBasket" name="hwadongBasket" />
-            <label for="dressBasket">화동바구니 (5,000원)</label>
-          </div>
-          <div class="checkbox-group">
-            <input type="checkbox" id="dressCar" name="hwadongCar" />
-            <label for="dressCar">화동카 (30,000원)</label>
-          </div>
+        <div class="price-box">
+          <span>총 예상 금액:</span>
+          <strong id="dressTotalPrice">0원</strong>
         </div>
-
-        <div class="form-group">
-          <label class="form-label">요청사항</label>
-          <textarea class="form-textarea" name="notes" placeholder="추가 요청사항을 입력해주세요"></textarea>
-        </div>
-
-        <div class="price-display" style="background:#f8f9fa; padding:15px; border-radius:12px; margin-top:20px; text-align:right; border:1px solid #eee;">
-          <span style="font-weight:bold;color:#666;">총 예상 금액: </span>
-          <span id="dressTotalPrice" style="font-size:1.4rem; color:#d9534f; font-weight:bold;">0원</span>
-        </div>
-
-        <div class="form-buttons" style="margin-top:20px; display:flex; gap:10px;">
-          <button type="submit" class="btn btn-primary" style="flex:1;">예약 접수</button>
-          <button type="button" class="btn btn-outline" onclick="closeModal('dressModal')" style="flex:1;">취소</button>
-        </div>
+        <button type="submit" class="btn btn-primary btn-full mt-4">예약 접수 및 카카오톡 이동</button>
       </form>
     </div>
   </div>
