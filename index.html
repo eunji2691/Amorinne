@@ -28,7 +28,7 @@
   <meta name="twitter:title" content="아모린느 (Amorinne) - 세종시 무인 셀프 스튜디오" />
   <meta name="twitter:description" content="백일상·돌상 대여, 정장·드레스 대여, 한복 대여까지. 조용하고 편안한 공간에서 아이의 소중한 순간을 담아보세요." />
   <meta name="twitter:image" content="https://d2xsxph8kpxj0f.cloudfront.net/310519663517012597/mwzW9HxDqUR8ub4Es6N7UT/2025_07_06_11_19_IMG_1009_ccd20ab1.jpeg" />
-
+ㅍ
   <!-- 구조화 데이터 (JSON-LD) -->
   <script type="application/ld+json">
   {
@@ -360,6 +360,7 @@
   </div>
 </div>
 
+<!-- ===== Studio Reservation Modal (Final v5.0) ===== -->
 <div class="modal-backdrop hidden" id="studioModal" onclick="closeModal('studioModal')">
   <div class="modal" onclick="event.stopPropagation()">
     <div class="modal-header">
@@ -420,7 +421,10 @@
         </div>
 
         <div class="form-section">
-          <label><input type="checkbox" name="memoTableSetting" id="useTable"> 기념일 테이블 세팅 (유료)</label>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+            <input type="checkbox" name="memoTableSetting" id="useTable"> 
+            기념일 테이블 세팅 (유료)
+          </label>
           <div id="studioTableSelectWrap" class="hidden" style="margin-top:10px;">
             <select class="form-select" name="memoTableSettingDetails">
               <option value="">테이블 선택</option>
@@ -436,23 +440,29 @@
           </div>
         </div>
 
-        <div class="form-section" style="margin-top:10px;">
-          <label style="display:block;"><input type="checkbox" name="baeksilHanbok"> 백일 한복 (1.5만)</label>
-          <label style="display:block;"><input type="checkbox" name="dolDressClothing"> 돌 의상 (3.5만)</label>
-          <label style="display:block;"><input type="checkbox" name="iphoneSnap"> 아이폰 스냅 (5만)</label>
-          <label style="display:block;"><input type="checkbox" name="cameraRental"> 카메라 대여 (2만)</label>
+        <div class="form-section" style="margin-top:15px;display:flex;flex-direction:column;gap:8px;">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox" name="baeksilHanbok"> 백일 한복 (1.5만)</label>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox" name="dolDressClothing"> 돌 의상 (3.5만)</label>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox" name="iphoneSnap"> 아이폰 스냅 (5만)</label>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox" name="cameraRental"> 카메라 대여 (2만)</label>
         </div>
 
-        <div class="price-display" style="background:#f8f9fa; padding:15px; border-radius:8px; margin-top:20px; text-align:right;">
-          <span style="font-weight:bold;">총 예상 금액: </span>
-          <span id="studioTotalPrice" style="font-size:1.2rem; color:#d9534f; font-weight:bold;">0원</span>
+        <div class="form-group" style="margin-top:15px;">
+          <label class="form-label">요청사항</label>
+          <textarea class="form-textarea" name="notes" placeholder="추가 요청사항을 입력해주세요"></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary" id="studioSubmitBtn" style="width:100%; margin-top:20px; padding:15px;">예약 접수 및 카카오톡 이동</button>
+        <div class="price-display" style="background:#f8f9fa; padding:15px; border-radius:12px; margin-top:20px; text-align:right; border:1px solid #eee;">
+          <span style="font-weight:bold;color:#666;">총 예상 금액: </span>
+          <span id="studioTotalPrice" style="font-size:1.4rem; color:#d9534f; font-weight:bold;">0원</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="studioSubmitBtn" style="width:100%; margin-top:20px; padding:18px; font-size:1.1rem; font-weight:bold; border-radius:12px; box-shadow:0 4px 12px rgba(217,83,79,0.2);">예약 접수 및 카카오톡 이동</button>
       </form>
     </div>
   </div>
 </div>
+
 
 <!-- ===== Milestone Reservation Modal ===== -->
 <div class="modal-backdrop hidden" id="milestoneModal" onclick="closeModal('milestoneModal')">
