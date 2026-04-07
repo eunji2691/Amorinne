@@ -179,6 +179,8 @@ function updateStudioPrice() {
 // ===== 6. 폼 제출 (핵심 로직) =====
 async function submitStudioForm(event) {
   event.preventDefault();
+  const kakaoWindow = window.open('', '_blank');
+
   const form = event.target;
   const submitBtn = document.getElementById("studioSubmitBtn");
   
@@ -276,9 +278,9 @@ if (result.result === "success") {
     console.error("클립보드 복사 실패", err);
   }
 
-  if (goKakao) {
-    location.href = "https://pf.kakao.com/_cxhePn/chat";
-  }
+  if (goKakao && kakaoWindow) {
+  kakaoWindow.location.href = "https://pf.kakao.com/_cxhePn/chat";
+}
 
   form.reset();
   document.getElementById("studioTotalPrice").textContent = "0원";
