@@ -188,6 +188,7 @@
               <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;margin-bottom:0.5rem;"><span class="bullet"></span>다양한 테마 선택 가능</li>
               <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;margin-bottom:0.5rem;"><span class="bullet"></span>접이식 테이블, 범보의자, 모형 떡·과일 등 촬영 소품은 필요 시 추가 가능</li>
               <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;margin-bottom:0.5rem;"><span class="bullet"></span>아이 컨디션에 맞춰 시간에 구애받지 않고 편하게 촬영 가능</li>
+              <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;margin-bottom:0.5rem;"><span class="bullet"></span>간편한 무인 픽업 · 반납 시스템으로 부담 없이 이용</li>
             </ul>
           </div>
 
@@ -209,7 +210,6 @@
           <ul class="check-list" style="list-style:none;">
             <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;margin-bottom:0.5rem;"><span class="bullet"></span>돌 드레스, 한복, 정장 등 다양한 스타일 준비</li>
             <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;margin-bottom:0.5rem;"><span class="bullet"></span>직접 피팅 후 선택 가능</li>
-            <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;margin-bottom:0.5rem;"><span class="bullet"></span>간편한 무인 픽업 · 반납 시스템</li>
           </ul>
           <button class="btn btn-primary btn-full mt-6" onclick="openModal('dressModal')">예약하기</button>
         </div>
@@ -261,15 +261,14 @@
 <!-- ===== About Section ===== -->
 <section id="about" class="section">
   <div class="container">
-    <div class="about-grid">
-      <div class="about-text">
-        <h3>Amorinne Story</h3>
-        <p>아모린느는 아이의 소중한 순간을 더욱 특별하게 기록하기 위해 탄생했습니다. 세종시 보람동에 위치한 저희 스튜디오는 무인으로 운영되어, 가족들만의 오붓한 시간을 방해받지 않고 즐기실 수 있습니다.</p>
-        <p>백일상, 돌상 대여부터 정장, 드레스, 한복까지 아이를 위한 모든 준비가 한곳에서 가능합니다. 정성 가득한 상차림과 감성적인 포토존에서 잊지 못할 추억을 남겨보세요.</p>
-      </div>
-      <div class="about-image">
-        <img src="images/about.jpg" alt="Amorinne Studio Interior" />
-      </div>
+    <div class="section-title">
+      <h2>Amorinne Story</h2>
+      <p>아모린느가 전하는 따뜻한 이야기</p>
+    </div>
+    <div style="text-align:center; max-width:800px; margin:0 auto; line-height:2;">
+      <p class="text-muted">아이의 첫 번째 생일, 백일, 그리고 수많은 소중한 날들.<br />
+      그 소중한 순간들이 더욱 빛날 수 있도록 아모린느가 함께합니다.<br />
+      번거로운 준비는 저희에게 맡기시고, 오직 아이와의 행복한 시간에만 집중하세요.</p>
     </div>
   </div>
 </section>
@@ -348,10 +347,22 @@
     </div>
     <div class="footer-bottom">
       <p>&copy; 2026 아모린느. All rights reserved.</p>
-      <p style="font-size: 0.8rem; margin-top: 10px; color: #aaa;">상호명: 아모린느 | 사업자번호: 000-00-00000 | 주소: 세종특별자치시 한누리대로 2129 스타힐타워B동 210호</p>
     </div>
   </div>
 </footer>
+
+<!-- ===== Image Modal ===== -->
+<div class="modal-backdrop hidden" id="imageModal" onclick="closeImageModal()">
+  <div class="modal" onclick="event.stopPropagation()" style="max-width:42rem;">
+    <div class="modal-header">
+      <h3 id="imageModalTitle"></h3>
+      <button class="modal-close" onclick="closeImageModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <img id="imageModalImg" src="" alt="" style="width:100%;border-radius:var(--radius);" />
+    </div>
+  </div>
+</div>
 
 <!-- ===== Studio Reservation Modal ===== -->
 <div class="modal-backdrop hidden" id="studioModal" onclick="closeModal('studioModal')">
@@ -378,11 +389,11 @@
             <input type="text" class="form-input" name="babyName" placeholder="이름" />
           </div>
           <div class="form-group">
-            <label class="form-label">아기 영문 이름</label>
-            <input type="text" class="form-input" name="babyEnglishName" placeholder="English Name" />
+            <label class="form-label">영문 이름</label>
+            <input type="text" class="form-input" name="babyEnglishName" placeholder="English" />
           </div>
           <div class="form-group">
-            <label class="form-label">아기 성별</label>
+            <label class="form-label">성별</label>
             <select class="form-select" name="babyGender">
               <option value="">선택</option>
               <option value="남">남</option>
@@ -419,7 +430,7 @@
           </div>
           <div class="form-group">
             <label class="form-label">종료 시간</label>
-            <input type="text" class="form-input" id="endTime" readonly placeholder="자동 계산" />
+            <input type="text" class="form-input" id="endTime" readonly placeholder="자동계산" />
           </div>
         </div>
 
@@ -494,6 +505,23 @@
           <label class="form-label">연락처 *</label>
           <input type="tel" class="form-input" name="phone" required placeholder="010-0000-0000" />
         </div>
+        
+        <!-- 아기 정보 추가 -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">아기 이름</label>
+            <input type="text" class="form-input" name="babyName" placeholder="이름" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">성별</label>
+            <select class="form-select" name="babyGender">
+              <option value="">선택</option>
+              <option value="남">남</option>
+              <option value="여">여</option>
+            </select>
+          </div>
+        </div>
+
         <div class="form-group">
           <label class="form-label">행사 날짜 *</label>
           <input type="date" class="form-input" name="eventDate" required />
@@ -527,9 +555,27 @@
             <input type="checkbox" id="msDolHanbok" name="dolHanbok" />
             <label for="msDolHanbok">돌 한복/드레스/정장 (35,000원)</label>
           </div>
+          <div class="form-group" style="margin-top:0.5rem;">
+            <label class="form-label">한복 악세사리 (각 5,000원)</label>
+            <div style="margin-left:1.5rem;display:flex;flex-direction:column;gap:0.5rem;margin-top:0.5rem;">
+              <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;cursor:pointer;"><input type="checkbox" name="acc_jeongjagwan" /> 정자관</label>
+              <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;cursor:pointer;"><input type="checkbox" name="acc_ilbangat" /> 일반갓</label>
+              <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;cursor:pointer;"><input type="checkbox" name="acc_yugeon" /> 유건</label>
+              <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;cursor:pointer;"><input type="checkbox" name="acc_gachae" /> 가채</label>
+              <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;cursor:pointer;"><input type="checkbox" name="acc_meoritti" /> 머리띠</label>
+            </div>
+          </div>
           <div class="checkbox-group">
             <input type="checkbox" id="msBambo" name="bamboChair" />
             <label for="msBambo">범보의자/양털의자/돌방석 (5,000원)</label>
+          </div>
+          <div class="checkbox-group">
+            <input type="checkbox" id="msCushion" name="dolCushion" />
+            <label for="msCushion">돌방석 (5,000원)</label>
+          </div>
+          <div class="checkbox-group">
+            <input type="checkbox" id="msMat" name="waterproofMat" />
+            <label for="msMat">방수요(베개 추가 +5,000) (5,000원)</label>
           </div>
           <div class="checkbox-group">
             <input type="checkbox" id="msTable" name="foldingTable" />
@@ -539,6 +585,34 @@
             <input type="checkbox" id="msGrabbing" name="dolGrabbingSet" />
             <label for="msGrabbing">돌잡이 세트 (10,000원)</label>
           </div>
+          <div class="checkbox-group">
+            <input type="checkbox" id="msFruit" name="premiumModelFruit" />
+            <label for="msFruit">고급 모형 과일 (10,000원)</label>
+          </div>
+          <div class="checkbox-group">
+            <input type="checkbox" id="msBaekseolgi" name="modelBaekseolgi" />
+            <label for="msBaekseolgi">모형 백설기 (5,000원)</label>
+          </div>
+          <div class="checkbox-group">
+            <input type="checkbox" id="msWoodBaekseolgi" name="modelWoodBaekseolgi" />
+            <label for="msWoodBaekseolgi">모형 우드 백설기 (10,000원)</label>
+          </div>
+          <div class="checkbox-group">
+            <input type="checkbox" id="msCake" name="modelBaekseolgiCake" />
+            <label for="msCake">모형 백설기 케이크 (10,000원)</label>
+          </div>
+          <div class="checkbox-group">
+            <input type="checkbox" id="msSiru" name="modelSiruTteok" />
+            <label for="msSiru">모형 시루떡 (5,000원)</label>
+          </div>
+          <div class="checkbox-group">
+            <input type="checkbox" id="msPlate" name="modelPlateTeok" />
+            <label for="msPlate">접시형 모형 떡 (7,000원)</label>
+          </div>
+          <div class="checkbox-group">
+            <input type="checkbox" id="msCalligraphy" name="calligraphyCard" />
+            <label for="msCalligraphy">자체제작 금박 캘리그라피 카드 (9,900원)</label>
+          </div>
         </div>
 
         <div class="form-group">
@@ -546,14 +620,14 @@
           <textarea class="form-textarea" name="notes" placeholder="추가 요청사항을 입력해주세요"></textarea>
         </div>
 
-        <div class="price-display">
-          <span class="label">예상 합계</span>
-          <span class="amount" id="milestoneTotalPrice">0원</span>
+        <div class="price-display" style="background:#f8f9fa; padding:15px; border-radius:12px; margin-top:20px; text-align:right; border:1px solid #eee;">
+          <span style="font-weight:bold;color:#666;">총 예상 금액: </span>
+          <span id="milestoneTotalPrice" style="font-size:1.4rem; color:#d9534f; font-weight:bold;">0원</span>
         </div>
 
-        <div class="form-buttons">
-          <button type="submit" class="btn btn-primary">예약 접수</button>
-          <button type="button" class="btn btn-outline" onclick="closeModal('milestoneModal')">취소</button>
+        <div class="form-buttons" style="margin-top:20px; display:flex; gap:10px;">
+          <button type="submit" class="btn btn-primary" style="flex:1;">예약 접수</button>
+          <button type="button" class="btn btn-outline" onclick="closeModal('milestoneModal')" style="flex:1;">취소</button>
         </div>
       </form>
     </div>
@@ -577,6 +651,23 @@
           <label class="form-label">연락처 *</label>
           <input type="tel" class="form-input" name="phone" required placeholder="010-0000-0000" />
         </div>
+        
+        <!-- 아기 정보 추가 -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">아기 이름</label>
+            <input type="text" class="form-input" name="babyName" placeholder="이름" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">성별</label>
+            <select class="form-select" name="babyGender">
+              <option value="">선택</option>
+              <option value="남">남</option>
+              <option value="여">여</option>
+            </select>
+          </div>
+        </div>
+
         <div class="form-group">
           <label class="form-label">피팅 날짜 *</label>
           <input type="date" class="form-input" name="fittingDate" required />
@@ -588,17 +679,30 @@
         <div class="form-group">
           <label class="form-label">대여 상품명</label>
           <input type="text" class="form-input" name="rentalProduct" placeholder="피팅 없이 대여하고 싶으신 경우 상품명을 입력해주세요." />
+          <p class="form-hint" style="font-size:0.8rem;color:#999;margin-top:5px;">피팅을 통해 직접 선택하시려면 빈칸으로 두셔도 됩니다.</p>
         </div>
 
         <div class="form-section">
           <h3>필요시 유료 추가 옵션</h3>
           <div class="checkbox-group">
-            <input type="checkbox" id="dressSocks" name="niceSocks" />
-            <label for="dressSocks">니삭스 (3,000원)</label>
+            <input type="checkbox" id="dressNiceSocks" name="niceSocks" />
+            <label for="dressNiceSocks">니삭스 (4,000원)</label>
+          </div>
+          <div id="dressSocksColorWrap" class="sub-select hidden" style="margin-left:20px;margin-bottom:10px;">
+            <select class="form-select" name="niceSocksColor">
+              <option value="black">검정</option>
+              <option value="white">화이트</option>
+            </select>
           </div>
           <div class="checkbox-group">
             <input type="checkbox" id="dressTights" name="tights" />
             <label for="dressTights">타이즈 (6,000원)</label>
+          </div>
+          <div id="dressTightsColorWrap" class="sub-select hidden" style="margin-left:20px;margin-bottom:10px;">
+            <select class="form-select" name="tightsColor">
+              <option value="black">검정</option>
+              <option value="white">화이트</option>
+            </select>
           </div>
           <div class="checkbox-group">
             <input type="checkbox" id="dressBasket" name="hwadongBasket" />
@@ -615,29 +719,16 @@
           <textarea class="form-textarea" name="notes" placeholder="추가 요청사항을 입력해주세요"></textarea>
         </div>
 
-        <div class="price-display">
-          <span class="label">예상 합계</span>
-          <span class="amount" id="dressTotalPrice">0원</span>
+        <div class="price-display" style="background:#f8f9fa; padding:15px; border-radius:12px; margin-top:20px; text-align:right; border:1px solid #eee;">
+          <span style="font-weight:bold;color:#666;">총 예상 금액: </span>
+          <span id="dressTotalPrice" style="font-size:1.4rem; color:#d9534f; font-weight:bold;">0원</span>
         </div>
 
-        <div class="form-buttons">
-          <button type="submit" class="btn btn-primary">예약 접수</button>
-          <button type="button" class="btn btn-outline" onclick="closeModal('dressModal')">취소</button>
+        <div class="form-buttons" style="margin-top:20px; display:flex; gap:10px;">
+          <button type="submit" class="btn btn-primary" style="flex:1;">예약 접수</button>
+          <button type="button" class="btn btn-outline" onclick="closeModal('dressModal')" style="flex:1;">취소</button>
         </div>
       </form>
-    </div>
-  </div>
-</div>
-
-<!-- ===== Image Modal ===== -->
-<div class="modal-backdrop hidden" id="imageModal" onclick="closeImageModal()">
-  <div class="modal" onclick="event.stopPropagation()" style="max-width:42rem;">
-    <div class="modal-header">
-      <h3 id="imageModalTitle">이미지 확대</h3>
-      <button class="modal-close" onclick="closeImageModal()">&times;</button>
-    </div>
-    <div class="modal-body">
-      <img id="imageModalImg" src="" alt="" style="width:100%;border-radius:var(--radius);" />
     </div>
   </div>
 </div>
