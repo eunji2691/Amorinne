@@ -566,16 +566,16 @@ function updateEndTime() {
 // 테이블 상세 열기/닫기
 function toggleTableSettingDetails() {
   const memoTableSetting = document.getElementById('memoTableSetting');
-  const tableSettingDetailsGroup = document.getElementById('tableSettingDetailsGroup');
-  const detailSelect = document.getElementById('memoTableSettingDetails');
+  const group = document.getElementById('tableSettingDetailsGroup');
+  const select = document.getElementById('memoTableSettingDetails');
 
-  if (!memoTableSetting || !tableSettingDetailsGroup || !detailSelect) return;
+  if (!memoTableSetting || !group || !select) return;
 
   if (memoTableSetting.checked) {
-    tableSettingDetailsGroup.classList.remove('hidden');
+    group.classList.remove('hidden');
   } else {
-    tableSettingDetailsGroup.classList.add('hidden');
-    detailSelect.value = '';
+    group.classList.add('hidden');
+    select.value = '';
   }
 }
 
