@@ -259,10 +259,6 @@ const response = await fetch(APPS_SCRIPT_URL, {
     const result = await response.json();
 
 if (result.result === "success") {
-  const goKakao = confirm(
-    "예약 접수가 완료되었습니다.\n확인을 누르면 카카오톡 채널로 이동합니다."
-  );
-
   try {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       await navigator.clipboard.writeText(kakaoMsg);
@@ -278,14 +274,11 @@ if (result.result === "success") {
     console.error("클립보드 복사 실패", err);
   }
 
-  if (goKakao && kakaoWindow) {
-  kakaoWindow.location.href = "https://pf.kakao.com/_cxhePn/chat";
-}
+  alert("예약 접수가 완료되었습니다.\n예약 내용이 복사되었습니다.\n확인을 누르면 카카오 채널 페이지로 이동합니다.");
 
-  form.reset();
-  document.getElementById("studioTotalPrice").textContent = "0원";
-  document.getElementById("studioTableSelectWrap").classList.add("hidden");
-  closeModal("studioModal");
+  location.href = "https://pf.kakao.com/_cxhePn";
+
+  return;
 } else {
   throw new Error(result.error || "저장 실패");
 }
