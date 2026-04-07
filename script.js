@@ -1,13 +1,11 @@
-/* ===== Amorinne Static Website Script (Final Robust Version 4.0) ===== */
-
-// ===== 1. 설정값 (이 부분만 수정하세요) =====
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzUKinT_MonHT9Wg254mBDDn0TJvXadTlbxpBU73g9jNjT3j41hOJS5g5y5Y3lbwCN0/exec';
+// ===== 설정값 =====
+const APPS_SCRIPT_URL = '여기에_새로_받은_웹앱_URL을_넣으세요';
 const KAKAO_CHANNEL_URL = 'https://pf.kakao.com/_cxhePn/chat';
 
-// ===== 2. 데이터 정의 =====
+// 가격 데이터
 const TABLE_DATA = [
   { id: "pure", name: "퓨어 테이블", studioPrice: 35000 },
-  { id: "royal-white", name: "로얄 테이블 (WHITE)", studioPrice: 40000 },
+  { id: "royal-white", name: "로얄 테이블 (WHITE )", studioPrice: 40000 },
   { id: "royal-yellow", name: "로얄 테이블 (YELLOW)", studioPrice: 40000 },
   { id: "seorin", name: "서린상", studioPrice: 45000 },
   { id: "daon", name: "다온상", studioPrice: 40000 },
@@ -16,240 +14,101 @@ const TABLE_DATA = [
   { id: "bridal", name: "브라이덜 샤워", studioPrice: 50000 }
 ];
 
-// ===== 3. 공통 UI 제어 =====
-function openModal(id) {
-  const modal = document.getElementById(id);
-  if (modal) {
-    modal.classList.remove("hidden");
-    document.body.style.overflow = "hidden";
-  }
-}
+// 모달 제어 함수
+function openModal(id) { document.getElementById(id).classList.remove("hidden"); document.body.style.overflow = "hidden"; }
+function closeModal(id) { document.getElementById(id).classList.add("hidden"); document.body.style.overflow = ""; }
 
-function closeModal(id) {
-  const modal = document.getElementById(id);
-  if (modal) {
-    modal.classList.add("hidden");
-    document.body.style.overflow = "";
-  }
-}
-
-function toggleMobileMenu() {
-  document.getElementById("mobileMenu").classList.toggle("active");
-}
-
-function closeMobileMenu() {
-  document.getElementById("mobileMenu").classList.remove("active");
-}
-
-// ===== 4. 가격 및 시간 계산 =====
-function isWeekend(dateStr) {
-  if (!dateStr) return false;
-  const d = new Date(dateStr);
-  const day = d.getDay();
-  return day === 0 || day === 6;
-}
-
+// 종료 시간 자동 계산
 function updateEndTime() {
   const form = document.getElementById("studioForm");
   const startTime = form.reservationTime.value;
   const hours = form.rentalHours.value;
-  const endTimeInput = document.getElementById("endTime");
-  if (!startTime || !hours) {
-    endTimeInput.value = "";
-    return;
-  }
+  if (!startTime || !hours) return;
   const [h, m] = startTime.split(":").map(Number);
-  let endHour = h + parseInt(hours);
-  endTimeInput.value = `${String(endHour).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+  document.getElementById("endTime").value = `${String(h + parseInt(hours)).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
 }
 
-function toggleTableSettingDetails() {
-  const wrap = document.getElementById("studioTableSelectWrap");
-  const cb = document.getElementById("studioTableSetting");
-  if (wrap && cb) wrap.classList.toggle("hidden", !cb.checked);
-  updateStudioPrice();
-}
-
+// 가격 실시간 계산
 function updateStudioPrice() {
   const form = document.getElementById("studioForm");
-  if (!form) return 0;
   let total = 0;
-  const dateStr = form.reservationDate.value;
+  const isWeekend = [0, 6].includes(new Date(form.reservationDate.value).getDay());
   const hours = parseInt(form.rentalHours.value) || 0;
-  const weekend = isWeekend(dateStr);
 
-  if (hours === 1) total += weekend ? 70000 : 60000;
-  else if (hours === 2) total += weekend ? 120000 : 100000;
+  if (hours === 1) total += isWeekend ? 70000 : 60000;
+  else if (hours === 2) total += isWeekend ? 120000 : 100000;
 
-  const adults = parseInt(form.adultCount.value) || 0;
-  const babies = parseInt(form.babyCount.value) || 0;
-  if (adults + babies > 5) total += (adults + babies - 5) * 10000;
+  const people = (parseInt(form.adultCount.value) || 0) + (parseInt(form.babyCount.value) || 0);
+  if (people > 5) total += (people - 5) * 10000;
 
   if (form.memoTableSetting.checked) {
-    const tableId = form.memoTableSettingDetails.value;
-    const table = TABLE_DATA.find(t => t.id === tableId);
+    const table = TABLE_DATA.find(t => t.id === form.memoTableSettingDetails.value);
     if (table) total += table.studioPrice;
   }
 
   if (form.baeksilHanbok.checked) total += 15000;
   if (form.dolDressClothing.checked) total += 35000;
-  const camera = form.querySelector('input[name="cameraRental"]:checked');
-  if (camera && camera.value !== "없음") total += 20000;
+  if (form.querySelector('input[name="cameraRental"]:checked')?.value !== "없음") total += 20000;
   if (form.iphoneSnap.checked) total += 50000;
   if (form.screenBackground.checked) total += 30000;
   if (form.calligraphyCard.checked) total += 9900;
   if (form.numberBalloon.checked) total += 5000;
 
-  const display = document.getElementById("studioTotalPrice");
-  if (display) display.textContent = total.toLocaleString() + "원";
+  document.getElementById("studioTotalPrice").textContent = total.toLocaleString() + "원";
   return total;
 }
 
-// ===== 5. 폼 제출 및 카카오 연동 (최종 UX) =====
+// 폼 제출 (핵심)
 async function submitStudioForm(event) {
   event.preventDefault();
-  const form = event.target;
-  const submitBtn = document.getElementById("studioSubmitBtn");
-  
-  submitBtn.disabled = true;
-  submitBtn.innerText = "저장 중...";
+  const btn = document.getElementById("studioSubmitBtn");
+  btn.disabled = true; btn.innerText = "저장 중...";
 
   try {
+    const form = event.target;
     const formData = new FormData(form);
     const totalPrice = updateStudioPrice();
-    const dateStr = formData.get("reservationDate");
-    const dayType = isWeekend(dateStr) ? "주말" : "평일";
     
-    let tableInfo = "없음";
-    if (formData.get("memoTableSetting") === "on") {
-      const tableId = formData.get("memoTableSettingDetails");
-      const table = TABLE_DATA.find(t => t.id === tableId);
-      tableInfo = table ? table.name : "선택 안됨";
-    }
+    // 카카오 문구 생성
+    const kakaoMsg = `[무인 셀프 스튜디오 예약]\n예약자: ${formData.get("customerName")}\n연락처: ${formData.get("phone")}\n예약일: ${formData.get("reservationDate")} ${formData.get("reservationTime")}\n총 금액: ${totalPrice.toLocaleString()}원`;
 
-    let options = [];
-    if (formData.get("baeksilHanbok") === "on") options.push("백일 한복");
-    if (formData.get("dolDressClothing") === "on") options.push("돌 한복/드레스/정장");
-    const camera = formData.get("cameraRental");
-    if (camera && camera !== "없음") options.push(`카메라 대여(${camera})`);
-    if (formData.get("iphoneSnap") === "on") options.push("아이폰 스냅");
-    if (formData.get("screenBackground") === "on") options.push("병풍 추가");
-    if (formData.get("calligraphyCard") === "on") options.push("캘리그라피 카드");
-    if (formData.get("numberBalloon") === "on") options.push("숫자 풍선");
-    const optionSummary = options.length > 0 ? options.join(", ") : "없음";
-
-    const kakaoMsg = `[무인 셀프 스튜디오 예약]
-예약자: ${formData.get("customerName")}
-연락처: ${formData.get("phone")}
-예약일: ${dateStr} ${formData.get("reservationTime")} (${dayType})
-대여시간: ${formData.get("rentalHours")}시간 (종료: ${document.getElementById("endTime").value})
-성인/아기: ${formData.get("adultCount")}명 / ${formData.get("babyCount")}명
-기념일 테이블: ${tableInfo}
-추가 옵션: ${optionSummary}
-총 예상 금액: ${totalPrice.toLocaleString()}원
-요청사항: ${formData.get("notes") || "없음"}`;
-
-    const postData = {
-      reservationType: '무인 셀프 스튜디오',
-      customerName: formData.get("customerName"),
-      phone: formData.get("phone"),
-      reservationDate: dateStr,
-      reservationTime: formData.get("reservationTime"),
-      rentalHours: formData.get("rentalHours"),
-      endTime: document.getElementById("endTime").value,
-      dayType: dayType,
-      adultCount: formData.get("adultCount"),
-      babyCount: formData.get("babyCount"),
-      memoTableSetting: formData.get("memoTableSetting") === "on" ? "Y" : "N",
-      memoTableSettingDetails: tableInfo,
-      optionSummary: optionSummary,
-      totalPrice: totalPrice,
-      notes: formData.get("notes"),
-      kakaoMessage: kakaoMsg,
-      clientCreatedAt: new Date().toLocaleString()
-    };
-
+    // 서버 전송
     const response = await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
-      body: JSON.stringify(postData)
+      body: JSON.stringify({
+        customerName: formData.get("customerName"),
+        phone: formData.get("phone"),
+        reservationDate: formData.get("reservationDate"),
+        reservationTime: formData.get("reservationTime"),
+        rentalHours: formData.get("rentalHours"),
+        endTime: document.getElementById("endTime").value,
+        totalPrice: totalPrice,
+        kakaoMessage: kakaoMsg,
+        notes: formData.get("notes")
+      })
     });
 
     const result = await response.json();
 
     if (result.result === "success") {
-      // 1. 클립보드 복사
-      try {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          await navigator.clipboard.writeText(kakaoMsg);
-        } else {
-          const textArea = document.createElement("textarea");
-          textArea.value = kakaoMsg;
-          document.body.appendChild(textArea);
-          textArea.select();
-          document.execCommand('copy');
-          document.body.removeChild(textArea);
-        }
-      } catch (err) { console.error(err); }
+      // 클립보드 복사
+      const el = document.createElement('textarea');
+      el.value = kakaoMsg; document.body.appendChild(el);
+      el.select(); document.execCommand('copy'); document.body.removeChild(el);
 
-      // 2. 성공 안내 UI 표시 (팝업 차단 방지를 위해 버튼 클릭 유도)
-      // 기존 성공 모달이 있다면 제거
-      const oldModal = document.getElementById('successModal');
-      if (oldModal) oldModal.remove();
-
-      const successModalHtml = `
-        <div id="successModal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:99999; display:flex; align-items:center; justify-content:center; padding:20px;">
-          <div style="background:white; width:100%; max-width:400px; border-radius:12px; padding:30px; text-align:center; box-shadow:0 10px 25px rgba(0,0,0,0.2);">
-            <div style="font-size:40px; margin-bottom:15px;">✅</div>
-            <h3 style="margin-bottom:15px; font-size:20px; font-weight:700; color:#333;">예약 접수 완료!</h3>
-            <p style="margin-bottom:25px; font-size:15px; line-height:1.6; color:#666;">
-              예약 내용이 자동으로 복사되었습니다.<br>
-              아래 버튼을 눌러 카카오톡 채팅창에<br>
-              <span style="color:#d32f2f; font-weight:700;">'붙여넣기'</span>를 해서 보내주세요!
-            </p>
-            <a href="${KAKAO_CHANNEL_URL}" target="_blank" style="display:block; background:#fee500; color:#3c1e1e; text-decoration:none; padding:15px; border-radius:8px; font-weight:700; font-size:16px; margin-bottom:10px; border:none; cursor:pointer;">카카오톡으로 내용 보내기</a>
-            <button onclick="document.getElementById('successModal').remove();" style="display:block; width:100%; background:#f5f5f5; color:#666; padding:12px; border-radius:8px; font-size:14px; border:none; cursor:pointer;">닫기</button>
+      // 성공 안내창 (절대 안 막히는 방식)
+      const html = `
+        <div id="finalOk" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:9999;display:flex;align-items:center;justify-content:center;">
+          <div style="background:white;padding:30px;border-radius:15px;text-align:center;max-width:320px;">
+            <h2 style="margin-bottom:15px;">접수 완료!</h2>
+            <p style="margin-bottom:20px;font-size:14px;color:#666;">내용이 복사되었습니다.  
+아래 버튼을 눌러 카카오톡에 붙여넣어주세요.</p>
+            <a href="${KAKAO_CHANNEL_URL}" target="_blank" style="display:block;background:#fee500;padding:15px;border-radius:10px;text-decoration:none;color:#3c1e1e;font-weight:bold;">카카오톡으로 이동</a>
           </div>
-        </div>
-      `;
-      document.body.insertAdjacentHTML('beforeend', successModalHtml);
-
-      // 3. 기존 폼 초기화 및 모달 닫기
-      form.reset();
-      document.getElementById("studioTotalPrice").textContent = "0원";
-      document.getElementById("studioTableSelectWrap").classList.add("hidden");
+        </div>`;
+      document.body.insertAdjacentHTML('beforeend', html);
       closeModal("studioModal");
-    } else {
-      throw new Error(result.error || "저장 실패");
-    }
-  } catch (error) {
-    alert("오류가 발생했습니다: " + error.message);
-  } finally {
-    submitBtn.disabled = false;
-    submitBtn.innerText = "예약 접수";
-  }
+    } else { alert("저장 실패: " + result.error); }
+  } catch (e) { alert("오류 발생: " + e.message); }
+  finally { btn.disabled = false; btn.innerText = "예약 접수"; }
 }
-
-// ===== 6. 초기화 =====
-document.addEventListener("DOMContentLoaded", () => {
-  // 스무스 스크롤
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", function(e) {
-      const target = document.querySelector(this.getAttribute("href"));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: "smooth" });
-      }
-    });
-  });
-
-  // ESC 키 닫기
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      closeModal("studioModal");
-      closeModal("milestoneModal");
-      closeModal("dressModal");
-      const successModal = document.getElementById('successModal');
-      if (successModal) successModal.remove();
-    }
-  });
-});
