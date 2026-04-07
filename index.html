@@ -373,18 +373,14 @@
   </div>
 </div>
 
-<!-- ===== Studio Reservation Modal (Final Clean Version) ===== -->
-<!-- ===== Studio Reservation Modal (Final Clean Version) ===== -->
-<div class="modal-backdrop hidden" id="studioModal" onclick="closeModal('studioModal')">
-<!-- ===== Studio Reservation Modal (Final Clean Version) ===== -->
 <div class="modal-backdrop hidden" id="studioModal" onclick="closeModal('studioModal')">
   <div class="modal" onclick="event.stopPropagation()">
     <div class="modal-header">
       <h3>무인 셀프 스튜디오 예약</h3>
-      <button class="modal-close" onclick="closeModal('studioModal')">&times;</button>
+      <button type="button" class="modal-close" onclick="closeModal('studioModal')">&times;</button>
     </div>
     <div class="modal-body">
-      <form id="studioForm" onsubmit="submitStudioForm(event)">
+      <form id="studioForm">
         <div class="form-group">
           <label class="form-label">예약자 성함 *</label>
           <input type="text" class="form-input" name="customerName" required />
@@ -395,30 +391,25 @@
         </div>
         <div class="form-group">
           <label class="form-label">예약 날짜 *</label>
-          <input type="date" class="form-input" name="reservationDate" required onchange="updateStudioPrice()" />
+          <input type="date" class="form-input" name="reservationDate" required />
         </div>
+        
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">시작 시간 *</label>
-            <select class="form-select" name="reservationTime" required onchange="updateEndTime();updateStudioPrice()">
+            <select class="form-select" name="reservationTime" required>
               <option value="">선택</option>
-              <option value="09:00">09:00</option>
-              <option value="10:00">10:00</option>
-              <option value="11:00">11:00</option>
-              <option value="12:00">12:00</option>
-              <option value="13:00">13:00</option>
-              <option value="14:00">14:00</option>
-              <option value="15:00">15:00</option>
-              <option value="16:00">16:00</option>
-              <option value="17:00">17:00</option>
-              <option value="18:00">18:00</option>
-              <option value="19:00">19:00</option>
-              <option value="20:00">20:00</option>
+              <option value="09:00">09:00</option><option value="10:00">10:00</option>
+              <option value="11:00">11:00</option><option value="12:00">12:00</option>
+              <option value="13:00">13:00</option><option value="14:00">14:00</option>
+              <option value="15:00">15:00</option><option value="16:00">16:00</option>
+              <option value="17:00">17:00</option><option value="18:00">18:00</option>
+              <option value="19:00">19:00</option><option value="20:00">20:00</option>
             </select>
           </div>
           <div class="form-group">
             <label class="form-label">대여 시간 *</label>
-            <select class="form-select" name="rentalHours" required onchange="updateEndTime();updateStudioPrice()">
+            <select class="form-select" name="rentalHours" required>
               <option value="">선택</option>
               <option value="1">1시간</option>
               <option value="2">2시간</option>
@@ -426,99 +417,57 @@
           </div>
           <div class="form-group">
             <label class="form-label">종료 시간</label>
-            <input type="text" class="form-input" id="endTime" name="endTime" readonly placeholder="자동계산" />
+            <input type="text" class="form-input" id="endTime" readonly placeholder="자동계산" />
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">성인 인원 *</label>
-            <input type="number" class="form-input" name="adultCount" value="2" min="0" required onchange="updateStudioPrice()" />
+            <input type="number" class="form-input" name="adultCount" value="2" min="0" required />
           </div>
           <div class="form-group">
             <label class="form-label">아기 인원 *</label>
-            <input type="number" class="form-input" name="babyCount" value="1" min="0" required onchange="updateStudioPrice()" />
+            <input type="number" class="form-input" name="babyCount" value="1" min="0" required />
           </div>
         </div>
-        <p class="form-hint">※ 성인+아기 합산 5명 초과 시 1인당 10,000원 추가</p>
 
-        <div class="form-section">
-          <h3>기념일 테이블 옵션</h3>
-          <div class="checkbox-group">
-            <input type="checkbox" id="studioTableSetting" name="memoTableSetting" onchange="toggleTableSettingDetails()" />
-            <label for="studioTableSetting">기념일 테이블 세팅 추가</label>
-          </div>
-          <div id="studioTableSelectWrap" class="sub-select hidden">
-            <label class="form-label">테이블 선택</label>
-            <select class="form-select" name="memoTableSettingDetails" onchange="updateStudioPrice()">
-              <option value="">테이블을 선택해주세요</option>
-              <option value="pure">퓨어 테이블 (35,000원)</option>
-              <option value="royal-white">로얄 테이블 WHITE (40,000원)</option>
-              <option value="royal-yellow">로얄 테이블 YELLOW (40,000원)</option>
-              <option value="seorin">서린상 (45,000원)</option>
-              <option value="daon">다온상 (40,000원)</option>
-              <option value="hayeon">하연상 (35,000원)</option>
-              <option value="safari">사파리 테이블 (35,000원)</option>
-              <option value="bridal">브라이덜 샤워 (50,000원)</option>
+        <div class="form-section" style="margin-top:10px;">
+          <label style="font-weight:bold;"><input type="checkbox" name="memoTableSetting" id="useTable"> 기념일 테이블 세팅 (유료)</label>
+          <div id="studioTableSelectWrap" class="hidden" style="margin-top:10px;">
+            <select class="form-select" name="memoTableSettingDetails">
+              <option value="">테이블 선택</option>
+              <option value="pure">퓨어(3.5만)</option>
+              <option value="royal-white">로얄 WHITE(4만)</option>
+              <option value="royal-yellow">로얄 YELLOW(4만)</option>
+              <option value="seorin">서린상(4.5만)</option>
+              <option value="daon">다온상(4만)</option>
+              <option value="hayeon">하연상(3.5만)</option>
+              <option value="safari">사파리(3.5만)</option>
+              <option value="bridal">브라이덜 샤워(5만)</option>
             </select>
           </div>
         </div>
 
-        <div class="form-section">
-          <h3>유료 추가 옵션</h3>
-          <div class="checkbox-group">
-            <input type="checkbox" id="baeksilHanbok" name="baeksilHanbok" onchange="updateStudioPrice()" />
-            <label for="baeksilHanbok">백일 한복 (15,000원)</label>
-          </div>
-          <div class="checkbox-group">
-            <input type="checkbox" id="dolDressClothing" name="dolDressClothing" onchange="updateStudioPrice()" />
-            <label for="dolDressClothing">돌 한복/드레스/정장 (35,000원)</label>
-          </div>
-          <div class="form-group" style="margin-top:0.5rem;">
-            <label class="form-label">카메라 대여 (20,000원)</label>
-            <div class="radio-group">
-              <label><input type="radio" name="cameraRental" value="없음" checked onchange="updateStudioPrice()" /> 없음</label>
-              <label><input type="radio" name="cameraRental" value="미러리스" onchange="updateStudioPrice()" /> 미러리스</label>
-              <label><input type="radio" name="cameraRental" value="폴라로이드" onchange="updateStudioPrice()" /> 폴라로이드</label>
-            </div>
-          </div>
-          <div class="checkbox-group">
-            <input type="checkbox" id="iphoneSnap" name="iphoneSnap" onchange="updateStudioPrice()" />
-            <label for="iphoneSnap">아이폰 스냅 (50,000원)</label>
-          </div>
-          <div class="checkbox-group">
-            <input type="checkbox" id="screenBackground" name="screenBackground" onchange="updateStudioPrice()" />
-            <label for="screenBackground">병풍 추가 (30,000원)</label>
-          </div>
-          <div class="checkbox-group">
-            <input type="checkbox" id="calligraphyCard" name="calligraphyCard" onchange="updateStudioPrice()" />
-            <label for="calligraphyCard">자체제작 금박 캘리그라피 카드 (9,900원)</label>
-          </div>
-          <div class="checkbox-group">
-            <input type="checkbox" id="numberBalloon" name="numberBalloon" onchange="updateStudioPrice()" />
-            <label for="numberBalloon">대형 숫자 풍선 (5,000원)</label>
-          </div>
+        <div class="form-section" style="margin-top:10px;">
+          <label style="display:block;"><input type="checkbox" name="baeksilHanbok"> 백일 한복 (1.5만)</label>
+          <label style="display:block;"><input type="checkbox" name="dolDressClothing"> 돌 의상 (3.5만)</label>
+          <label style="display:block;"><input type="checkbox" name="iphoneSnap"> 아이폰 스냅 (5만)</label>
+          <label style="display:block;"><input type="checkbox" name="cameraRental"> 카메라 대여 (2만)</label>
         </div>
 
-        <div class="form-group">
-          <label class="form-label">요청사항</label>
-          <textarea class="form-textarea" name="notes" placeholder="추가 요청사항을 입력해주세요"></textarea>
+        <textarea class="form-textarea" name="notes" placeholder="기타 요청사항" style="width:100%; height:80px; margin-top:10px;"></textarea>
+
+        <div style="background:#f9f9f9; padding:15px; border-radius:10px; margin-top:15px; text-align:right;">
+          <strong>총 예상 금액: </strong>
+          <span id="studioTotalPrice" style="color:#e74c3c; font-size:1.2em; font-weight:bold;">0원</span>
         </div>
 
-        <div class="price-display">
-          <span class="label">예상 합계</span>
-          <span class="amount" id="studioTotalPrice">0원</span>
-        </div>
-
-        <div class="form-buttons">
-          <button type="submit" class="btn btn-primary" id="studioSubmitBtn">예약 접수</button>
-          <button type="button" class="btn btn-outline" onclick="closeModal('studioModal')">취소</button>
-        </div>
+        <button type="submit" id="studioSubmitBtn" class="btn btn-primary" style="width:100%; margin-top:15px; padding:15px; font-size:16px;">예약 접수 및 카카오톡 이동</button>
       </form>
     </div>
   </div>
 </div>
-
 
 
 <!-- ===== Milestone Reservation Modal ===== -->
