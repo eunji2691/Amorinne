@@ -144,13 +144,24 @@ document.getElementById("studioForm").addEventListener("submit", async function(
       closeModal("studioModal");
 
       // 3. 안정적인 성공 안내 레이어 표시 (팝업 차단 우회)
-      const successHtml = `
-        <div id="finalSuccessLayer" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:10000;display:flex;align-items:center;justify-content:center;">
-          <div style="background:white;padding:30px;border-radius:15px;text-align:center;max-width:320px;width:90%;">
-            <h2 style="margin-bottom:15px; color:#333;">접수 완료!</h2>
-            <p style="margin-bottom:20px;font-size:14px;color:#666;line-height:1.6;">예약 내용이 복사되었습니다.<br>아래 버튼을 눌러 카카오톡 채팅창에<br><b>붙여넣기</b>를 해주세요.</p>
-            <a href="${KAKAO_CHANNEL_URL}" target="_blank" onclick="document.getElementById('finalSuccessLayer').remove()" 
-               style="display:block;background:#fee500;padding:15px;border-radius:10px;text-decoration:none;color:#3c1e1e;font-weight:bold;font-size:16px;">카카오톡으로 이동</a>
+const successHtml = `
+        <div id="finalSuccessLayer" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;">
+          <div style="background:white;padding:30px;border-radius:20px;text-align:center;max-width:350px;width:100%;box-shadow:0 10px 25px rgba(0,0,0,0.2);">
+            <div style="font-size:40px;margin-bottom:15px;">✅</div>
+            <h2 style="margin-bottom:10px;font-size:22px;color:#333;letter-spacing:-1px;">예약 접수 완료!</h2>
+            <p style="margin-bottom:25px;font-size:15px;color:#666;line-height:1.6;word-break:keep-all;">
+              예약 내용이 <b>복사</b>되었습니다.<br>
+              카카오톡 채팅창이 열리면<br>
+              메시지창을 눌러 <b>붙여넣기</b> 해주세요.
+            </p>
+            <a href="${KAKAO_CHANNEL_URL}" 
+               style="display:block;background:#fee500;padding:18px;border-radius:12px;text-decoration:none;color:#3c1e1e;font-weight:bold;font-size:18px;box-shadow:0 4px 10px rgba(254,229,0,0.3);">
+               카카오톡 열기
+            </a>
+            <button onclick="document.getElementById('finalSuccessLayer').remove()" 
+                    style="margin-top:15px;background:none;border:none;color:#999;text-decoration:underline;cursor:pointer;font-size:13px;">
+              닫기
+            </button>
           </div>
         </div>`;
       document.body.insertAdjacentHTML('beforeend', successHtml);
