@@ -100,8 +100,7 @@
  <img class="hero-bg" src="images/hero.jpg" alt="Amorinne Hero" />
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <h2>Lovely Moments, Made Special
-    test-0410</h2>
+    <h2>Lovely Moments, Made Special</h2>
     <p>조용하고 편안한 공간에서<br />가장 사랑스러운 순간을 담아보세요</p>
     <div class="hero-buttons">
       <a href="#services" class="btn btn-white btn-lg">예약하기 &#9660;</a>
@@ -174,7 +173,7 @@
             <div id="studio-options-list"></div>
           </div>
 
-          <button class="btn btn-primary btn-full mt-6" onclick="openModal('studioModal')">예약하기</button>
+          <button class="btn btn-primary btn-full mt-6" onclick="openModal(\'studioModal\')">예약하기</button>
         </div>
 
         <!-- ===== MILESTONE TAB ===== -->
@@ -204,7 +203,7 @@
             <div id="milestone-options-list"></div>
           </div>
 
-          <button class="btn btn-primary btn-full mt-6" onclick="openModal('milestoneModal')">예약하기</button>
+          <button class="btn btn-primary btn-full mt-6" onclick="openModal(\'milestoneModal\')">예약하기</button>
         </div>
 
         <!-- ===== PARTY TAB ===== -->
@@ -214,9 +213,8 @@
           <ul class="check-list" style="list-style:none;">
             <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;margin-bottom:0.5rem;"><span class="bullet"></span>돌 드레스, 한복, 정장 등 다양한 스타일 준비</li>
             <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;margin-bottom:0.5rem;"><span class="bullet"></span>직접 피팅 후 선택 가능</li>
-            <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;margin-bottom:0.5rem;"><span class="bullet"></span>간편한 무인 픽업 · 반납 시스템</li>
           </ul>
-          <button class="btn btn-primary btn-full mt-6" onclick="openModal('dressModal')">예약하기</button>
+          <button class="btn btn-primary btn-full mt-6" onclick="openModal(\'dressModal\')">예약하기</button>
         </div>
       </div>
 
@@ -268,7 +266,14 @@
 <section id="about" class="section">
   <div class="container">
     <div class="about-grid">
-      <div class="about-text">ㅗㅑ
+      <div class="about-text">
+        <h2 style="font-size:2.5rem;font-weight:700;margin-bottom:1.5rem;">Amorinne Story</h2>
+        <p class="text-muted" style="line-height:2;margin-bottom:1.5rem;">아모린느는 \'사랑스러운\'이라는 뜻을 담고 있습니다.<br />아이의 가장 빛나는 순간을 위해 정성을 다해 준비했습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== Contact Section ===== -->
 <section id="contact" class="section section-accent">
   <div class="container">
@@ -361,11 +366,11 @@
 </div>
 
 <!-- ===== Studio Reservation Modal (Final v5.0) ===== -->
-<div class="modal-backdrop hidden" id="studioModal" onclick="closeModal('studioModal')">
+<div class="modal-backdrop hidden" id="studioModal" onclick="closeModal(\'studioModal\')">
   <div class="modal" onclick="event.stopPropagation()">
     <div class="modal-header">
       <h3>무인 셀프 스튜디오 예약</h3>
-      <button type="button" class="modal-close" onclick="closeModal('studioModal')">&times;</button>
+      <button type="button" class="modal-close" onclick="closeModal(\'studioModal\')">&times;</button>
     </div>
     <div class="modal-body">
       <form id="studioForm">
@@ -377,6 +382,27 @@
           <label class="form-label">연락처 *</label>
           <input type="tel" class="form-input" name="phone" required placeholder="010-0000-0000" />
         </div>
+        
+        <!-- 아기 정보 추가 -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">아기 이름</label>
+            <input type="text" class="form-input" name="babyName" placeholder="한글 이름" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">아기 영문 이름</label>
+            <input type="text" class="form-input" name="babyEngName" placeholder="English Name" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">아기 성별</label>
+            <select class="form-select" name="babyGender">
+              <option value="">선택</option>
+              <option value="남">남</option>
+              <option value="여">여</option>
+            </select>
+          </div>
+        </div>
+
         <div class="form-group">
           <label class="form-label">예약 날짜 *</label>
           <input type="date" class="form-input" name="reservationDate" required />
@@ -465,11 +491,11 @@
 
 
 <!-- ===== Milestone Reservation Modal ===== -->
-<div class="modal-backdrop hidden" id="milestoneModal" onclick="closeModal('milestoneModal')">
+<div class="modal-backdrop hidden" id="milestoneModal" onclick="closeModal(\'milestoneModal\')">
   <div class="modal" onclick="event.stopPropagation()">
     <div class="modal-header">
       <h3>백일상·돌상 대여 예약</h3>
-      <button class="modal-close" onclick="closeModal('milestoneModal')">&times;</button>
+      <button class="modal-close" onclick="closeModal(\'milestoneModal\')">&times;</button>
     </div>
     <div class="modal-body">
       <form id="milestoneForm" >
@@ -586,7 +612,7 @@
 
         <div class="form-buttons">
           <button type="submit" class="btn btn-primary">예약 접수</button>
-          <button type="button" class="btn btn-outline" onclick="closeModal('milestoneModal')">취소</button>
+          <button type="button" class="btn btn-outline" onclick="closeModal(\'milestoneModal\')">취소</button>
         </div>
       </form>
     </div>
@@ -594,14 +620,14 @@
 </div>
 
 <!-- ===== Dress Reservation Modal ===== -->
-<div class="modal-backdrop hidden" id="dressModal" onclick="closeModal('dressModal')">
+<div class="modal-backdrop hidden" id="dressModal" onclick="closeModal(\'dressModal\')">
   <div class="modal" onclick="event.stopPropagation()">
     <div class="modal-header">
       <h3>정장·드레스 대여 예약</h3>
-      <button class="modal-close" onclick="closeModal('dressModal')">&times;</button>
+      <button class="modal-close" onclick="closeModal(\'dressModal\')">&times;</button>
     </div>
     <div class="modal-body">
-      <form id="dressForm" ">
+      <form id="dressForm" >
         <div class="form-group">
           <label class="form-label">예약자 성함 *</label>
           <input type="text" class="form-input" name="customerName" required />
@@ -668,7 +694,7 @@
 
         <div class="form-buttons">
           <button type="submit" class="btn btn-primary">예약 접수</button>
-          <button type="button" class="btn btn-outline" onclick="closeModal('dressModal')">취소</button>
+          <button type="button" class="btn btn-outline" onclick="closeModal(\'dressModal\')">취소</button>
         </div>
       </form>
     </div>
@@ -683,5 +709,3 @@
 </div>
 </body>
 </html>
-
-
