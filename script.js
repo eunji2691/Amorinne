@@ -278,8 +278,8 @@ const response = await fetch(APPS_SCRIPT_URL, {
       }
 
       // 카카오 채널 열기
-      window.open(KAKAO_CHANNEL_URL, '_blank');
-
+      window.location.href = KAKAO_CHANNEL_URL;
+      
       // 폼 초기화 및 닫기
       form.reset();
       document.getElementById("studioTotalPrice").textContent = "0원";
