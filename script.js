@@ -256,38 +256,37 @@ const response = await fetch(APPS_SCRIPT_URL, {
 
     const result = await response.json();
 
-    if (result.result === "success") {
-      // 3. 성공 처리
-      alert("예약 접수가 완료되었습니다. 확인을 누르면 카카오톡 채널로 이동합니다.\n\n채팅창에 '붙여넣기'를 해서 예약 내용을 보내주세요!");
-      
-      // 클립보드 복사
-      try {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          await navigator.clipboard.writeText(kakaoMsg);
-        } else {
-          // 구형 브라우저 대응
-          const textArea = document.createElement("textarea");
-          textArea.value = kakaoMsg;
-          document.body.appendChild(textArea);
-          textArea.select();
-          document.execCommand('copy');
-          document.body.removeChild(textArea);
-        }
-      } catch (err) {
-        console.error("클립보드 복사 실패", err);
-      }
+if (result.result === "success") {
+  const goKakao = confirm(
+    "예약 접수가 완료되었습니다.\n확인을 누르면 카카오톡 채널로 이동합니다."
+  );
 
-      // 카카오 채널 열기
-      window.location.href = KAKAO_CHANNEL_URL;
-      
-      // 폼 초기화 및 닫기
-      form.reset();
-      document.getElementById("studioTotalPrice").textContent = "0원";
-      document.getElementById("studioTableSelectWrap").classList.add("hidden");
-      closeModal("studioModal");
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(kakaoMsg);
     } else {
-      throw new Error(result.error || "저장 실패");
+      const textArea = document.createElement("textarea");
+      textArea.value = kakaoMsg;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
     }
+  } catch (err) {
+    console.error("클립보드 복사 실패", err);
+  }
+
+  if (goKakao) {
+    location.href = "https://pf.kakao.com/_cxhePn/chat";
+  }
+
+  form.reset();
+  document.getElementById("studioTotalPrice").textContent = "0원";
+  document.getElementById("studioTableSelectWrap").classList.add("hidden");
+  closeModal("studioModal");
+} else {
+  throw new Error(result.error || "저장 실패");
+}
   } catch (error) {
     console.error(error);
     alert("오류가 발생했습니다: " + error.message);
