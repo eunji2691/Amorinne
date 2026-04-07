@@ -1,5 +1,5 @@
 // 설정값
-const APPS_SCRIPT_URL = '여기에_배포된_웹앱_URL을_넣으세요';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxiz6G4RqStsipTiHY32LK5uppI-KxmRiY-INn1TkmCte59zzlweYE0gK9gh7_HcNIE5g/exec';
 const KAKAO_CHANNEL_URL = 'https://pf.kakao.com/_cxhePn/chat';
 
 const TABLE_PRICES = {
