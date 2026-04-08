@@ -972,9 +972,6 @@ function buildMilestoneKakaoMessage(postData) {
     lines.push('가채: 추가');
   }
 
-    if (postData.acc_ilbangat === 'on') {
-    lines.push('일반갓: 추가');
-  }
 
   if (postData.modelSiruTteok === 'on') {
     lines.push('모형 시루떡: 추가');
