@@ -964,7 +964,7 @@ function buildMilestoneKakaoMessage(postData) {
     lines.push('모형 시루떡: 추가');
   }
 
-  if (postData.modelPlaeTteok === 'on') {
+  if (postData.modelPlateTeok === 'on') {
     lines.push('접시형 모형 떡: 추가');
   }
 
@@ -980,27 +980,27 @@ function buildMilestoneKakaoMessage(postData) {
     lines.push('모형 백설기 케이크: 추가');
   }
 
-  if (postData.highFruit === 'on') {
+  if (postData.premiumModelFruit === 'on') {
     lines.push('고급 모형 과일: 추가');
   }
 
-  if (postData.foldTable === 'on') {
+  if (postData.foldingTable === 'on') {
     lines.push('접이식 테이블: 추가');
   }
 
-  if (postData.bumboChair === 'on') {
-    lines.push('범보의자/암툴의자/돌방석: 추가');
+  if (postData.bamboChair === 'on') {
+    lines.push('범보의자/양털의자/돌방석: 추가');
   }
 
-  if (postData.bangsuYo === 'on') {
+  if (postData.waterproofMat === 'on') {
     lines.push('방수요: 추가');
   }
 
-  if (postData.doljabiSet === 'on') {
+  if (postData.dolGrabbingSet === 'on') {
     lines.push('돌잡이 세트: 추가');
   }
 
-  if (postData.goldCalligraphyCard === 'on') {
+  if (postData.calligraphyCard === 'on') {
     lines.push('자체제작 금박 캘리그라피 카드: 추가');
   }
 
@@ -1034,21 +1034,18 @@ function buildDressKakaoMessage(postData) {
     lines.push('니삭스: ' + postData.niceSocks);
   }
 
-  if (postData.tights) {
-    lines.push('타이즈: ' + postData.tights);
-  }
+if (postData.tightsUse === 'on') {
+  lines.push('타이즈 색상: ' + (postData.tights || '선택안함'));
+}
 
   if (postData.hwadongBasket === 'on') {
     lines.push('화동 바구니: 추가');
   }
 
-  if (postData.shoes === 'on') {
-    lines.push('신발: 추가');
+    if (postData.hwadongCar === 'on') {
+    lines.push('화동카: 추가');
   }
 
-  if (postData.hairband === 'on') {
-    lines.push('헤어밴드: 추가');
-  }
 
   if (postData.notes) {
     lines.push('요청사항: ' + postData.notes);
