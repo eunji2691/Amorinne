@@ -674,20 +674,96 @@ async function submitMilestoneForm(e) {
   }
 }
 
-function submitDressForm(e) {
+async function submitDressForm(e) {
   e.preventDefault();
-  var form = e.target;
-  var data = new FormData(form);
-  var msg = "정장·드레스 대여 예약이 접수되었습니다!\n\n";
-  msg += "예약자: " + data.get("customerName") + "\n";
-  msg += "연락처: " + data.get("phone") + "\n";
-  msg += "피팅 날짜: " + data.get("fittingDate") + "\n";
-  msg += "행사 날짜: " + data.get("eventDate") + "\n\n";
-  msg += "카카오채널에서 예약 확정을 진행해주세요.\nhttp://pf.kakao.com/_cxhePn";
-  alert(msg);
-  closeModal("dressModal");
-  form.reset();
-  document.getElementById("dressTotalPrice").textContent = "0원";
+
+  try {
+    var form = e.target;
+    var data = new FormData(form);
+    var postData = Object.fromEntries(data.entries());
+
+    postData.formType = 'dress';
+    postData.submittedAt = new Date().toISOString();
+
+    // 체크된 체크박스들 추가 수집
+    var checkedOptions = form.querySelectorAll('input[type="checkbox"]:checked');
+    checkedOptions.forEach(function(input) {
+      if (!postData[input.name]) {
+        postData[input.name] = input.value || 'on';
+      }
+    });
+
+    // 라디오 선택값 보정
+    var checkedRadios = form.querySelectorAll('input[type="radio"]:checked');
+    checkedRadios.forEach(function(input) {
+      postData[input.name] = input.value;
+    });
+
+    // 총 금액
+    var priceEl = document.getElementById('dressTotalPrice');
+    if (priceEl) {
+      postData.totalPrice = priceEl.textContent.trim();
+    }
+
+    console.log('=== DRESS SUBMIT DATA ===');
+    console.log(postData);
+    console.table(postData);
+
+    if (USE_FAKE_SUBMIT) {
+      alert('임시 제출 테스트 완료! 콘솔(F12)에서 전송 데이터를 확인하세요.');
+
+      if (typeof closeModal === 'function') {
+        closeModal('dressModal');
+      }
+
+      form.reset();
+
+      var totalPriceEl = document.getElementById('dressTotalPrice');
+      if (totalPriceEl) totalPriceEl.textContent = '0원';
+
+      if (typeof updateDressPrice === 'function') {
+        updateDressPrice();
+      }
+
+      return;
+    }
+
+    if (!APPS_SCRIPT_URL) {
+      alert('Apps Script URL이 비어 있습니다.');
+      return;
+    }
+
+    const response = await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify(postData)
+    });
+
+    const result = await response.json();
+
+    if (result.result === 'success') {
+      alert('예약 신청이 완료되었습니다.');
+
+      if (typeof closeModal === 'function') {
+        closeModal('dressModal');
+      }
+
+      form.reset();
+
+      var totalPriceEl = document.getElementById('dressTotalPrice');
+      if (totalPriceEl) totalPriceEl.textContent = '0원';
+
+      if (typeof updateDressPrice === 'function') {
+        updateDressPrice();
+      }
+    } else {
+      alert('제출은 되었지만 응답이 올바르지 않습니다.');
+      console.log('submit result:', result);
+    }
+
+  } catch (error) {
+    console.error('submitDressForm error:', error);
+    alert('제출 중 오류가 발생했습니다.');
+  }
 }
 
 // ===== SMOOTH SCROLL =====
