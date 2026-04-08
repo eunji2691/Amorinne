@@ -687,6 +687,22 @@ async function submitDressForm(e) {
     var data = new FormData(form);
     var postData = Object.fromEntries(data.entries());
 
+    // 니삭스: 체크했으면 색상만 남기고, 아니면 빈칸
+if (postData.niceSocks === 'on') {
+  postData.niceSocks = postData.niceSocksColor || '';
+} else {
+  postData.niceSocks = '';
+}
+postData.niceSocksColor = '';
+
+// 타이즈: 체크했으면 색상만 남기고, 아니면 빈칸
+if (postData.tights === 'on') {
+  postData.tights = postData.tightsColor || '';
+} else {
+  postData.tights = '';
+}
+postData.tightsColor = '';
+
     postData.formType = 'dress';
     postData.submittedAt = new Date().toISOString();
 
