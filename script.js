@@ -558,7 +558,14 @@ if (priceEl) {
     const result = await response.json();
 
     if (result.result === 'success') {
-      alert('예약 신청이 완료되었습니다.');
+alert(
+  "예약 신청이 접수되었습니다.\n\n" +
+  "카카오톡 채널로 이동하여 예약 확정을 진행해주세요.\n\n" +
+  "확인 버튼을 누르면 카카오톡으로 이동합니다."
+);
+
+// 카카오 이동
+window.open('http://pf.kakao.com/_cxhePn', '_blank');
 
       form.reset();
 
@@ -653,8 +660,21 @@ async function submitMilestoneForm(e) {
 
     const result = await response.json();
 
-    if (result.result === 'success') {
-      alert('예약 신청이 완료되었습니다.');
+
+if (result.result === 'success') {
+
+  alert(
+    "예약 신청이 접수되었습니다.\n\n" +
+    "카카오톡 채널로 이동하여 예약 확정을 진행해주세요.\n\n" +
+    "확인 버튼을 누르면 카카오톡으로 이동합니다."
+  );
+
+  window.open('http://pf.kakao.com/_cxhePn', '_blank');
+
+  form.reset();
+
+  ...
+}
 
       if (typeof closeModal === 'function') {
         closeModal('milestoneModal');
@@ -762,7 +782,14 @@ postData.tightsColor = '';
     const result = await response.json();
 
     if (result.result === 'success') {
-      alert('예약 신청이 완료되었습니다.');
+alert(
+  "예약 신청이 접수되었습니다.\n\n" +
+  "카카오톡 채널로 이동하여 예약 확정을 진행해주세요.\n\n" +
+  "확인 버튼을 누르면 카카오톡으로 이동합니다."
+);
+
+// 카카오 이동
+window.open('http://pf.kakao.com/_cxhePn', '_blank');
 
       if (typeof closeModal === 'function') {
         closeModal('dressModal');
