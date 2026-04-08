@@ -542,9 +542,24 @@
             <label for="studioCalligraphy" class="tooltip-trigger">자체제작 금박 캘리그라피 카드 <span class="tooltip">9,900원</span></label>
           </div>
           <div class="checkbox-group">
-            <input type="checkbox" id="studioBalloon" name="numberBalloon" onchange="updateStudioPrice()" />
+            <input type="checkbox" id="studioBalloon" name="numberBalloon" onchange="toggleBalloonFields(); updateStudioPrice()" />
             <label for="studioBalloon" class="tooltip-trigger">대형 숫자 풍선 <span class="tooltip">5,000원</span></label>
           </div>
+          <div id="balloonDetailFields" style="display: none; margin-top: 10px;">
+  <div class="form-group">
+    <label class="form-label">숫자 *</label>
+    <input type="text" class="form-input" name="balloonNumber" placeholder="예: 100, 1">
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">색상 *</label>
+    <select class="form-select" name="balloonColor">
+      <option value="">선택해주세요</option>
+      <option value="크림">크림</option>
+      <option value="블랙">블랙</option>
+    </select>
+  </div>
+</div>
         </div>
 
         <div class="form-group">
