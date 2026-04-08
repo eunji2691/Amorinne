@@ -374,6 +374,12 @@ function updateStudioPrice() {
   if (form.calligraphyCard.checked) total += 9900;
   if (form.numberBalloon.checked) total += 5000;
 
+  const conceptEls = document.querySelectorAll('input[name="extraConcept"]:checked');
+  conceptEls.forEach(el => {
+    if (el.value === '봄의 요람') total += 15000;
+    if (el.value === '블루밍 데이') total += 10000;
+  });
+  
   document.getElementById("studioTotalPrice").textContent = total.toLocaleString() + "원";
 }
 
