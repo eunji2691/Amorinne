@@ -558,13 +558,16 @@ if (priceEl) {
     const result = await response.json();
 
     if (result.result === 'success') {
-alert(
-  "예약 신청이 접수되었습니다.\n\n" +
-  "카카오톡 채널로 이동하여 예약 확정을 진행해주세요.\n\n" +
-  "확인 버튼을 누르면 카카오톡으로 이동합니다."
-);
+const kakaoMsg = buildStudioKakaoMessage(postData);
+const copied = await copyTextSafely(kakaoMsg);
 
-// 카카오 이동
+if (copied) {
+  alert('예약 신청이 접수되었습니다.\n\n예약 정보가 복사되었습니다.\n카카오톡 채널 채팅창에 붙여넣기 해주세요.');
+} else {
+  alert('예약 신청이 접수되었습니다.\n\n카카오톡으로 이동 후 내용을 직접 붙여넣어 주세요.');
+  console.log(kakaoMsg);
+}
+
 window.open('http://pf.kakao.com/_cxhePn', '_blank');
 
       form.reset();
@@ -846,4 +849,208 @@ function openConceptModal(imageSrc, title, price) {
 
 function closeConceptModal() {
   document.getElementById('conceptImageModal').classList.remove('show');
+}
+
+function buildStudioKakaoMessage(postData) {
+  const lines = [
+    '[아모린느 스튜디오 예약]',
+    '',
+    '예약자명: ' + (postData.customerName || ''),
+    '연락처: ' + (postData.phone || ''),
+    '예약일: ' + (postData.reservationDate || ''),
+    '시작 시간: ' + (postData.reservationTime || ''),
+    '종료 시간: ' + (postData.endTime || ''),
+    '이용 시간: ' + ((postData.rentalHours || '') ? postData.rentalHours + '시간' : ''),
+    '성인 인원: ' + (postData.adultCount || ''),
+    '아기 인원: ' + (postData.babyCount || '')
+  ];
+
+  if (postData.memoTableSetting === 'on') {
+    lines.push('기념일 테이블 세팅: 추가');
+    if (postData.memoTableSettingDetails) {
+      lines.push('테이블 종류: ' + postData.memoTableSettingDetails);
+    }
+  }
+
+  if (postData.extraConcept) {
+    lines.push('추가 컨셉: ' + postData.extraConcept);
+  }
+
+  if (postData.baeksilHanbok === 'on') {
+    lines.push('백일 한복: 추가');
+  }
+
+  if (postData.dolDressClothing === 'on') {
+    lines.push('돌 한복/드레스/정장: 추가');
+  }
+
+  if (postData.cameraRental && postData.cameraRental !== 'none') {
+    lines.push('카메라 대여: ' + postData.cameraRental);
+  }
+
+  if (postData.iphoneSnap === 'on') {
+    lines.push('아이폰 스냅: 추가');
+  }
+
+  if (postData.bottleFlower === 'on') {
+    lines.push('병풍 추가: 추가');
+  }
+
+  if (postData.calligraphyCard === 'on') {
+    lines.push('자체제작 금박 캘리그라피 카드: 추가');
+  }
+
+  if (postData.numberBalloon === 'on') {
+    lines.push('대형 숫자 풍선: 추가');
+  }
+
+  if (postData.notes) {
+    lines.push('요청사항: ' + postData.notes);
+  }
+
+  lines.push('');
+  lines.push('최종 금액: ' + (postData.totalPrice || ''));
+  lines.push('');
+  lines.push('예약 확인 부탁드립니다.');
+
+  return lines.filter(line => line !== null && line !== undefined).join('\n');
+}
+
+function buildMilestoneKakaoMessage(postData) {
+  const lines = [
+    '[아모린느 백일상/돌상 예약]',
+    '',
+    '예약자명: ' + (postData.customerName || ''),
+    '연락처: ' + (postData.phone || ''),
+    '행사 날짜: ' + (postData.eventDate || '')
+  ];
+
+  if (postData.tableSelection) {
+    lines.push('테이블: ' + postData.tableSelection);
+  }
+
+  if (postData.baekil100Clothing === 'on') {
+    lines.push('백일 의상: 추가');
+  }
+
+  if (postData.baekil100Hanbok === 'on') {
+    lines.push('백일 한복: 추가');
+  }
+
+  if (postData.dolHanbok === 'on') {
+    lines.push('돌 한복: 추가');
+  }
+
+  if (postData.accJibangat === 'on') {
+    lines.push('지방갓/악세사리: 추가');
+  }
+
+  if (postData.modelSiruTteok === 'on') {
+    lines.push('모형 시루떡: 추가');
+  }
+
+  if (postData.modelPlaeTteok === 'on') {
+    lines.push('접시형 모형 떡: 추가');
+  }
+
+  if (postData.modelBaekseolgi === 'on') {
+    lines.push('모형 백설기: 추가');
+  }
+
+  if (postData.modelWoodBaekseolgi === 'on') {
+    lines.push('모형 우드 백설기: 추가');
+  }
+
+  if (postData.modelBaekseolgiCake === 'on') {
+    lines.push('모형 백설기 케이크: 추가');
+  }
+
+  if (postData.highFruit === 'on') {
+    lines.push('고급 모형 과일: 추가');
+  }
+
+  if (postData.foldTable === 'on') {
+    lines.push('접이식 테이블: 추가');
+  }
+
+  if (postData.bumboChair === 'on') {
+    lines.push('범보의자/암툴의자/돌방석: 추가');
+  }
+
+  if (postData.bangsuYo === 'on') {
+    lines.push('방수요: 추가');
+  }
+
+  if (postData.doljabiSet === 'on') {
+    lines.push('돌잡이 세트: 추가');
+  }
+
+  if (postData.goldCalligraphyCard === 'on') {
+    lines.push('자체제작 금박 캘리그라피 카드: 추가');
+  }
+
+  if (postData.notes) {
+    lines.push('요청사항: ' + postData.notes);
+  }
+
+  lines.push('');
+  lines.push('최종 금액: ' + (postData.totalPrice || ''));
+  lines.push('');
+  lines.push('예약 확인 부탁드립니다.');
+
+  return lines.filter(line => line !== null && line !== undefined).join('\n');
+}
+
+function buildDressKakaoMessage(postData) {
+  const lines = [
+    '[아모린느 정장/드레스 예약]',
+    '',
+    '예약자명: ' + (postData.customerName || ''),
+    '연락처: ' + (postData.phone || ''),
+    '피팅 희망 날짜: ' + (postData.fittingDate || ''),
+    '피팅 희망 시간: ' + (postData.fittingTime || ''),
+    '행사 날짜: ' + (postData.eventDate || ''),
+    '대여 상품: ' + (postData.rentalProduct || '')
+  ];
+
+  if (postData.niceSocks) {
+    lines.push('니삭스: ' + postData.niceSocks);
+  }
+
+  if (postData.tights) {
+    lines.push('타이즈: ' + postData.tights);
+  }
+
+  if (postData.hwadongBasket === 'on') {
+    lines.push('화동 바구니: 추가');
+  }
+
+  if (postData.shoes === 'on') {
+    lines.push('신발: 추가');
+  }
+
+  if (postData.hairband === 'on') {
+    lines.push('헤어밴드: 추가');
+  }
+
+  if (postData.notes) {
+    lines.push('요청사항: ' + postData.notes);
+  }
+
+  lines.push('');
+  lines.push('최종 금액: ' + (postData.totalPrice || ''));
+  lines.push('');
+  lines.push('예약 확인 부탁드립니다.');
+
+  return lines.filter(line => line !== null && line !== undefined).join('\n');
+}
+
+async function copyTextSafely(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch (error) {
+    console.error('clipboard copy failed:', error);
+    return false;
+  }
 }
