@@ -1,6 +1,7 @@
-/* ===== Amorinne Static Website Script ===== */
+const APPS_URL = 'https://script.google.com/macros/s/AKfycbxiz6G4RqStsipTiHY32LK5uppI-KxmRiY-INn1TkmCte59zzlweYE0gK9gh7_HcNIE5g/exec';
+const KAKAO_CHANNEL_URL = 'http://pf.kakao.com/_cxhePn/chat';
 
-// ===== DATA =====
+/* ===== DATA ===== */
 const TABLE_DATA = [
   { id: "pure", name: "퓨어 테이블", desc: "차분한 화이트 톤에 은은한 온기를 더한 테이블", img: "images/pure.jpg", studioPrice: 35000, milestonePrice: 69000 },
   { id: "royal-white", name: "로얄 테이블 (WHITE)", desc: "아모린느의 시그니처 감성을 가장 우아하게 담아낸 테이블", img: "images/royalwhite.jpg", studioPrice: 40000, milestonePrice: 89000 },
@@ -58,61 +59,107 @@ const DOL_HANBOK_DATA = [
   { name: "돌한복 4", img: "images/g1haru.jpg" }
 ];
 
-// ===== MOBILE MENU =====
+/* ===== MOBILE MENU ===== */
 function toggleMobileMenu() {
-  document.getElementById("mobileMenu").classList.toggle("active");
+  const menu = document.getElementById("mobileMenu");
+  if (menu) menu.classList.toggle("active");
 }
 
 function closeMobileMenu() {
-  document.getElementById("mobileMenu").classList.remove("active");
+  const menu = document.getElementById("mobileMenu");
+  if (menu) menu.classList.remove("active");
 }
 
-// ===== MAIN TABS =====
-document.querySelectorAll(".tab-btn[data-tab]").forEach(function(btn) {
-  btn.addEventListener("click", function() {
-    var tab = this.dataset.tab;
+/* ===== MODALS ===== */
+function openModal(id) {
+  const modal = document.getElementById(id);
+  if (modal) {
+    modal.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+  }
+}
 
-    // Update tab buttons
-    document.querySelectorAll(".tab-btn[data-tab]").forEach(function(b) { b.classList.remove("active"); });
-    this.classList.add("active");
+function closeModal(id) {
+  const modal = document.getElementById(id);
+  if (modal) {
+    modal.classList.add("hidden");
+    document.body.style.overflow = "";
+  }
+}
 
-    // Show/hide tab content
-    document.querySelectorAll("[id^='tab-']").forEach(function(el) { el.classList.remove("active"); });
-    var target = document.getElementById("tab-" + tab);
-    if (target) target.classList.add("active");
+function openImageModal(name, img) {
+  document.getElementById("imageModalTitle").textContent = name;
+  document.getElementById("imageModalImg").src = img;
+  document.getElementById("imageModalImg").alt = name;
+  document.getElementById("imageModal").classList.remove("hidden");
+  document.body.style.overflow = "hidden";
+}
 
-    // Show/hide service images
-    document.querySelectorAll("[id^='service-img-']").forEach(function(el) { el.style.display = "none"; });
-    var img = document.getElementById("service-img-" + tab);
-    if (img) img.style.display = "block";
-  });
+function closeImageModal() {
+  const modal = document.getElementById("imageModal");
+  if (modal) modal.classList.add("hidden");
+  document.body.style.overflow = "";
+}
+
+window.addEventListener("click", function(event) {
+  if (event.target.classList.contains("modal-backdrop")) {
+    event.target.classList.add("hidden");
+    document.body.style.overflow = "";
+  }
 });
 
-// ===== SUB TABS =====
-document.querySelectorAll(".sub-tab-btn[data-subtab]").forEach(function(btn) {
-  btn.addEventListener("click", function() {
-    var subtab = this.dataset.subtab;
-    var parent = this.dataset.parent;
+/* ===== TABS ===== */
+function initTabs() {
+  document.querySelectorAll(".tab-btn[data-tab]").forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      const tab = this.dataset.tab;
 
-    // Update sub-tab buttons within same parent
-    document.querySelectorAll('.sub-tab-btn[data-parent="' + parent + '"]').forEach(function(b) { b.classList.remove("active"); });
-    this.classList.add("active");
+      document.querySelectorAll(".tab-btn[data-tab]").forEach(function(b) {
+        b.classList.remove("active");
+      });
+      this.classList.add("active");
 
-    // Show/hide sub-tab content - hide all subtabs for this parent first
-    document.querySelectorAll('.sub-tab-btn[data-parent="' + parent + '"]').forEach(function(b) {
-      var st = document.getElementById("subtab-" + b.dataset.subtab);
-      if (st) st.classList.remove("active");
+      document.querySelectorAll("[id^='tab-']").forEach(function(el) {
+        el.classList.remove("active");
+      });
+      const target = document.getElementById("tab-" + tab);
+      if (target) target.classList.add("active");
+
+      document.querySelectorAll("[id^='service-img-']").forEach(function(el) {
+        el.style.display = "none";
+      });
+      const img = document.getElementById("service-img-" + tab);
+      if (img) img.style.display = "block";
     });
-    var target = document.getElementById("subtab-" + subtab);
-    if (target) target.classList.add("active");
   });
-});
 
-// ===== RENDER TABLE CARDS =====
+  document.querySelectorAll(".sub-tab-btn[data-subtab]").forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      const subtab = this.dataset.subtab;
+      const parent = this.dataset.parent;
+
+      document.querySelectorAll('.sub-tab-btn[data-parent="' + parent + '"]').forEach(function(b) {
+        b.classList.remove("active");
+      });
+      this.classList.add("active");
+
+      document.querySelectorAll('.sub-tab-btn[data-parent="' + parent + '"]').forEach(function(b) {
+        const st = document.getElementById("subtab-" + b.dataset.subtab);
+        if (st) st.classList.remove("active");
+      });
+
+      const target = document.getElementById("subtab-" + subtab);
+      if (target) target.classList.add("active");
+    });
+  });
+}
+
+/* ===== RENDER ===== */
 function renderTableCards(containerId, tables, priceKey) {
-  var container = document.getElementById(containerId);
+  const container = document.getElementById(containerId);
   if (!container) return;
-  var html = "";
+
+  let html = "";
   tables.forEach(function(t) {
     html += '<div class="card" onclick="openImageModal(\'' + t.name.replace(/'/g, "\\'") + '\', \'' + t.img + '\')">';
     html += '<div class="card-img-wrapper"><img src="' + t.img + '" alt="' + t.name + '" />';
@@ -122,16 +169,16 @@ function renderTableCards(containerId, tables, priceKey) {
     html += '<div class="card-price">' + t[priceKey].toLocaleString() + '원</div></div>';
     html += '</div>';
   });
+
   container.innerHTML = html;
 }
 
-// ===== RENDER STUDIO OPTIONS =====
 function renderStudioOptions() {
-  var container = document.getElementById("studio-options-list");
+  const container = document.getElementById("studio-options-list");
   if (!container) return;
-  var html = '<div class="space-y-3">';
 
-  // Hanbok section
+  let html = '<div class="space-y-3">';
+
   html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.5rem;">백일 한복 (15,000원)</h4>';
   html += '<div class="gallery-grid">';
   BAEKIL_HANBOK_DATA.forEach(function(h) {
@@ -141,7 +188,6 @@ function renderStudioOptions() {
   });
   html += '</div></div>';
 
-  // Dol hanbok section
   html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.5rem;">돌 한복/드레스/정장 (35,000원)</h4>';
   html += '<div class="gallery-grid">';
   DOL_HANBOK_DATA.forEach(function(h) {
@@ -151,7 +197,6 @@ function renderStudioOptions() {
   });
   html += '</div></div>';
 
-  // Other options
   STUDIO_OPTIONS.forEach(function(opt) {
     html += '<div class="card"><div class="card-header"><div><div class="card-title">' + opt.name + '</div>';
     html += '<div class="card-desc">' + opt.desc + '</div></div>';
@@ -162,13 +207,12 @@ function renderStudioOptions() {
   container.innerHTML = html;
 }
 
-// ===== RENDER MILESTONE OPTIONS =====
 function renderMilestoneOptions() {
-  var container = document.getElementById("milestone-options-list");
+  const container = document.getElementById("milestone-options-list");
   if (!container) return;
-  var html = '<div class="space-y-3">';
 
-  // Hanbok section
+  let html = '<div class="space-y-3">';
+
   html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.5rem;">백일 한복 (15,000원)</h4>';
   html += '<div class="gallery-grid">';
   BAEKIL_HANBOK_DATA.forEach(function(h) {
@@ -178,7 +222,6 @@ function renderMilestoneOptions() {
   });
   html += '</div></div>';
 
-  // Dol hanbok section
   html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.5rem;">돌 한복/드레스/정장 (35,000원)</h4>';
   html += '<div class="gallery-grid">';
   DOL_HANBOK_DATA.forEach(function(h) {
@@ -188,7 +231,6 @@ function renderMilestoneOptions() {
   });
   html += '</div></div>';
 
-  // Hanbok accessories
   html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.5rem;">한복 악세사리 (각 5,000원)</h4>';
   html += '<div class="gallery-grid">';
   HANBOK_ACCESSORY_DATA.forEach(function(a) {
@@ -198,7 +240,6 @@ function renderMilestoneOptions() {
   });
   html += '</div></div>';
 
-  // Other options
   MILESTONE_OPTIONS_DATA.forEach(function(opt) {
     html += '<div class="card">';
     if (opt.img) {
@@ -215,46 +256,21 @@ function renderMilestoneOptions() {
   container.innerHTML = html;
 }
 
-// ===== IMAGE MODAL =====
-function openImageModal(name, img) {
-  document.getElementById("imageModalTitle").textContent = name;
-  document.getElementById("imageModalImg").src = img;
-  document.getElementById("imageModalImg").alt = name;
-  document.getElementById("imageModal").classList.remove("hidden");
-  document.body.style.overflow = "hidden";
-}
-
-function closeImageModal() {
-  document.getElementById("imageModal").classList.add("hidden");
-  document.body.style.overflow = "";
-}
-
-// ===== RESERVATION MODALS =====
-function openModal(id) {
-  document.getElementById(id).classList.remove("hidden");
-  document.body.style.overflow = "hidden";
-}
-
-function closeModal(id) {
-  document.getElementById(id).classList.add("hidden");
-  document.body.style.overflow = "";
-}
-
-// ===== PRICE CALCULATION =====
+/* ===== PRICE ===== */
 function isWeekend(dateStr) {
   if (!dateStr) return false;
-  var d = new Date(dateStr);
-  var day = d.getDay();
+  const d = new Date(dateStr);
+  const day = d.getDay();
   return day === 0 || day === 6;
 }
 
 function getTablePrice(tableName, type) {
-  var table = TABLE_DATA.find(function(t) {
+  const table = TABLE_DATA.find(function(t) {
     return t.name === tableName || tableName.includes(t.id);
   });
+
   if (!table) {
-    // Match by select value
-    var map = {
+    const map = {
       "퓨어테이블": 0,
       "로얄 테이블(WHITE)": 1,
       "로얄 테이블(YELLOW)": 2,
@@ -262,236 +278,218 @@ function getTablePrice(tableName, type) {
       "다온상": 4,
       "하연상": 5,
       "사파리테이블": 6,
-      "프리미엄 연화상(스튜디오 전용)": -1,
       "브라이덜샤워": 7
     };
-    var idx = map[tableName];
-    if (idx === -1) return 85000; // Premium
-    if (idx !== undefined && TABLE_DATA[idx]) {
-      return type === "studio" ? TABLE_DATA[idx].studioPrice : TABLE_DATA[idx].milestonePrice;
-    }
+
+    const index = map[tableName];
+    if (index === undefined) return 0;
+    return type === "studio" ? TABLE_DATA[index].studioPrice : TABLE_DATA[index].milestonePrice;
   }
-  if (table) return type === "studio" ? table.studioPrice : table.milestonePrice;
-  return 0;
+
+  return type === "studio" ? table.studioPrice : table.milestonePrice;
 }
 
 function updateStudioPrice() {
-  var form = document.getElementById("studioForm");
-  var total = 0;
+  const form = document.getElementById("studioForm");
+  if (!form) return;
 
-  // Base price
-  var dateStr = form.reservationDate.value;
-  var hours = parseInt(form.rentalHours.value) || 0;
-  var weekend = isWeekend(dateStr);
+  const dateVal = form.reservationDate.value;
+  const hours = parseInt(form.rentalHours.value, 10) || 1;
+  const adults = parseInt(form.adultCount.value, 10) || 0;
+  const babies = parseInt(form.babyCount.value, 10) || 0;
 
-  if (hours === 1) total += weekend ? 70000 : 60000;
-  else if (hours === 2) total += weekend ? 120000 : 100000;
+  let total = 0;
 
-  // Extra person fee
-  var adults = parseInt(form.adultCount.value) || 0;
-  var babies = parseInt(form.babyCount.value) || 0;
-  var totalPeople = adults + babies;
-  if (totalPeople > 5) total += (totalPeople - 5) * 10000;
+  if (isWeekend(dateVal)) {
+    total = hours === 1 ? 70000 : (hours === 2 ? 120000 : 120000 + (hours - 2) * 50000);
+  } else {
+    total = hours === 1 ? 60000 : (hours === 2 ? 100000 : 100000 + (hours - 2) * 40000);
+  }
 
-  // Table setting
-  if (form.memoTableSetting.checked && form.memoTableSettingDetails.value) {
+  const totalPeople = adults + babies;
+  if (totalPeople > 5) {
+    total += (totalPeople - 5) * 5000;
+  }
+
+  if (form.memoTableSetting.checked) {
     total += getTablePrice(form.memoTableSettingDetails.value, "studio");
   }
 
-  // Options
   if (form.baeksilHanbok.checked) total += 15000;
   if (form.dolDressClothing.checked) total += 35000;
-  var cameraVal = form.querySelector('input[name="cameraRental"]:checked');
-  if (cameraVal && cameraVal.value) total += 20000;
   if (form.iphoneSnap.checked) total += 50000;
-  if (form.screenBackground.checked) total += 30000;
-  if (form.calligraphyCard.checked) total += 9900;
-  if (form.numberBalloon.checked) total += 5000;
+  if (form.cameraRental.checked) total += 20000;
 
-  document.getElementById("studioTotalPrice").textContent = total.toLocaleString() + "원";
+  document.getElementById("studioTotalPrice").innerText = total.toLocaleString() + "원";
 }
 
 function updateMilestonePrice() {
-  var form = document.getElementById("milestoneForm");
-  var total = 0;
+  const form = document.getElementById("milestoneForm");
+  if (!form) return;
 
-  // Table price
-  if (form.tableSelection.value) {
-    total += getTablePrice(form.tableSelection.value, "milestone");
+  const table = form.tableSelection.value;
+  let price = 0;
+
+  if (table.includes("퓨어") || table.includes("사파리")) price = 69000;
+  else if (table.includes("로얄") || table.includes("다온")) price = 89000;
+  else if (table.includes("서린")) price = 99000;
+  else if (table.includes("하연")) price = 79000;
+  else if (table.includes("브라이덜")) price = 80000;
+
+  document.getElementById("milestoneTotalPrice").innerText = price.toLocaleString() + "원";
+}
+
+/* ===== FORM / KAKAO ===== */
+async function handleFormSubmit(e, type) {
+  e.preventDefault();
+
+  const form = e.target;
+  const btn = form.querySelector('button[type="submit"]');
+  const originalBtnText = btn ? btn.innerText : "";
+
+  if (btn) {
+    btn.disabled = true;
+    btn.innerText = "저장 중...";
   }
 
-  // Options
-  if (form.baekil100Clothing.checked) total += 10000;
-  if (form.baekil100Hanbok.checked) total += 15000;
-  if (form.dolHanbok.checked) total += 35000;
-
-  // Accessories
-  if (form.acc_jeongjagwan.checked) total += 5000;
-  if (form.acc_ilbangat.checked) total += 5000;
-  if (form.acc_yugeon.checked) total += 5000;
-  if (form.acc_gachae.checked) total += 5000;
-  if (form.acc_meoritti.checked) total += 5000;
-
-  if (form.bamboChair.checked) total += 5000;
-  if (form.dolCushion.checked) total += 5000;
-  if (form.waterproofMat.checked) total += 5000;
-  if (form.foldingTable.checked) total += 10000;
-  if (form.dolGrabbingSet.checked) total += 10000;
-  if (form.premiumModelFruit.checked) total += 10000;
-  if (form.modelBaekseolgi.checked) total += 5000;
-  if (form.modelWoodBaekseolgi.checked) total += 10000;
-  if (form.modelBaekseolgiCake.checked) total += 10000;
-  if (form.modelSiruTteok.checked) total += 5000;
-  if (form.modelPlateTeok.checked) total += 7000;
-  if (form.calligraphyCard.checked) total += 9900;
-
-  document.getElementById("milestoneTotalPrice").textContent = total.toLocaleString() + "원";
-}
-
-function updateDressPrice() {
-  var form = document.getElementById("dressForm");
-  var total = 0;
-
-  // Fitting fee
-  var fittingDate = form.fittingDate.value;
-  if (fittingDate) {
-    total += 30000;
-  }
-
-  // Options
-  if (form.niceSocks.checked) total += 4000;
-  if (form.tights.checked) total += 6000;
-  if (form.hwadongBasket.checked) total += 5000;
-  if (form.hwadongCar.checked) total += 30000;
-
-  document.getElementById("dressTotalPrice").textContent = total.toLocaleString() + "원";
-}
-
-// ===== TOGGLE HELPERS =====
-function toggleStudioTableSelect() {
-  var wrap = document.getElementById("studioTableSelectWrap");
-  var cb = document.getElementById("studioTableSetting");
-  wrap.classList.toggle("hidden", !cb.checked);
-}
-
-function toggleDressSocksColor() {
-  var wrap = document.getElementById("dressSocksColorWrap");
-  var cb = document.getElementById("dressNiceSocks");
-  wrap.classList.toggle("hidden", !cb.checked);
-}
-
-function toggleDressTightsColor() {
-  var wrap = document.getElementById("dressTightsColorWrap");
-  var cb = document.getElementById("dressTights");
-  wrap.classList.toggle("hidden", !cb.checked);
-}
-
-// ===== FORM SUBMISSION =====
-function submitStudioForm(e) {
-  e.preventDefault();
-  var form = e.target;
-  var data = new FormData(form);
-  var msg = "스튜디오 예약이 접수되었습니다!\n\n";
-  msg += "예약자: " + data.get("customerName") + "\n";
-  msg += "연락처: " + data.get("phone") + "\n";
-  msg += "날짜: " + data.get("reservationDate") + "\n";
-  msg += "시간: " + data.get("rentalHours") + "시간\n\n";
-  msg += "카카오채널에서 예약 확정을 진행해주세요.\nhttp://pf.kakao.com/_cxhePn";
-  alert(msg);
-  closeModal("studioModal");
-  form.reset();
-  document.getElementById("studioTotalPrice").textContent = "0원";
-}
-
-function submitMilestoneForm(e) {
-  e.preventDefault();
-  var form = e.target;
-  var data = new FormData(form);
-  var msg = "백일상·돌상 대여 예약이 접수되었습니다!\n\n";
-  msg += "예약자: " + data.get("customerName") + "\n";
-  msg += "연락처: " + data.get("phone") + "\n";
-  msg += "행사 날짜: " + data.get("eventDate") + "\n";
-  msg += "테이블: " + data.get("tableSelection") + "\n\n";
-  msg += "카카오채널에서 예약 확정을 진행해주세요.\nhttp://pf.kakao.com/_cxhePn";
-  alert(msg);
-  closeModal("milestoneModal");
-  form.reset();
-  document.getElementById("milestoneTotalPrice").textContent = "0원";
-}
-
-function submitDressForm(e) {
-  e.preventDefault();
-  var form = e.target;
-  var data = new FormData(form);
-  var msg = "정장·드레스 대여 예약이 접수되었습니다!\n\n";
-  msg += "예약자: " + data.get("customerName") + "\n";
-  msg += "연락처: " + data.get("phone") + "\n";
-  msg += "피팅 날짜: " + data.get("fittingDate") + "\n";
-  msg += "행사 날짜: " + data.get("eventDate") + "\n\n";
-  msg += "카카오채널에서 예약 확정을 진행해주세요.\nhttp://pf.kakao.com/_cxhePn";
-  alert(msg);
-  closeModal("dressModal");
-  form.reset();
-  document.getElementById("dressTotalPrice").textContent = "0원";
-}
-
-// ===== SMOOTH SCROLL =====
-document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-  anchor.addEventListener("click", function(e) {
-    var target = document.querySelector(this.getAttribute("href"));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: "smooth" });
-    }
+  const formData = new FormData(form);
+  const data = { type: type };
+  formData.forEach((value, key) => {
+    data[key] = value;
   });
-});
 
-// ===== ESC KEY CLOSE =====
-document.addEventListener("keydown", function(e) {
-  if (e.key === "Escape") {
-    closeImageModal();
-    closeModal("studioModal");
-    closeModal("milestoneModal");
-    closeModal("dressModal");
+  let msg = "";
+
+  if (type === "studio") {
+    const price = document.getElementById("studioTotalPrice").innerText;
+    const options = [];
+
+    if (data.memoTableSetting) options.push(`테이블 세팅(${data.memoTableSettingDetails})`);
+    if (data.baeksilHanbok) options.push("백일 한복");
+    if (data.dolDressClothing) options.push("돌 의상");
+    if (data.iphoneSnap) options.push("아이폰 스냅");
+    if (data.cameraRental) options.push("카메라 대여");
+
+    msg = `[아모린느 스튜디오 예약]
+성함: ${data.customerName}
+연락처: ${data.phone}
+아기정보: ${data.babyName || "-"} (${data.babyEnglishName || "-"}) / ${data.babyGender || "-"}
+날짜: ${data.reservationDate}
+시간: ${data.reservationTime} (${data.rentalHours}시간)
+인원: 성인 ${data.adultCount || 0} / 아기 ${data.babyCount || 0}
+선택옵션: ${options.length > 0 ? options.join(", ") : "없음"}
+요청사항: ${data.notes || "-"}
+금액: ${price}`;
+  } else if (type === "milestone") {
+    const price = document.getElementById("milestoneTotalPrice").innerText;
+    msg = `[백일상/돌상 대여 예약]
+성함: ${data.customerName}
+연락처: ${data.phone}
+날짜: ${data.eventDate}
+선택: ${data.tableSelection}
+요청사항: ${data.notes || "-"}
+금액: ${price}`;
+  } else {
+    msg = `[정장/드레스 대여 예약]
+성함: ${data.customerName}
+연락처: ${data.phone}
+날짜: ${data.eventDate}
+상품: ${data.rentalProduct || "피팅 후 결정"}
+요청사항: ${data.notes || "-"}`;
   }
-});
 
-// ===== INIT =====
+  copyToClipboard(msg);
+  showSuccessUI(KAKAO_CHANNEL_URL);
+
+  try {
+    fetch(APPS_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+  } catch (err) {
+    console.error("Sheet save error:", err);
+  }
+
+  if (btn) {
+    btn.disabled = false;
+    btn.innerText = originalBtnText;
+  }
+}
+
+function copyToClipboard(text) {
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  document.body.appendChild(textarea);
+  textarea.select();
+
+  try {
+    document.execCommand("copy");
+  } catch (err) {
+    console.error("Copy failed", err);
+  }
+
+  document.body.removeChild(textarea);
+}
+
+function showSuccessUI(url) {
+  const old = document.getElementById("finalOk");
+  if (old) old.remove();
+
+  const html = `
+    <div id="finalOk" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;">
+      <div style="background:white;padding:30px;border-radius:20px;text-align:center;max-width:350px;width:100%;box-shadow:0 10px 30px rgba(0,0,0,0.3);">
+        <div style="font-size:40px;margin-bottom:15px;">✅</div>
+        <h2 style="margin-bottom:10px;color:#333;">예약 접수 완료!</h2>
+        <p style="margin-bottom:25px;font-size:15px;color:#666;line-height:1.5;">예약 내용이 자동으로 복사되었습니다.<br>아래 버튼을 눌러 카카오톡 채팅창에<br><b>붙여넣기</b>하여 보내주세요.</p>
+        <a href="${url}" target="_blank" onclick="document.getElementById('finalOk').remove()" style="display:block;background:#fee500;padding:16px;border-radius:12px;text-decoration:none;color:#3c1e1e;font-weight:bold;font-size:16px;box-shadow:0 4px 10px rgba(254,229,0,0.3);">카카오톡으로 내용 보내기</a>
+        <button onclick="document.getElementById('finalOk').remove()" style="margin-top:15px;background:none;border:none;color:#999;cursor:pointer;font-size:14px;text-decoration:underline;">닫기</button>
+      </div>
+    </div>`;
+  document.body.insertAdjacentHTML("beforeend", html);
+}
+
+/* ===== INIT ===== */
 document.addEventListener("DOMContentLoaded", function() {
+  initTabs();
+
   renderTableCards("studio-tables-list", TABLE_DATA, "studioPrice");
   renderTableCards("milestone-tables-list", TABLE_DATA, "milestonePrice");
   renderStudioOptions();
   renderMilestoneOptions();
-});
 
-function openImageModal(src) {
-  const modal = document.getElementById("imageModal");
-  const modalImg = document.getElementById("modalImg");
-
-  modal.style.display = "flex";
-  modalImg.src = src;
-}
-
-function closeImageModal() {
-  document.getElementById("imageModal").style.display = "none";
-}
-
-function updateEndTime() {
-  const form = document.getElementById("studioForm");
-
-  const startTime = form.reservationTime.value;
-  const hours = form.rentalHours.value;
-
-  if (!startTime || !hours) {
-    document.getElementById("endTime").value = "";
-    return;
+  const useTableCheckbox = document.getElementById("useTable");
+  const tableSelectWrap = document.getElementById("studioTableSelectWrap");
+  if (useTableCheckbox && tableSelectWrap) {
+    useTableCheckbox.addEventListener("change", function() {
+      tableSelectWrap.classList.toggle("hidden", !useTableCheckbox.checked);
+      updateStudioPrice();
+    });
   }
 
-  const [h, m] = startTime.split(":").map(Number);
-  let endHour = h + parseInt(hours);
+  const studioForm = document.getElementById("studioForm");
+  if (studioForm) {
+    studioForm.addEventListener("change", updateStudioPrice);
+    studioForm.addEventListener("submit", function(e) {
+      handleFormSubmit(e, "studio");
+    });
+    updateStudioPrice();
+  }
 
-  const endTimeStr =
-    String(endHour).padStart(2, "0") + ":" + String(m).padStart(2, "0");
+  const milestoneForm = document.getElementById("milestoneForm");
+  if (milestoneForm) {
+    milestoneForm.addEventListener("change", updateMilestonePrice);
+    milestoneForm.addEventListener("submit", function(e) {
+      handleFormSubmit(e, "milestone");
+    });
+    updateMilestonePrice();
+  }
 
-  document.getElementById("endTime").value = endTimeStr;
-}
+  const dressForm = document.getElementById("dressForm");
+  if (dressForm) {
+    dressForm.addEventListener("submit", function(e) {
+      handleFormSubmit(e, "dress");
+    });
+  }
+});
