@@ -1,10 +1,6 @@
-// ===== 제출 모드 설정 =====
-// 회사에서는 true로 두고 테스트
-// 집에서 실제 Google Apps Script 붙일 때 false로 변경
-const USE_FAKE_SUBMIT = true;
+const USE_FAKE_SUBMIT = false;
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxE6gfTP11chqJCN2kB4wk-NVgPDlyygbGzRPhslzAadfQ1TJo_f2dtH1RdkB6yw0pa/exec';
 
-// 집에서 Apps Script 배포 URL 넣을 자리
-const APPS_SCRIPT_URL = '';
 
 /* ===== Amorinne Static Website Script ===== */
 
