@@ -1098,3 +1098,115 @@ button {
     </div>
   </div>
 </section>
+
+
+.extra-concept-section {
+  margin-bottom: 24px;
+}
+
+.extra-concept-section h4 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: #2f221d;
+}
+
+.extra-concept-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.extra-concept-item {
+  cursor: pointer;
+}
+
+.extra-concept-item img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+.extra-concept-item p {
+  margin-top: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #2f221d;
+  text-align: center;
+}
+
+.extra-concept-item .price {
+  font-weight: 500;
+  color: #7a5a46;
+}
+
+.concept-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.concept-modal.show {
+  display: flex;
+}
+
+.concept-modal-content {
+  position: relative;
+  max-width: 820px;
+  width: 100%;
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.concept-modal-content img {
+  width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 10px;
+  display: block;
+}
+
+.concept-modal-content p {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #2f221d;
+}
+
+.concept-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .extra-concept-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .extra-concept-item p {
+    font-size: 14px;
+  }
+
+  .concept-modal-content {
+    padding: 12px;
+  }
+}
