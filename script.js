@@ -924,7 +924,7 @@ const lines = [
   lines.push('');
   lines.push('최종 금액: ' + (postData.totalPrice || ''));
   lines.push('');
-  lines.push('예약 확인 부탁드립니다.');
+  lines.push('예약 가능 여부 확인해주세요.');
 
   return lines.filter(line => line !== null && line !== undefined).join('\n');
 }
@@ -1024,7 +1024,7 @@ function buildMilestoneKakaoMessage(postData) {
   lines.push('');
   lines.push('최종 금액: ' + (postData.totalPrice || ''));
   lines.push('');
-  lines.push('예약 확인 부탁드립니다.');
+  lines.push('예약 가능 여부 확인해주세요.');
 
   return lines.filter(line => line !== null && line !== undefined).join('\n');
 }
@@ -1067,7 +1067,7 @@ if (postData.tightsUse === 'on') {
   lines.push('');
   lines.push('최종 금액: ' + (postData.totalPrice || ''));
   lines.push('');
-  lines.push('예약 확인 부탁드립니다.');
+  lines.push('예약 가능 여부 확인해주세요.');
 
   return lines.filter(line => line !== null && line !== undefined).join('\n');
 }
