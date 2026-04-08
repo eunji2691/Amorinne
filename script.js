@@ -862,18 +862,21 @@ function closeConceptModal() {
 }
 
 function buildStudioKakaoMessage(postData) {
-  const lines = [
-    '[아모린느 스튜디오 예약]',
-    '',
-    '예약자명: ' + (postData.customerName || ''),
-    '연락처: ' + (postData.phone || ''),
-    '예약일: ' + (postData.reservationDate || ''),
-    '시작 시간: ' + (postData.reservationTime || ''),
-    '종료 시간: ' + (postData.endTime || ''),
-    '이용 시간: ' + ((postData.rentalHours || '') ? postData.rentalHours + '시간' : ''),
-    '성인 인원: ' + (postData.adultCount || ''),
-    '아기 인원: ' + (postData.babyCount || '')
-  ];
+const lines = [
+  '[아모린느 스튜디오 예약]',
+  '',
+  '예약자명: ' + (postData.customerName || postData.name || ''),
+  '연락처: ' + (postData.phone || ''),
+  '아기 이름: ' + (postData.babyName || ''),
+  '아기 영문이름: ' + (postData.babyEnglishName || ''),
+  '성별: ' + (postData.babyGender || ''),
+  '예약일: ' + (postData.reservationDate || ''),
+  '시작 시간: ' + (postData.reservationTime || postData.startTime || ''),
+  '종료 시간: ' + (postData.endTime || ''),
+  '이용 시간: ' + ((postData.rentalHours || '') ? postData.rentalHours + '시간' : ''),
+  '성인 인원: ' + (postData.adultCount || ''),
+  '아기 인원: ' + (postData.babyCount || '')
+];
 
   if (postData.memoTableSetting === 'on') {
     lines.push('기념일 테이블 세팅: 추가');
@@ -932,6 +935,8 @@ function buildMilestoneKakaoMessage(postData) {
     '',
     '예약자명: ' + (postData.customerName || ''),
     '연락처: ' + (postData.phone || ''),
+    '아기 이름: ' + (postData.babyName || ''),
+'성별: ' + (postData.babyGender || ''),
     '행사 날짜: ' + (postData.eventDate || '')
   ];
 
@@ -1017,6 +1022,8 @@ function buildDressKakaoMessage(postData) {
     '',
     '예약자명: ' + (postData.customerName || ''),
     '연락처: ' + (postData.phone || ''),
+    '아기 이름: ' + (postData.babyName || ''),
+'성별: ' + (postData.babyGender || ''),
     '피팅 희망 날짜: ' + (postData.fittingDate || ''),
     '피팅 희망 시간: ' + (postData.fittingTime || ''),
     '행사 날짜: ' + (postData.eventDate || ''),
