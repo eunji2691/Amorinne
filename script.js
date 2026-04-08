@@ -664,13 +664,17 @@ async function submitMilestoneForm(e) {
     const result = await response.json();
 
     if (result.result === 'success') {
-      alert(
-        "예약 신청이 접수되었습니다.\n\n" +
-        "카카오톡 채널로 이동하여 예약 확정을 진행해주세요.\n\n" +
-        "확인 버튼을 누르면 카카오톡으로 이동합니다."
-      );
+const kakaoMsg = buildMilestoneKakaoMessage(postData);
+const copied = await copyTextSafely(kakaoMsg);
 
-      window.open('http://pf.kakao.com/_cxhePn', '_blank');
+if (copied) {
+  alert('예약 신청이 접수되었습니다.\n\n예약 정보가 복사되었습니다.\n카카오톡 채널 채팅창에 붙여넣기 해주세요.');
+} else {
+  alert('예약 신청이 접수되었습니다.\n\n카카오톡으로 이동 후 내용을 직접 붙여넣어 주세요.');
+  console.log(kakaoMsg);
+}
+
+window.open('http://pf.kakao.com/_cxhePn', '_blank');
 
       if (typeof closeModal === 'function') {
         closeModal('milestoneModal');
@@ -778,15 +782,18 @@ postData.tightsColor = '';
     const result = await response.json();
 
     if (result.result === 'success') {
-alert(
-  "예약 신청이 접수되었습니다.\n\n" +
-  "카카오톡 채널로 이동하여 예약 확정을 진행해주세요.\n\n" +
-  "확인 버튼을 누르면 카카오톡으로 이동합니다."
-);
+const kakaoMsg = buildDressKakaoMessage(postData);
+const copied = await copyTextSafely(kakaoMsg);
 
-// 카카오 이동
+if (copied) {
+  alert('예약 신청이 접수되었습니다.\n\n예약 정보가 복사되었습니다.\n카카오톡 채널 채팅창에 붙여넣기 해주세요.');
+} else {
+  alert('예약 신청이 접수되었습니다.\n\n카카오톡으로 이동 후 내용을 직접 붙여넣어 주세요.');
+  console.log(kakaoMsg);
+}
+
 window.open('http://pf.kakao.com/_cxhePn', '_blank');
-
+      
       if (typeof closeModal === 'function') {
         closeModal('dressModal');
       }
