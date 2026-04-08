@@ -905,8 +905,8 @@ const lines = [
     lines.push('아이폰 스냅: 추가');
   }
 
-  if (postData.bottleFlower === 'on') {
-    lines.push('병풍 추가: 추가');
+  if (postData.screenBackground === 'on') {
+    lines.push('병풍: 추가');
   }
 
   if (postData.calligraphyCard === 'on') {
