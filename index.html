@@ -164,21 +164,21 @@
           <!-- Studio Options -->
 <div id="subtab-studio-options" class="tab-content">
 
-  <div class="extra-concept-section">
-    <h4>추가 컨셉</h4>
+<div class="extra-concept-section">
+  <h4>추가 컨셉</h4>
 
-    <div class="extra-concept-grid">
-      <div class="extra-concept-card">
-        <img src="/images/craddle.jpg" alt="봄의 요람">
-        <p>봄의 요람 <span class="price">(15,000원)</span></p>
-      </div>
+  <div class="extra-concept-list">
+    <div class="extra-concept-item" onclick="openConceptModal('/images/craddle.jpg', '봄의 요람', '15,000원')">
+      <img src="/images/craddle.jpg" alt="봄의 요람">
+      <p>봄의 요람 <span class="price">(15,000원)</span></p>
+    </div>
 
-      <div class="extra-concept-card">
-        <img src="/images/blooming.jpg" alt="블루밍 데이">
-        <p>블루밍 데이 <span class="price">(10,000원)</span></p>
-      </div>
+    <div class="extra-concept-item" onclick="openConceptModal('/images/blooming.jpg', '블루밍 데이', '10,000원')">
+      <img src="/images/blooming.jpg" alt="블루밍 데이">
+      <p>블루밍 데이 <span class="price">(10,000원)</span></p>
     </div>
   </div>
+</div>
 
   <div id="studio-options-list"></div>
 </div>
@@ -730,5 +730,12 @@
 </div>
 
 <script src="script.js"></script>
+  <div id="conceptImageModal" class="concept-modal" onclick="closeConceptModal()">
+  <div class="concept-modal-content" onclick="event.stopPropagation()">
+    <button class="concept-modal-close" onclick="closeConceptModal()">×</button>
+    <img id="conceptModalImg" src="" alt="">
+    <p id="conceptModalTitle"></p>
+  </div>
+</div>
 </body>
 </html>
