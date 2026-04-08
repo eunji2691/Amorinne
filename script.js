@@ -1,3 +1,11 @@
+// ===== 제출 모드 설정 =====
+// 회사에서는 true로 두고 테스트
+// 집에서 실제 Google Apps Script 붙일 때 false로 변경
+const USE_FAKE_SUBMIT = true;
+
+// 집에서 Apps Script 배포 URL 넣을 자리
+const APPS_SCRIPT_URL = '';
+
 /* ===== Amorinne Static Website Script ===== */
 
 // ===== DATA =====
@@ -445,20 +453,133 @@ function toggleDressTightsColor() {
 }
 
 // ===== FORM SUBMISSION =====
-function submitStudioForm(e) {
+async function submitStudioForm(e) {
   e.preventDefault();
-  var form = e.target;
-  var data = new FormData(form);
-  var msg = "스튜디오 예약이 접수되었습니다!\n\n";
-  msg += "예약자: " + data.get("customerName") + "\n";
-  msg += "연락처: " + data.get("phone") + "\n";
-  msg += "날짜: " + data.get("reservationDate") + "\n";
-  msg += "시간: " + data.get("rentalHours") + "시간\n\n";
-  msg += "카카오채널에서 예약 확정을 진행해주세요.\nhttp://pf.kakao.com/_cxhePn";
-  alert(msg);
-  closeModal("studioModal");
-  form.reset();
-  document.getElementById("studioTotalPrice").textContent = "0원";
+
+  try {
+    const form = event.target;
+
+    // form 안의 값 수집
+    const formData = new FormData(form);
+    const postData = Object.fromEntries(formData.entries());
+
+    // 필요하면 여기서 studio 타입 표시
+    postData.formType = 'studio';
+    postData.submittedAt = new Date().toISOString();
+
+    // 체크박스 처리 예시
+    const tableTypeEl = form.querySelector('input[name="tableType"]:checked');
+    if (tableTypeEl) {
+      postData.tableType = tableTypeEl.value;
+    }
+
+    // 추가 옵션들 직접 보정이 필요하면 여기서 넣기
+    const startTimeEl = document.querySelector('[name="reservationTime"], [name="startTime"]');
+    const endTimeEl = document.querySelector('[name="endTime"]');
+    const dateEl = document.querySelector('[name="reservationDate"], [name="date"]');
+    const nameEl = document.querySelector('[name="name"]');
+    const phoneEl = document.querySelector('[name="phone"]');
+    const babyNameEl = document.querySelector('[name="babyName"]');
+    const babyGenderEl = document.querySelector('[name="babyGender"]');
+    const packageEl = document.querySelector('[name="packageType"]');
+    const requestEl = document.querySelector('[name="request"]');
+
+    if (dateEl && !postData.reservationDate && !postData.date) {
+      postData.reservationDate = dateEl.value;
+    }
+
+    if (startTimeEl && !postData.reservationTime && !postData.startTime) {
+      postData.startTime = startTimeEl.value;
+    }
+
+    if (endTimeEl) {
+      postData.endTime = endTimeEl.value;
+    }
+
+    if (nameEl && !postData.name) postData.name = nameEl.value;
+    if (phoneEl && !postData.phone) postData.phone = phoneEl.value;
+    if (babyNameEl && !postData.babyName) postData.babyName = babyNameEl.value;
+    if (babyGenderEl && !postData.babyGender) postData.babyGender = babyGenderEl.value;
+    if (packageEl && !postData.packageType) postData.packageType = packageEl.value;
+    if (requestEl && !postData.request) postData.request = requestEl.value;
+
+    // 가격 표시 요소가 있으면 같이 수집
+    const priceEl = document.getElementById('studioPrice') || document.getElementById('totalPrice');
+    if (priceEl) {
+      postData.totalPrice = priceEl.textContent.trim();
+    }
+
+    // 콘솔 확인용
+    console.log('=== STUDIO SUBMIT DATA ===');
+    console.log(postData);
+    console.table(postData);
+
+    if (USE_FAKE_SUBMIT) {
+      // 임시 제출 모드
+      alert('임시 제출 테스트 완료! 콘솔(F12)에서 전송 데이터를 확인하세요.');
+
+      // 초기화
+      form.reset();
+
+      const endTimeInput = document.getElementById('endTime');
+      if (endTimeInput) endTimeInput.value = '';
+
+      if (typeof updateStudioPrice === 'function') {
+        updateStudioPrice();
+      }
+
+      if (typeof toggleTableSettingDetails === 'function') {
+        toggleTableSettingDetails();
+      }
+
+      if (typeof closeModal === 'function') {
+        closeModal('studioModal');
+      }
+
+      return;
+    }
+
+    // ===== 실제 제출 모드 =====
+    if (!APPS_SCRIPT_URL) {
+      alert('Apps Script URL이 비어 있습니다.');
+      return;
+    }
+
+    const response = await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify(postData)
+    });
+
+    const result = await response.json();
+
+    if (result.result === 'success') {
+      alert('예약 신청이 완료되었습니다.');
+
+      form.reset();
+
+      const endTimeInput = document.getElementById('endTime');
+      if (endTimeInput) endTimeInput.value = '';
+
+      if (typeof updateStudioPrice === 'function') {
+        updateStudioPrice();
+      }
+
+      if (typeof toggleTableSettingDetails === 'function') {
+        toggleTableSettingDetails();
+      }
+
+      if (typeof closeModal === 'function') {
+        closeModal('studioModal');
+      }
+    } else {
+      alert('제출은 되었지만 응답이 올바르지 않습니다.');
+      console.log('submit result:', result);
+    }
+
+  } catch (error) {
+    console.error('submitStudioForm error:', error);
+    alert('제출 중 오류가 발생했습니다.');
+  }
 }
 
 function submitMilestoneForm(e) {
