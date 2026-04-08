@@ -504,10 +504,10 @@ async function submitStudioForm(e) {
     if (requestEl && !postData.request) postData.request = requestEl.value;
 
     // 가격 표시 요소가 있으면 같이 수집
-    const priceEl = document.getElementById('studioPrice') || document.getElementById('totalPrice');
-    if (priceEl) {
-      postData.totalPrice = priceEl.textContent.trim();
-    }
+   const priceEl = document.getElementById('studioTotalPrice');
+if (priceEl) {
+  postData.totalPrice = priceEl.textContent.trim();
+}
 
     // 콘솔 확인용
     console.log('=== STUDIO SUBMIT DATA ===');
