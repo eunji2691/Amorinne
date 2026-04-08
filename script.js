@@ -803,3 +803,15 @@ document.addEventListener("DOMContentLoaded", function() {
   renderStudioOptions();
   renderMilestoneOptions();
 });
+
+
+function openConceptModal(imageSrc, title, price) {
+  document.getElementById('conceptModalImg').src = imageSrc;
+  document.getElementById('conceptModalImg').alt = title;
+  document.getElementById('conceptModalTitle').textContent = title + ' (' + price + ')';
+  document.getElementById('conceptImageModal').classList.add('show');
+}
+
+function closeConceptModal() {
+  document.getElementById('conceptImageModal').classList.remove('show');
+}
