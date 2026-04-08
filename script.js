@@ -660,32 +660,27 @@ async function submitMilestoneForm(e) {
 
     const result = await response.json();
 
+    if (result.result === 'success') {
+      alert(
+        "예약 신청이 접수되었습니다.\n\n" +
+        "카카오톡 채널로 이동하여 예약 확정을 진행해주세요.\n\n" +
+        "확인 버튼을 누르면 카카오톡으로 이동합니다."
+      );
 
-if (result.result === 'success') {
-  alert(
-    "예약 신청이 접수되었습니다.\n\n" +
-    "카카오톡 채널로 이동하여 예약 확정을 진행해주세요.\n\n" +
-    "확인 버튼을 누르면 카카오톡으로 이동합니다."
-  );
+      window.open('http://pf.kakao.com/_cxhePn', '_blank');
 
-  window.open('http://pf.kakao.com/_cxhePn', '_blank');
+      if (typeof closeModal === 'function') {
+        closeModal('milestoneModal');
+      }
 
-  if (typeof closeModal === 'function') {
-    closeModal('milestoneModal');
-  }
+      form.reset();
 
-  form.reset();
+      var totalPriceEl = document.getElementById('milestoneTotalPrice');
+      if (totalPriceEl) totalPriceEl.textContent = '0원';
 
-  var totalPriceEl = document.getElementById('milestoneTotalPrice');
-  if (totalPriceEl) totalPriceEl.textContent = '0원';
-
-  if (typeof updateMilestonePrice === 'function') {
-    updateMilestonePrice();
-  }
-} else {
-  alert('제출은 되었지만 응답이 올바르지 않습니다.');
-  console.log('submit result:', result);
-}
+      if (typeof updateMilestonePrice === 'function') {
+        updateMilestonePrice();
+      }
     } else {
       alert('제출은 되었지만 응답이 올바르지 않습니다.');
       console.log('submit result:', result);
