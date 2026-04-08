@@ -490,6 +490,8 @@ postData.extraConcept = Array.from(conceptEls).map(el => el.value).join(', ');
     const babyGenderEl = document.querySelector('[name="babyGender"]');
     const packageEl = document.querySelector('[name="packageType"]');
     const requestEl = document.querySelector('[name="request"]');
+    const balloonNumberEl = document.querySelector('[name="balloonNumber"]');
+const balloonColorEl = document.querySelector('[name="balloonColor"]');
 
     if (dateEl && !postData.reservationDate && !postData.date) {
       postData.reservationDate = dateEl.value;
@@ -510,6 +512,13 @@ postData.extraConcept = Array.from(conceptEls).map(el => el.value).join(', ');
     if (babyGenderEl && !postData.babyGender) postData.babyGender = babyGenderEl.value;
     if (packageEl && !postData.packageType) postData.packageType = packageEl.value;
     if (requestEl && !postData.request) postData.request = requestEl.value;
+    if (balloonNumberEl && !postData.balloonNumber) {
+  postData.balloonNumber = balloonNumberEl.value;
+}
+
+if (balloonColorEl && !postData.balloonColor) {
+  postData.balloonColor = balloonColorEl.value;
+}
 
     // 가격 표시 요소가 있으면 같이 수집
    const priceEl = document.getElementById('studioTotalPrice');
@@ -913,9 +922,14 @@ const lines = [
     lines.push('자체제작 금박 캘리그라피 카드: 추가');
   }
 
-  if (postData.numberBalloon === 'on') {
-    lines.push('대형 숫자 풍선: 추가');
-  }
+if (postData.numberBalloon === 'on') {
+  lines.push(
+    '대형 숫자 풍선: 숫자 ' +
+    (postData.balloonNumber || '') +
+    ', 색상 ' +
+    (postData.balloonColor || '')
+  );
+}
 
   if (postData.notes) {
     lines.push('요청사항: ' + postData.notes);
@@ -1079,5 +1093,23 @@ async function copyTextSafely(text) {
   } catch (error) {
     console.error('clipboard copy failed:', error);
     return false;
+  }
+}
+
+
+function toggleBalloonFields() {
+  const checkbox = document.getElementById('studioBalloon');
+  const fields = document.getElementById('balloonDetailFields');
+
+  if (!checkbox || !fields) return;
+
+  fields.style.display = checkbox.checked ? 'block' : 'none';
+
+  if (!checkbox.checked) {
+    const numberEl = document.querySelector('[name="balloonNumber"]');
+    const colorEl = document.querySelector('[name="balloonColor"]');
+
+    if (numberEl) numberEl.value = '';
+    if (colorEl) colorEl.value = '';
   }
 }
