@@ -956,8 +956,24 @@ function buildMilestoneKakaoMessage(postData) {
     lines.push('돌 한복: 추가');
   }
 
-  if (postData.accJibangat === 'on') {
-    lines.push('지방갓/악세사리: 추가');
+  if (postData.acc_jeongjagwan === 'on') {
+    lines.push('정자관: 추가');
+  }
+
+  if (postData.acc_ilbangat === 'on') {
+    lines.push('일반갓: 추가');
+  }
+
+    if (postData.acc_yugeon === 'on') {
+    lines.push('유건: 추가');
+  }
+
+    if (postData.acc_gachae === 'on') {
+    lines.push('가채: 추가');
+  }
+
+    if (postData.acc_ilbangat === 'on') {
+    lines.push('일반갓: 추가');
   }
 
   if (postData.modelSiruTteok === 'on') {
