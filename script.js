@@ -473,6 +473,9 @@ async function submitStudioForm(e) {
     postData.formType = 'studio';
     postData.submittedAt = new Date().toISOString();
 
+    const conceptEls = form.querySelectorAll('input[name="extraConcept"]:checked');
+postData.extraConcept = Array.from(conceptEls).map(el => el.value).join(', ');
+
     // 체크박스 처리 예시
     const tableTypeEl = form.querySelector('input[name="tableType"]:checked');
     if (tableTypeEl) {
