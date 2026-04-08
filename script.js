@@ -275,6 +275,64 @@ function getTablePrice(tableName, type) {
   return 0;
 }
 
+function validateReservationTime(input) {
+  if (!input || !input.value) return;
+
+  const parts = input.value.split(':');
+  if (parts.length !== 2) return;
+
+  const hour = parts[0];
+  const minute = parts[1];
+
+  if (minute !== '00' && minute !== '30') {
+    alert('시작 시간은 00분 또는 30분만 선택할 수 있어요.');
+    input.value = '';
+    const endTimeInput = document.getElementById('endTime');
+    if (endTimeInput) endTimeInput.value = '';
+  }
+}
+
+function updateEndTime() {
+  const reservationTimeInput = document.getElementById('reservationTime');
+  const rentalHoursSelect = document.querySelector('#studioForm select[name="rentalHours"]');
+  const endTimeInput = document.getElementById('endTime');
+
+  if (!reservationTimeInput || !rentalHoursSelect || !endTimeInput) return;
+
+  const startTime = reservationTimeInput.value;
+  const rentalHours = rentalHoursSelect.value;
+
+  if (!startTime || !rentalHours) {
+    endTimeInput.value = '';
+    return;
+  }
+
+  const parts = startTime.split(':');
+  if (parts.length !== 2) {
+    endTimeInput.value = '';
+    return;
+  }
+
+  const startHour = parseInt(parts[0], 10);
+  const startMinute = parseInt(parts[1], 10);
+  const hoursToAdd = parseInt(rentalHours, 10);
+
+  if (Number.isNaN(startHour) || Number.isNaN(startMinute) || Number.isNaN(hoursToAdd)) {
+    endTimeInput.value = '';
+    return;
+  }
+
+  const totalMinutes = startHour * 60 + startMinute + hoursToAdd * 60;
+  const endHour = Math.floor((totalMinutes % (24 * 60)) / 60);
+  const endMinute = totalMinutes % 60;
+
+  const hh = String(endHour).padStart(2, '0');
+  const mm = String(endMinute).padStart(2, '0');
+
+  endTimeInput.value = `${hh}:${mm}`;
+}
+
+
 function updateStudioPrice() {
   var form = document.getElementById("studioForm");
   var total = 0;
