@@ -1,5 +1,6 @@
 const USE_FAKE_SUBMIT = false;
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxE6gfTP11chqJCN2kB4wk-NVgPDlyygbGzRPhslzAadfQ1TJo_f2dtH1RdkB6yw0pa/exec';
+const KAKAO_CHAT_URL = 'http://pf.kakao.com/_cxhePn/chat';
 
 
 /* ===== Amorinne Static Website Script ===== */
@@ -568,7 +569,7 @@ if (copied) {
   console.log(kakaoMsg);
 }
 
-window.open('http://pf.kakao.com/_cxhePn', '_blank');
+window.open(KAKAO_CHAT_URL, '_blank');
 
       form.reset();
 
@@ -674,7 +675,7 @@ if (copied) {
   console.log(kakaoMsg);
 }
 
-window.open('http://pf.kakao.com/_cxhePn', '_blank');
+window.open(KAKAO_CHAT_URL, '_blank');
 
       if (typeof closeModal === 'function') {
         closeModal('milestoneModal');
@@ -792,7 +793,7 @@ if (copied) {
   console.log(kakaoMsg);
 }
 
-window.open('http://pf.kakao.com/_cxhePn', '_blank');
+window.open(KAKAO_CHAT_URL, '_blank');
       
       if (typeof closeModal === 'function') {
         closeModal('dressModal');
