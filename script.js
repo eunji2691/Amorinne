@@ -362,7 +362,7 @@ function updateStudioPrice() {
   }
 
   // Options
-  if (form.baeksilHanbok.checked) total += 15000;
+  if (form.baekilHanbok.checked) total += 15000;
   if (form.dolDressClothing.checked) total += 35000;
   var cameraVal = form.querySelector('input[name="cameraRental"]:checked');
   if (cameraVal && cameraVal.value) total += 20000;
