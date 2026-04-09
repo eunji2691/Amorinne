@@ -492,6 +492,7 @@ postData.extraConcept = Array.from(conceptEls).map(el => el.value).join(', ');
     const requestEl = document.querySelector('[name="request"]');
     const balloonNumberEl = document.querySelector('[name="balloonNumber"]');
 const balloonColorEl = document.querySelector('[name="balloonColor"]');
+    const baekilHanbokDetailEl = form.querySelector('[name="baekilHanbokDetail"]');
 
     if (dateEl && !postData.reservationDate && !postData.date) {
       postData.reservationDate = dateEl.value;
@@ -512,6 +513,11 @@ const balloonColorEl = document.querySelector('[name="balloonColor"]');
     if (babyGenderEl && !postData.babyGender) postData.babyGender = babyGenderEl.value;
     if (packageEl && !postData.packageType) postData.packageType = packageEl.value;
     if (requestEl && !postData.request) postData.request = requestEl.value;
+    if (postData.baekilHanbok === 'on') {
+  if (baekilHanbokDetailEl && !postData.baekilHanbokDetail) {
+    postData.baekilHanbokDetail = baekilHanbokDetailEl.value;
+  }
+}
     if (balloonNumberEl && !postData.balloonNumber) {
   postData.balloonNumber = balloonNumberEl.value;
 }
@@ -898,10 +904,12 @@ const lines = [
     lines.push('추가 컨셉: ' + postData.extraConcept);
   }
 
-  if (postData.baeksilHanbok === 'on') {
-    lines.push('백일 한복: 추가');
-  }
-
+if (postData.baekilHanbok === 'on') {
+  lines.push(
+    '백일 한복: ' +
+    (postData.baekilHanbokDetail || '선택')
+  );
+}
   if (postData.dolDressClothing === 'on') {
     lines.push('돌 한복/드레스/정장: 추가');
   }
@@ -1116,5 +1124,20 @@ function toggleBalloonFields() {
 
     if (balloonNumberEl) balloonNumberEl.value = '';
     if (balloonColorEl) balloonColorEl.value = '';
+  }
+}
+
+
+function toggleStudioHanbokField() {
+  const checkbox = document.getElementById('studioHanbok');
+  const field = document.getElementById('studioHanbokField');
+
+  if (!checkbox || !field) return;
+
+  field.style.display = checkbox.checked ? 'block' : 'none';
+
+  if (!checkbox.checked) {
+    const input = document.querySelector('[name="baekilHanbokDetail"]');
+    if (input) input.value = '';
   }
 }
