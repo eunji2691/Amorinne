@@ -923,12 +923,17 @@ const lines = [
   }
 
 if (postData.numberBalloon === 'on') {
-  lines.push(
-    '대형 숫자 풍선: 숫자 ' +
-    (postData.balloonNumber || '') +
-    ', 색상 ' +
-    (postData.balloonColor || '')
-  );
+  let balloonText = '대형 숫자 풍선';
+
+  if (postData.balloonNumber || postData.balloonColor) {
+    balloonText += ': ';
+    if (postData.balloonNumber) balloonText += '숫자 ' + postData.balloonNumber;
+    if (postData.balloonColor) balloonText += (postData.balloonNumber ? ', ' : '') + '색상 ' + postData.balloonColor;
+  } else {
+    balloonText += ': 추가';
+  }
+
+  lines.push(balloonText);
 }
 
   if (postData.notes) {
@@ -1106,10 +1111,10 @@ function toggleBalloonFields() {
   fields.style.display = checkbox.checked ? 'block' : 'none';
 
   if (!checkbox.checked) {
-    const numberEl = document.querySelector('[name="balloonNumber"]');
-    const colorEl = document.querySelector('[name="balloonColor"]');
+    const balloonNumberEl = document.querySelector('[name="balloonNumber"]');
+    const balloonColorEl = document.querySelector('[name="balloonColor"]');
 
-    if (numberEl) numberEl.value = '';
-    if (colorEl) colorEl.value = '';
+    if (balloonNumberEl) balloonNumberEl.value = '';
+    if (balloonColorEl) balloonColorEl.value = '';
   }
 }
