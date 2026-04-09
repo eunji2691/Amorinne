@@ -493,6 +493,8 @@ postData.extraConcept = Array.from(conceptEls).map(el => el.value).join(', ');
     const balloonNumberEl = document.querySelector('[name="balloonNumber"]');
 const balloonColorEl = document.querySelector('[name="balloonColor"]');
     const baekilHanbokDetailEl = form.querySelector('[name="baekilHanbokDetail"]');
+    const dolDressClothingDetailEl = form.querySelector('[name="dolDressClothingDetail"]');
+
 
     if (dateEl && !postData.reservationDate && !postData.date) {
       postData.reservationDate = dateEl.value;
@@ -516,6 +518,11 @@ const balloonColorEl = document.querySelector('[name="balloonColor"]');
     if (postData.baekilHanbok === 'on') {
   if (baekilHanbokDetailEl && !postData.baekilHanbokDetail) {
     postData.baekilHanbokDetail = baekilHanbokDetailEl.value;
+  }
+}
+    if (postData.dolDressClothing === 'on') {
+  if (dolDressClothingDetailEl && !postData.dolDressClothingDetail) {
+    postData.dolDressClothingDetail = dolDressClothingDetailEl.value;
   }
 }
     if (balloonNumberEl && !postData.balloonNumber) {
@@ -910,9 +917,13 @@ if (postData.baekilHanbok === 'on') {
     (postData.baekilHanbokDetail || '선택')
   );
 }
-  if (postData.dolDressClothing === 'on') {
-    lines.push('돌 한복/드레스/정장: 추가');
-  }
+  
+if (postData.dolDressClothing === 'on') {
+  lines.push(
+    '돌 한복/드레스/정장: ' +
+    (postData.dolDressClothingDetail || '선택')
+  );
+}
 
   if (postData.cameraRental && postData.cameraRental !== 'none') {
     lines.push('카메라 대여: ' + postData.cameraRental);
@@ -1138,6 +1149,21 @@ function toggleStudioHanbokField() {
 
   if (!checkbox.checked) {
     const input = document.querySelector('[name="baekilHanbokDetail"]');
+    if (input) input.value = '';
+  }
+}
+
+
+function toggleStudioDolDressField() {
+  const checkbox = document.getElementById('studioDolDress');
+  const field = document.getElementById('studioDolDressField');
+
+  if (!checkbox || !field) return;
+
+  field.style.display = checkbox.checked ? 'block' : 'none';
+
+  if (!checkbox.checked) {
+    const input = document.querySelector('[name="dolDressClothingDetail"]');
     if (input) input.value = '';
   }
 }
