@@ -46,21 +46,21 @@ const HANBOK_ACCESSORY_DATA = [
 ];
 
 const BAEKIL_HANBOK_DATA = [
-  { name: "백일한복 1", img: "images/b100beige.jpg" },
-  { name: "백일한복 2", img: "images/b100sky.jpg" },
-  { name: "백일한복 3", img: "images/b100yellow.jpg" },
-  { name: "백일한복 4", img: "images/b100green.jpg" },
-  { name: "백일한복 5", img: "images/g100beige.jpg" },
-  { name: "백일한복 6", img: "images/g100yellow.jpg" },
-  { name: "백일한복 7", img: "images/g100mint.jpg" },
-  { name: "백일한복 8", img: "images/g100colorful.jpg" }
+  { name: "남아한복 베이지", img: "images/b100beige.jpg" },
+  { name: "남아한복 하늘", img: "images/b100sky.jpg" },
+  { name: "남아한복 노랑", img: "images/b100yellow.jpg" },
+  { name: "남아한복 초록", img: "images/b100green.jpg" },
+  { name: "여아한복 베이지", img: "images/g100beige.jpg" },
+  { name: "여아한복 노랑", img: "images/g100yellow.jpg" },
+  { name: "여아한복 민트", img: "images/g100mint.jpg" },
+  { name: "여아한복 색동", img: "images/g100colorful.jpg" }
 ];
 
 const DOL_HANBOK_DATA = [
-  { name: "돌한복 1", img: "images/b1yellow.jpg" },
-  { name: "돌한복 2", img: "images/b1sky.jpg" },
-  { name: "돌한복 3", img: "images/g1colorful.jpg" },
-  { name: "돌한복 4", img: "images/g1haru.jpg" }
+  { name: "남아한복 노랑", img: "images/b1yellow.jpg" },
+  { name: "남아한복 하늘", img: "images/b1sky.jpg" },
+  { name: "여아한복 색동", img: "images/g1colorful.jpg" },
+  { name: "여아한복 하루", img: "images/g1haru.jpg" }
 ];
 
 // ===== MOBILE MENU =====
