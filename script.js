@@ -494,6 +494,7 @@ postData.extraConcept = Array.from(conceptEls).map(el => el.value).join(', ');
 const balloonColorEl = document.querySelector('[name="balloonColor"]');
     const baekilHanbokDetailEl = form.querySelector('[name="baekilHanbokDetail"]');
     const dolDressClothingDetailEl = form.querySelector('[name="dolDressClothingDetail"]');
+    const babyClothesDetailEl = form.querySelector('[name="babyClothesDetail"]');
 
 
     if (dateEl && !postData.reservationDate && !postData.date) {
@@ -523,6 +524,11 @@ const balloonColorEl = document.querySelector('[name="balloonColor"]');
     if (postData.dolDressClothing === 'on') {
   if (dolDressClothingDetailEl && !postData.dolDressClothingDetail) {
     postData.dolDressClothingDetail = dolDressClothingDetailEl.value;
+  }
+}
+  if (postData.babyClothes === 'on') {
+  if (babyClothesDetailEl && !postData.babyClothesDetail) {
+    postData.babyClothesDetail = babyClothesDetailEl.value;
   }
 }
     if (balloonNumberEl && !postData.balloonNumber) {
@@ -982,17 +988,26 @@ function buildMilestoneKakaoMessage(postData) {
     lines.push('테이블: ' + postData.tableSelection);
   }
 
-  if (postData.baekil100Clothing === 'on') {
-    lines.push('백일 의상: 추가');
-  }
+ if (postData.babyClothes === 'on') {
+  lines.push(
+    '백일 의상: ' +
+    (postData.babyClothesDetail || '선택')
+  );
+}
 
-  if (postData.baekil100Hanbok === 'on') {
-    lines.push('백일 한복: 추가');
-  }
+if (postData.baekilHanbok === 'on') {
+  lines.push(
+    '백일 한복: ' +
+    (postData.baekilHanbokDetail || '선택')
+  );
+}
 
-  if (postData.dolHanbok === 'on') {
-    lines.push('돌 한복: 추가');
-  }
+ if (postData.dolDressClothing === 'on') {
+  lines.push(
+    '돌 한복/드레스/정장: ' +
+    (postData.dolDressClothingDetail || '선택')
+  );
+}
 
   if (postData.acc_jeongjagwan === 'on') {
     lines.push('정자관: 추가');
