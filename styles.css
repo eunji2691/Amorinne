@@ -1210,3 +1210,15 @@ button {
     padding: 12px;
   }
 }
+
+
+.reservation-guide-text {
+  margin: 12px 0 10px;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #6b5b53;
+  background: #f8f5f2;
+  border: 1px solid #e8ddd6;
+  border-radius: 8px;
+}
