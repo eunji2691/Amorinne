@@ -1167,3 +1167,45 @@ function toggleStudioDolDressField() {
     if (input) input.value = '';
   }
 }
+
+function toggleTableBabyClothesField() {
+  const checkbox = document.getElementById('tableBabyClothes');
+  const field = document.getElementById('tableBabyClothesField');
+
+  if (!checkbox || !field) return;
+
+  field.style.display = checkbox.checked ? 'block' : 'none';
+
+  if (!checkbox.checked) {
+    const input = document.querySelector('[name="babyClothesDetail"]');
+    if (input) input.value = '';
+  }
+}
+
+function toggleTableBaekilHanbokField() {
+  const checkbox = document.getElementById('tableBaekilHanbok');
+  const field = document.getElementById('tableBaekilHanbokField');
+
+  if (!checkbox || !field) return;
+
+  field.style.display = checkbox.checked ? 'block' : 'none';
+
+  if (!checkbox.checked) {
+    const input = document.querySelector('[name="baekilHanbokDetail"]');
+    if (input) input.value = '';
+  }
+}
+
+function toggleTableDolDressField() {
+  const checkbox = document.getElementById('tableDolDress');
+  const field = document.getElementById('tableDolDressField');
+
+  if (!checkbox || !field) return;
+
+  field.style.display = checkbox.checked ? 'block' : 'none';
+
+  if (!checkbox.checked) {
+    const input = document.querySelector('[name="dolDressClothingDetail"]');
+    if (input) input.value = '';
+  }
+}
