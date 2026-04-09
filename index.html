@@ -524,7 +524,7 @@ onchange="toggleStudioHanbokField(); updateStudioPrice()" />
           <div class="checkbox-group">
             <input type="checkbox" id="studioDolDress" name="dolDressClothing" onchange="toggleStudioDolDressField(); updateStudioPrice()" />
             <div id="studioDolDressField" style="display:none; margin:8px 0 12px 28px;">
-  <input type="text" class="form-input" name="dolDressClothingDetail" placeholder="예: 한복 색상 or 드레스/정장은 문의">
+  <input type="text" class="form-input" name="dolDressClothingDetail" placeholder="예: 색상 or 문의">
 </div>
             <label for="studioDolDress" class="tooltip-trigger">돌 한복/드레스/정장 <span class="tooltip">35,000원</span></label>
           </div>
@@ -640,15 +640,24 @@ onchange="toggleStudioHanbokField(); updateStudioPrice()" />
         <div class="form-section">
           <h3>유료 추가 옵션</h3>
           <div class="checkbox-group">
-            <input type="checkbox" id="msClothing" name="baekil100Clothing" onchange="updateMilestonePrice()" />
+<input type="checkbox" id="tableBabyClothes" name="babyClothes" onchange="toggleTableBabyClothesField(); updateTablePrice()" />
+            <div id="tableBabyClothesField" style="display:none; margin:8px 0 12px 28px;">
+  <input type="text" class="form-input" name="babyClothesDetail" placeholder="예: 문의">
+</div>
             <label for="msClothing" class="tooltip-trigger">백일 의상 <span class="tooltip">10,000원</span></label>
           </div>
           <div class="checkbox-group">
-            <input type="checkbox" id="msHanbok" name="baekil100Hanbok" onchange="updateMilestonePrice()" />
+<input type="checkbox" id="tableBaekilHanbok" name="baekilHanbok" onchange="toggleTableBaekilHanbokField(); updateTablePrice()" />
+            <div id="tableBaekilHanbokField" style="display:none; margin:8px 0 12px 28px;">
+  <input type="text" class="form-input" name="baekilHanbokDetail" placeholder="예: 베이지, 노랑, 하늘">
+</div>
             <label for="msHanbok" class="tooltip-trigger">백일 한복 <span class="tooltip">15,000원</span></label>
           </div>
           <div class="checkbox-group">
-            <input type="checkbox" id="msDolHanbok" name="dolHanbok" onchange="updateMilestonePrice()" />
+<input type="checkbox" id="tableDolDress" name="dolDressClothing" onchange="toggleTableDolDressField(); updateTablePrice()" />
+            <div id="tableDolDressField" style="display:none; margin:8px 0 12px 28px;">
+  <input type="text" class="form-input" name="dolDressClothingDetail" placeholder="예: 크림 드레스, 베이지 정장, 한복 이름">
+</div>
             <label for="msDolHanbok" class="tooltip-trigger">돌 한복/드레스/정장 <span class="tooltip">35,000원</span></label>
           </div>
           <div class="form-group" style="margin-top:0.5rem;">
