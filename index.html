@@ -514,7 +514,11 @@
   </div>
 </div>
           <div class="checkbox-group">
-            <input type="checkbox" id="studioHanbok" name="baeksilHanbok" onchange="updateStudioPrice()" />
+            <input type="checkbox" id="studioHanbok" name="baekilHanbok"
+onchange="toggleStudioHanbokField(); updateStudioPrice()" />
+            <div id="studioHanbokField" style="display:none; margin:8px 0 12px 28px;">
+  <input type="text" class="form-input" name="baekilHanbokDetail" placeholder="예: 베이지, 노랑, 하늘">
+</div>
             <label for="studioHanbok" class="tooltip-trigger">백일한복 <span class="tooltip">15,000원</span></label>
           </div>
           <div class="checkbox-group">
