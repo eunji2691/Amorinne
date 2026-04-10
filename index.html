@@ -273,10 +273,10 @@
           우리 아기의 특별한 하루가 더 예쁘고 따뜻하게 기억될 수 있도록 아모린느가 정성껏 함께하겠습니다 :)
         </p>
 
-        <div class="notice-images">
-          <img src="images/notice1.jpg">
-          <img src="images/notice2.jpg">
-        </div>
+<div class="notice-images">
+  <img src="images/notice1.jpg" alt="공지 이미지 1" onclick="openNoticeImage(this.src)">
+  <img src="images/notice2.jpg" alt="공지 이미지 2" onclick="openNoticeImage(this.src)">
+</div>
       </div>
     </div>
 
@@ -884,5 +884,11 @@ onchange="toggleStudioHanbokField(); updateStudioPrice()" />
     <p id="conceptModalTitle"></p>
   </div>
 </div>
+
+<div id="noticeImageModal" class="notice-image-modal" onclick="closeNoticeImage()">
+  <span class="notice-image-close">&times;</span>
+  <img id="noticeModalImg" class="notice-image-modal-content" src="" alt="확대 이미지">
+</div>
+  
 </body>
 </html>
