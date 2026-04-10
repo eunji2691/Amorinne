@@ -1428,14 +1428,13 @@ button {
 }
 
 .studio-guide-line {
-  display: inline-block;
-  background: #f3f3f3;
-  color: #555;
-  padding: 8px 12px;
-  border-radius: 8px;
-  margin: 0 8px 10px 0;
-  line-height: 1.6;
+  display: block;
+  background: none;
+  padding: 0;
+  margin: 0 0 10px;
+  line-height: 1.8;
   font-size: 15px;
+  color: #444;
 }
 
 .studio-guide-list {
