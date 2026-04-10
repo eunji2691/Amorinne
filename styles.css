@@ -1472,3 +1472,50 @@ button {
     margin-right: 0;
   }
 }
+
+
+.dress-guide-text {
+  margin-bottom: 24px;
+}
+
+.dress-guide-text p {
+  margin: 0 0 10px;
+  line-height: 1.8;
+  color: #444;
+  font-size: 15px;
+}
+
+.dress-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.dress-item {
+  cursor: pointer;
+  text-align: center;
+}
+
+.dress-item img {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+}
+
+.dress-item p {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .dress-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .dress-guide-text p {
+    font-size: 14px;
+  }
+}
