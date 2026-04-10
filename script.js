@@ -390,9 +390,9 @@ function updateMilestonePrice() {
   }
 
   // Options
-  if (form.baekil100Clothing.checked) total += 10000;
-  if (form.baekil100Hanbok.checked) total += 15000;
-  if (form.dolHanbok.checked) total += 35000;
+if (form.babyClothes && form.babyClothes.checked) total += 10000;
+if (form.baekilHanbok && form.baekilHanbok.checked) total += 15000;
+if (form.dolDressClothing && form.dolDressClothing.checked) total += 35000;
 
   // Accessories
   if (form.acc_jeongjagwan.checked) total += 5000;
