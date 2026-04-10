@@ -255,9 +255,54 @@
 
   <div class="notice-list">
 
+    <!-- 공지 1 -->
     <div class="notice-item">
       <div class="notice-title" onclick="toggleNotice(this)">
-        배송·반납·환불 규정과 안내사항
+        공휴일·성수기 예약 안내
+      </div>
+      <div class="notice-content">
+        <p>
+          아모린느는 공휴일 및 주말 예약 시 주말 가격이 적용됩니다.
+        </p>
+        <p>
+          또한 명절, 크리스마스 등 특정 시즌의 앞뒤 일주일은 성수기로 운영되어
+          예약 변경이나 취소가 어려울 수 있는 점 양해 부탁드립니다.
+        </p>
+        <p>
+          성수기 및 공휴일 예약 관련 문의는 카카오톡 채널로 남겨주시면
+          일정과 상품에 맞춰 자세히 안내드리겠습니다.
+        </p>
+      </div>
+    </div>
+
+    <!-- 공지 2 -->
+    <div class="notice-item">
+      <div class="notice-title" onclick="toggleNotice(this)">
+        아이폰 스냅 안내
+      </div>
+      <div class="notice-content">
+        <p>
+          아모린느의 아이폰 스냅은 전문 촬영 서비스가 아닌,
+          아이폰으로 편하게 기록해드리는 촬영입니다.
+        </p>
+        <p>
+          작가 촬영처럼 디테일한 연출보다는
+          옆에서 자연스럽게 도와드리는 느낌으로 편안하게 진행된다고 생각해주시면 좋습니다 :)
+        </p>
+        <p>
+          아이의 자연스러운 순간을 부담 없이 남기고 싶은 분들께 추천드립니다.
+        </p>
+        <p>
+          ※ 아이폰 스냅 신청 시 촬영된 사진은 아모린느 홍보용(인스타그램 등)으로
+          활용될 수 있으며, 이에 동의하신 것으로 간주됩니다.
+        </p>
+      </div>
+    </div>
+
+    <!-- 공지 3 -->
+    <div class="notice-item">
+      <div class="notice-title" onclick="toggleNotice(this)">
+        배송·반납·환불 규정 안내
       </div>
 
       <div class="notice-content">
@@ -273,15 +318,21 @@
           우리 아기의 특별한 하루가 더 예쁘고 따뜻하게 기억될 수 있도록 아모린느가 정성껏 함께하겠습니다 :)
         </p>
 
-<div class="notice-images">
-  <img src="images/notice1.jpg" alt="공지 이미지 1" onclick="openNoticeImage(this.src)">
-  <img src="images/notice2.jpg" alt="공지 이미지 2" onclick="openNoticeImage(this.src)">
-</div>
+        <div class="notice-images">
+          <img src="images/notice1.jpg" onclick="openNoticeImage(this.src)">
+          <img src="images/notice2.jpg" onclick="openNoticeImage(this.src)">
+        </div>
       </div>
     </div>
 
   </div>
 </section>
+
+<!-- 이미지 확대 모달 -->
+<div id="noticeImageModal" class="notice-image-modal" onclick="closeNoticeImage()">
+  <span class="notice-image-close">&times;</span>
+  <img id="noticeModalImg" class="notice-image-modal-content">
+</div>
   
 
 <!-- ===== About Section ===== -->
