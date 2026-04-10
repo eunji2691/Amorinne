@@ -1232,3 +1232,19 @@ function toggleNotice(element) {
     content.style.display = "block";
   }
 }
+
+
+function openNoticeImage(src) {
+  const modal = document.getElementById('noticeImageModal');
+  const modalImg = document.getElementById('noticeModalImg');
+
+  modalImg.src = src;
+  modal.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeNoticeImage() {
+  const modal = document.getElementById('noticeImageModal');
+  modal.style.display = 'none';
+  document.body.style.overflow = '';
+}
