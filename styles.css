@@ -1275,3 +1275,51 @@ button {
   width: 100%;
   border-radius: 12px;
 }
+
+
+.notice-images {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.notice-images img {
+  width: 100%;
+  border-radius: 12px;
+  display: block;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .notice-images {
+    grid-template-columns: 1fr;
+  }
+}
+
+.notice-image-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 40px 20px;
+}
+
+.notice-image-modal-content {
+  display: block;
+  max-width: 90%;
+  max-height: 90vh;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+
+.notice-image-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 36px;
+  color: #fff;
+  cursor: pointer;
+  line-height: 1;
+}
