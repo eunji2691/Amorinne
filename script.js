@@ -693,13 +693,13 @@ async function submitMilestoneForm(e) {
       body: JSON.stringify(postData)
     });
 
-    const result = await response.json();
+const result = await response.json();
 
-    if (result.result === 'success') {
-const kakaoMsg = buildMilestoneKakaoMessage(postData);
-const copied = await copyTextSafely(kakaoMsg);
+if (result.result === 'success') {
+  const kakaoMsg = buildMilestoneKakaoMessage(postData);
+  const copied = await copyTextSafely(kakaoMsg);
 
-setTimeout(() => {
+  setTimeout(() => {
     window.location.href = KAKAO_CHAT_URL;
   }, 200);
 
@@ -711,16 +711,17 @@ setTimeout(() => {
 
   form.reset();
 
-      var totalPriceEl = document.getElementById('milestoneTotalPrice');
-      if (totalPriceEl) totalPriceEl.textContent = '0원';
+  var totalPriceEl = document.getElementById('milestoneTotalPrice');
+  if (totalPriceEl) totalPriceEl.textContent = '0원';
 
-      if (typeof updateMilestonePrice === 'function') {
-        updateMilestonePrice();
-      }
-    } else {
-      alert('제출은 되었지만 응답이 올바르지 않습니다.');
-      console.log('submit result:', result);
-    }
+  if (typeof updateMilestonePrice === 'function') {
+    updateMilestonePrice();
+  }
+
+} else {
+  alert('제출은 되었지만 응답이 올바르지 않습니다.');
+  console.log('submit result:', result);
+}
 
   } catch (error) {
     console.error('submitMilestoneForm error:', error);
