@@ -127,7 +127,7 @@
             <button class="sub-tab-btn" data-subtab="studio-tables" data-parent="studio">테이블보기</button>
             <button class="sub-tab-btn" data-subtab="studio-clothes" data-parent="studio">무료의상보기</button>
             <button class="sub-tab-btn" data-subtab="studio-options" data-parent="studio">유료 추가 옵션</button>
-            <button class="tab-btn" type="button" onclick="openStudioGuideModal()">이용안내</button>
+            <button class="studio-sub-tab" onclick="showStudioTab('studio-guide', this)">이용안내</button>
           </div>
 
           <!-- Studio Overview -->
@@ -976,23 +976,6 @@ onchange="toggleStudioHanbokField(); updateStudioPrice()" />
   <img id="noticeModalImg" class="notice-image-modal-content" src="" alt="확대 이미지">
 </div>
 
-  <div id="studioGuideModal" class="studio-guide-modal" onclick="closeStudioGuideModal()">
-  <div class="studio-guide-modal-box" onclick="event.stopPropagation()">
-    <button class="studio-guide-close" type="button" onclick="closeStudioGuideModal()">&times;</button>
-
-    <div class="studio-guide-text">
-      <p>아모린느 공간대여 무인 셀프 스튜디오 이용안내</p>
-      <p>공간 이용 전 꼭 확인해 주세요.</p>
-      <p>쾌적한 촬영을 위해 아래 사항을 지켜주시면 감사하겠습니다.</p>
-    </div>
-
-    <div class="studio-guide-images">
-      <img src="images/studionotice1.jpg" alt="스튜디오 이용안내 1" onclick="openNoticeImage(this.src)">
-      <img src="images/studionotice2.jpg" alt="스튜디오 이용안내 2" onclick="openNoticeImage(this.src)">
-      <img src="images/studionotice3.jpg" alt="스튜디오 이용안내 3" onclick="openNoticeImage(this.src)">
-    </div>
-  </div>
-</div>
   
 </body>
 </html>
