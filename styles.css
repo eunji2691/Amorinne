@@ -1521,3 +1521,79 @@ button {
     font-size: 14px;
   }
 }
+
+.dress-guide-text {
+  margin-bottom: 24px;
+}
+
+.dress-guide-text p {
+  margin: 0 0 10px;
+  line-height: 1.8;
+  color: #444;
+  font-size: 15px;
+}
+
+.dress-featured-item {
+  cursor: pointer;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.dress-featured-item img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+  border-radius: 14px;
+}
+
+.dress-featured-item p {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.dress-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.dress-item {
+  cursor: pointer;
+  text-align: center;
+}
+
+.dress-item img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
+}
+
+.dress-item p {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .dress-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .dress-guide-text p {
+    font-size: 14px;
+  }
+
+  .dress-featured-item img {
+    height: 220px;
+  }
+
+  .dress-item img {
+    height: 180px;
+  }
+}
