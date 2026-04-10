@@ -811,35 +811,33 @@ postData.tightsColor = '';
 
     const result = await response.json();
 
-    if (result.result === 'success') {
-const kakaoMsg = buildDressKakaoMessage(postData);
-const copied = await copyTextSafely(kakaoMsg);
+if (result.result === 'success') {
+  const kakaoMsg = buildDressKakaoMessage(postData);
+  const copied = await copyTextSafely(kakaoMsg);
 
-if (copied) {
-  alert('예약 신청이 접수되었습니다.\n\n예약 정보가 복사되었습니다.\n카카오톡 채널 채팅창에 붙여넣기 해주세요.');
+  setTimeout(() => {
+    window.location.href = KAKAO_CHAT_URL;
+  }, 200);
+
+  if (copied) {
+    alert('예약 신청이 접수되었습니다.\n\n예약 내용이 복사되었어요.\n카카오톡 채팅창에 붙여넣어 보내주세요.');
+  } else {
+    alert('예약 신청이 접수되었습니다.\n\n카카오톡으로 이동 후 내용을 직접 붙여넣어 주세요.');
+  }
+
+  form.reset();
+
+  var totalPriceEl = document.getElementById('dressTotalPrice');
+  if (totalPriceEl) totalPriceEl.textContent = '0원';
+
+  if (typeof updateDressPrice === 'function') {
+    updateDressPrice();
+  }
+
 } else {
-  alert('예약 신청이 접수되었습니다.\n\n카카오톡으로 이동 후 내용을 직접 붙여넣어 주세요.');
-  console.log(kakaoMsg);
+  alert('제출은 되었지만 응답이 올바르지 않습니다.');
+  console.log('submit result:', result);
 }
-
-window.open(KAKAO_CHAT_URL, '_blank');
-      
-      if (typeof closeModal === 'function') {
-        closeModal('dressModal');
-      }
-
-      form.reset();
-
-      var totalPriceEl = document.getElementById('dressTotalPrice');
-      if (totalPriceEl) totalPriceEl.textContent = '0원';
-
-      if (typeof updateDressPrice === 'function') {
-        updateDressPrice();
-      }
-    } else {
-      alert('제출은 되었지만 응답이 올바르지 않습니다.');
-      console.log('submit result:', result);
-    }
 
   } catch (error) {
     console.error('submitDressForm error:', error);
