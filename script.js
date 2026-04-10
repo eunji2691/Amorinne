@@ -1257,18 +1257,4 @@ function closeNoticeImage() {
   document.body.style.overflow = '';
 }
 
-function openStudioGuideModal() {
-  const modal = document.getElementById('studioGuideModal');
-  if (!modal) return;
 
-  modal.style.display = 'block';
-  document.body.style.overflow = 'hidden';
-}
-
-function closeStudioGuideModal() {
-  const modal = document.getElementById('studioGuideModal');
-  if (!modal) return;
-
-  modal.style.display = 'none';
-  document.body.style.overflow = '';
-}
