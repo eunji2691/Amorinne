@@ -1412,36 +1412,7 @@ button {
   cursor: pointer;
 }
 
-
-function toggleNotice(element) {
-  const allContents = document.querySelectorAll('.notice-content');
-  const allTitles = document.querySelectorAll('.notice-title');
-
-  const content = element.nextElementSibling;
-  const isOpen = content.style.display === "block";
-
-  // 전부 닫기 + 강조 제거
-  allContents.forEach(c => c.style.display = "none");
-  allTitles.forEach(t => t.classList.remove('active'));
-
-  // 클릭한거만 열기
-  if (!isOpen) {
-    content.style.display = "block";
-    element.classList.add('active');
-  }
-}
-
-function openNoticeImage(src) {
-  const modal = document.getElementById('noticeImageModal');
-  const modalImg = document.getElementById('noticeModalImg');
-
-  modalImg.src = src;
-  modal.style.display = 'block';
-  document.body.style.overflow = 'hidden';
-}
-
-function closeNoticeImage() {
-  const modal = document.getElementById('noticeImageModal');
-  modal.style.display = 'none';
-  document.body.style.overflow = '';
+.notice-title.active {
+  font-weight: 700;
+  background-color: #f5f5f5;
 }
