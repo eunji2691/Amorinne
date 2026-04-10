@@ -588,17 +588,22 @@ if (priceEl) {
 
     const result = await response.json();
 
-    if (result.result === 'success') {
-const kakaoMsg = buildStudioKakaoMessage(postData);
-const copied = await copyTextSafely(kakaoMsg);
+if (result.result === 'success') {
+  const kakaoMsg = buildStudioKakaoMessage(postData);
+  const copied = await copyTextSafely(kakaoMsg);
 
+  setTimeout(() => {
+    window.location.href = KAKAO_CHAT_URL;
+  }, 200);
 
-setTimeout(() => {
-  window.location.href = KAKAO_CHAT_URL;
-}, 400);
+  if (copied) {
+    alert('예약 신청이 접수되었습니다.\n\n예약 정보가 복사되었습니다.\n카카오톡 채팅창에 붙여넣어 주세요.');
+  } else {
+    alert('예약 신청이 접수되었습니다.\n\n카카오톡으로 이동 후 내용을 직접 붙여넣어 주세요.');
+  }
 
-      form.reset();
-
+  form.reset();
+  
       const endTimeInput = document.getElementById('endTime');
       if (endTimeInput) endTimeInput.value = '';
 
