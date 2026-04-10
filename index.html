@@ -244,6 +244,14 @@
         <!-- ===== PARTY TAB ===== -->
         <div id="tab-party" class="tab-content">
           <h3 style="font-size:1.875rem;font-weight:700;margin-bottom:1rem;">정장·드레스 대여</h3>
+<div class="sub-tabs">
+  <button class="sub-tab-btn active" data-subtab="dress-overview" data-parent="dress">서비스 소개</button>
+  <button class="sub-tab-btn" data-subtab="dress-boy" data-parent="dress">남아정장</button>
+  <button class="sub-tab-btn" data-subtab="dress-girl" data-parent="dress">여아드레스</button>
+  <button class="sub-tab-btn" data-subtab="dress-fitting" data-parent="dress">피팅안내</button>
+</div>
+
+          <div id="subtab-dress-overview" class="tab-content active">
           <p class="text-muted" style="line-height:1.8;margin-bottom:1rem;">돌잔치나 결혼식 화동 등 중요한 순간에 어울리는 의상을<br />직접 입혀보고 선택할 수 있어<br />아이에게 가장 잘 맞는 스타일로 준비할 수 있어요.</p>
           <ul class="check-list" style="list-style:none;">
             <li style="display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;margin-bottom:0.5rem;"><span class="bullet"></span>돌 드레스, 한복, 정장 등 다양한 스타일 준비</li>
@@ -253,6 +261,28 @@
           </ul>
           <button class="btn btn-primary btn-full mt-6" onclick="openModal('dressModal')">예약하기</button>
         </div>
+<div id="subtab-dress-boy" class="tab-content">
+  <h4 style="font-size:1.5rem;font-weight:700;margin-bottom:1rem;">남아정장</h4>
+  <p class="text-muted" style="line-height:1.8;margin-bottom:1rem;">
+    남아정장 내용 들어갈 자리입니다.
+  </p>
+</div>
+
+<div id="subtab-dress-girl" class="tab-content">
+  <h4 style="font-size:1.5rem;font-weight:700;margin-bottom:1rem;">여아드레스</h4>
+  <p class="text-muted" style="line-height:1.8;margin-bottom:1rem;">
+    여아드레스 내용 들어갈 자리입니다.
+  </p>
+</div>
+
+<div id="subtab-dress-fitting" class="tab-content">
+  <h4 style="font-size:1.5rem;font-weight:700;margin-bottom:1rem;">피팅안내</h4>
+  <p class="text-muted" style="line-height:1.8;margin-bottom:1rem;">
+    피팅안내 내용 들어갈 자리입니다.
+  </p>
+</div>
+
+          
       </div>
 
       <!-- Service Image (right side) -->
