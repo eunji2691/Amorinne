@@ -1224,12 +1224,20 @@ function toggleTableDolDressField() {
 
 
 function toggleNotice(element) {
-  const content = element.nextElementSibling;
+  const allContents = document.querySelectorAll('.notice-content');
+  const allTitles = document.querySelectorAll('.notice-title');
 
-  if (content.style.display === "block") {
-    content.style.display = "none";
-  } else {
+  const content = element.nextElementSibling;
+  const isOpen = content.style.display === "block";
+
+  // 전부 닫기 + 강조 제거
+  allContents.forEach(c => c.style.display = "none");
+  allTitles.forEach(t => t.classList.remove('active'));
+
+  // 클릭한거만 열기
+  if (!isOpen) {
     content.style.display = "block";
+    element.classList.add('active');
   }
 }
 
