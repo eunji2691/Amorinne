@@ -699,20 +699,17 @@ async function submitMilestoneForm(e) {
 const kakaoMsg = buildMilestoneKakaoMessage(postData);
 const copied = await copyTextSafely(kakaoMsg);
 
-if (copied) {
-  alert('예약 신청이 접수되었습니다.\n\n예약 정보가 복사되었습니다.\n카카오톡 채널 채팅창에 붙여넣기 해주세요.');
-} else {
-  alert('예약 신청이 접수되었습니다.\n\n카카오톡으로 이동 후 내용을 직접 붙여넣어 주세요.');
-  console.log(kakaoMsg);
-}
+setTimeout(() => {
+    window.location.href = KAKAO_CHAT_URL;
+  }, 200);
 
-window.open(KAKAO_CHAT_URL, '_blank');
+  if (copied) {
+    alert('예약 신청이 접수되었습니다.\n\n예약 정보가 복사되었습니다.\n카카오톡 채팅창에 붙여넣어 주세요.');
+  } else {
+    alert('예약 신청이 접수되었습니다.\n\n카카오톡으로 이동 후 내용을 직접 붙여넣어 주세요.');
+  }
 
-      if (typeof closeModal === 'function') {
-        closeModal('milestoneModal');
-      }
-
-      form.reset();
+  form.reset();
 
       var totalPriceEl = document.getElementById('milestoneTotalPrice');
       if (totalPriceEl) totalPriceEl.textContent = '0원';
