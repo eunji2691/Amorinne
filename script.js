@@ -159,7 +159,7 @@ function renderTableCards(containerId, tables, priceKey) {
 tables.forEach(function(t) {
   var clickEvent = "";
 
-  if (t.id === "pure") {
+if (containerId === "milestone-tables-list" && t.id === "pure") {
     clickEvent = "openTableDetailModal('"
       + t.name.replace(/'/g, "\\'")
       + "', '"
