@@ -11,7 +11,7 @@ const TABLE_DATA = [
   { id: "royal-white", name: "로얄 테이블 (WHITE)", desc: "아모린느의 시그니처 감성을 가장 우아하게 담아낸 테이블", img: "images/royalwhite.jpg", studioPrice: 40000, milestonePrice: 89000 },
   { id: "royal-yellow", name: "로얄 테이블 (YELLOW)", desc: "아모린느 시그니처 라인에 따뜻함을 더한 테이블", img: "images/royalyellow.jpg", studioPrice: 40000, milestonePrice: 89000 },
   { id: "seorin", name: "서린상", desc: "'상서로울 서' '맑을 린', 좋은 기운이 겹겹이 스며들기를 바라는 마음을 담았습니다", img: "images/seorin.jpg", studioPrice: 45000, milestonePrice: 99000 },
-  { id: "daon", name: "다온상", desc: "'많을 다' '따뜻할 온', 차분함 속에 아이의 순간을 온기있게 담아냈습니다.", img: "images/daon.jpg", studioPrice: 40000, milestonePrice: 89000 },
+  { id: "daon", name: "다온상", desc: "‘많을 다(多), 따뜻할 온(溫)’, 차분함 속에 아이의 순간을 온기있게 담아냈습니다.", img: "images/daon.jpg", studioPrice: 40000, milestonePrice: 89000 },
   { id: "hayeon", name: "하연상", desc: "맑고 단정한 백색의 아름다움에 전통미를 더했습니다.", img: "images/hayeon.jpg", studioPrice: 35000, milestonePrice: 79000 },
   { id: "safari", name: "사파리 테이블", desc: "생기 넘치는 동물 소품과 자연스러운 우드감이 조화를 이루는 테이블", img: "images/safari.jpg", studioPrice: 35000, milestonePrice: 69000 },
   { id: "bridal", name: "브라이덜 샤워", desc: "예비 신부의 특별한 하루를 깨끗하고 우아한 분위기로 채워줍니다.", img: "images/bridal.JPG", studioPrice: 50000, milestonePrice: 80000 }
@@ -21,14 +21,11 @@ const TABLE_DATA = [
 const pureTableDetailHtml = `
   <p class="table-detail-desc">
     차분한 화이트 톤을 바탕으로<br><br>
-
     안개꽃과 우드 소품을 더해<br><br>
-
     공간에 은은한 온기를 담은 테이블입니다.<br><br>
 
     아이의 맑은 순간을<br>
     가장 담백하게 기록하고 싶은 날,<br><br>
-
     퓨어 테이블이 조용히 그 장면을 완성해줍니다.
   </p>
 
@@ -44,14 +41,7 @@ const pureTableDetailHtml = `
       <li>케이크 스탠드</li>
       <li>우드 사다리</li>
       <li>망사천 & 조화</li>
-      <li>우드 피켓 / 우드 족자</li>
-    </ul>
-  </div>
-
-  <div class="detail-section">
-    <h4>선택 옵션</h4>
-    <ul class="detail-list">
-      <li>테이블보 컬러 선택 (화이트 / 네이비)</li>
+      <li>우드 피켓 / 우드 족자 & 꼭꼬핀</li>
     </ul>
   </div>
 
@@ -72,7 +62,6 @@ const royalWhiteDetailHtml = `
   <p class="table-detail-desc">
     균형 잡힌 우드 구성과<br>
     부드러운 플로럴 포인트로<br><br>
-
     공간에 안정감 있는 중심을 만들어주는 테이블입니다.<br><br>
 
     양쪽에 배치된 센터피스가<br>
@@ -81,7 +70,6 @@ const royalWhiteDetailHtml = `
 
     아이의 표정과 함께<br>
     공간의 분위기까지 포근하게 남기고 싶은 날,<br><br>
-
     로얄 테이블이 따뜻한 중심이 되어줍니다.
   </p>
 
@@ -98,14 +86,7 @@ const royalWhiteDetailHtml = `
       <li>케이크 스탠드</li>
       <li>조화</li>
       <li>토끼 오브제</li>
-      <li>우드 족자</li>
-    </ul>
-  </div>
-
-  <div class="detail-section">
-    <h4>선택 옵션</h4>
-    <ul class="detail-list">
-      <li>테이블보 컬러 선택 (화이트 / 네이비)</li>
+      <li>우드 족자 & 꼭꼬핀</li>
     </ul>
   </div>
 
@@ -126,7 +107,6 @@ const royalYellowDetailHtml = `
   <p class="table-detail-desc">
     균형 잡힌 우드 구성에<br>
     따뜻한 옐로우 플로럴 포인트를 더해<br><br>
-
     보다 밝고 화사한 분위기를 연출해주는 테이블입니다.<br><br>
 
     아이를 중심으로 자연스럽게 시선이 모이도록 구성되어<br>
@@ -134,7 +114,6 @@ const royalYellowDetailHtml = `
 
     화사한 분위기로<br>
     특별한 날을 더욱 밝게 남기고 싶을 때,<br><br>
-
     로얄 테이블 YELLOW가 좋은 선택이 됩니다.
   </p>
 
@@ -151,11 +130,130 @@ const royalYellowDetailHtml = `
       <li>케이크 스탠드</li>
       <li>조화</li>
       <li>토끼 오브제</li>
-      <li>우드 족자</li>
+      <li>우드 족자 & 꼭꼬핀</li>
+    </ul>
+
+
+  <div class="detail-section">
+    <h4>홈대여 안내</h4>
+    <ul class="detail-list">
+      <li>대여 기간 : 3박 4일</li>
+      <li>수령 방법 : 행사 전날 매장 픽업 (무인 픽업 가능)</li>
     </ul>
 
     <p class="detail-note">
-      ※ 동일 구성으로 화이트 플로럴 연출도 가능합니다.
+      ※ 돌상으로 변경 가능합니다.
+    </p>
+  </div>
+`;
+
+const daonDetailHtml = `
+  <p class="table-detail-desc">
+    ‘많을 다(多), 따뜻할 온(溫)’<br><br>
+
+    다온상은<br>
+    아이의 하루에 좋은 기운과<br>
+    따뜻한 마음이<br>
+    차곡차곡 쌓이기를 바라는 뜻을 담은 상차림입니다.<br><br>
+
+    전통적인 요소를 바탕으로 하되<br>
+    무겁지 않게,<br>
+    지금의 공간과 사진에 자연스럽게 어우러지도록<br>
+    아모린느의 시선으로 한 번 더 정리했습니다.<br><br>
+
+    달항아리의 둥근 선과<br>
+    소반, 명주실, 호롱등의 조화가<br>
+    차분하지만 깊이 있는 분위기를 만들어주며<br>
+    아이의 첫 기념일을 단정하게 완성해줍니다.
+  </p>
+
+  <div class="detail-section">
+    <h4>기본 구성</h4>
+    <ul class="detail-list">
+      <li>테이블보 및 범보의자 커버</li>
+      <li>족자 (나뭇가지 + 천 2장 + 꼭꼬핀)</li>
+      <li>달항아리 & 조화 부케꽃</li>
+      <li>호롱등잔 (호롱불 + 나무등잔+ 모형양초)</li>
+      <li>자기그릇 & 엽전</li>
+      <li>百日 토퍼</li>
+      <li>나무 소반</li>
+      <li>전통신</li>
+      <li>원형 떡접시 2/ 타원형 긴 떡접시 1</li>
+      <li>화병 & 나무 조화</li>
+      <li>사방등 + 미니 양초</li>
+      <li>개다리소반</li>
+      <li>명주실</li>
+    </ul>
+  </div>
+
+  <div class="detail-section">
+    <h4>선택 옵션</h4>
+    <ul class="detail-list">
+      <li>테이블보 컬러 선택 (화이트 / 네이비)</li>
+    </ul>
+  </div>
+
+  <div class="detail-section">
+    <h4>홈대여 안내</h4>
+    <ul class="detail-list">
+      <li>대여 기간 : 3박 4일</li>
+      <li>수령 방법 : 행사 전날 매장 픽업 (무인 픽업 가능)</li>
+    </ul>
+
+    <p class="detail-note">
+      ※ 돌상으로 변경 가능합니다.
+    </p>
+  </div>
+
+    <div class="detail-section">
+    <h4>연출 TIP</h4>
+    <p class="detail-note">
+      다온상은 아이의 컨디션에 맞춰<br>
+      연출방식을 조금씩 바꿔도 분위기가 흐트러지지 않아요.<br><br>
+      범보의자 촬영도 좋지만,<br>
+      방수요를 추가해서 편하게 눕혀 촬영해 보세요.<br><br>
+      한복을 입은 모습도 물론 사랑스럽지만,<br>
+      기저귀만 입혀 촬영해도<br>
+      아기만의 보송한 분위기가 한껏 살아난답니다.<br><br>
+    </p>
+  </div>
+`;
+
+const hayeonDetailHtml = `
+  <p class="table-detail-desc">
+    고요한 강처럼,<br>
+    천천히 흐르는 분위기를 담은 상차림입니다.<br><br>
+
+    하연상은<br>
+    전통의 형식을 바탕으로 하되<br>
+    화려한 장식 없이도<br>
+    그 자체로 단아한 아름다움이 느껴지도록 정리된 상입니다.<br><br>
+
+    절제된 구성과 차분한 색의 조화가<br>
+    공간을 정돈해주고,<br>
+    시선이 자연스럽게 아이에게 머물도록 도와줍니다.<br><br>
+
+    조용한 하루를,<br>
+    사진 속에서도 오래 바라볼 수 있게 남기고 싶은 날<br>
+    하연상이 그 분위기를 정리해 줍니다.
+  </p>
+
+  <div class="detail-section">
+    <h4>기본 구성</h4>
+    <ul class="detail-list">
+      <li>테이블보 및 범보의자 커버</li>
+      <li>百日 족자 + 꼭꼬핀</li>
+      <li>두루마리 보자기</li>
+      <li>대형 꽃잎 소반 / 소형 꽃잎 소반</li>
+      <li>명주실</li>
+      <li>납작 화병 + 초록잎 조화</li>
+      <li>원형 떡접시 2 / 나무 떡접시 1</li>
+      <li>달항아리 + 호접란</li>
+      <li>나무 촛대 + 미니 양초</li>
+    </ul>
+
+    <p class="detail-note">
+      ※ 돌상 구성 시 족자는 다온상 족자로 대체됩니다.
     </p>
   </div>
 
@@ -175,6 +273,83 @@ const royalYellowDetailHtml = `
 
     <p class="detail-note">
       ※ 돌상으로 변경 가능합니다.
+    </p>
+  </div>
+
+  <div class="detail-section">
+    <h4>연출 TIP</h4>
+    <p class="detail-note">
+      하연상은 여백이 예쁘게 살아나는 테이블이라<br>
+      소품을 가득 채우기보다 공간감을 살려 촬영하면 더 단정하게 남습니다.<br><br>
+      방수요를 추가해서 편하게 눕혀 촬영해 보세요.<br><br>
+      한복을 입은 모습도 물론 사랑스럽지만,<br>
+      기저귀만 입혀 촬영해도<br>
+      아기만의 보송한 분위기가 한껏 살아난답니다.<br><br>
+    </p>
+  </div>
+`;
+
+const safariDetailHtml = `
+  <p class="table-detail-desc">
+    아기의 첫 기념일을<br>
+    조금 더 아이답게,<br><br>
+
+    조금 더 사랑스럽게 남기고 싶은 날을 위한 상차림입니다.<br><br>
+
+    사파리 테이블은<br>
+    동물 오브제를 활용해<br>
+    아이의 호기심과 시선이 자연스럽게 머물도록 구성된 테이블이에요.<br><br>
+
+    200일~500일 기념 촬영 테이블로도 인기있는 테이블입니다.<br><br>
+
+    과하지 않은 장식 속에서<br>
+    아이의 표정과 행동이 살아나<br>
+    사진 속 장면이 한층 따뜻하게 완성됩니다.<br><br>
+
+    기념이면서도<br>
+    하루의 놀이처럼 즐길 수 있는 순간을 남기고 싶다면,<br>
+    사파리 테이블이 그 이야기를 만들어줍니다.
+  </p>
+
+  <div class="detail-section">
+    <h4>기본 구성</h4>
+    <ul class="detail-list">
+      <li>테이블보 및 범보의자 커버</li>
+      <li>百日 족자 + 꼭꼬핀</li>
+      <li>우드 피켓</li>
+      <li>원형 떡접시</li>
+      <li>우드 초</li>
+      <li>아기 수달 2 & 수달 오브제</li>
+      <li>올리브 조화</li>
+      <li>우드 숫자(기념일에 따라 변경됨)</li>
+      <li>다람쥐 오브제</li>
+      <li>케이크 스탠드</li>
+      <li>화이트 모형 케이크 & 토퍼</li>
+      <li>나무 오브제 5종 + 자석 받침</li>
+      <li>기린 오브제</li>
+    </ul>
+  </div>
+  
+
+  <div class="detail-section">
+    <h4>홈대여 안내</h4>
+    <ul class="detail-list">
+      <li>대여 기간 : 3박 4일</li>
+      <li>수령 방법 : 행사 전날 매장 픽업 (무인 픽업 가능)</li>
+    </ul>
+
+    <p class="detail-note">
+      ※ 백일상, 돌상 외 기타 기념일에는 족자가 제공되지 않습니다.
+    </p>
+  </div>
+
+  <div class="detail-section">
+    <h4>연출 TIP</h4>
+    <p class="detail-note">
+      사파리 테이블은 아이의 시선과 반응이 그대로 장면이 되는 테이블입니다.<br>
+      동물 오브제를 바라보는 순간이나 손을 뻗는 모습을 자연스럽게 담아보세요.<br><br>
+      억지로 포즈를 잡기보다<br>
+      아이가 편하게 놀 수 있는 분위기에서 촬영하면 훨씬 사랑스럽게 남습니다.
     </p>
   </div>
 `;
@@ -279,12 +454,14 @@ document.querySelectorAll(".sub-tab-btn[data-subtab]").forEach(function(btn) {
 function renderTableCards(containerId, tables, priceKey) {
   var container = document.getElementById(containerId);
   if (!container) return;
+
   var html = "";
 
   tables.forEach(function(t) {
     var clickEvent = "";
 
     if (containerId === "milestone-tables-list") {
+
       if (t.id === "pure") {
         clickEvent = "openTableDetailModal('"
           + t.name.replace(/'/g, "\\'")
@@ -293,7 +470,9 @@ function renderTableCards(containerId, tables, priceKey) {
           + "', '"
           + t.desc.replace(/'/g, "\\'")
           + "', pureTableDetailHtml)";
-      } else if (t.id === "royal-white") {
+      }
+
+      else if (t.id === "royal-white") {
         clickEvent = "openTableDetailModal('"
           + t.name.replace(/'/g, "\\'")
           + "', '"
@@ -301,7 +480,9 @@ function renderTableCards(containerId, tables, priceKey) {
           + "', '"
           + t.desc.replace(/'/g, "\\'")
           + "', royalWhiteDetailHtml)";
-      } else if (t.id === "royal-yellow") {
+      }
+
+      else if (t.id === "royal-yellow") {
         clickEvent = "openTableDetailModal('"
           + t.name.replace(/'/g, "\\'")
           + "', '"
@@ -309,13 +490,46 @@ function renderTableCards(containerId, tables, priceKey) {
           + "', '"
           + t.desc.replace(/'/g, "\\'")
           + "', royalYellowDetailHtml)";
-      } else {
+      }
+
+      else if (t.id === "daon") {
+        clickEvent = "openTableDetailModal('"
+          + t.name.replace(/'/g, "\\'")
+          + "', '"
+          + t.img
+          + "', '"
+          + t.desc.replace(/'/g, "\\'")
+          + "', daonDetailHtml)";
+      }
+
+      else if (t.id === "hayeon") {
+        clickEvent = "openTableDetailModal('"
+          + t.name.replace(/'/g, "\\'")
+          + "', '"
+          + t.img
+          + "', '"
+          + t.desc.replace(/'/g, "\\'")
+          + "', hayeonDetailHtml)";
+      }
+
+      else if (t.id === "safari") {
+        clickEvent = "openTableDetailModal('"
+          + t.name.replace(/'/g, "\\'")
+          + "', '"
+          + t.img
+          + "', '"
+          + t.desc.replace(/'/g, "\\'")
+          + "', safariDetailHtml)";
+      }
+
+      else {
         clickEvent = "openImageModal('"
           + t.name.replace(/'/g, "\\'")
           + "', '"
           + t.img
           + "')";
       }
+
     } else {
       clickEvent = "openImageModal('"
         + t.name.replace(/'/g, "\\'")
