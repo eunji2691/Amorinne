@@ -1104,36 +1104,36 @@ if (result.result === 'success') {
   const kakaoMsg = buildStudioKakaoMessage(postData);
   const copied = await copyTextSafely(kakaoMsg);
 
-  setTimeout(() => {
-    window.location.href = KAKAO_CHAT_URL;
-  }, 200);
-
   if (copied) {
     alert('예약 신청이 접수되었습니다.\n\n예약 정보가 복사되었습니다.\n카카오톡 채팅창에 붙여넣어 주세요.');
+
+    setTimeout(() => {
+      window.location.href = KAKAO_CHAT_URL;
+    }, 200);
   } else {
-    alert('예약 신청이 접수되었습니다.\n\n카카오톡으로 이동 후 내용을 직접 붙여넣어 주세요.');
+    showCopyFallback(kakaoMsg);
   }
 
   form.reset();
-  
-      const endTimeInput = document.getElementById('endTime');
-      if (endTimeInput) endTimeInput.value = '';
 
-      if (typeof updateStudioPrice === 'function') {
-        updateStudioPrice();
-      }
+  const endTimeInput = document.getElementById('endTime');
+  if (endTimeInput) endTimeInput.value = '';
 
-      if (typeof toggleTableSettingDetails === 'function') {
-        toggleTableSettingDetails();
-      }
+  if (typeof updateStudioPrice === 'function') {
+    updateStudioPrice();
+  }
 
-      if (typeof closeModal === 'function') {
-        closeModal('studioModal');
-      }
-    } else {
-      alert('제출은 되었지만 응답이 올바르지 않습니다.');
-      console.log('submit result:', result);
-    }
+  if (typeof toggleTableSettingDetails === 'function') {
+    toggleTableSettingDetails();
+  }
+
+  if (typeof closeModal === 'function') {
+    closeModal('studioModal');
+  }
+} else {
+  alert('제출은 되었지만 응답이 올바르지 않습니다.');
+  console.log('submit result:', result);
+}
 
   } catch (error) {
     console.error('submitStudioForm error:', error);
@@ -1211,25 +1211,28 @@ if (result.result === 'success') {
   const kakaoMsg = buildMilestoneKakaoMessage(postData);
   const copied = await copyTextSafely(kakaoMsg);
 
-  setTimeout(() => {
-    window.location.href = KAKAO_CHAT_URL;
-  }, 200);
-
   if (copied) {
-    alert('예약 신청이 접수되었습니다.\n\n예약 정보가 복사되었습니다.\n카카오톡 채팅창에 붙여넣어 주세요.');
+    alert('예약 신청이 접수되었습니다.\n\n예약 내용이 복사되었어요.\n카카오톡 채팅창에 붙여넣어 보내주세요.');
+
+    setTimeout(() => {
+      window.location.href = KAKAO_CHAT_URL;
+    }, 200);
   } else {
-    alert('예약 신청이 접수되었습니다.\n\n카카오톡으로 이동 후 내용을 직접 붙여넣어 주세요.');
+    showCopyFallback(kakaoMsg);
   }
 
   form.reset();
 
-  var totalPriceEl = document.getElementById('milestoneTotalPrice');
+  const totalPriceEl = document.getElementById('milestoneTotalPrice');
   if (totalPriceEl) totalPriceEl.textContent = '0원';
 
   if (typeof updateMilestonePrice === 'function') {
     updateMilestonePrice();
   }
 
+  if (typeof closeModal === 'function') {
+    closeModal('milestoneModal');
+  }
 } else {
   alert('제출은 되었지만 응답이 올바르지 않습니다.');
   console.log('submit result:', result);
@@ -1327,14 +1330,14 @@ if (result.result === 'success') {
   const kakaoMsg = buildDressKakaoMessage(postData);
   const copied = await copyTextSafely(kakaoMsg);
 
-  setTimeout(() => {
-    window.location.href = KAKAO_CHAT_URL;
-  }, 200);
-
   if (copied) {
     alert('예약 신청이 접수되었습니다.\n\n예약 내용이 복사되었어요.\n카카오톡 채팅창에 붙여넣어 보내주세요.');
+
+    setTimeout(() => {
+      window.location.href = KAKAO_CHAT_URL;
+    }, 200);
   } else {
-    alert('예약 신청이 접수되었습니다.\n\n카카오톡으로 이동 후 내용을 직접 붙여넣어 주세요.');
+    showCopyFallback(kakaoMsg);
   }
 
   form.reset();
@@ -1345,7 +1348,6 @@ if (result.result === 'success') {
   if (typeof updateDressPrice === 'function') {
     updateDressPrice();
   }
-
 } else {
   alert('제출은 되었지만 응답이 올바르지 않습니다.');
   console.log('submit result:', result);
@@ -1636,12 +1638,151 @@ if (postData.tightsUse === 'on') {
 
 async function copyTextSafely(text) {
   try {
-    await navigator.clipboard.writeText(text);
-    return true;
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
   } catch (error) {
     console.error('clipboard copy failed:', error);
+  }
+
+  try {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.setAttribute('readonly', '');
+    textarea.style.position = 'fixed';
+    textarea.style.top = '-9999px';
+    textarea.style.left = '-9999px';
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+    textarea.setSelectionRange(0, 99999);
+
+    const success = document.execCommand('copy');
+    document.body.removeChild(textarea);
+    return success;
+  } catch (error) {
+    console.error('fallback copy failed:', error);
     return false;
   }
+}
+
+function showCopyFallback(message) {
+  const oldModal = document.getElementById('copyFallbackModal');
+  if (oldModal) oldModal.remove();
+
+  const modal = document.createElement('div');
+  modal.id = 'copyFallbackModal';
+
+  modal.innerHTML = `
+    <div style="
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.6);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      z-index:99999;
+      padding:20px;
+      box-sizing:border-box;
+    ">
+      <div style="
+        background:#fff;
+        width:100%;
+        max-width:520px;
+        border-radius:14px;
+        padding:20px;
+        box-sizing:border-box;
+      ">
+        <h3 style="margin:0 0 12px; font-size:20px;">예약 내용을 카카오톡으로 보내주세요 🤍</h3>
+
+        <p style="font-size:14px; line-height:1.6; margin:0 0 12px;">
+          아래 내용을 길게 눌러 전체 복사하신 후<br>
+          카카오톡 채팅창에 붙여넣어 보내주시면 됩니다 :)
+        </p>
+
+        <textarea readonly id="fallbackCopyText" style="
+          width:100%;
+          height:220px;
+          padding:12px;
+          border:1px solid #ddd;
+          border-radius:10px;
+          box-sizing:border-box;
+          resize:none;
+          font-size:14px;
+          line-height:1.5;
+        ">${message}</textarea>
+
+        <p style="font-size:12px; color:#777; margin:10px 0 0; line-height:1.5;">
+          ※ 카카오톡/인스타 앱 안에서는 자동 복사가 제한될 수 있어요.
+        </p>
+
+        <div style="display:flex; gap:10px; margin-top:14px;">
+          <button type="button" id="copyBtn" style="
+            flex:1;
+            height:46px;
+            border:none;
+            border-radius:10px;
+            background:#f1f1f1;
+            cursor:pointer;
+            font-size:14px;
+          ">문구 복사하기</button>
+
+          <button type="button" id="openKakaoBtn" style="
+            flex:1;
+            height:46px;
+            border:none;
+            border-radius:10px;
+            background:#fee500;
+            cursor:pointer;
+            font-size:14px;
+            font-weight:600;
+          ">카카오톡 열기</button>
+        </div>
+
+        <button type="button" id="closeCopyModalBtn" style="
+          width:100%;
+          margin-top:10px;
+          height:40px;
+          border:none;
+          background:transparent;
+          color:#666;
+          cursor:pointer;
+        ">닫기</button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  const textArea = document.getElementById('fallbackCopyText');
+
+  document.getElementById('copyBtn').onclick = async function () {
+    textArea.focus();
+    textArea.select();
+    textArea.setSelectionRange(0, 99999);
+
+    const copied = await copyTextSafely(message);
+    if (copied) {
+      alert('문구가 복사되었습니다!');
+    } else {
+      alert('자동 복사가 제한됩니다. 위 내용을 길게 눌러 복사해주세요.');
+    }
+  };
+
+  document.getElementById('openKakaoBtn').onclick = function () {
+    window.location.href = KAKAO_CHAT_URL;
+  };
+
+  document.getElementById('closeCopyModalBtn').onclick = function () {
+    modal.remove();
+  };
+
+  setTimeout(() => {
+    textArea.focus();
+    textArea.select();
+    textArea.setSelectionRange(0, 99999);
+  }, 100);
 }
 
 
