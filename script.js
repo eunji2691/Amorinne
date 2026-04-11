@@ -251,65 +251,59 @@ function renderTableCards(containerId, tables, priceKey) {
   var container = document.getElementById(containerId);
   if (!container) return;
   var html = "";
-tables.forEach(function(t) {
-  var clickEvent = "";
 
-if (containerId === "milestone-tables-list") {
+  tables.forEach(function(t) {
+    var clickEvent = "";
 
-  if (t.id === "pure") {
-    clickEvent = "openTableDetailModal('"
-      + t.name.replace(/'/g, "\\'")
-      + "', '"
-      + t.img
-      + "', '"
-      + t.desc.replace(/'/g, "\\'")
-      + "', pureTableDetailHtml)";
-  }
+    if (containerId === "milestone-tables-list") {
+      if (t.id === "pure") {
+        clickEvent = "openTableDetailModal('"
+          + t.name.replace(/'/g, "\\'")
+          + "', '"
+          + t.img
+          + "', '"
+          + t.desc.replace(/'/g, "\\'")
+          + "', pureTableDetailHtml)";
+      } else if (t.id === "royal-white") {
+        clickEvent = "openTableDetailModal('"
+          + t.name.replace(/'/g, "\\'")
+          + "', '"
+          + t.img
+          + "', '"
+          + t.desc.replace(/'/g, "\\'")
+          + "', royalWhiteDetailHtml)";
+      } else if (t.id === "royal-yellow") {
+        clickEvent = "openTableDetailModal('"
+          + t.name.replace(/'/g, "\\'")
+          + "', '"
+          + t.img
+          + "', '"
+          + t.desc.replace(/'/g, "\\'")
+          + "', royalYellowDetailHtml)";
+      } else {
+        clickEvent = "openImageModal('"
+          + t.name.replace(/'/g, "\\'")
+          + "', '"
+          + t.img
+          + "')";
+      }
+    } else {
+      clickEvent = "openImageModal('"
+        + t.name.replace(/'/g, "\\'")
+        + "', '"
+        + t.img
+        + "')";
+    }
 
-  else if (t.id === "royal_white") {
-    clickEvent = "openTableDetailModal('"
-      + t.name.replace(/'/g, "\\'")
-      + "', '"
-      + t.img
-      + "', '"
-      + t.desc.replace(/'/g, "\\'")
-      + "', royalWhiteDetailHtml)";
-  }
+    html += '<div class="card" onclick="' + clickEvent + '">';
+    html += '<div class="card-img-wrapper"><img src="' + t.img + '" alt="' + t.name + '" />';
+    html += '<div class="card-img-overlay"><span>클릭하여 확대</span></div></div>';
+    html += '<div class="card-header"><div><div class="card-title">' + t.name + '</div>';
+    html += '<div class="card-desc">' + t.desc + '</div></div>';
+    html += '<div class="card-price">' + t[priceKey].toLocaleString() + '원</div></div>';
+    html += '</div>';
+  });
 
-  else if (t.id === "royal_yellow") {
-    clickEvent = "openTableDetailModal('"
-      + t.name.replace(/'/g, "\\'")
-      + "', '"
-      + t.img
-      + "', '"
-      + t.desc.replace(/'/g, "\\'")
-      + "', royalYellowDetailHtml)";
-  }
-
-  else {
-    clickEvent = "openImageModal('"
-      + t.name.replace(/'/g, "\\'")
-      + "', '"
-      + t.img
-      + "')";
-  }
-
-} else {
-  clickEvent = "openImageModal('"
-    + t.name.replace(/'/g, "\\'")
-    + "', '"
-    + t.img
-    + "')";
-}
-
-  html += '<div class="card" onclick="' + clickEvent + '">';
-  html += '<div class="card-img-wrapper"><img src="' + t.img + '" alt="' + t.name + '" />';
-  html += '<div class="card-img-overlay"><span>클릭하여 확대</span></div></div>';
-  html += '<div class="card-header"><div><div class="card-title">' + t.name + '</div>';
-  html += '<div class="card-desc">' + t.desc + '</div></div>';
-  html += '<div class="card-price">' + t[priceKey].toLocaleString() + '원</div></div>';
-  html += '</div>';
-});
   container.innerHTML = html;
 }
 
@@ -408,8 +402,18 @@ function openImageModal(name, img) {
   document.getElementById("imageModalTitle").textContent = name;
   document.getElementById("imageModalImg").src = img;
   document.getElementById("imageModalImg").alt = name;
+
+  const descEl = document.getElementById("imageModalDesc");
+  const extraEl = document.getElementById("imageModalExtra");
+
+  if (descEl) descEl.textContent = "";
+  if (extraEl) extraEl.innerHTML = "";
+
   document.getElementById("imageModal").classList.remove("hidden");
   document.body.style.overflow = "hidden";
+
+  const modalBody = document.querySelector("#imageModal .modal-body");
+  if (modalBody) modalBody.scrollTop = 0;
 }
 
 function closeImageModal() {
@@ -425,11 +429,11 @@ function openTableDetailModal(title, image, desc, extraHtml) {
   document.getElementById('imageModalExtra').innerHTML = extraHtml || '';
 
   document.getElementById('imageModal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
 
   const modalBody = document.querySelector('#imageModal .modal-body');
   if (modalBody) modalBody.scrollTop = 0;
 }
-
 // ===== RESERVATION MODALS =====
 function openModal(id) {
   document.getElementById(id).classList.remove("hidden");
