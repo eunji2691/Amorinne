@@ -1790,3 +1790,11 @@ button {
     font-size: 14px;
   }
 }
+
+.table-detail-desc {
+  font-size: 15px;
+  line-height: 1.9;   /* 👈 핵심 */
+  color: #5f5a55;
+  margin: 0 0 18px;
+  letter-spacing: -0.2px;
+}
