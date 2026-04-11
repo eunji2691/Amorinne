@@ -22,7 +22,7 @@ const STUDIO_ONLY_TABLES = [
     id: "yeonhwa",
     name: "프리미엄 연화상",
     desc: "스튜디오 촬영 85,000원<br>효도상(환갑·칠순) 100,000원<br>※ 효도상은 카카오톡 문의 예약",
-    img: "images/yunwha.jpg.JPG",
+    img: "images/yunwha.jpg",
     studioPrice: 85000
   }
 ];
