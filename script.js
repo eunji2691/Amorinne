@@ -254,7 +254,9 @@ function renderTableCards(containerId, tables, priceKey) {
 tables.forEach(function(t) {
   var clickEvent = "";
 
-if (containerId === "milestone-tables-list" && t.id === "pure") {
+if (containerId === "milestone-tables-list") {
+
+  if (t.id === "pure") {
     clickEvent = "openTableDetailModal('"
       + t.name.replace(/'/g, "\\'")
       + "', '"
@@ -262,13 +264,43 @@ if (containerId === "milestone-tables-list" && t.id === "pure") {
       + "', '"
       + t.desc.replace(/'/g, "\\'")
       + "', pureTableDetailHtml)";
-  } else {
+  }
+
+  else if (t.id === "royal_white") {
+    clickEvent = "openTableDetailModal('"
+      + t.name.replace(/'/g, "\\'")
+      + "', '"
+      + t.img
+      + "', '"
+      + t.desc.replace(/'/g, "\\'")
+      + "', royalWhiteDetailHtml)";
+  }
+
+  else if (t.id === "royal_yellow") {
+    clickEvent = "openTableDetailModal('"
+      + t.name.replace(/'/g, "\\'")
+      + "', '"
+      + t.img
+      + "', '"
+      + t.desc.replace(/'/g, "\\'")
+      + "', royalYellowDetailHtml)";
+  }
+
+  else {
     clickEvent = "openImageModal('"
       + t.name.replace(/'/g, "\\'")
       + "', '"
       + t.img
       + "')";
   }
+
+} else {
+  clickEvent = "openImageModal('"
+    + t.name.replace(/'/g, "\\'")
+    + "', '"
+    + t.img
+    + "')";
+}
 
   html += '<div class="card" onclick="' + clickEvent + '">';
   html += '<div class="card-img-wrapper"><img src="' + t.img + '" alt="' + t.name + '" />';
