@@ -17,6 +17,17 @@ const TABLE_DATA = [
   { id: "bridal", name: "브라이덜 샤워", desc: "예비 신부의 특별한 하루를 깨끗하고 우아한 분위기로 채워줍니다.", img: "images/bridal.JPG", studioPrice: 50000, milestonePrice: 80000 }
 ];
 
+const STUDIO_ONLY_TABLES = [
+  {
+    id: "yeonhwa",
+    name: "프리미엄 연화상",
+    desc: "스튜디오 전용으로 준비된 프리미엄 전통 상차림",
+    img: "images/yunwha.jpg.JPG",
+    studioPrice: 85000
+  }
+];
+
+
 
 const pureTableDetailHtml = `
   <p class="table-detail-desc">
@@ -571,10 +582,17 @@ function renderTableCards(containerId, tables, priceKey) {
   if (!container) return;
 
   var html = "";
+  var renderTables = tables.slice();
 
-  tables.forEach(function(t) {
+  // 무인 스튜디오 탭에만 연화상 추가
+  if (containerId === "studio-tables-list") {
+    renderTables = renderTables.concat(STUDIO_ONLY_TABLES);
+  }
+
+  renderTables.forEach(function(t) {
     var clickEvent = "";
 
+    // 백일상·돌상 대여 탭에서만 상세 내용 팝업 적용
     if (containerId === "milestone-tables-list") {
 
       if (t.id === "pure") {
@@ -607,6 +625,16 @@ function renderTableCards(containerId, tables, priceKey) {
           + "', royalYellowDetailHtml)";
       }
 
+      else if (t.id === "seorin") {
+        clickEvent = "openTableDetailModal('"
+          + t.name.replace(/'/g, "\\'")
+          + "', '"
+          + t.img
+          + "', '"
+          + t.desc.replace(/'/g, "\\'")
+          + "', seorinDetailHtml)";
+      }
+
       else if (t.id === "daon") {
         clickEvent = "openTableDetailModal('"
           + t.name.replace(/'/g, "\\'")
@@ -637,25 +665,15 @@ function renderTableCards(containerId, tables, priceKey) {
           + "', safariDetailHtml)";
       }
 
-        else if (t.id === "seorin") {
-  clickEvent = "openTableDetailModal('"
-    + t.name.replace(/'/g, "\\'")
-    + "', '"
-    + t.img
-    + "', '"
-    + t.desc.replace(/'/g, "\\'")
-    + "', seorinDetailHtml)";
-}
-
-          else if (t.id === "bridal") {
-  clickEvent = "openTableDetailModal('"
-    + t.name.replace(/'/g, "\\'")
-    + "', '"
-    + t.img
-    + "', '"
-    + t.desc.replace(/'/g, "\\'")
-    + "', bridalDetailHtml)";
-}
+      else if (t.id === "bridal") {
+        clickEvent = "openTableDetailModal('"
+          + t.name.replace(/'/g, "\\'")
+          + "', '"
+          + t.img
+          + "', '"
+          + t.desc.replace(/'/g, "\\'")
+          + "', bridalDetailHtml)";
+      }
 
       else {
         clickEvent = "openImageModal('"
@@ -666,6 +684,7 @@ function renderTableCards(containerId, tables, priceKey) {
       }
 
     } else {
+      // 무인 스튜디오 탭은 전부 이미지 팝업
       clickEvent = "openImageModal('"
         + t.name.replace(/'/g, "\\'")
         + "', '"
