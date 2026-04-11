@@ -50,7 +50,102 @@ const pureTableDetailHtml = `
     </ul>
 
     <p class="detail-note">
-      ※ 세부 구성은 페이지 안내 또는 카카오톡 문의를 통해 확인해주세요.
+      ※ 돌상으로 변경 가능합니다.
+    </p>
+  </div>
+`;
+
+const royalWhiteDetailHtml = `
+  <p class="table-detail-desc">
+    균형 잡힌 우드 구성과 부드러운 플로럴 포인트로
+    공간에 안정감 있는 중심을 만들어주는 테이블입니다.
+    양쪽에 배치된 센터피스가 아이를 자연스럽게 가운데로 모아주어
+    사진 속 장면이 한층 단정하게 완성됩니다.
+    아이의 표정과 함께 공간의 분위기까지 포근하게 남기고 싶은 날,
+    로얄 테이블이 따뜻한 중심이 되어줍니다.
+  </p>
+
+  <div class="detail-section">
+    <h4>기본 구성</h4>
+    <ul class="detail-list">
+      <li>테이블보 및 범보의자 커버</li>
+      <li>센터피스 2p</li>
+      <li>우드 액자 & 우드 액자용 꽃</li>
+      <li>우드 손잡이 촛대 & 우드 초</li>
+      <li>꽃모양 떡접시 / 물결 떡접시</li>
+      <li>명주실 & 명주실 접시</li>
+      <li>우드 2단 모형 케이크 & 토퍼</li>
+      <li>케이크 스탠드</li>
+      <li>조화</li>
+      <li>토끼 오브제</li>
+      <li>우드 족자</li>
+    </ul>
+  </div>
+
+  <div class="detail-section">
+    <h4>선택 옵션</h4>
+    <ul class="detail-list">
+      <li>테이블보 컬러 선택 (화이트 / 네이비)</li>
+    </ul>
+  </div>
+
+  <div class="detail-section">
+    <h4>홈대여 안내</h4>
+    <ul class="detail-list">
+      <li>대여 기간 : 3박 4일</li>
+      <li>수령 방법 : 행사 전날 매장 픽업 (무인 픽업 가능)</li>
+    </ul>
+
+    <p class="detail-note">
+      ※ 돌상으로 변경 가능합니다.
+    </p>
+  </div>
+`;
+
+const royalYellowDetailHtml = `
+  <p class="table-detail-desc">
+    균형 잡힌 우드 구성에 따뜻한 옐로우 플로럴 포인트를 더해
+    보다 밝고 화사한 분위기를 연출해주는 테이블입니다.
+    아이를 중심으로 자연스럽게 시선이 모이도록 구성되어
+    생동감 있고 사랑스러운 장면을 완성해줍니다.
+    화사한 분위기로 특별한 날을 더욱 밝게 남기고 싶을 때,
+    로얄 테이블 YELLOW가 좋은 선택이 됩니다.
+  </p>
+
+  <div class="detail-section">
+    <h4>기본 구성</h4>
+    <ul class="detail-list">
+      <li>테이블보 및 범보의자 커버</li>
+      <li>센터피스 2p (옐로우 플로럴)</li>
+      <li>우드 꽃 모형</li>
+      <li>우드 촛대 & 초 3</li>
+      <li>원형 떡접시 / 물결 떡접시</li>
+      <li>명주실 & 명주실 접시</li>
+      <li>우드 2단 모형 케이크 & 토퍼</li>
+      <li>케이크 스탠드</li>
+      <li>조화</li>
+      <li>토끼 오브제</li>
+      <li>우드 족자</li>
+    </ul>
+      </div>
+
+
+  <div class="detail-section">
+    <h4>선택 옵션</h4>
+    <ul class="detail-list">
+      <li>테이블보 컬러 선택 (화이트 / 네이비)</li>
+    </ul>
+  </div>
+
+  <div class="detail-section">
+    <h4>홈대여 안내</h4>
+    <ul class="detail-list">
+      <li>대여 기간 : 3박 4일</li>
+      <li>수령 방법 : 행사 전날 매장 픽업 (무인 픽업 가능)</li>
+    </ul>
+
+    <p class="detail-note">
+      ※ 돌상으로 변경 가능합니다.
     </p>
   </div>
 `;
