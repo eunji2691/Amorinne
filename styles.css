@@ -1423,19 +1423,6 @@ button {
   font-weight: 700;
 }
 
-.studio-guide-intro {
-  margin-bottom: 24px;
-}
-
-.studio-guide-line {
-  display: block;
-  background: none;
-  padding: 0;
-  margin: 0 0 10px;
-  line-height: 1.8;
-  font-size: 15px;
-  color: #444;
-}
 
 .studio-guide-list {
   display: grid;
@@ -1467,11 +1454,6 @@ button {
     gap: 16px;
   }
 
-  .studio-guide-line {
-    display: block;
-    margin-right: 0;
-  }
-}
 
 
 .dress-guide-text {
