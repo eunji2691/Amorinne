@@ -234,6 +234,19 @@ function closeImageModal() {
   document.body.style.overflow = "";
 }
 
+function openTableDetailModal(title, image, desc, extraHtml) {
+  document.getElementById('imageModalTitle').textContent = title;
+  document.getElementById('imageModalImg').src = image;
+  document.getElementById('imageModalImg').alt = title;
+  document.getElementById('imageModalDesc').textContent = desc || '';
+  document.getElementById('imageModalExtra').innerHTML = extraHtml || '';
+
+  document.getElementById('imageModal').classList.remove('hidden');
+
+  const modalBody = document.querySelector('#imageModal .modal-body');
+  if (modalBody) modalBody.scrollTop = 0;
+}
+
 // ===== RESERVATION MODALS =====
 function openModal(id) {
   document.getElementById(id).classList.remove("hidden");
