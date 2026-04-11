@@ -354,6 +354,72 @@ const safariDetailHtml = `
   </div>
 `;
 
+const seorinDetailHtml = `
+  <p class="table-detail-desc">
+    과하지 않은 장식과<br>
+    차분한 색감으로 완성된<br>
+    담백하고 정돈된 분위기의 상차림입니다.<br><br>
+
+    서린상은<br>
+    공간에 자연스럽게 스며드는 구성을 중심으로<br>
+    아이의 표정과 순간이 더욱 또렷하게 남도록 정리된 상입니다.<br><br>
+
+    단정하게 정리된 오브제와<br>
+    부드러운 흐름의 배치가 어우러져<br>
+    사진 속 장면을 편안하게 완성해줍니다.<br>
+  </p>
+
+  <div class="detail-section">
+    <h4>기본 구성</h4>
+    <ul class="detail-list">
+      <li>테이블보</li>
+      <li>방수요 및 양단 베개(범보의자로 변경 가능)</li>
+      <li>검정 소반</li>
+      <li>도토리합</li>
+      <li>일자 화병 + 붉은 조화</li>
+      <li>명주실 + 검정 자기 그릇</li>
+      <li>검정 접시 小 1, 大 1</li>
+      <li>흰색 굽접시 2</li>
+      <li>달항아리 + 다발 조화</li>
+    </ul>
+  </div>
+
+  <div class="detail-section">
+    <h4>선택 옵션</h4>
+    <ul class="detail-list">
+      <li>테이블보 컬러 선택 (화이트 / 네이비)</li>
+    </ul>
+  </div>
+
+  <div class="detail-section">
+    <h4>홈대여 안내</h4>
+    <ul class="detail-list">
+      <li>대여 기간 : 3박 4일</li>
+      <li>수령 방법 : 행사 전날 매장 픽업 (무인 픽업 가능)</li>
+    </ul>
+
+    <p class="detail-note">
+      ※ 돌상으로 변경 가능합니다.
+    </p>
+  </div>
+
+  <div class="detail-section">
+    <h4>연출 TIP</h4>
+
+    <p class="table-detail-desc">
+      서린상은 과하지 않은 구성이 특징이라<br>
+      아이의 표정과 움직임을 자연스럽게 담아주는 것이 중요합니다.<br><br>
+
+      소품을 채우기보다는<br>
+      여백을 살려 촬영하면 더 단정하고 분위기 있게 남아요.<br><br>
+
+      범보의자 촬영도 좋지만,<br>
+      아이를 편하게 눕혀 촬영하면<br>
+      더욱 자연스럽고 부드러운 장면이 완성됩니다.
+    </p>
+  </div>
+`;
+
 const STUDIO_OPTIONS = [
   { name: "캘리그라피 카드", desc: "자체제작 금박 캘리그라피 카드", price: 9900 },
   { name: "카메라 대여", desc: "미러리스 또는 폴라로이드(필름 10장 포함)", price: 20000 },
@@ -521,6 +587,16 @@ function renderTableCards(containerId, tables, priceKey) {
           + t.desc.replace(/'/g, "\\'")
           + "', safariDetailHtml)";
       }
+
+        else if (t.id === "seorin") {
+  clickEvent = "openTableDetailModal('"
+    + t.name.replace(/'/g, "\\'")
+    + "', '"
+    + t.img
+    + "', '"
+    + t.desc.replace(/'/g, "\\'")
+    + "', seorinDetailHtml)";
+}
 
       else {
         clickEvent = "openImageModal('"
