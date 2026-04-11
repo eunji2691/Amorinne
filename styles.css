@@ -1854,3 +1854,77 @@ button {
     padding-left: 14px;
   }
 }
+
+
+  /* ===== Guide unified style override ===== */
+.guide-box {
+  background: #fff !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 0 24px !important;
+}
+
+.guide-title {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: #2f241d !important;
+  margin: 0 0 8px !important;
+  line-height: 1.4 !important;
+  letter-spacing: -0.2px !important;
+}
+
+.guide-subtitle {
+  font-size: 14px !important;
+  color: #8a8179 !important;
+  margin: 0 0 18px !important;
+  line-height: 1.7 !important;
+}
+
+.guide-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+.guide-list p {
+  position: relative !important;
+  margin: 0 !important;
+  padding-left: 16px !important;
+  font-size: 15px !important;
+  line-height: 1.9 !important;
+  color: #5b554f !important;
+  letter-spacing: -0.1px !important;
+}
+
+.guide-list p::before {
+  content: "•" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  color: #8b7b6d !important;
+  font-size: 14px !important;
+}
+
+@media (max-width: 768px) {
+  .guide-box {
+    margin-bottom: 20px !important;
+  }
+
+  .guide-title {
+    font-size: 18px !important;
+    margin-bottom: 7px !important;
+  }
+
+  .guide-subtitle {
+    font-size: 13px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .guide-list p {
+    font-size: 14px !important;
+    line-height: 1.8 !important;
+    padding-left: 14px !important;
+  }
+}
