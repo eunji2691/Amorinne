@@ -56,17 +56,6 @@ const pureTableDetailHtml = `
     </ul>
   </div>
 
-  <div class="detail-section">
-    <h4>홈대여 안내</h4>
-    <ul class="detail-list">
-      <li>대여 기간 : 3박 4일</li>
-      <li>수령 방법 : 행사 전날 매장 픽업 (무인 픽업 가능)</li>
-    </ul>
-
-    <p class="detail-note">
-      ※ 돌상으로 변경 가능합니다.
-    </p>
-  </div>
 `;
 
 const royalWhiteDetailHtml = `
@@ -100,18 +89,6 @@ const royalWhiteDetailHtml = `
       <li>우드 족자 & 꼭꼬핀</li>
     </ul>
   </div>
-
-  <div class="detail-section">
-    <h4>홈대여 안내</h4>
-    <ul class="detail-list">
-      <li>대여 기간 : 3박 4일</li>
-      <li>수령 방법 : 행사 전날 매장 픽업 (무인 픽업 가능)</li>
-    </ul>
-
-    <p class="detail-note">
-      ※ 돌상으로 변경 가능합니다.
-    </p>
-  </div>
 `;
 
 const royalYellowDetailHtml = `
@@ -143,18 +120,6 @@ const royalYellowDetailHtml = `
       <li>토끼 오브제</li>
       <li>우드 족자 & 꼭꼬핀</li>
     </ul>
-
-
-  <div class="detail-section">
-    <h4>홈대여 안내</h4>
-    <ul class="detail-list">
-      <li>대여 기간 : 3박 4일</li>
-      <li>수령 방법 : 행사 전날 매장 픽업 (무인 픽업 가능)</li>
-    </ul>
-
-    <p class="detail-note">
-      ※ 돌상으로 변경 가능합니다.
-    </p>
   </div>
 `;
 
@@ -202,18 +167,6 @@ const daonDetailHtml = `
     <ul class="detail-list">
       <li>테이블보 컬러 선택 (화이트 / 네이비)</li>
     </ul>
-  </div>
-
-  <div class="detail-section">
-    <h4>홈대여 안내</h4>
-    <ul class="detail-list">
-      <li>대여 기간 : 3박 4일</li>
-      <li>수령 방법 : 행사 전날 매장 픽업 (무인 픽업 가능)</li>
-    </ul>
-
-    <p class="detail-note">
-      ※ 돌상으로 변경 가능합니다.
-    </p>
   </div>
 
     <div class="detail-section">
@@ -276,18 +229,6 @@ const hayeonDetailHtml = `
   </div>
 
   <div class="detail-section">
-    <h4>홈대여 안내</h4>
-    <ul class="detail-list">
-      <li>대여 기간 : 3박 4일</li>
-      <li>수령 방법 : 행사 전날 매장 픽업 (무인 픽업 가능)</li>
-    </ul>
-
-    <p class="detail-note">
-      ※ 돌상으로 변경 가능합니다.
-    </p>
-  </div>
-
-  <div class="detail-section">
     <h4>연출 TIP</h4>
     <p class="table-detail-desc">
       하연상은 여백이 예쁘게 살아나는 테이블이라<br>
@@ -341,14 +282,6 @@ const safariDetailHtml = `
     </ul>
   </div>
   
-
-  <div class="detail-section">
-    <h4>홈대여 안내</h4>
-    <ul class="detail-list">
-      <li>대여 기간 : 3박 4일</li>
-      <li>수령 방법 : 행사 전날 매장 픽업 (무인 픽업 가능)</li>
-    </ul>
-
     <p class="detail-note">
       ※ 백일상, 돌상 외 기타 기념일에는 족자가 제공되지 않습니다.
     </p>
@@ -403,18 +336,6 @@ const seorinDetailHtml = `
   </div>
 
   <div class="detail-section">
-    <h4>홈대여 안내</h4>
-    <ul class="detail-list">
-      <li>대여 기간 : 3박 4일</li>
-      <li>수령 방법 : 행사 전날 매장 픽업 (무인 픽업 가능)</li>
-    </ul>
-
-    <p class="detail-note">
-      ※ 돌상으로 변경 가능합니다.
-    </p>
-  </div>
-
-  <div class="detail-section">
     <h4>연출 TIP</h4>
 
     <p class="table-detail-desc">
@@ -446,12 +367,6 @@ const bridalDetailHtml = `
     사진처럼 자연스럽게 남을 수 있도록 준비했습니다.
   </p>
 
-  <div class="detail-section">
-    <h4>홈대여 안내</h4>
-    <ul class="detail-list">
-      <li>대여 기간 : 3박 4일</li>
-      <li>수령 방법 : 행사 전날 매장 픽업 (무인 픽업 가능)</li>
-    </ul>
 
     <p class="table-detail-desc">
       브라이덜 샤워 베일 3종,<br>
