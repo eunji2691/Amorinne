@@ -17,6 +17,50 @@ const TABLE_DATA = [
   { id: "bridal", name: "브라이덜 샤워", desc: "예비 신부의 특별한 하루를 깨끗하고 우아한 분위기로 채워줍니다.", img: "images/bridal.JPG", studioPrice: 50000, milestonePrice: 80000 }
 ];
 
+const TABLE_DATA = [
+  { id: "pure", name: "퓨어 테이블", desc: "...", img: "...", ... },
+  ...
+];
+
+
+// 🔥 여기다가 넣어
+const pureTableDetailHtml = `
+  <div class="detail-section">
+    <h4>기본 구성</h4>
+    <ul class="detail-list">
+      <li>테이블보 및 범보의자 커버</li>
+      <li>안개꽃 & 유리 화병</li>
+      <li>촛대와 양초</li>
+      <li>원형 떡접시 / 물결 떡접시</li>
+      <li>명주실 & 명주실 접시</li>
+      <li>화이트 모형 케이크 & 토퍼</li>
+      <li>케이크 스탠드</li>
+      <li>우드 사다리</li>
+      <li>망사천 & 조화</li>
+      <li>우드 피켓 / 우드 족자</li>
+    </ul>
+  </div>
+
+  <div class="detail-section">
+    <h4>선택 옵션</h4>
+    <ul class="detail-list">
+      <li>테이블보 컬러 선택 (화이트 / 네이비)</li>
+    </ul>
+  </div>
+
+  <div class="detail-section">
+    <h4>홈대여 안내</h4>
+    <ul class="detail-list">
+      <li>대여 기간 : 3박 4일</li>
+      <li>수령 방법 : 행사 전날 매장 픽업 (무인 픽업 가능)</li>
+    </ul>
+
+    <p class="detail-note">
+      ※ 세부 구성은 페이지 안내 또는 카카오톡 문의를 통해 확인해주세요.
+    </p>
+  </div>
+`;
+
 const STUDIO_OPTIONS = [
   { name: "캘리그라피 카드", desc: "자체제작 금박 캘리그라피 카드", price: 9900 },
   { name: "카메라 대여", desc: "미러리스 또는 폴라로이드(필름 10장 포함)", price: 20000 },
@@ -118,15 +162,33 @@ function renderTableCards(containerId, tables, priceKey) {
   var container = document.getElementById(containerId);
   if (!container) return;
   var html = "";
-  tables.forEach(function(t) {
-    html += '<div class="card" onclick="openImageModal(\'' + t.name.replace(/'/g, "\\'") + '\', \'' + t.img + '\')">';
-    html += '<div class="card-img-wrapper"><img src="' + t.img + '" alt="' + t.name + '" />';
-    html += '<div class="card-img-overlay"><span>클릭하여 확대</span></div></div>';
-    html += '<div class="card-header"><div><div class="card-title">' + t.name + '</div>';
-    html += '<div class="card-desc">' + t.desc + '</div></div>';
-    html += '<div class="card-price">' + t[priceKey].toLocaleString() + '원</div></div>';
-    html += '</div>';
-  });
+tables.forEach(function(t) {
+  var clickEvent = "";
+
+  if (t.id === "pure") {
+    clickEvent = "openTableDetailModal('"
+      + t.name.replace(/'/g, "\\'")
+      + "', '"
+      + t.img
+      + "', '"
+      + t.desc.replace(/'/g, "\\'")
+      + "', pureTableDetailHtml)";
+  } else {
+    clickEvent = "openImageModal('"
+      + t.name.replace(/'/g, "\\'")
+      + "', '"
+      + t.img
+      + "')";
+  }
+
+  html += '<div class="card" onclick="' + clickEvent + '">';
+  html += '<div class="card-img-wrapper"><img src="' + t.img + '" alt="' + t.name + '" />';
+  html += '<div class="card-img-overlay"><span>클릭하여 확대</span></div></div>';
+  html += '<div class="card-header"><div><div class="card-title">' + t.name + '</div>';
+  html += '<div class="card-desc">' + t.desc + '</div></div>';
+  html += '<div class="card-price">' + t[priceKey].toLocaleString() + '원</div></div>';
+  html += '</div>';
+});
   container.innerHTML = html;
 }
 
