@@ -1273,6 +1273,12 @@ button {
   cursor: pointer;
 }
 
+/* 추가 */
+.notice-images-grid img {
+  aspect-ratio: 1 / 1.2;
+  object-fit: cover;
+}
+
 @media (max-width: 768px) {
   .notice-images {
     grid-template-columns: 1fr;
