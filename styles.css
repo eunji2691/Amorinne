@@ -1798,3 +1798,67 @@ button {
   margin: 0 0 18px;
   letter-spacing: -0.2px;
 }
+
+
+.milestone-guide-box {
+  background: #f8f6f2;
+  border: 1px solid #ece7e2;
+  border-radius: 16px;
+  padding: 24px 20px;
+}
+
+.milestone-guide-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #3f3128;
+  margin: 0 0 6px;
+}
+
+.milestone-guide-subtitle {
+  font-size: 14px;
+  color: #7b746d;
+  margin: 0 0 18px;
+}
+
+.milestone-guide-list p {
+  position: relative;
+  padding-left: 14px;
+  margin: 0 0 12px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #5f5a55;
+}
+
+.milestone-guide-list p:last-child {
+  margin-bottom: 0;
+}
+
+.milestone-guide-list p::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #8b7b6d;
+}
+
+@media (max-width: 768px) {
+  .milestone-guide-box {
+    padding: 20px 16px;
+    border-radius: 14px;
+  }
+
+  .milestone-guide-title {
+    font-size: 17px;
+  }
+
+  .milestone-guide-subtitle {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  .milestone-guide-list p {
+    font-size: 14px;
+    line-height: 1.75;
+    margin-bottom: 10px;
+  }
+}
