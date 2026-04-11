@@ -1080,24 +1080,6 @@ button {
   }
 }
 
-<!-- ===== Notice Section ===== -->
-<section id="notice" class="section">
-  <div class="container">
-    <div class="section-title">
-      <h2>NOTICE</h2>
-      <p>이용 전 꼭 확인해주세요</p>
-    </div>
-
-    <div class="notice-grid">
-      <div class="notice-card">
-        <img src="images/notice1.jpg" alt="아모린느 공지사항 1" />
-      </div>
-      <div class="notice-card">
-        <img src="images/notice2.jpg" alt="아모린느 공지사항 2" />
-      </div>
-    </div>
-  </div>
-</section>
 
 
 .extra-concept-section {
@@ -1453,6 +1435,7 @@ button {
     grid-template-columns: 1fr;
     gap: 16px;
   }
+}
 
 
 
@@ -1782,78 +1765,7 @@ button {
 }
 
 
-.guide-box {
-  background: #fff;
-  padding: 2px 0 4px;
-}
 
-.guide-title {
-  font-size: 20px;
-  font-weight: 700;
-  color: #2f241d;
-  margin: 0 0 8px;
-  letter-spacing: -0.2px;
-  line-height: 1.4;
-}
-
-.guide-subtitle {
-  font-size: 14px;
-  color: #8a8179;
-  margin: 0 0 20px;
-  line-height: 1.7;
-}
-
-.guide-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.guide-list p {
-  position: relative;
-  padding-left: 15px;
-  margin: 0;
-  font-size: 15px;
-  line-height: 1.9;
-  color: #5b554f;
-  letter-spacing: -0.1px;
-}
-
-.guide-list p::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: #8b7b6d;
-  font-size: 14px;
-}
-
-@media (max-width: 768px) {
-  .guide-box {
-    padding: 0;
-  }
-
-  .guide-title {
-    font-size: 18px;
-    margin-bottom: 7px;
-  }
-
-  .guide-subtitle {
-    font-size: 13px;
-    margin-bottom: 18px;
-    line-height: 1.65;
-  }
-
-  .guide-list {
-    gap: 10px;
-  }
-
-  .guide-list p {
-    font-size: 14px;
-    line-height: 1.8;
-    padding-left: 14px;
-  }
-}
 
 
   /* ===== Guide unified style override ===== */
