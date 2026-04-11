@@ -17,13 +17,7 @@ const TABLE_DATA = [
   { id: "bridal", name: "브라이덜 샤워", desc: "예비 신부의 특별한 하루를 깨끗하고 우아한 분위기로 채워줍니다.", img: "images/bridal.JPG", studioPrice: 50000, milestonePrice: 80000 }
 ];
 
-const TABLE_DATA = [
-  { id: "pure", name: "퓨어 테이블", desc: "...", img: "...", ... },
-  ...
-];
 
-
-// 🔥 여기다가 넣어
 const pureTableDetailHtml = `
   <div class="detail-section">
     <h4>기본 구성</h4>
