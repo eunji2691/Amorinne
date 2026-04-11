@@ -420,6 +420,55 @@ const seorinDetailHtml = `
   </div>
 `;
 
+const bridalDetailHtml = `
+  <p class="table-detail-desc">
+    🤍 브라이덜 샤워 세팅 🤍<br><br>
+
+    설렘 가득한 순간을<br>
+    자연스럽고 아름답게 남기기 위한 브라이덜 샤워 세팅입니다.<br><br>
+
+    부드러운 색감과 플라워 디테일이 어우러져<br>
+    과하지 않으면서도 특별한 분위기를 완성합니다.<br><br>
+
+    소중한 사람들과 함께하는 시간 속에서<br>
+    편안하게 머무는 순간들이<br>
+    사진처럼 자연스럽게 남을 수 있도록 준비했습니다.
+  </p>
+
+  <div class="detail-section">
+    <h4>홈대여 안내</h4>
+    <ul class="detail-list">
+      <li>대여 기간 : 3박 4일</li>
+      <li>수령 방법 : 행사 전날 매장 픽업 (무인 픽업 가능)</li>
+    </ul>
+
+    <p class="table-detail-desc">
+      브라이덜 샤워 베일 3종,<br>
+      선글라스, 부케 등 촬영에 필요한 기본 소품이 함께 제공됩니다.
+    </p>
+
+
+  <div class="detail-section">
+    <h4>연출 TIP</h4>
+
+    <p class="table-detail-desc">
+      화이트, 크림톤의 의상은<br>
+      전체 분위기를 부드럽고 깨끗하게 만들어주고,<br><br>
+
+      올블랙으로 맞추시면<br>
+      더욱 또렷하고 세련된 무드로 연출하실 수 있어요.<br><br>
+
+      포즈를 잡기보다는<br>
+      대화를 나누거나 웃는 순간을 그대로 담아보세요.<br>
+      꾸미지 않은 장면이 가장 자연스럽게 남습니다.<br><br>
+
+      베일, 선글라스, 부케 등의 소품을 활용해<br>
+      가볍게 포인트를 주면<br>
+      브라이덜 샤워 특유의 분위기를 더 잘 살릴 수 있어요.
+    </p>
+  </div>
+`;
+
 const STUDIO_OPTIONS = [
   { name: "캘리그라피 카드", desc: "자체제작 금박 캘리그라피 카드", price: 9900 },
   { name: "카메라 대여", desc: "미러리스 또는 폴라로이드(필름 10장 포함)", price: 20000 },
@@ -596,6 +645,16 @@ function renderTableCards(containerId, tables, priceKey) {
     + "', '"
     + t.desc.replace(/'/g, "\\'")
     + "', seorinDetailHtml)";
+}
+
+          else if (t.id === "bridal") {
+  clickEvent = "openTableDetailModal('"
+    + t.name.replace(/'/g, "\\'")
+    + "', '"
+    + t.img
+    + "', '"
+    + t.desc.replace(/'/g, "\\'")
+    + "', bridalDetailHtml)";
 }
 
       else {
