@@ -22,7 +22,7 @@ const STUDIO_ONLY_TABLES = [
     id: "yeonhwa",
     name: "프리미엄 연화상",
     desc: "스튜디오 전용으로 준비된 프리미엄 전통 상차림",
-    img: "images/yunwha.jpg.JPG",
+    img: "images/yunwha.jpg",
     studioPrice: 85000
   }
 ];
