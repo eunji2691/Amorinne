@@ -1401,87 +1401,111 @@ function closeConceptModal() {
 }
 
 function buildStudioKakaoMessage(postData) {
-const lines = [
-  '[아모린느 스튜디오 예약]',
-  '',
-  '예약자명: ' + (postData.customerName || postData.name || ''),
-  '연락처: ' + (postData.phone || ''),
-  '아기 이름: ' + (postData.babyName || ''),
-  '아기 영문이름: ' + (postData.babyEnglishName || ''),
-  '성별: ' + (postData.babyGender || ''),
-  '예약일: ' + (postData.reservationDate || ''),
-  '시작 시간: ' + (postData.reservationTime || postData.startTime || ''),
-  '종료 시간: ' + (postData.endTime || ''),
-  '이용 시간: ' + ((postData.rentalHours || '') ? postData.rentalHours + '시간' : ''),
-  '성인 인원: ' + (postData.adultCount || ''),
-  '아기 인원: ' + (postData.babyCount || '')
-];
+  const basicLines = [
+    '👶 기본 정보',
+    '예약자명: ' + (postData.customerName || postData.name || ''),
+    '연락처: ' + (postData.phone || ''),
+    '아기 이름: ' + (postData.babyName || ''),
+    '아기 영문이름: ' + (postData.babyEnglishName || ''),
+    '성별: ' + (postData.babyGender || '')
+  ];
+
+  const reservationLines = [
+    '📌 예약 내용',
+    '예약일: ' + (postData.reservationDate || ''),
+    '시작 시간: ' + (postData.reservationTime || postData.startTime || ''),
+    '종료 시간: ' + (postData.endTime || ''),
+    '이용 시간: ' + ((postData.rentalHours || '') ? postData.rentalHours + '시간' : ''),
+    '성인 인원: ' + (postData.adultCount || ''),
+    '아기 인원: ' + (postData.babyCount || '')
+  ];
+
+  const optionLines = [];
 
   if (postData.memoTableSetting === 'on') {
-    lines.push('기념일 테이블 세팅: 추가');
+    optionLines.push('- 기념일 테이블 세팅');
     if (postData.memoTableSettingDetails) {
-      lines.push('테이블 종류: ' + postData.memoTableSettingDetails);
+      optionLines.push('  · 테이블 종류: ' + postData.memoTableSettingDetails);
     }
   }
 
   if (postData.extraConcept) {
-    lines.push('추가 컨셉: ' + postData.extraConcept);
+    optionLines.push('- 추가 컨셉: ' + postData.extraConcept);
   }
 
-if (postData.baekilHanbok === 'on') {
-  lines.push(
-    '백일 한복: ' +
-    (postData.baekilHanbokDetail || '선택')
-  );
-}
-  
-if (postData.dolDressClothing === 'on') {
-  lines.push(
-    '돌 한복/드레스/정장: ' +
-    (postData.dolDressClothingDetail || '선택')
-  );
-}
+  if (postData.baekilHanbok === 'on') {
+    optionLines.push('- 백일 한복: ' + (postData.baekilHanbokDetail || '선택'));
+  }
+
+  if (postData.dolDressClothing === 'on') {
+    optionLines.push('- 돌 한복/드레스/정장: ' + (postData.dolDressClothingDetail || '선택'));
+  }
 
   if (postData.cameraRental && postData.cameraRental !== 'none') {
-    lines.push('카메라 대여: ' + postData.cameraRental);
+    optionLines.push('- 카메라 대여: ' + postData.cameraRental);
   }
 
   if (postData.iphoneSnap === 'on') {
-    lines.push('아이폰 스냅: 추가');
+    optionLines.push('- 아이폰 스냅 추가');
   }
 
   if (postData.screenBackground === 'on') {
-    lines.push('병풍: 추가');
+    optionLines.push('- 병풍 추가');
   }
 
   if (postData.calligraphyCard === 'on') {
-    lines.push('자체제작 금박 캘리그라피 카드: 추가');
+    optionLines.push('- 금박 캘리그라피 카드 추가');
   }
 
-if (postData.numberBalloon === 'on') {
-  let balloonText = '대형 숫자 풍선';
+  if (postData.numberBalloon === 'on') {
+    let balloonText = '- 대형 숫자 풍선';
+    const details = [];
 
-  if (postData.balloonNumber || postData.balloonColor) {
-    balloonText += ': ';
-    if (postData.balloonNumber) balloonText += '숫자 ' + postData.balloonNumber;
-    if (postData.balloonColor) balloonText += (postData.balloonNumber ? ', ' : '') + '색상 ' + postData.balloonColor;
-  } else {
-    balloonText += ': 추가';
+    if (postData.balloonNumber) details.push('숫자 ' + postData.balloonNumber);
+    if (postData.balloonColor) details.push('색상 ' + postData.balloonColor);
+
+    if (details.length) {
+      balloonText += ' (' + details.join(', ') + ')';
+    }
+
+    optionLines.push(balloonText);
   }
 
-  lines.push(balloonText);
-}
+  const lines = [
+    '[아모린느 스튜디오 예약 🤍]',
+    '',
+    ...basicLines,
+    '',
+    '━━━━━━━━━━━━━━━',
+    '',
+    ...reservationLines
+  ];
+
+  if (optionLines.length) {
+    lines.push('');
+    lines.push('━━━━━━━━━━━━━━━');
+    lines.push('');
+    lines.push('📦 선택 옵션');
+    lines.push(...optionLines);
+  }
 
   if (postData.notes) {
-    lines.push('요청사항: ' + postData.notes);
+    lines.push('');
+    lines.push('━━━━━━━━━━━━━━━');
+    lines.push('');
+    lines.push('📝 요청사항');
+    lines.push(postData.notes);
   }
 
   lines.push('');
-  lines.push('최종 금액: ' + (postData.totalPrice || ''));
+  lines.push('━━━━━━━━━━━━━━━');
   lines.push('');
-  lines.push('예약 가능 여부 확인해주세요.');
+  lines.push('💰 최종 금액');
+  lines.push(postData.totalPrice || '');
+  lines.push('');
+  lines.push('예약 가능 여부 확인 후 안내 부탁드립니다 🤍');
 
-  return lines.filter(line => line !== null && line !== undefined).join('\n');
+  return lines.filter(Boolean).join('\n');
 }
 
 function buildMilestoneKakaoMessage(postData) {
