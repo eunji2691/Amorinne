@@ -207,7 +207,7 @@ const daonDetailHtml = `
 
     <div class="detail-section">
     <h4>연출 TIP</h4>
-    <p class="detail-note">
+    <p class="table-detail-desc">
       다온상은 아이의 컨디션에 맞춰<br>
       연출방식을 조금씩 바꿔도 분위기가 흐트러지지 않아요.<br><br>
       범보의자 촬영도 좋지만,<br>
@@ -278,7 +278,7 @@ const hayeonDetailHtml = `
 
   <div class="detail-section">
     <h4>연출 TIP</h4>
-    <p class="detail-note">
+    <p class="table-detail-desc">
       하연상은 여백이 예쁘게 살아나는 테이블이라<br>
       소품을 가득 채우기보다 공간감을 살려 촬영하면 더 단정하게 남습니다.<br><br>
       방수요를 추가해서 편하게 눕혀 촬영해 보세요.<br><br>
@@ -345,7 +345,7 @@ const safariDetailHtml = `
 
   <div class="detail-section">
     <h4>연출 TIP</h4>
-    <p class="detail-note">
+    <p class="table-detail-desc">
       사파리 테이블은 아이의 시선과 반응이 그대로 장면이 되는 테이블입니다.<br>
       동물 오브제를 바라보는 순간이나 손을 뻗는 모습을 자연스럽게 담아보세요.<br><br>
       억지로 포즈를 잡기보다<br>
