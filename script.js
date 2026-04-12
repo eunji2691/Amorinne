@@ -1563,7 +1563,7 @@ if (postData.acc_gachae === 'on') optionLines.push('- 가채 추가');
 // 가구 / 촬영
 if (postData.bumboChair === 'on') optionLines.push('- 범보의자 추가');
 if (postData.dolCushion === 'on') optionLines.push('- 돌방석 추가');
-if (postData.waterproofMat === 'on') optionLines.push('- 방수요 추가');
+if (postData.waterproofMat === 'on') optionLines.push('- 방수요 및 양단 베개 추가');
 if (postData.foldingTable === 'on') optionLines.push('- 접이식 테이블 추가');
 if (postData.doljabiSet === 'on') optionLines.push('- 돌잡이 세트 추가');
 
