@@ -1523,11 +1523,15 @@ function buildMilestoneKakaoMessage(postData) {
     '성별: ' + (postData.babyGender || '')
   ];
 
-  const reservationLines = [
-    '📌 예약 내용',
-    '행사 날짜: ' + (postData.eventDate || '')
-  ];
-
+const reservationLines = [
+  '📌 예약 내용',
+  '행사 날짜: ' + (postData.eventDate || ''),
+  '기념일 종류: ' + (postData.eventType === '기타'
+    ? (postData.eventTypeEtc || '기타')
+    : (postData.eventType || '')
+  )
+];
+  
   if (postData.tableSelection) {
     reservationLines.push('테이블: ' + postData.tableSelection);
   }
@@ -1611,6 +1615,10 @@ function buildDressKakaoMessage(postData) {
     '📌 예약 내용',
     '피팅 희망 날짜: ' + (postData.fittingDate || ''),
     '피팅 희망 시간: ' + (postData.fittingTime || ''),
+      '행사종류: ' + (postData.eventType === '기타'
+    ? (postData.eventTypeEtc || '기타')
+    : (postData.eventType || '')
+  ),
     '행사 날짜: ' + (postData.eventDate || ''),
     '대여 상품: ' + (postData.rentalProduct || '')
   ];
