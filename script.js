@@ -1435,10 +1435,10 @@ const extraLines = [];
 
 // 테이블 세팅
 if (postData.memoTableSetting === 'on') {
-  if (postData.memoTableSettingDetails) {
+  if (postData.memoTableSettingDetails && postData.memoTableSettingDetails.trim() !== '') {
     tableLines.push('- ' + postData.memoTableSettingDetails);
   } else {
-    tableLines.push('- 테이블 세팅');
+    tableLines.push('- 선택안함');
   }
 }
 
