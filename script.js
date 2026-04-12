@@ -1939,3 +1939,53 @@ function closeNoticeImage() {
 }
 
 
+function toggleStudioEventTypeEtc() {
+  const select = document.querySelector('#studioModal [name="eventType"]');
+  const wrap = document.getElementById('studioEventTypeEtcWrap');
+  const input = wrap ? wrap.querySelector('[name="eventTypeEtc"]') : null;
+
+  if (!select || !wrap || !input) return;
+
+  if (select.value === '기타') {
+    wrap.style.display = 'block';
+    input.required = true;
+  } else {
+    wrap.style.display = 'none';
+    input.required = false;
+    input.value = '';
+  }
+}
+
+function toggleMilestoneEventTypeEtc() {
+  const select = document.querySelector('#milestoneModal [name="eventType"]');
+  const wrap = document.getElementById('milestoneEventTypeEtcWrap');
+  const input = wrap ? wrap.querySelector('[name="eventTypeEtc"]') : null;
+
+  if (!select || !wrap || !input) return;
+
+  if (select.value === '기타') {
+    wrap.style.display = 'block';
+    input.required = true;
+  } else {
+    wrap.style.display = 'none';
+    input.required = false;
+    input.value = '';
+  }
+}
+
+function toggleDressEventTypeEtc() {
+  const select = document.querySelector('#dressModal [name="eventType"]');
+  const wrap = document.getElementById('dressEventTypeEtcWrap');
+  const input = wrap ? wrap.querySelector('[name="eventTypeEtc"]') : null;
+
+  if (!select || !wrap || !input) return;
+
+  if (select.value === '기타') {
+    wrap.style.display = 'block';
+    input.required = true;
+  } else {
+    wrap.style.display = 'none';
+    input.required = false;
+    input.value = '';
+  }
+}
