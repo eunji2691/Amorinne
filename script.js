@@ -939,8 +939,8 @@ function updateDressPrice() {
   }
 
   // Options
-  if (form.niceSocks.checked) total += 4000;
-  if (form.tights.checked) total += 6000;
+if (form.niceSocks.checked) total += 4000;
+if (form.tightsUse.checked) total += 6000;
   if (form.hwadongBasket.checked) total += 5000;
   if (form.hwadongCar.checked) total += 30000;
 
@@ -1251,7 +1251,7 @@ async function submitDressForm(e) {
     var data = new FormData(form);
     var postData = Object.fromEntries(data.entries());
 
-    // 니삭스: 체크했으면 색상만 남기고, 아니면 빈칸
+// 니삭스
 if (postData.niceSocks === 'on') {
   postData.niceSocks = postData.niceSocksColor || '';
 } else {
@@ -1259,13 +1259,12 @@ if (postData.niceSocks === 'on') {
 }
 postData.niceSocksColor = '';
 
-// 타이즈: 체크했으면 색상만 남기고, 아니면 빈칸
-if (postData.tights === 'on') {
-  postData.tights = postData.tightsColor || '';
+// 타이즈
+if (postData.tightsUse === 'on') {
+  postData.tights = postData.tights || '';
 } else {
   postData.tights = '';
 }
-postData.tightsColor = '';
 
     postData.formType = 'dress';
     postData.submittedAt = new Date().toISOString();
@@ -1638,24 +1637,24 @@ const basicLines = [
   '대여 상품: ' + (postData.rentalProduct || '')
 ];
 
-  const optionLines = [];
+const optionLines = [];
 
-  if (postData.niceSocks) {
-    optionLines.push('- 니삭스: ' + postData.niceSocks);
-  }
+if (postData.niceSocks) {
+  optionLines.push('- 니삭스: ' + postData.niceSocks);
+}
 
-  if (postData.tightsUse === 'on') {
-    optionLines.push('- 타이즈 색상: ' + (postData.tights || '선택안함'));
-  }
+if (postData.tights) {
+  optionLines.push('- 타이즈 색상: ' + postData.tights);
+}
 
-  if (postData.hwadongBasket === 'on') {
-    optionLines.push('- 화동 바구니 추가');
-  }
+if (postData.hwadongBasket === 'on') {
+  optionLines.push('- 화동 바구니 추가');
+}
 
-  if (postData.hwadongCar === 'on') {
-    optionLines.push('- 화동카 추가');
-  }
-
+if (postData.hwadongCar === 'on') {
+  optionLines.push('- 화동카 추가');
+}
+  
   const lines = [
     '[아모린느 정장·드레스 예약 🤍]',
     '',
