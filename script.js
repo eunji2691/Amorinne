@@ -1519,13 +1519,13 @@ const reservationLines = [
 }
 
 function buildMilestoneKakaoMessage(postData) {
-  const basicLines = [
-    '👶 기본 정보',
-    '예약자명: ' + (postData.customerName || ''),
-    '연락처: ' + (postData.phone || ''),
-    '아기 이름: ' + (postData.babyName || ''),
-    '성별: ' + (postData.babyGender || '')
-  ];
+const basicLines = [
+  '👶 기본 정보',
+  '예약자: ' + (postData.customerName || postData.name || '') +
+    ((postData.phone) ? ' (' + postData.phone + ')' : ''),
+  '아기 정보: ' + (postData.babyName || '') +
+    ((postData.babyGender) ? ' (' + postData.babyGender + ')' : '')
+];
 
 const reservationLines = [
   '📌 예약 내용',
