@@ -1428,56 +1428,65 @@ const reservationLines = [
 
   const optionLines = [];
 
-  if (postData.memoTableSetting === 'on') {
-    optionLines.push('- 기념일 테이블 세팅');
+const tableLines = [];
+const conceptLines = [];
+const outfitLines = [];
+const extraLines = [];
 
-
-    if (postData.memoTableSettingDetails) {
-      optionLines.push('  · 테이블 종류: ' + postData.memoTableSettingDetails);
-    }
+// 테이블 세팅
+if (postData.memoTableSetting === 'on') {
+  if (postData.memoTableSettingDetails) {
+    tableLines.push('- ' + postData.memoTableSettingDetails);
+  } else {
+    tableLines.push('- 테이블 세팅');
   }
+}
 
-  if (postData.extraConcept) {
-    optionLines.push('- 추가 컨셉: ' + postData.extraConcept);
-  }
+// 추가 컨셉
+if (postData.extraConcept) {
+  const concepts = postData.extraConcept.split(',').map(v => v.trim()).filter(Boolean);
+  concepts.forEach(c => conceptLines.push('- ' + c));
+}
 
-  if (postData.baekilHanbok === 'on') {
-    optionLines.push('- 백일 한복: ' + (postData.baekilHanbokDetail || '선택'));
-  }
+// 의상 (여기만 의상!)
+if (postData.baekilHanbok === 'on') {
+  outfitLines.push('- 백일 한복: ' + (postData.baekilHanbokDetail || '선택'));
+}
 
-  if (postData.dolDressClothing === 'on') {
-    optionLines.push('- 돌 한복/드레스/정장: ' + (postData.dolDressClothingDetail || '선택'));
-  }
+if (postData.dolDressClothing === 'on') {
+  outfitLines.push('- 돌 한복/드레스/정장: ' + (postData.dolDressClothingDetail || '선택'));
+}
 
-  if (postData.cameraRental && postData.cameraRental !== 'none') {
-    optionLines.push('- 카메라 대여: ' + postData.cameraRental);
-  }
+// 기타 (카메라 / 스냅 포함)
+if (postData.cameraRental && postData.cameraRental !== 'none') {
+  extraLines.push('- 카메라 대여: ' + postData.cameraRental);
+}
 
-  if (postData.iphoneSnap === 'on') {
-    optionLines.push('- 아이폰 스냅 추가');
-  }
+if (postData.iphoneSnap === 'on') {
+  extraLines.push('- 아이폰 스냅');
+}
 
-  if (postData.screenBackground === 'on') {
-    optionLines.push('- 병풍 추가');
-  }
+if (postData.screenBackground === 'on') {
+  extraLines.push('- 병풍');
+}
 
-  if (postData.calligraphyCard === 'on') {
-    optionLines.push('- 금박 캘리그라피 카드 추가');
-  }
+if (postData.calligraphyCard === 'on') {
+  extraLines.push('- 금박 캘리그라피 카드');
+}
 
-  if (postData.numberBalloon === 'on') {
-    let balloonText = '- 대형 숫자 풍선';
-    const details = [];
+if (postData.numberBalloon === 'on') {
+  const balloonText = [
+    postData.balloonNumber ? '숫자 ' + postData.balloonNumber : '',
+    postData.balloonColor ? '색상 ' + postData.balloonColor : ''
+  ].filter(Boolean).join(', ');
+  extraLines.push('- 대형 숫자 풍선' + (balloonText ? ' (' + balloonText + ')' : ''));
+}
 
-    if (postData.balloonNumber) details.push('숫자 ' + postData.balloonNumber);
-    if (postData.balloonColor) details.push('색상 ' + postData.balloonColor);
-
-    if (details.length) {
-      balloonText += ' (' + details.join(', ') + ')';
-    }
-
-    optionLines.push(balloonText);
-  }
+// 카테고리 정리
+if (tableLines.length) optionLines.push('[테이블 세팅]', ...tableLines);
+if (conceptLines.length) optionLines.push('[추가 컨셉]', ...conceptLines);
+if (outfitLines.length) optionLines.push('[의상]', ...outfitLines);
+if (extraLines.length) optionLines.push('[기타]', ...extraLines);
 
   const lines = [
     '[아모린느 스튜디오 예약 🤍]',
