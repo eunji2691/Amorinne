@@ -1540,34 +1540,44 @@ const reservationLines = [
     reservationLines.push('테이블: ' + postData.tableSelection);
   }
 
-  const optionLines = [];
+const optionLines = [];
 
-  if (postData.babyClothes === 'on') {
-    optionLines.push('- 백일 의상: ' + (postData.babyClothesDetail || '선택'));
-  }
+// 의상
+if (postData.babyClothes === 'on') {
+  optionLines.push('- 백일 의상: ' + (postData.babyClothesDetail || '선택'));
+}
 
-  if (postData.baekilHanbok === 'on') {
-    optionLines.push('- 백일 한복: ' + (postData.baekilHanbokDetail || '선택'));
-  }
+if (postData.baekilHanbok === 'on') {
+  optionLines.push('- 백일 한복: ' + (postData.baekilHanbokDetail || '선택'));
+}
 
-  if (postData.dolDressClothing === 'on') {
-    optionLines.push('- 돌 한복/드레스/정장: ' + (postData.dolDressClothingDetail || '선택'));
-  }
+if (postData.dolDressClothing === 'on') {
+  optionLines.push('- 돌 한복/드레스/정장: ' + (postData.dolDressClothingDetail || '선택'));
+}
 
-  if (postData.acc_jeongjagwan === 'on') optionLines.push('- 정자관 추가');
-  if (postData.acc_ilbangat === 'on') optionLines.push('- 일반갓 추가');
-  if (postData.acc_yugeon === 'on') optionLines.push('- 유건 추가');
-  if (postData.acc_gachae === 'on') optionLines.push('- 가채 추가');
+// 한복 악세사리
+if (postData.acc_jeongjagwan === 'on') optionLines.push('- 정자관 추가');
+if (postData.acc_ilbangat === 'on') optionLines.push('- 일반갓 추가');
+if (postData.acc_yugeon === 'on') optionLines.push('- 유건 추가');
+if (postData.acc_gachae === 'on') optionLines.push('- 가채 추가');
 
-  if (postData.modelSiruTteok === 'on') optionLines.push('- 모형 시루떡 추가');
-  if (postData.modelRiceCake === 'on') optionLines.push('- 모형 백설기 추가');
-  if (postData.modelWoodRiceCake === 'on') optionLines.push('- 모형 우드 백설기 추가');
-  if (postData.modelRiceCakeCake === 'on') optionLines.push('- 모형 백설기 케이크 추가');
-  if (postData.modelFruit === 'on') optionLines.push('- 고급 모형 과일 추가');
-  if (postData.foldingTable === 'on') optionLines.push('- 접이식 테이블 추가');
-  if (postData.bumboChair === 'on') optionLines.push('- 범보의자/양털의자/돌방석 추가');
-  if (postData.doljabiSet === 'on') optionLines.push('- 돌잡이 세트 추가');
-  if (postData.calligraphyCard === 'on') optionLines.push('- 금박 캘리그라피 카드 추가');
+// 가구 / 촬영
+if (postData.bumboChair === 'on') optionLines.push('- 범보의자 추가');
+if (postData.dolCushion === 'on') optionLines.push('- 돌방석 추가');
+if (postData.waterproofMat === 'on') optionLines.push('- 방수요 추가');
+if (postData.foldingTable === 'on') optionLines.push('- 접이식 테이블 추가');
+if (postData.doljabiSet === 'on') optionLines.push('- 돌잡이 세트 추가');
+
+// 모형 소품
+if (postData.modelFruit === 'on') optionLines.push('- 고급 모형 과일 추가');
+if (postData.modelRiceCake === 'on') optionLines.push('- 모형 백설기 추가');
+if (postData.modelWoodRiceCake === 'on') optionLines.push('- 모형 우드 백설기 추가');
+if (postData.modelRiceCakeCake === 'on') optionLines.push('- 모형 백설기 케이크 추가');
+if (postData.modelSiruTteok === 'on') optionLines.push('- 모형 시루떡 추가');
+if (postData.modelPlaeTteok === 'on') optionLines.push('- 접시형 모형 떡 추가');
+
+// 기타
+if (postData.calligraphyCard === 'on') optionLines.push('- 금박 캘리그라피 카드 추가');
 
   const lines = [
     '[아모린느 백일상·돌상 예약 🤍]',
