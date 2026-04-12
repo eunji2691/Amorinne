@@ -1348,6 +1348,20 @@ onchange="toggleStudioHanbokField(); updateStudioPrice()" />
 </div>
         </div>
         <div class="form-group">
+  <label class="form-label">행사종류 *</label>
+  <select class="form-select" name="eventType" required onchange="toggleDressEventTypeEtc()">
+    <option value="">선택해주세요</option>
+    <option value="돌">돌</option>
+    <option value="화동">화동</option>
+    <option value="기타">기타</option>
+  </select>
+</div>
+
+<div class="form-group" id="dressEventTypeEtcWrap" style="display:none;">
+  <label class="form-label">기타 행사종류</label>
+  <input type="text" class="form-input" name="eventTypeEtc" placeholder="예: 생일파티, 가족촬영" />
+</div>
+        <div class="form-group">
           <label class="form-label">행사 날짜 *</label>
           <input type="date" class="form-input" name="eventDate" required />
         </div>
