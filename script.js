@@ -1549,42 +1549,55 @@ const reservationLines = [
 
 const optionLines = [];
 
+const outfitLines = [];
+const accessoryLines = [];
+const furnitureLines = [];
+const propLines = [];
+const extraLines = [];
+
 // 의상
 if (postData.babyClothes === 'on') {
-  optionLines.push('- 백일 의상: ' + (postData.babyClothesDetail || '선택'));
+  outfitLines.push('- 백일 의상: ' + (postData.babyClothesDetail || '선택'));
 }
 
 if (postData.baekilHanbok === 'on') {
-  optionLines.push('- 백일 한복: ' + (postData.baekilHanbokDetail || '선택'));
+  outfitLines.push('- 백일 한복: ' + (postData.baekilHanbokDetail || '선택'));
 }
 
 if (postData.dolDressClothing === 'on') {
-  optionLines.push('- 돌 한복/드레스/정장: ' + (postData.dolDressClothingDetail || '선택'));
+  outfitLines.push('- 돌 한복/드레스/정장: ' + (postData.dolDressClothingDetail || '선택'));
 }
 
 // 한복 악세사리
-if (postData.acc_jeongjagwan === 'on') optionLines.push('- 정자관 추가');
-if (postData.acc_ilbangat === 'on') optionLines.push('- 일반갓 추가');
-if (postData.acc_yugeon === 'on') optionLines.push('- 유건 추가');
-if (postData.acc_gachae === 'on') optionLines.push('- 가채 추가');
+if (postData.acc_jeongjagwan === 'on') accessoryLines.push('- 정자관');
+if (postData.acc_ilbangat === 'on') accessoryLines.push('- 일반갓');
+if (postData.acc_yugeon === 'on') accessoryLines.push('- 유건');
+if (postData.acc_gachae === 'on') accessoryLines.push('- 가채');
 
-// 가구 / 촬영
-if (postData.bumboChair === 'on') optionLines.push('- 범보의자 추가');
-if (postData.dolCushion === 'on') optionLines.push('- 돌방석 추가');
-if (postData.waterproofMat === 'on') optionLines.push('- 방수요 및 양단 베개 추가');
-if (postData.foldingTable === 'on') optionLines.push('- 접이식 테이블 추가');
-if (postData.dolGrabbingSet === 'on') optionLines.push('- 돌잡이 세트 추가');
+// 의자 / 테이블
+if (postData.bumboChair === 'on') furnitureLines.push('- 범보의자');
+if (postData.dolCushion === 'on') furnitureLines.push('- 돌방석');
+if (postData.waterproofMat === 'on') furnitureLines.push('- 방수요 및 양단 베개');
+if (postData.foldingTable === 'on') furnitureLines.push('- 접이식 테이블');
 
 // 모형 소품
-if (postData.premiumModelFruit === 'on') optionLines.push('- 고급 모형 과일 추가');
-if (postData.modelBaekseolgi === 'on') optionLines.push('- 모형 백설기 추가');
-if (postData.modelWoodBaekseolgi === 'on') optionLines.push('- 모형 우드 백설기 추가');
-if (postData.modelBaekseolgiCake === 'on') optionLines.push('- 모형 백설기 케이크 추가');
-if (postData.modelSiruTteok === 'on') optionLines.push('- 모형 시루떡 추가');
-if (postData.modelPlateTeok === 'on') optionLines.push('- 접시형 모형 떡 추가');
+if (postData.premiumModelFruit === 'on') propLines.push('- 고급 모형 과일');
+if (postData.modelBaekseolgi === 'on') propLines.push('- 모형 백설기');
+if (postData.modelWoodBaekseolgi === 'on') propLines.push('- 모형 우드 백설기');
+if (postData.modelBaekseolgiCake === 'on') propLines.push('- 모형 백설기 케이크');
+if (postData.modelSiruTteok === 'on') propLines.push('- 모형 시루떡');
+if (postData.modelPlateTeok === 'on') propLines.push('- 접시형 모형 떡');
 
 // 기타
-if (postData.calligraphyCard === 'on') optionLines.push('- 금박 캘리그라피 카드 추가');
+if (postData.dolGrabbingSet === 'on') extraLines.push('- 돌잡이 세트');
+if (postData.calligraphyCard === 'on') extraLines.push('- 금박 캘리그라피 카드');
+
+// 카테고리 정리
+if (outfitLines.length) optionLines.push('[의상]', ...outfitLines);
+if (accessoryLines.length) optionLines.push('[한복 악세사리]', ...accessoryLines);
+if (furnitureLines.length) optionLines.push('[의자/테이블]', ...furnitureLines);
+if (propLines.length) optionLines.push('[모형 소품]', ...propLines);
+if (extraLines.length) optionLines.push('[기타]', ...extraLines);
 
 
   const lines = [
