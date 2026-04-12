@@ -913,7 +913,7 @@ if (form.dolDressClothing && form.dolDressClothing.checked) total += 35000;
   if (form.acc_gachae.checked) total += 5000;
   if (form.acc_meoritti.checked) total += 5000;
 
-  if (form.bamboChair.checked) total += 5000;
+  if (form.bumboChair.checked) total += 5000;
   if (form.dolCushion.checked) total += 5000;
   if (form.waterproofMat.checked) total += 5000;
   if (form.foldingTable.checked) total += 10000;
