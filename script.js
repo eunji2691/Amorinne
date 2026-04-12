@@ -1565,15 +1565,18 @@ if (postData.bumboChair === 'on') optionLines.push('- 범보의자 추가');
 if (postData.dolCushion === 'on') optionLines.push('- 돌방석 추가');
 if (postData.waterproofMat === 'on') optionLines.push('- 방수요 및 양단 베개 추가');
 if (postData.foldingTable === 'on') optionLines.push('- 접이식 테이블 추가');
-if (postData.doljabiSet === 'on') optionLines.push('- 돌잡이 세트 추가');
+if (postData.dolGrabbingSet === 'on') optionLines.push('- 돌잡이 세트 추가');
 
 // 모형 소품
-if (postData.modelFruit === 'on') optionLines.push('- 고급 모형 과일 추가');
-if (postData.modelRiceCake === 'on') optionLines.push('- 모형 백설기 추가');
-if (postData.modelWoodRiceCake === 'on') optionLines.push('- 모형 우드 백설기 추가');
-if (postData.modelRiceCakeCake === 'on') optionLines.push('- 모형 백설기 케이크 추가');
+if (postData.premiumModelFruit === 'on') optionLines.push('- 고급 모형 과일 추가');
+if (postData.modelBaekseolgi === 'on') optionLines.push('- 모형 백설기 추가');
+if (postData.modelWoodBaekseolgi === 'on') optionLines.push('- 모형 우드 백설기 추가');
+if (postData.modelBaekseolgiCake === 'on') optionLines.push('- 모형 백설기 케이크 추가');
 if (postData.modelSiruTteok === 'on') optionLines.push('- 모형 시루떡 추가');
-if (postData.modelPlaeTteok === 'on') optionLines.push('- 접시형 모형 떡 추가');
+if (postData.modelPlateTeok === 'on') optionLines.push('- 접시형 모형 떡 추가');
+
+// 기타
+if (postData.calligraphyCard === 'on') optionLines.push('- 금박 캘리그라피 카드 추가');
 
 // 기타
 if (postData.calligraphyCard === 'on') optionLines.push('- 금박 캘리그라피 카드 추가');
