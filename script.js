@@ -1416,7 +1416,10 @@ function buildStudioKakaoMessage(postData) {
     '시작 시간: ' + (postData.reservationTime || postData.startTime || ''),
     '종료 시간: ' + (postData.endTime || ''),
     '이용 시간: ' + ((postData.rentalHours || '') ? postData.rentalHours + '시간' : ''),
-    '기념일 종류: ' + (postData.eventType === '기타' ? (postData.eventTypeEtc || '기타') : (postData.eventType || '')),
+'기념일 종류: ' + (postData.eventType === '기타'
+  ? (postData.eventTypeEtc || '기타')
+  : (postData.eventType || '')
+),
     '성인 인원: ' + (postData.adultCount || ''),
     '아기 인원: ' + (postData.babyCount || '')
   ];
