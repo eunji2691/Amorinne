@@ -1410,19 +1410,23 @@ function buildStudioKakaoMessage(postData) {
     '성별: ' + (postData.babyGender || '')
   ];
 
-  const reservationLines = [
-    '📌 예약 내용',
-    '예약일: ' + (postData.reservationDate || ''),
-    '시작 시간: ' + (postData.reservationTime || postData.startTime || ''),
-    '종료 시간: ' + (postData.endTime || ''),
-    '이용 시간: ' + ((postData.rentalHours || '') ? postData.rentalHours + '시간' : ''),
-'기념일 종류: ' + (postData.eventType === '기타'
-  ? (postData.eventTypeEtc || '기타')
-  : (postData.eventType || '')
-),
-    '성인 인원: ' + (postData.adultCount || ''),
-    '아기 인원: ' + (postData.babyCount || '')
-  ];
+const reservationLines = [
+  '📌 예약 내용',
+  '예약일: ' + (postData.reservationDate || ''),
+  '이용 시간: ' +
+    ((postData.rentalHours || '') ? postData.rentalHours + '시간' : '') +
+    ((postData.reservationTime || postData.startTime || postData.endTime)
+      ? ' (' + (postData.reservationTime || postData.startTime || '') + '-' + (postData.endTime || '') + ')'
+      : ''
+    ),
+  '기념일 종류: ' + (postData.eventType === '기타'
+    ? (postData.eventTypeEtc || '기타')
+    : (postData.eventType || '')
+  ),
+  '총 인원: ' +
+    ((Number(postData.adultCount || 0) + Number(postData.babyCount || 0))) +
+    '인 (성인 ' + (postData.adultCount || 0) + ', 아기 ' + (postData.babyCount || 0) + ')'
+];
 
   const optionLines = [];
 
