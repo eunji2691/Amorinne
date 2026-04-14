@@ -1,5 +1,5 @@
 const USE_FAKE_SUBMIT = false;
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw4I3VB7OO9Pm1cAq8mb27sU4ezQNpBBgvnEfb7PusR-3lfLB-C_dKNeN8a7HRJcq_8zA/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxA-lAHuQpKsthkNae0OukONFLGn_lACXabyF2jrWAWpP5OGaP0db7thh5DWD27_tWYxw/exec;
 const KAKAO_CHAT_URL = 'http://pf.kakao.com/_cxhePn/chat';
 
 
