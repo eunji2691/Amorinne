@@ -2,6 +2,40 @@ const USE_FAKE_SUBMIT = false;
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzYIugdvEy0w1UzdM1BAt_FixseK56bQykNQvOZoFr4I8BensNSwlknxQjQ87Mhle4TNQ/exec';
 const KAKAO_CHAT_URL = 'http://pf.kakao.com/_cxhePn/chat';
 
+const submitLocks = {
+  studio: false,
+  milestone: false,
+  dress: false
+};
+
+function setSubmitButtonState(form, isSubmitting, loadingText) {
+  if (!form) return null;
+
+  const submitBtn =
+    form.querySelector('button[type="submit"]') ||
+    form.querySelector('input[type="submit"]');
+
+  if (!submitBtn) return null;
+
+  if (!submitBtn.dataset.originalText) {
+    submitBtn.dataset.originalText = submitBtn.tagName === 'INPUT'
+      ? submitBtn.value
+      : submitBtn.textContent;
+  }
+
+  submitBtn.disabled = isSubmitting;
+  submitBtn.style.opacity = isSubmitting ? '0.6' : '';
+  submitBtn.style.pointerEvents = isSubmitting ? 'none' : '';
+
+  if (submitBtn.tagName === 'INPUT') {
+    submitBtn.value = isSubmitting ? loadingText : submitBtn.dataset.originalText;
+  } else {
+    submitBtn.textContent = isSubmitting ? loadingText : submitBtn.dataset.originalText;
+  }
+
+  return submitBtn;
+}
+
 
 /* ===== Amorinne Static Website Script ===== */
 
@@ -970,8 +1004,14 @@ function toggleDressTightsColor() {
 async function submitStudioForm(e) {
   e.preventDefault();
 
+  if (submitLocks.studio) return;
+  submitLocks.studio = true;
+
+  const form = e.target;
+  setSubmitButtonState(form, true, '접수 중...');
+  
+
   try {
-    const form = event.target;
 
     // form 안의 값 수집
     const formData = new FormData(form);
@@ -1140,11 +1180,22 @@ if (result.result === 'success') {
   }
 }
 
+  } finally {
+    submitLocks.studio = false;
+    setSubmitButtonState(form, false, '접수 중...');
+  }
+}
+
 async function submitMilestoneForm(e) {
   e.preventDefault();
 
+  if (submitLocks.milestone) return;
+  submitLocks.milestone = true;
+
+  var form = e.target;
+  setSubmitButtonState(form, true, '접수 중...');
+
   try {
-    var form = e.target;
     var data = new FormData(form);
     var postData = Object.fromEntries(data.entries());
 
@@ -1243,11 +1294,22 @@ if (result.result === 'success') {
   }
 }
 
+  } finally {
+    submitLocks.milestone = false;
+    setSubmitButtonState(form, false, '접수 중...');
+  }
+}
+
 async function submitDressForm(e) {
   e.preventDefault();
 
+  if (submitLocks.dress) return;
+  submitLocks.dress = true;
+
+  var form = e.target;
+  setSubmitButtonState(form, true, '접수 중...');
+
   try {
-    var form = e.target;
     var data = new FormData(form);
     var postData = Object.fromEntries(data.entries());
 
@@ -1354,6 +1416,12 @@ if (result.result === 'success') {
   } catch (error) {
     console.error('submitDressForm error:', error);
     alert('제출 중 오류가 발생했습니다.');
+  }
+}
+
+  } finally {
+    submitLocks.dress = false;
+    setSubmitButtonState(form, false, '접수 중...');
   }
 }
 
