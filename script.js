@@ -1177,9 +1177,6 @@ if (result.result === 'success') {
   } catch (error) {
     console.error('submitStudioForm error:', error);
     alert('제출 중 오류가 발생했습니다.');
-  }
-}
-
   } finally {
     submitLocks.studio = false;
     setSubmitButtonState(form, false, '접수 중...');
@@ -1291,9 +1288,6 @@ if (result.result === 'success') {
   } catch (error) {
     console.error('submitMilestoneForm error:', error);
     alert('제출 중 오류가 발생했습니다.');
-  }
-}
-
   } finally {
     submitLocks.milestone = false;
     setSubmitButtonState(form, false, '접수 중...');
@@ -1416,9 +1410,6 @@ if (result.result === 'success') {
   } catch (error) {
     console.error('submitDressForm error:', error);
     alert('제출 중 오류가 발생했습니다.');
-  }
-}
-
   } finally {
     submitLocks.dress = false;
     setSubmitButtonState(form, false, '접수 중...');
