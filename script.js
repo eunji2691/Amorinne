@@ -1232,8 +1232,8 @@ async function submitMilestoneForm(e) {
 
       form.reset();
 
-      var totalPriceEl = document.getElementById('milestoneTotalPrice');
-      if (totalPriceEl) totalPriceEl.textContent = '0원';
+var fakeMilestoneTotalPriceEl = document.getElementById('milestoneTotalPrice');
+if (fakeMilestoneTotalPriceEl) fakeMilestoneTotalPriceEl.textContent = '0원';
 
       if (typeof updateMilestonePrice === 'function') {
         updateMilestonePrice();
@@ -1403,8 +1403,8 @@ if (result.result === 'success') {
 
   form.reset();
 
-  var totalPriceEl = document.getElementById('dressTotalPrice');
-  if (totalPriceEl) totalPriceEl.textContent = '0원';
+const milestoneTotalPriceEl = document.getElementById('milestoneTotalPrice');
+if (milestoneTotalPriceEl) milestoneTotalPriceEl.textContent = '0원';
 
   if (typeof updateDressPrice === 'function') {
     updateDressPrice();
