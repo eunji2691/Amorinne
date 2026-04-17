@@ -1375,39 +1375,39 @@ if (postData.tightsUse === 'on') {
       return;
     }
 
-    const response = await fetch(APPS_SCRIPT_URL, {
-      method: 'POST',
-      body: JSON.stringify(postData)
-    });
+    await fetch(APPS_SCRIPT_URL, {
+  method: 'POST',
+  mode: 'no-cors',
+  body: JSON.stringify(postData)
+});
 
-    const result = await response.json();
+const kakaoMsg = buildDressKakaoMessage(postData);
+const copied = await copyTextSafely(kakaoMsg);
 
-if (result.result === 'success') {
-  const kakaoMsg = buildDressKakaoMessage(postData);
-  const copied = await copyTextSafely(kakaoMsg);
+if (copied) {
+  alert('예약 신청이 접수되었습니다.\n\n예약 내용이 복사되었어요.\n카카오톡 채팅창에 붙여넣어 보내주세요.');
 
-  if (copied) {
-    alert('예약 신청이 접수되었습니다.\n\n예약 내용이 복사되었어요.\n카카오톡 채팅창에 붙여넣어 보내주세요.');
-
-    setTimeout(() => {
-      window.location.href = KAKAO_CHAT_URL;
-    }, 200);
-  } else {
-    showCopyFallback(kakaoMsg);
-  }
-
-  form.reset();
-
-const milestoneTotalPriceEl = document.getElementById('milestoneTotalPrice');
-if (milestoneTotalPriceEl) milestoneTotalPriceEl.textContent = '0원';
-
-  if (typeof updateDressPrice === 'function') {
-    updateDressPrice();
-  }
+  setTimeout(() => {
+    window.location.href = KAKAO_CHAT_URL;
+  }, 200);
 } else {
-  alert('제출은 되었지만 응답이 올바르지 않습니다.');
-  console.log('submit result:', result);
+  showCopyFallback(kakaoMsg);
 }
+
+form.reset();
+
+const dressTotalPriceEl = document.getElementById('dressTotalPrice');
+if (dressTotalPriceEl) dressTotalPriceEl.textContent = '0원';
+
+if (typeof updateDressPrice === 'function') {
+  updateDressPrice();
+}
+
+if (typeof closeModal === 'function') {
+  closeModal('dressModal');
+}
+
+return;
 
   } catch (error) {
     console.error('submitDressForm error:', error);
