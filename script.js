@@ -1249,46 +1249,39 @@ if (!APPS_SCRIPT_URL) {
 
 postData.formType = 'milestone';
 
-const response = await fetch(APPS_SCRIPT_URL, {
+await fetch(APPS_SCRIPT_URL, {
   method: 'POST',
+  mode: 'no-cors',
   body: JSON.stringify(postData)
 });
 
-const result = await response.json();
+const kakaoMsg = buildMilestoneKakaoMessage(postData);
+const copied = await copyTextSafely(kakaoMsg);
 
-if (result.result === 'success') {
-console.log('SAVE RESULT:', result);
-alert('저장결과: ' + JSON.stringify(result));
-  
-  const kakaoMsg = buildMilestoneKakaoMessage(postData);
-  const copied = await copyTextSafely(kakaoMsg);
+if (copied) {
+  alert('예약 신청이 접수되었습니다.\n\n예약 내용이 복사되었어요.\n카카오톡 채팅창에 붙여넣어 보내주세요.');
 
-  if (copied) {
-    alert('예약 신청이 접수되었습니다.\n\n예약 내용이 복사되었어요.\n카카오톡 채팅창에 붙여넣어 보내주세요.');
-
-    setTimeout(() => {
-      window.location.href = KAKAO_CHAT_URL;
-    }, 200);
-  } else {
-    showCopyFallback(kakaoMsg);
-  }
-
-  form.reset();
-
-  const totalPriceEl = document.getElementById('milestoneTotalPrice');
-  if (totalPriceEl) totalPriceEl.textContent = '0원';
-
-  if (typeof updateMilestonePrice === 'function') {
-    updateMilestonePrice();
-  }
-
-  if (typeof closeModal === 'function') {
-    closeModal('milestoneModal');
-  }
-
-  return;
+  setTimeout(() => {
+    window.location.href = KAKAO_CHAT_URL;
+  }, 200);
+} else {
+  showCopyFallback(kakaoMsg);
 }
 
+form.reset();
+
+const totalPriceEl = document.getElementById('milestoneTotalPrice');
+if (totalPriceEl) totalPriceEl.textContent = '0원';
+
+if (typeof updateMilestonePrice === 'function') {
+  updateMilestonePrice();
+}
+
+if (typeof closeModal === 'function') {
+  closeModal('milestoneModal');
+}
+
+return;
 if (result.result === 'duplicate') {
   alert('중복 제출이라 저장되지 않았습니다. 잠시 후 다시 시도해주세요.');
   return;
