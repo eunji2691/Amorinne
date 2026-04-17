@@ -1247,7 +1247,7 @@ async function submitMilestoneForm(e) {
       return;
     }
 
-    const response = await fetch(APPS_SCRIPT_URL, {
+const response = await fetch(APPS_SCRIPT_URL, {
   method: 'POST',
   body: JSON.stringify(postData)
 });
@@ -1294,10 +1294,7 @@ alert(result.message || '제출 중 오류가 발생했습니다.');
   if (typeof closeModal === 'function') {
     closeModal('milestoneModal');
   }
-} else {
-  alert('제출은 되었지만 응답이 올바르지 않습니다.');
-  console.log('submit result:', result);
-}
+
 
   } catch (error) {
     console.error('submitMilestoneForm error:', error);
