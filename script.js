@@ -1249,16 +1249,11 @@ if (!APPS_SCRIPT_URL) {
 
 postData.formType = 'milestone';
 
-const response = await fetch(APPS_SCRIPT_URL, {
+await fetch(APPS_SCRIPT_URL, {
   method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
+  mode: 'no-cors',
   body: JSON.stringify(postData)
 });
-
-const result = await response.json();
-console.log(result);
 
 const kakaoMsg = buildMilestoneKakaoMessage(postData);
 const copied = await copyTextSafely(kakaoMsg);
