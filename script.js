@@ -1242,13 +1242,18 @@ async function submitMilestoneForm(e) {
       return;
     }
 
-    if (!APPS_SCRIPT_URL) {
-      alert('Apps Script URL이 비어 있습니다.');
-      return;
-    }
+if (!APPS_SCRIPT_URL) {
+  alert('Apps Script URL이 비어 있습니다.');
+  return;
+}
+
+postData.formType = 'milestone';  // ← 여기다
 
 const response = await fetch(APPS_SCRIPT_URL, {
   method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
   body: JSON.stringify(postData)
 });
 
