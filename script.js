@@ -1247,13 +1247,10 @@ if (!APPS_SCRIPT_URL) {
   return;
 }
 
-postData.formType = 'milestone';  // ← 여기다
+postData.formType = 'milestone';
 
 const response = await fetch(APPS_SCRIPT_URL, {
   method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
   body: JSON.stringify(postData)
 });
 
