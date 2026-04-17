@@ -1257,6 +1257,9 @@ const response = await fetch(APPS_SCRIPT_URL, {
 const result = await response.json();
 
 if (result.result === 'success') {
+console.log('SAVE RESULT:', result);
+alert('저장결과: ' + JSON.stringify(result));
+  
   const kakaoMsg = buildMilestoneKakaoMessage(postData);
   const copied = await copyTextSafely(kakaoMsg);
 
