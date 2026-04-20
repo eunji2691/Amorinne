@@ -670,7 +670,7 @@ function renderStudioOptions() {
   html += '</div></div>';
 
   // Dol hanbok section
-  html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.5rem;">돌 한복/드레스/정장 (35,000원)</h4>';
+  html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.5rem;">돌 한복 (35,000원)</h4>';
   html += '<div class="gallery-grid">';
   DOL_HANBOK_DATA.forEach(function(h) {
     html += '<div class="gallery-item" onclick="openImageModal(\'' + h.name.replace(/'/g, "\\'") + '\', \'' + h.img + '\')">';
@@ -678,6 +678,9 @@ function renderStudioOptions() {
     html += '<p>' + h.name + '</p></div>';
   });
   html += '</div></div>';
+html += '<div class="card"><div class="card-header"><div><div class="card-title">정장/드레스</div>';
+html += '<div class="card-desc">정장/드레스 사진은 정장·드레스 대여 페이지에서 참고해 주세요.</div></div>';
+html += '<div class="card-price">50,000원</div></div></div>';
 
   // Other options
   STUDIO_OPTIONS.forEach(function(opt) {
@@ -909,7 +912,13 @@ function updateStudioPrice() {
 
   // Options
   if (form.baekilHanbok.checked) total += 15000;
-  if (form.dolDressClothing.checked) total += 35000;
+  if (form.querySelector('[name="dolHanbok"]')?.checked) {
+  total += 35000;
+}
+
+if (form.querySelector('[name="formalWear"]')?.checked) {
+  total += 50000;
+}
   var cameraVal = form.querySelector('input[name="cameraRental"]:checked');
   if (cameraVal && cameraVal.value) total += 20000;
   if (form.iphoneSnap.checked) total += 50000;
@@ -1044,7 +1053,8 @@ postData.extraConcept = Array.from(conceptEls).map(el => el.value).join(', ');
     const balloonNumberEl = document.querySelector('[name="balloonNumber"]');
 const balloonColorEl = document.querySelector('[name="balloonColor"]');
     const baekilHanbokDetailEl = form.querySelector('[name="baekilHanbokDetail"]');
-    const dolDressClothingDetailEl = form.querySelector('[name="dolDressClothingDetail"]');
+    const dolHanbokDetailEl = form.querySelector('[name="dolHanbokDetail"]');
+const formalWearDetailEl = form.querySelector('[name="formalWearDetail"]');
     const babyClothesDetailEl = form.querySelector('[name="babyClothesDetail"]');
 
 
@@ -1072,9 +1082,15 @@ const balloonColorEl = document.querySelector('[name="balloonColor"]');
     postData.baekilHanbokDetail = baekilHanbokDetailEl.value;
   }
 }
-    if (postData.dolDressClothing === 'on') {
-  if (dolDressClothingDetailEl && !postData.dolDressClothingDetail) {
-    postData.dolDressClothingDetail = dolDressClothingDetailEl.value;
+if (postData.dolHanbok === 'on') {
+  if (dolHanbokDetailEl && !postData.dolHanbokDetail) {
+    postData.dolHanbokDetail = dolHanbokDetailEl.value;
+  }
+}
+
+if (postData.formalWear === 'on') {
+  if (formalWearDetailEl && !postData.formalWearDetail) {
+    postData.formalWearDetail = formalWearDetailEl.value;
   }
 }
   if (postData.babyClothes === 'on') {
@@ -1514,8 +1530,12 @@ if (postData.baekilHanbok === 'on') {
   outfitLines.push('- 백일 한복: ' + (postData.baekilHanbokDetail || '선택'));
 }
 
-if (postData.dolDressClothing === 'on') {
-  outfitLines.push('- 돌 한복/드레스/정장: ' + (postData.dolDressClothingDetail || '선택'));
+if (postData.dolHanbok === 'on') {
+  outfitLines.push('- 돌 한복: ' + (postData.dolHanbokDetail || '선택'));
+}
+
+if (postData.formalWear === 'on') {
+  outfitLines.push('- 정장/드레스: ' + (postData.formalWearDetail || '선택'));
 }
 
 // 기타 (카메라 / 스냅 포함)
@@ -1625,8 +1645,12 @@ if (postData.baekilHanbok === 'on') {
   outfitLines.push('- 백일 한복: ' + (postData.baekilHanbokDetail || '선택'));
 }
 
-if (postData.dolDressClothing === 'on') {
-  outfitLines.push('- 돌 한복/드레스/정장: ' + (postData.dolDressClothingDetail || '선택'));
+if (postData.dolHanbok === 'on') {
+  outfitLines.push('- 돌 한복: ' + (postData.dolHanbokDetail || '선택'));
+}
+
+if (postData.formalWear === 'on') {
+  outfitLines.push('- 정장/드레스: ' + (postData.formalWearDetail || '선택'));
 }
 
 // 한복 악세사리
@@ -1974,10 +1998,10 @@ function toggleStudioFormalWearField() {
   field.style.display = checkbox.checked ? 'block' : 'none';
 }
 
-  if (!checkbox.checked) {
-    const input = document.querySelector('[name="dolDressClothingDetail"]');
-    if (input) input.value = '';
-  }
+if (!checkbox.checked) {
+  const input = document.querySelector('[name="formalWearDetail"]');
+  if (input) input.value = '';
+}
 }
 
 function toggleTableBabyClothesField() {
