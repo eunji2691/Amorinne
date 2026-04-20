@@ -469,14 +469,8 @@ const BAEKIL_HANBOK_DATA = [
 ];
 
 const PREMIUM_BAEKIL_DATA = [
-  {
-    name: "미카도 드레스",
-    img: "g100premium1.jpg"   // ⚠️ 소문자 jpg
-  },
-  {
-    name: "드레스 한복",
-    img: "g100premium2.JPG"   // ⚠️ 대문자 JPG 그대로 유지
-  }
+  { name: "미카도 드레스", img: "images/g100premium1.jpg" },
+  { name: "드레스 한복", img: "images/g100premium2.JPG" }
 ];
 
 const DOL_HANBOK_DATA = [
