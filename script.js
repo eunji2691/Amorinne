@@ -964,8 +964,9 @@ function updateMilestonePrice() {
 
   // Options
 if (form.babyClothes && form.babyClothes.checked) total += 10000;
-if (form.baekilHanbok && form.baekilHanbok.checked) total += 15000;
-if (form.dolHanbok && form.dolHanbok.checked) total += 35000;
+if (form.baekilHanbok.checked) total += 15000;
+if (form.querySelector('[name="premiumBaekil"]')?.checked) total += 30000;
+if (form.querySelector('[name="dolHanbok"]')?.checked) total += 35000;
 
   // Accessories
   if (form.acc_jeongjagwan.checked) total += 5000;
@@ -1071,6 +1072,7 @@ postData.extraConcept = Array.from(conceptEls).map(el => el.value).join(', ');
     const balloonNumberEl = document.querySelector('[name="balloonNumber"]');
 const balloonColorEl = document.querySelector('[name="balloonColor"]');
     const baekilHanbokDetailEl = form.querySelector('[name="baekilHanbokDetail"]');
+    const premiumBaekilDetailEl = form.querySelector('[name="premiumBaekilDetail"]');
     const dolHanbokDetailEl = form.querySelector('[name="dolHanbokDetail"]');
 const formalWearDetailEl = form.querySelector('[name="formalWearDetail"]');
     const babyClothesDetailEl = form.querySelector('[name="babyClothesDetail"]');
@@ -1098,6 +1100,11 @@ const formalWearDetailEl = form.querySelector('[name="formalWearDetail"]');
     if (postData.baekilHanbok === 'on') {
   if (baekilHanbokDetailEl && !postData.baekilHanbokDetail) {
     postData.baekilHanbokDetail = baekilHanbokDetailEl.value;
+  }
+}
+    if (postData.premiumBaekil === 'on') {
+  if (premiumBaekilDetailEl && !postData.premiumBaekilDetail) {
+    postData.premiumBaekilDetail = premiumBaekilDetailEl.value;
   }
 }
 if (postData.dolHanbok === 'on') {
@@ -1547,6 +1554,17 @@ if (postData.extraConcept) {
 if (postData.baekilHanbok === 'on') {
   outfitLines.push('- 백일 한복: ' + (postData.baekilHanbokDetail || '선택'));
 }
+  if (postData.baekilHanbok === 'on') {
+  outfitLines.push('- 백일 한복: ' + (postData.baekilHanbokDetail || '선택'));
+}
+
+if (postData.premiumBaekil === 'on') {
+  outfitLines.push('- 프리미엄 백일 의상: ' + (postData.premiumBaekilDetail || '선택'));
+}
+
+if (postData.dolHanbok === 'on') {
+  outfitLines.push('- 돌 한복: ' + (postData.dolHanbokDetail || '선택'));
+}
 
 if (postData.dolHanbok === 'on') {
   outfitLines.push('- 돌 한복: ' + (postData.dolHanbokDetail || '선택'));
@@ -1992,6 +2010,20 @@ function toggleStudioHanbokField() {
 
   if (!checkbox.checked) {
     const input = document.querySelector('[name="baekilHanbokDetail"]');
+    if (input) input.value = '';
+  }
+}
+
+function toggleStudioPremiumBaekilField() {
+  const checkbox = document.getElementById('studioPremiumBaekil');
+  const field = document.getElementById('studioPremiumBaekilField');
+
+  if (!checkbox || !field) return;
+
+  field.style.display = checkbox.checked ? 'block' : 'none';
+
+  if (!checkbox.checked) {
+    const input = document.querySelector('[name="premiumBaekilDetail"]');
     if (input) input.value = '';
   }
 }
