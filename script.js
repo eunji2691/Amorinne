@@ -930,6 +930,9 @@ function updateStudioPrice() {
 
   // Options
   if (form.baekilHanbok.checked) total += 15000;
+  if (form.querySelector('[name="premiumBaekil"]')?.checked) {
+  total += 30000;
+}
   if (form.querySelector('[name="dolHanbok"]')?.checked) {
   total += 35000;
 }
