@@ -1577,7 +1577,7 @@ if (extraLines.length) optionLines.push('[기타]', ...extraLines);
     '',
     '━━━━━━━━━━━━━━━',
     '',
-    ...reservationLines
+    ...reservationLines,
   ];
 
   if (optionLines.length) {
