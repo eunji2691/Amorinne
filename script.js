@@ -1958,13 +1958,21 @@ function toggleStudioHanbokField() {
 }
 
 
-function toggleStudioDolDressField() {
-  const checkbox = document.getElementById('studioDolDress');
-  const field = document.getElementById('studioDolDressField');
+function toggleStudioDolHanbokField() {
+  const checkbox = document.getElementById('studioDolHanbok');
+  const field = document.getElementById('studioDolHanbokField');
 
   if (!checkbox || !field) return;
-
   field.style.display = checkbox.checked ? 'block' : 'none';
+}
+
+function toggleStudioFormalWearField() {
+  const checkbox = document.getElementById('studioFormalWear');
+  const field = document.getElementById('studioFormalWearField');
+
+  if (!checkbox || !field) return;
+  field.style.display = checkbox.checked ? 'block' : 'none';
+}
 
   if (!checkbox.checked) {
     const input = document.querySelector('[name="dolDressClothingDetail"]');
