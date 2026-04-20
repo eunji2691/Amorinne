@@ -669,15 +669,16 @@ function renderStudioOptions() {
   });
   html += '</div></div>';
 
-  // Dol hanbok section
-  html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.5rem;">돌 한복 (35,000원)</h4>';
-  html += '<div class="gallery-grid">';
-  DOL_HANBOK_DATA.forEach(function(h) {
-    html += '<div class="gallery-item" onclick="openImageModal(\'' + h.name.replace(/'/g, "\\'") + '\', \'' + h.img + '\')">';
-    html += '<div class="aspect-square"><img src="' + h.img + '" alt="' + h.name + '" /></div>';
-    html += '<p>' + h.name + '</p></div>';
-  });
-  html += '</div></div>';
+// Dol hanbok section
+html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.5rem;">돌 한복 (35,000원)</h4>';
+html += '<div class="gallery-grid">';
+DOL_HANBOK_DATA.forEach(function(h) {
+  html += '<div class="gallery-item" onclick="openImageModal(\'' + h.name.replace(/'/g, "\\'") + '\', \'' + h.img + '\')">';
+  html += '<div class="aspect-square"><img src="' + h.img + '" alt="' + h.name + '" /></div>';
+  html += '<p>' + h.name + '</p></div>';
+});
+html += '</div></div>';
+
 html += '<div class="card"><div class="card-header"><div><div class="card-title">정장/드레스</div>';
 html += '<div class="card-desc">정장/드레스 사진은 정장·드레스 대여 페이지에서 참고해 주세요.</div></div>';
 html += '<div class="card-price">50,000원</div></div></div>';
