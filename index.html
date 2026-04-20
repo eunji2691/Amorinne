@@ -1225,6 +1225,13 @@ onchange="toggleStudioHanbokField(); updateStudioPrice()" />
 </div>
             <label for="msHanbok" class="tooltip-trigger">백일 한복 <span class="tooltip">15,000원</span></label>
           </div>
+<div class="checkbox-group">
+  <input type="checkbox" id="tablePremiumBaekil" name="premiumBaekil" onchange="toggleTablePremiumBaekilField(); updateMilestonePrice()" />
+  <div id="tablePremiumBaekilField" style="display:none; margin:8px 0 12px 28px;">
+    <input type="text" class="form-input" name="premiumBaekilDetail" placeholder="미카도 드레스 / 드레스 한복 중 선택해 적어주세요">
+  </div>
+  <label for="tablePremiumBaekil" class="tooltip-trigger">프리미엄 백일 의상 <span class="tooltip">30,000원</span></label>
+</div>
           <div class="checkbox-group">
   <input type="checkbox" id="tableDolHanbok" name="dolHanbok" onchange="toggleTableDolHanbokField(); updateMilestonePrice()" />
   <div id="tableDolHanbokField" style="display:none; margin:8px 0 12px 28px;">
