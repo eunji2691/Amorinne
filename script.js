@@ -468,6 +468,17 @@ const BAEKIL_HANBOK_DATA = [
   { name: "여아한복 색동", img: "images/g100colorful.jpg" }
 ];
 
+const PREMIUM_BAEKIL_DATA = [
+  {
+    name: "미카도 드레스",
+    img: "g100premium1.jpg"   // ⚠️ 소문자 jpg
+  },
+  {
+    name: "드레스 한복",
+    img: "g100premium2.JPG"   // ⚠️ 대문자 JPG 그대로 유지
+  }
+];
+
 const DOL_HANBOK_DATA = [
   { name: "남아한복 노랑", img: "images/b1yellow.jpg" },
   { name: "남아한복 하늘", img: "images/b1sky.jpg" },
@@ -668,6 +679,18 @@ function renderStudioOptions() {
     html += '<p>' + h.name + '</p></div>';
   });
   html += '</div></div>';
+
+  // Premium baekil section
+html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.5rem;">프리미엄 백일 의상 (30,000원)</h4>';
+html += '<div class="gallery-grid">';
+
+PREMIUM_BAEKIL_DATA.forEach(function(h) {
+  html += '<div class="gallery-item" onclick="openImageModal(\'' + h.name.replace(/'/g, "\\'") + '\', \'' + h.img + '\')">';
+  html += '<div class="aspect-square"><img src="' + h.img + '" alt="' + h.name + '" /></div>';
+  html += '<p>' + h.name + '</p></div>';
+});
+
+html += '</div></div>';
 
 // Dol hanbok section
 html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.5rem;">돌 한복 (35,000원)</h4>';
