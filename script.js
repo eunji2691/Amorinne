@@ -710,15 +710,15 @@ function renderMilestoneOptions() {
   });
   html += '</div></div>';
 
-  // Dol hanbok section
-  html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.5rem;">돌 한복/드레스/정장 (35,000원)</h4>';
-  html += '<div class="gallery-grid">';
-  DOL_HANBOK_DATA.forEach(function(h) {
-    html += '<div class="gallery-item" onclick="openImageModal(\'' + h.name.replace(/'/g, "\\'") + '\', \'' + h.img + '\')">';
-    html += '<div class="aspect-square"><img src="' + h.img + '" alt="' + h.name + '" /></div>';
-    html += '<p>' + h.name + '</p></div>';
-  });
-  html += '</div></div>';
+// Dol hanbok section
+html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.5rem;">돌 한복 (35,000원)</h4>';
+html += '<div class="gallery-grid">';
+DOL_HANBOK_DATA.forEach(function(h) {
+  html += '<div class="gallery-item" onclick="openImageModal(\'' + h.name.replace(/'/g, "\\'") + '\', \'' + h.img + '\')">';
+  html += '<div class="aspect-square"><img src="' + h.img + '" alt="' + h.name + '" /></div>';
+  html += '<p>' + h.name + '</p></div>';
+});
+html += '</div></div>';
 
   // Hanbok accessories
   html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.5rem;">한복 악세사리 (각 5,000원)</h4>';
