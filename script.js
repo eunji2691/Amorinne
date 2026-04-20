@@ -1,5 +1,5 @@
 const USE_FAKE_SUBMIT = false;
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwgj11x8TmXpjhFgk6HYxw6ngCCw2kROqGsYjxhOObJhq-bN6mgmk8zdnFQxoZbaEnZKw/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyRMcPN43t4zFuRvqxX35SJN2DoJwTZMLxNJYFJAvhWLZKe4K1lhUM7vdmDtUzLym_RZg/exec';
 const KAKAO_CHAT_URL = 'http://pf.kakao.com/_cxhePn/chat';
 
 const submitLocks = {
@@ -1696,6 +1696,10 @@ if (postData.baekilHanbok === 'on') {
   outfitLines.push('- 백일 한복: ' + (postData.baekilHanbokDetail || '선택'));
 }
 
+  if (postData.premiumBaekil === 'on') {
+  outfitLines.push('- 프리미엄 백일 의상: ' + (postData.premiumBaekilDetail || '선택'));
+}
+
 if (postData.dolHanbok === 'on') {
   outfitLines.push('- 돌 한복: ' + (postData.dolHanbokDetail || '선택'));
 }
@@ -2090,6 +2094,20 @@ function toggleTableBaekilHanbokField() {
 
   if (!checkbox.checked) {
     const input = document.querySelector('[name="baekilHanbokDetail"]');
+    if (input) input.value = '';
+  }
+}
+
+function toggleTablePremiumBaekilField() {
+  const checkbox = document.getElementById('tablePremiumBaekil');
+  const field = document.getElementById('tablePremiumBaekilField');
+
+  if (!checkbox || !field) return;
+
+  field.style.display = checkbox.checked ? 'block' : 'none';
+
+  if (!checkbox.checked) {
+    const input = document.querySelector('[name="premiumBaekilDetail"]');
     if (input) input.value = '';
   }
 }
