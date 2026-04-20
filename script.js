@@ -1996,13 +1996,13 @@ function toggleStudioFormalWearField() {
   const field = document.getElementById('studioFormalWearField');
 
   if (!checkbox || !field) return;
-  field.style.display = checkbox.checked ? 'block' : 'none';
-}
 
-if (!checkbox.checked) {
-  const input = document.querySelector('[name="formalWearDetail"]');
-  if (input) input.value = '';
-}
+  field.style.display = checkbox.checked ? 'block' : 'none';
+
+  if (!checkbox.checked) {
+    const input = document.querySelector('[name="formalWearDetail"]');
+    if (input) input.value = '';
+  }
 }
 
 function toggleTableBabyClothesField() {
