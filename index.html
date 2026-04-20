@@ -1058,7 +1058,7 @@ onchange="toggleStudioHanbokField(); updateStudioPrice()" />
 </div>
             <label for="studioHanbok" class="tooltip-trigger">백일한복 <span class="tooltip">15,000원</span></label>
           </div>
-          <div class="checkbox-group">
+         <div class="checkbox-group">
   <input type="checkbox" id="studioDolHanbok" name="dolHanbok" onchange="toggleStudioDolHanbokField(); updateStudioPrice()" />
   <div id="studioDolHanbokField" style="display:none; margin:8px 0 12px 28px;">
     <input type="text" class="form-input" name="dolHanbokDetail" placeholder="예: 노랑, 하늘, 색동">
@@ -1067,8 +1067,11 @@ onchange="toggleStudioHanbokField(); updateStudioPrice()" />
 </div>
 
 <div class="checkbox-group">
-  <input type="checkbox" id="studioDolFormal" name="dolFormalWear" onchange="toggleStudioDolFormalField(); updateStudioPrice()" />
-  <label for="studioDolFormal" class="tooltip-trigger">돌 드레스/정장 <span class="tooltip">50,000원</span></label>
+  <input type="checkbox" id="studioFormalWear" name="formalWear" onchange="toggleStudioFormalWearField(); updateStudioPrice()" />
+  <div id="studioFormalWearField" style="display:none; margin:8px 0 12px 28px;">
+    <input type="text" class="form-input" name="formalWearDetail" placeholder="예: 정장/드레스 이름">
+  </div>
+  <label for="studioFormalWear" class="tooltip-trigger">정장/드레스 <span class="tooltip">50,000원</span></label>
 </div>
           <div class="form-group" style="margin-top:0.5rem;">
             <label class="form-label tooltip-trigger">카메라 대여 <span class="tooltip">20,000원</span></label>
