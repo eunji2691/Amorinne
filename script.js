@@ -1052,7 +1052,19 @@ async function submitStudioForm(e) {
 
   const form = e.target;
   setSubmitButtonState(form, true, '접수 중...');
-  
+
+  const tableCheck = form.querySelector('[name="memoTableSetting"]');
+const tableSelect = form.querySelector('[name="memoTableSettingDetails"]');
+
+if (tableCheck?.checked && !(tableSelect?.value || '').trim()) {
+  alert('기념일 테이블을 선택해주세요.');
+  tableSelect.focus();
+
+  submitLocks.studio = false;
+  setSubmitButtonState(form, false, '접수 중...');
+
+  return;
+}
 
   try {
 
