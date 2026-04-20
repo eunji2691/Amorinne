@@ -1,5 +1,5 @@
 const USE_FAKE_SUBMIT = false;
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxyMiKz4wmGezOJoqgsNG5d8HyvGO398onSvsHjOqAogU5y_zqEaCsqANByx95MbcyWYQ/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzZuUFdmekMCtG_kqkaEXK0Q0QxPYwcg_507xJRFsxKCSdNiHPxwVEeVuJYXCr4ub9tMw/exec';
 const KAKAO_CHAT_URL = 'http://pf.kakao.com/_cxhePn/chat';
 
 const submitLocks = {
@@ -948,7 +948,7 @@ function updateMilestonePrice() {
   // Options
 if (form.babyClothes && form.babyClothes.checked) total += 10000;
 if (form.baekilHanbok && form.baekilHanbok.checked) total += 15000;
-if (form.dolDressClothing && form.dolDressClothing.checked) total += 35000;
+if (form.dolHanbok && form.dolHanbok.checked) total += 35000;
 
   // Accessories
   if (form.acc_jeongjagwan.checked) total += 5000;
@@ -1650,9 +1650,6 @@ if (postData.dolHanbok === 'on') {
   outfitLines.push('- 돌 한복: ' + (postData.dolHanbokDetail || '선택'));
 }
 
-if (postData.formalWear === 'on') {
-  outfitLines.push('- 정장/드레스: ' + (postData.formalWearDetail || '선택'));
-}
 
 // 한복 악세사리
 if (postData.acc_jeongjagwan === 'on') accessoryLines.push('- 정자관');
@@ -2033,16 +2030,16 @@ function toggleTableBaekilHanbokField() {
   }
 }
 
-function toggleTableDolDressField() {
-  const checkbox = document.getElementById('tableDolDress');
-  const field = document.getElementById('tableDolDressField');
+function toggleTableDolHanbokField() {
+  const checkbox = document.getElementById('tableDolHanbok');
+  const field = document.getElementById('tableDolHanbokField');
 
   if (!checkbox || !field) return;
 
   field.style.display = checkbox.checked ? 'block' : 'none';
 
   if (!checkbox.checked) {
-    const input = document.querySelector('[name="dolDressClothingDetail"]');
+    const input = document.querySelector('[name="dolHanbokDetail"]');
     if (input) input.value = '';
   }
 }
