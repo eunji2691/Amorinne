@@ -1581,9 +1581,6 @@ if (postData.extraConcept) {
 if (postData.baekilHanbok === 'on') {
   outfitLines.push('- 백일 한복: ' + (postData.baekilHanbokDetail || '선택'));
 }
-  if (postData.baekilHanbok === 'on') {
-  outfitLines.push('- 백일 한복: ' + (postData.baekilHanbokDetail || '선택'));
-}
 
 if (postData.premiumBaekil === 'on') {
   outfitLines.push('- 프리미엄 백일 의상: ' + (postData.premiumBaekilDetail || '선택'));
