@@ -63,6 +63,14 @@
   </script>
 
   <link rel="stylesheet" href="styles.css" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MP3Z87V9MN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-MP3Z87V9MN');
+</script>
+  
 </head>
 <body>
 
@@ -98,7 +106,7 @@
       Made Special</h2>
     <p>조용하고 편안한 공간에서<br />가장 사랑스러운 순간을 담아보세요</p>
     <div class="hero-buttons">
-      <a href="#services" class="btn btn-white btn-lg">예약하기 &#9660;</a>
+      <a href="#services" class="btn btn-white btn-lg" data-ga="reserve-button">예약하기 &#9660;</a>
         <a href="#notice" class="btn btn-white btn-lg">공지사항</a>
     </div>
   </div>
@@ -214,7 +222,7 @@
   </div>
 </div>
 
-          <button class="btn btn-primary btn-full mt-6" onclick="openModal('studioModal')">예약하기</button>
+          <button class="btn btn-primary btn-full mt-6" onclick="openModal('studioModal')" data-ga="studio-form-entry">예약하기</button>
         </div>
 
         <!-- ===== MILESTONE TAB ===== -->
@@ -267,7 +275,7 @@
   </div>
 </div>
 
-          <button class="btn btn-primary btn-full mt-6" onclick="openModal('milestoneModal')">예약하기</button>
+          <button class="btn btn-primary btn-full mt-6" onclick="openModal('milestoneModal')" data-ga="baekil-form-entry">예약하기</button>
         </div>
 
        <!-- ===== PARTY TAB ===== -->
@@ -296,7 +304,7 @@
   <li><span class="check-mark">✓</span> 피팅 없이도 대여 가능, 일정에 맞춰 간편하게 이용 가능</li>
   <li><span class="check-mark">✓</span> 매장 직접 픽업 · 반납으로 택배 지연 걱정 없이 이용 가능</li>
 </ul>
-    <button class="btn btn-primary btn-full mt-6" onclick="openModal('dressModal')">예약하기</button>
+    <button class="btn btn-primary btn-full mt-6" onclick="openModal('dressModal')" data-ga="dress-form-entry">예약하기</button>
   </div>
 
 <div id="subtab-dress-boy" class="tab-content">
@@ -1138,7 +1146,7 @@ onchange="toggleStudioHanbokField(); updateStudioPrice()" />
         </div>
 
         <div class="form-buttons">
-          <button type="submit" id="submitBtn" class="btn btn-primary">작성한 내용으로 카카오톡 문의하기</button>
+          <button type="submit" id="submitBtn" class="btn btn-primary" data-ga="reservation-submit">작성한 내용으로 카카오톡 문의하기</button>
           <button type="button" class="btn btn-outline" onclick="closeModal('studioModal')">취소</button>
         </div>
       </form>
@@ -1316,7 +1324,7 @@ onchange="toggleStudioHanbokField(); updateStudioPrice()" />
         </div>
 
         <div class="form-buttons">
-          <button type="submit" class="btn btn-primary">작성한 내용으로 카카오톡 문의하기</button>
+          <button type="submit" class="btn btn-primary" data-ga="reservation-submit">작성한 내용으로 카카오톡 문의하기</button>
           <button type="button" class="btn btn-outline" onclick="closeModal('milestoneModal')">취소</button>
         </div>
       </form>
@@ -1444,7 +1452,7 @@ onchange="toggleStudioHanbokField(); updateStudioPrice()" />
         </div>
 
         <div class="form-buttons">
-          <button type="submit" class="btn btn-primary">작성한 내용으로 카카오톡 문의하기</button>
+          <button type="submit" class="btn btn-primary" data-ga="reservation-submit">작성한 내용으로 카카오톡 문의하기</button>
           <button type="button" class="btn btn-outline" onclick="closeModal('dressModal')">취소</button>
         </div>
       </form>
