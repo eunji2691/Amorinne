@@ -1474,6 +1474,92 @@ onchange="toggleStudioHanbokField(); updateStudioPrice()" />
   <img id="noticeModalImg" class="notice-image-modal-content" src="" alt="확대 이미지">
 </div>
 
+<!-- GA4 이벤트 추적 스크립트 (아모린느 최종본) -->
+<script>
+(function() {
+    // 디버그 모드 활성화/비활성화 (운영 시 false)
+    const DEBUG_MODE = false;
+
+    function logEvent(eventName, params) {
+        if (DEBUG_MODE) {
+            console.log(`GA4 Event: ${eventName}`, params);
+        }
+        if (typeof gtag === 'function') {
+            gtag('event', eventName, params);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // 1. 메인 예약하기 버튼
+        const reserveButtons = document.querySelectorAll('[data-ga="reserve-button"]');
+        reserveButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                logEvent('reserve_button_click', {
+                    button_text: this.innerText.trim()
+                });
+            });
+        });
+
+        // 2. 서비스별 예약폼 진입
+        const studioFormEntryButton = document.querySelector('[data-ga="studio-form-entry"]');
+        if (studioFormEntryButton) {
+            studioFormEntryButton.addEventListener('click', function() {
+                logEvent('studio_form_entry', {});
+            });
+        }
+
+        const baekilFormEntryButton = document.querySelector('[data-ga="baekil-form-entry"]');
+        if (baekilFormEntryButton) {
+            baekilFormEntryButton.addEventListener('click', function() {
+                logEvent('baekil_form_entry', {});
+            });
+        }
+
+        const dressFormEntryButton = document.querySelector('[data-ga="dress-form-entry"]');
+        if (dressFormEntryButton) {
+            dressFormEntryButton.addEventListener('click', function() {
+                logEvent('dress_form_entry', {});
+            });
+        }
+
+        // 3. 예약 제출 완료
+        const submitButtons = document.querySelectorAll('[data-ga="reservation-submit"]');
+        submitButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const formNameElement = this.closest('.modal')?.querySelector('.modal-header');
+                const formName = formNameElement
+                    ? formNameElement.innerText.replace(' 예약', '').trim()
+                    : 'Unknown Form';
+
+                logEvent('reservation_submit_complete', {
+                    form_name: formName
+                });
+            });
+        });
+
+        // 4. 카카오 문의
+        const kakaoButtons = document.querySelectorAll('[data-ga="kakao-inquiry"]');
+        kakaoButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                logEvent('kakao_inquiry_click', {});
+            });
+        });
+
+        // 5. 전화 문의
+        const phoneLinks = document.querySelectorAll('[data-ga="phone-inquiry"]');
+        phoneLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                logEvent('phone_inquiry_click', {
+                    phone_number: this.innerText.trim()
+                });
+            });
+        });
+
+    });
+})();
+</script>
+  
   
 </body>
 </html>
