@@ -144,9 +144,9 @@ const royalYellowDetailHtml = `
     <ul class="detail-list">
       <li>테이블보 및 범보의자 커버</li>
       <li>센터피스 2p (옐로우 플로럴)</li>
-      <li>우드 액자 & 우드 액자용 꽃</li>
-      <li>우드 손잡이 촛대 & 우드 초</li>
-      <li>꽃모양 떡접시 / 물결 떡접시</li>
+      <li>우드 3구 촛대 & 우드 초 3개</li>
+      <li>우드 꽃 모형</li>
+      <li>원형 떡접시 / 물결 떡접시</li>
       <li>명주실 & 명주실 접시</li>
       <li>우드 2단 모형 케이크 & 토퍼</li>
       <li>케이크 스탠드</li>
