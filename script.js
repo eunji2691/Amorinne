@@ -433,7 +433,7 @@ const STUDIO_OPTIONS = [
   { name: "캘리그라피 카드", desc: "자체제작 금박 캘리그라피 카드", price: 9900 },
   { name: "미러리스 대여", desc: "캐논 EOS R50 미러리스 카메라 대여", price: 30000 },
   { name: "폴라로이드 대여", desc: "폴라로이드 카메라 대여 / 필름 10장 포함", price: 20000 },
-  { name: "아이폰 스냅", desc: "(1H) 원본일체+20장 내외 색감 보정(업로드 동의시 진행)", price: 50000 },
+  { name: "아이폰 스냅", desc: "(1H) 원본일체+20장 내외 색감 보정 / 업로드 동의 시 10,000원 할인", price: 80000 },
   { name: "병풍 추가", desc: "전통 병풍 배경 추가", price: 30000 },
   { name: "대형 숫자 풍선", desc: "생일/기념일 숫자 풍선", price: 5000 }
 ];
@@ -965,7 +965,7 @@ if (cameraVal) {
   if (cameraVal.value === '미러리스') total += 30000;
   if (cameraVal.value === '폴라로이드') total += 20000;
 }
-  if (form.iphoneSnap.checked) total += 50000;
+  if (form.iphoneSnap.checked) total += 80000;
   if (form.screenBackground.checked) total += 30000;
   if (form.calligraphyCard.checked) total += 9900;
   if (form.numberBalloon.checked) total += 5000;
