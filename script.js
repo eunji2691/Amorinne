@@ -431,7 +431,8 @@ const bridalDetailHtml = `
 
 const STUDIO_OPTIONS = [
   { name: "캘리그라피 카드", desc: "자체제작 금박 캘리그라피 카드", price: 9900 },
-  { name: "카메라 대여", desc: "미러리스 또는 폴라로이드(필름 10장 포함)", price: 20000 },
+  { name: "미러리스 대여", desc: "캐논 EOS R50 미러리스 카메라 대여", price: 30000 },
+  { name: "폴라로이드 대여", desc: "폴라로이드 카메라 대여 / 필름 10장 포함", price: 20000 },
   { name: "아이폰 스냅", desc: "(1H) 원본일체+20장 내외 색감 보정(업로드 동의시 진행)", price: 50000 },
   { name: "병풍 추가", desc: "전통 병풍 배경 추가", price: 30000 },
   { name: "대형 숫자 풍선", desc: "생일/기념일 숫자 풍선", price: 5000 }
@@ -446,7 +447,7 @@ const MILESTONE_OPTIONS_DATA = [
   { name: "모형 우드 백설기", desc: "우드 스타일 모형 백설기", price: 10000 },
   { name: "모형 백설기 케이크", desc: "케이크 형태 모형 백설기", price: 10000 },
   { name: "모형 시루떡", desc: "전통 시루떡 모형", price: 5000 },
-  { name: "접시형 모형 떡", desc: "시루떡 / 무지개 절", price: 7000 },
+  { name: "접시형 모형 떡", desc: "시루떡 / 무지개 접시형 절편", price: 7000 },
   { name: "캘리그라피 카드", desc: "자체제작 금박 캘리그라피 카드", price: 9900 }
 ];
 
