@@ -462,6 +462,11 @@ const BAEKIL_HANBOK_DATA = [
   { name: "남아한복 하늘", img: "images/b100sky.jpg" },
   { name: "남아한복 노랑", img: "images/b100yellow.jpg" },
   { name: "남아한복 초록", img: "images/b100green.jpg" },
+
+  { name: "남아한복 연핑크", img: "images/b100pink.jpg" },
+  { name: "남아한복 민트", img: "images/b100mint.jpg" },
+  { name: "남아한복 네이비", img: "images/b100navy.jpg" },
+  
   { name: "여아한복 베이지", img: "images/g100beige.jpg" },
   { name: "여아한복 노랑", img: "images/g100yellow.jpg" },
   { name: "여아한복 민트", img: "images/g100mint.jpg" },
