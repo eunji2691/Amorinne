@@ -961,7 +961,10 @@ if (form.querySelector('[name="formalWear"]')?.checked) {
   total += 50000;
 }
   var cameraVal = form.querySelector('input[name="cameraRental"]:checked');
-  if (cameraVal && cameraVal.value) total += 20000;
+if (cameraVal) {
+  if (cameraVal.value === '미러리스') total += 30000;
+  if (cameraVal.value === '폴라로이드') total += 20000;
+}
   if (form.iphoneSnap.checked) total += 50000;
   if (form.screenBackground.checked) total += 30000;
   if (form.calligraphyCard.checked) total += 9900;
