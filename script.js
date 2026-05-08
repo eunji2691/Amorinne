@@ -704,7 +704,7 @@ DOL_HANBOK_DATA.forEach(function(h) {
 });
 html += '</div></div>';
 
-html += '<div class="card"><div class="card-header"><div><div class="card-title">정장/드레스</div>';
+html += '<div class="card"><div class="card-header"><div><div class="card-title">돌 정장/드레스</div>';
 html += '<div class="card-desc">정장/드레스 사진은 정장·드레스 대여 페이지에서 참고해 주세요.</div></div>';
 html += '<div class="card-price">50,000원</div></div></div>';
 
