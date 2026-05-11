@@ -982,6 +982,8 @@ if (cameraVal) {
   if (form.screenBackground.checked) total += 30000;
   if (form.calligraphyCard.checked) total += 9900;
   if (form.numberBalloon.checked) total += 5000;
+  if (document.getElementById('studioHeliumBalloon')?.checked) total += 30000;
+if (document.getElementById('studioVictoriaCake')?.checked) total += 15000;
 
   const conceptEls = document.querySelectorAll('input[name="extraConcept"]:checked');
   conceptEls.forEach(el => {
