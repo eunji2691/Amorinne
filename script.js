@@ -630,10 +630,15 @@ function renderTableCards(containerId, tables, priceKey) {
   var html = "";
   var renderTables = tables.slice();
 
-  // 무인 스튜디오 탭에만 연화상 추가
-  if (containerId === "studio-tables-list") {
-    renderTables = renderTables.concat(STUDIO_ONLY_TABLES);
-  }
+// 무인 스튜디오 탭에서는 TABLE_DATA의 생일상은 빼고,
+// STUDIO_ONLY_TABLES에 있는 생일상만 보여주기
+if (containerId === "studio-tables-list") {
+  renderTables = renderTables
+    .filter(function(t) {
+      return t.id !== "birthday";
+    })
+    .concat(STUDIO_ONLY_TABLES);
+}
 
   renderTables.forEach(function(t) {
     var clickEvent = "";
