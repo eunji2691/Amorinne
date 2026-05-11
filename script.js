@@ -865,10 +865,12 @@ function getTablePrice(tableName, type) {
       "하연상": 5,
       "사파리테이블": 6,
       "프리미엄 연화상(스튜디오 전용)": -1,
-      "브라이덜샤워": 7
+"생일상(HAPPY BIRTHDAY MODE: ON)": -2,
+"브라이덜샤워": 7
     };
     var idx = map[tableName];
     if (idx === -1) return 85000; // Premium
+    if (idx === -2) return 50000; // Birthday
     if (idx !== undefined && TABLE_DATA[idx]) {
       return type === "studio" ? TABLE_DATA[idx].studioPrice : TABLE_DATA[idx].milestonePrice;
     }
