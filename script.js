@@ -63,7 +63,7 @@ const STUDIO_ONLY_TABLES = [
     id: "birthday",
     name: "생일상(HAPPY BIRTHDAY MODE: ON)",
     desc: "매해 돌아오는 하루, 가장 사랑스럽게 기억될 오늘.<br>왕관 및 의상, 양말 스튜디오 구비<br>거치대 설치형 풍선으로 셋팅되며, 유료 추가 옵션에서 헬륨가스 풍선으로 변경 가능합니다.",
-    img: "images/birthdaytable.jpg",
+    img: "images/bdaytable.jpg",
     studioPrice: 50000
   }
 ];
