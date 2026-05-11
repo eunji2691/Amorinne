@@ -517,7 +517,7 @@ const STUDIO_OPTIONS = [
   { name: "카메라 스냅", desc: "(1H) 미러리스 촬영 + 원본일체 / 업로드 동의 시 10,000원 할인", price: 100000 },
   { name: "병풍 추가", desc: "전통 병풍 배경 추가", price: 30000 },
   { name: "대형 숫자 풍선", desc: "생일/기념일 숫자 풍선", price: 5000 },
-  { name: "(생일파티용)헬륨풍선 7개로 변경", desc: "거치대 설치형 풍선에서 헬륨가스 풍선 7개로 변경", price: 30000 },
+  { name: "(생일파티용)헬륨풍선으로 변경", desc: "거치대 설치형 풍선에서 헬륨가스 풍선 7개로 변경", price: 30000 },
   { name: "모형 빅토리아케이크(딸기)", desc: "촬영용 딸기 빅토리아 모형 케이크", price: 15000 }
 ];
 
@@ -1742,7 +1742,7 @@ if (postData.numberBalloon === 'on') {
 }
 
   if (postData.heliumBalloon === 'on') {
-  extraLines.push('- (생일파티용)헬륨풍선 7개로 변경');
+  extraLines.push('- (생일파티용)헬륨풍선으로 변경');
 }
 
 if (postData.victoriaCake === 'on') {
