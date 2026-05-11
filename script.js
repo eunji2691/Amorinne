@@ -1112,6 +1112,9 @@ if (form.waterproofMat.checked) total += 10000;
   if (form.modelSiruTteok.checked) total += 5000;
   if (form.modelPlateTeok.checked) total += 7000;
   if (form.calligraphyCard.checked) total += 9900;
+  if (document.getElementById('milestoneVictoriaCake')?.checked) total += 15000;
+if (document.getElementById('milestoneHelium10')?.checked) total += 25000;
+if (document.getElementById('milestoneHelium20')?.checked) total += 33000;
 
   document.getElementById("milestoneTotalPrice").textContent = total.toLocaleString() + "원";
 }
@@ -1818,6 +1821,7 @@ const accessoryLines = [];
 const furnitureLines = [];
 const propLines = [];
 const extraLines = [];
+const birthdayLines = [];  
 
 // 의상
 if (postData.babyClothes === 'on') {
@@ -1861,11 +1865,16 @@ if (postData.modelPlateTeok === 'on') propLines.push('- 접시형 모형 떡');
 if (postData.dolGrabbingSet === 'on') extraLines.push('- 돌잡이 세트');
 if (postData.calligraphyCard === 'on') extraLines.push('- 금박 캘리그라피 카드');
 
+if (postData.victoriaCake === 'on') birthdayLines.push('- 모형 딸기 빅토리아 케이크');
+if (postData.helium10 === 'on') birthdayLines.push('- 헬륨가스 10개용');
+if (postData.helium20 === 'on') birthdayLines.push('- 헬륨가스 20개용');  
+
 // 카테고리 정리
 if (outfitLines.length) optionLines.push('[의상]', ...outfitLines);
 if (accessoryLines.length) optionLines.push('[한복 악세사리]', ...accessoryLines);
 if (furnitureLines.length) optionLines.push('[의자/테이블]', ...furnitureLines);
 if (propLines.length) optionLines.push('[모형 소품]', ...propLines);
+if (birthdayLines.length) optionLines.push('[생일파티용]', ...birthdayLines);
 if (extraLines.length) optionLines.push('[기타]', ...extraLines);
 
 
