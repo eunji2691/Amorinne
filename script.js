@@ -48,7 +48,8 @@ const TABLE_DATA = [
   { id: "daon", name: "다온상", desc: "‘많을 다(多), 따뜻할 온(溫)’, 차분함 속에 아이의 순간을 온기있게 담아냈습니다.", img: "images/daon.jpg", studioPrice: 40000, milestonePrice: 89000 },
   { id: "hayeon", name: "하연상", desc: "맑고 단정한 백색의 아름다움에 전통미를 더했습니다.", img: "images/hayeon.jpg", studioPrice: 35000, milestonePrice: 79000 },
   { id: "safari", name: "사파리 테이블", desc: "생기 넘치는 동물 소품과 자연스러운 우드감이 조화를 이루는 테이블", img: "images/safari.jpg", studioPrice: 35000, milestonePrice: 69000 },
-  { id: "bridal", name: "브라이덜 샤워", desc: "예비 신부의 특별한 하루를 깨끗하고 우아한 분위기로 채워줍니다.", img: "images/bridal.JPG", studioPrice: 50000, milestonePrice: 80000 }
+  { id: "bridal", name: "브라이덜 샤워", desc: "예비 신부의 특별한 하루를 깨끗하고 우아한 분위기로 채워줍니다.", img: "images/bridal.JPG", studioPrice: 50000, milestonePrice: 80000 },
+  { id: "birthday", name: "생일상(HAPPY BIRTHDAY MODE: ON)", desc: "매해 돌아오는 하루, 가장 사랑스럽게 기억될 오늘.", img: "images/bdaytable.jpg", studioPrice: 50000, milestonePrice: 50000 }
 ];
 
 const STUDIO_ONLY_TABLES = [
@@ -436,6 +437,78 @@ const bridalDetailHtml = `
   </div>
 `;
 
+const birthdayDetailHtml = `
+  <p class="table-detail-desc">
+    ‘Happy Birthday Mode: ON’<br><br>
+
+    매해 돌아오는 생일이지만,<br>
+    아이에게는 매번 다시 없을<br>
+    소중한 성장의 한 페이지입니다.<br><br>
+
+    생일상은<br>
+    보다 자유롭고 사랑스러운 분위기 속에서<br>
+    우리 아이만의 특별한 하루를 기록할 수 있도록 준비된 테이블입니다.<br><br>
+
+    알록달록한 풍선과 생일 배너,<br>
+    따뜻한 무드의 소품들이 어우러져<br>
+    기념일의 설렘을 더욱 생생하게 담아냅니다.<br><br>
+
+    매년 돌아오는 생일마다<br>
+    조금씩 달라지는 아이의 모습을<br>
+    아모린느의 감성으로 따뜻하게 완성해드립니다.
+  </p>
+
+  <div class="detail-section">
+    <h4>기본 구성</h4>
+    <ul class="detail-list">
+      <li>방수 테이블보</li>
+      <li>패브릭 생일 배너</li>
+      <li>꼭꼬핀 2개</li>
+      <li>풍선 거치대 (높은 거치대 103cm / 낮은 거치대 53cm 중 택1)</li>
+      <li>풍선 10개</li>
+      <li>인형용 미니 고깔모자 5개</li>
+      <li>코끼리 피리 1개</li>
+      <li>케이크 T-shirt</li>
+      <li>왕관</li>
+    </ul>
+  </div>
+
+  <div class="detail-section">
+    <h4>선택 옵션</h4>
+    <p class="table-detail-desc">
+      1. 거치대 선택<br>
+      낮은 거치대는 53cm로 테이블 위에 세팅하기 좋고,<br>
+      높은 거치대는 103cm로 바닥에 세팅해<br>
+      헬륨풍선처럼 떠 있는 느낌을 연출하기 좋습니다.<br><br>
+
+      2. 헬륨풍선 연출 변경<br>
+      기본 구성은 거치대 설치형 풍선으로 세팅되며,<br>
+      유료 추가 옵션을 통해 헬륨 풍선 연출로 변경 가능합니다.<br><br>
+
+      3. 모형 딸기 빅토리아 케이크 추가<br>
+      촬영용 모형 딸기 빅토리아 케이크를 추가하시면<br>
+      생일상 분위기를 더욱 풍성하고 사랑스럽게 완성하실 수 있습니다.
+    </p>
+  </div>
+
+  <div class="detail-section">
+    <h4>연출 TIP</h4>
+    <p class="table-detail-desc">
+      자고 일어나는 아이를 위한 깜짝 파티로 준비하실 경우,<br>
+      아이가 방문을 열고 나오기 전<br>
+      10분 정도만 먼저 일어나 여유 있게 세팅해 주세요.<br><br>
+
+      헬륨풍선은 체공시간이 있어<br>
+      파티 1시간 전 헬륨 주입을 추천드립니다.<br><br>
+
+      ※ 이미지 속 인형은 연출 예시이며 포함되지 않습니다.<br>
+      아이가 평소 좋아하는 인형이나 소중한 장난감을 함께 배치하거나,<br>
+      헬륨풍선의 경우 인형에 살짝 묶어 연출해주시면<br>
+      더욱 자연스럽고 우리 아이만의 특별한 생일상으로 완성됩니다.
+    </p>
+  </div>
+`;
+
 const STUDIO_OPTIONS = [
   { name: "캘리그라피 카드", desc: "자체제작 금박 캘리그라피 카드", price: 9900 },
   { name: "미러리스 대여", desc: "캐논 미러리스 카메라 대여", price: 30000 },
@@ -644,6 +717,16 @@ function renderTableCards(containerId, tables, priceKey) {
           + t.desc.replace(/'/g, "\\'")
           + "', bridalDetailHtml)";
       }
+
+       else if (t.id === "birthday") {
+  clickEvent = "openTableDetailModal('"
+    + t.name.replace(/'/g, "\\'")
+    + "', '"
+    + t.img
+    + "', '"
+    + t.desc.replace(/'/g, "\\'")
+    + "', birthdayDetailHtml)";
+      } 
 
       else {
         clickEvent = "openImageModal('"
