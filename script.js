@@ -58,6 +58,13 @@ const STUDIO_ONLY_TABLES = [
     desc: "스튜디오 촬영 85,000원<br>효도상(환갑·칠순) 100,000원<br>※ 효도상은 카카오톡 문의 예약",
     img: "images/yunwha.jpg",
     studioPrice: 85000
+  },
+  {
+    id: "birthday",
+    name: "생일상(HAPPY BIRTHDAY MODE: ON)",
+    desc: "매해 돌아오는 하루, 가장 사랑스럽게 기억될 오늘.<br>왕관 및 의상, 양말 스튜디오 구비<br>거치대 설치형 풍선으로 셋팅되며, 유료 추가 옵션에서 헬륨가스 풍선으로 변경 가능합니다.",
+    img: "images/birthdaytable.jpg",
+    studioPrice: 50000
   }
 ];
 
@@ -436,7 +443,9 @@ const STUDIO_OPTIONS = [
   { name: "아이폰 스냅", desc: "(1H) 원본일체+20장 내외 색감 보정 / 업로드 동의 시 10,000원 할인", price: 80000 },
   { name: "카메라 스냅", desc: "(1H) 미러리스 촬영 + 원본일체 / 업로드 동의 시 10,000원 할인", price: 100000 },
   { name: "병풍 추가", desc: "전통 병풍 배경 추가", price: 30000 },
-  { name: "대형 숫자 풍선", desc: "생일/기념일 숫자 풍선", price: 5000 }
+  { name: "대형 숫자 풍선", desc: "생일/기념일 숫자 풍선", price: 5000 },
+  { name: "(생일파티용)헬륨풍선 7개로 변경", desc: "거치대 설치형 풍선에서 헬륨가스 풍선 7개로 변경", price: 30000 },
+  { name: "모형 빅토리아케이크(딸기)", desc: "촬영용 딸기 빅토리아 모형 케이크", price: 15000 }
 ];
 
 const MILESTONE_OPTIONS_DATA = [
