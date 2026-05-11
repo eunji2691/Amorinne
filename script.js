@@ -49,7 +49,7 @@ const TABLE_DATA = [
   { id: "hayeon", name: "하연상", desc: "맑고 단정한 백색의 아름다움에 전통미를 더했습니다.", img: "images/hayeon.jpg", studioPrice: 35000, milestonePrice: 79000 },
   { id: "safari", name: "사파리 테이블", desc: "생기 넘치는 동물 소품과 자연스러운 우드감이 조화를 이루는 테이블", img: "images/safari.jpg", studioPrice: 35000, milestonePrice: 69000 },
   { id: "bridal", name: "브라이덜 샤워", desc: "예비 신부의 특별한 하루를 깨끗하고 우아한 분위기로 채워줍니다.", img: "images/bridal.JPG", studioPrice: 50000, milestonePrice: 80000 },
-  { id: "birthday", name: "생일상(HAPPY BIRTHDAY MODE: ON)", desc: "매해 돌아오는 하루, 가장 사랑스럽게 기억될 오늘.", img: "images/bdaytable.jpg", studioPrice: 50000, milestonePrice: 50000 }
+  { id: "birthday", name: "생일상(HAPPY BIRTHDAY MODE: ON)", desc: "매해 돌아오는 하루, 가장 사랑스럽게 기억될 오늘.", img: "images/bdaytable.jpg", studioPrice: 50000, milestonePrice: 79000 }
 ];
 
 const STUDIO_ONLY_TABLES = [
@@ -531,7 +531,10 @@ const MILESTONE_OPTIONS_DATA = [
   { name: "모형 백설기 케이크", desc: "케이크 형태 모형 백설기", price: 10000 },
   { name: "모형 시루떡", desc: "전통 시루떡 모형", price: 5000 },
   { name: "접시형 모형 떡", desc: "시루떡 / 무지개 접시형 절편", price: 7000 },
-  { name: "캘리그라피 카드", desc: "자체제작 금박 캘리그라피 카드", price: 9900 }
+  { name: "캘리그라피 카드", desc: "자체제작 금박 캘리그라피 카드", price: 9900 },
+{ name: "모형 딸기 빅토리아 케이크", desc: "촬영용 모형 딸기 빅토리아 케이크", price: 15000 },
+{ name: "헬륨가스 10개용", desc: "실제 고무풍선 약 7~8개 주입 가능 / 컬링리본 동봉", price: 25000 },
+{ name: "헬륨가스 20개용", desc: "실제 고무풍선 약 15~16개 주입 가능 / 컬링리본 동봉", price: 33000 }
 ];
 
 const HANBOK_ACCESSORY_DATA = [
