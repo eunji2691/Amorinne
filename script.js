@@ -1,5 +1,5 @@
 const USE_FAKE_SUBMIT = false;
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyRJCCStkF6SWcdeiMjc5NWCZHdIO5zjWZiMujKKfDHj2VG8CBgS43Nek3Pe8UFfiVoXQ/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx1Nb4HofvqJ5BG36NrGj4SuCZmYrBIzbqdq795zQZ_yeX1A5nKptOzg3kU2OtEYbtGHw/exec';
 const KAKAO_CHAT_URL = 'http://pf.kakao.com/_cxhePn/chat';
 
 const submitLocks = {
@@ -1651,6 +1651,14 @@ if (postData.numberBalloon === 'on') {
     postData.balloonColor ? '색상 ' + postData.balloonColor : ''
   ].filter(Boolean).join(', ');
   extraLines.push('- 대형 숫자 풍선' + (balloonText ? ' (' + balloonText + ')' : ''));
+}
+
+  if (postData.heliumBalloon === 'on') {
+  extraLines.push('- (생일파티용)헬륨풍선 7개로 변경');
+}
+
+if (postData.victoriaCake === 'on') {
+  extraLines.push('- 모형 빅토리아케이크(딸기)');
 }
 
 // 카테고리 정리
