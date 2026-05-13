@@ -2388,3 +2388,9 @@ function toggleDressEventTypeEtc() {
     input.value = '';
   }
 }
+
+function toggleFloatingMenu() {
+  var menu = document.getElementById('floatingQuickMenu');
+  if (!menu) return;
+  menu.classList.toggle('open');
+}
