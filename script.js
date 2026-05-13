@@ -936,9 +936,39 @@ function closeModal(id) {
 // ===== PRICE CALCULATION =====
 function isWeekend(dateStr) {
   if (!dateStr) return false;
-  var d = new Date(dateStr);
-  var day = d.getDay();
-  return day === 0 || day === 6;
+
+  var date = new Date(dateStr);
+  if (isNaN(date.getTime())) return false;
+
+  var day = date.getDay();
+
+  var yyyy = date.getFullYear();
+  var mm = String(date.getMonth() + 1).padStart(2, '0');
+  var dd = String(date.getDate()).padStart(2, '0');
+  var ymd = `${yyyy}-${mm}-${dd}`;
+
+  const HOLIDAYS_2026 = [
+    '2026-01-01',
+    '2026-02-16',
+    '2026-02-17',
+    '2026-02-18',
+    '2026-03-02',
+    '2026-05-01',
+    '2026-05-05',
+    '2026-05-25',
+    '2026-06-03',
+    '2026-06-06',
+    '2026-07-17',
+    '2026-08-17',
+    '2026-09-24',
+    '2026-09-25',
+    '2026-09-26',
+    '2026-10-05',
+    '2026-10-09',
+    '2026-12-25'
+  ];
+
+  return day === 0 || day === 6 || HOLIDAYS_2026.includes(ymd);
 }
 
 function getTablePrice(tableName, type) {
