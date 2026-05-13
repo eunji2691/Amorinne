@@ -2389,8 +2389,15 @@ function toggleDressEventTypeEtc() {
   }
 }
 
-function toggleFloatingMenu() {
+document.addEventListener('DOMContentLoaded', function () {
   var menu = document.getElementById('floatingQuickMenu');
-  if (!menu) return;
-  menu.classList.toggle('open');
-}
+  var btn = document.getElementById('floatingMainBtn');
+
+  if (!menu || !btn) return;
+
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    menu.classList.toggle('open');
+  });
+});
