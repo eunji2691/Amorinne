@@ -1992,7 +1992,3 @@ button {
 .floating-menu-item {
   pointer-events: auto;
 }
-
-.flower-shower img {
-  aspect-ratio: 4 / 5 !important;
-}
