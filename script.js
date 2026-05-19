@@ -1109,6 +1109,7 @@ if (document.getElementById('studioVictoriaCake')?.checked) total += 15000;
   conceptEls.forEach(el => {
     if (el.value === '봄의 요람') total += 15000;
     if (el.value === '블루밍 데이') total += 10000;
+    if (el.value === '플라워샤워') total += 10000;
   });
   
   document.getElementById("studioTotalPrice").textContent = total.toLocaleString() + "원";
