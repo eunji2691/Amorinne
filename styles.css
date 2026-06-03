@@ -1992,3 +1992,32 @@ button {
 .floating-menu-item {
   pointer-events: auto;
 }
+
+
+/* FAQ */
+
+.faq-category {
+  margin-top: 50px;
+  margin-bottom: 15px;
+}
+
+.faq-category h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #3d2f26;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #d8cfc8;
+}
+
+#faq .notice-item {
+  margin-bottom: 0;
+}
+
+#faq .notice-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+#faq .notice-content {
+  line-height: 1.8;
+}
