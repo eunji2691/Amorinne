@@ -470,6 +470,7 @@ const birthdayDetailHtml = `
       <li>코끼리 피리 1개</li>
       <li>케이크 T-shirt</li>
       <li>왕관</li>
+      <li>엽서</li>
     </ul>
   </div>
 
