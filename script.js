@@ -485,8 +485,8 @@ const birthdayDetailHtml = `
       기본 구성은 거치대 설치형 풍선으로 세팅되며,<br>
       유료 추가 옵션을 통해 헬륨 풍선 연출로 변경 가능합니다.<br><br>
 
-      3. 모형 딸기 빅토리아 케이크 추가<br>
-      촬영용 모형 딸기 빅토리아 케이크를 추가하시면<br>
+      3. 모형 체리 빅토리아 케이크 추가<br>
+      촬영용 모형 체리 빅토리아 케이크를 추가하시면<br>
       생일상 분위기를 더욱 풍성하고 사랑스럽게 완성하실 수 있습니다.
     </p>
   </div>
@@ -518,7 +518,7 @@ const STUDIO_OPTIONS = [
   { name: "병풍 추가", desc: "전통 병풍 배경 추가", price: 30000 },
   { name: "대형 숫자 풍선", desc: "생일/기념일 숫자 풍선", price: 5000 },
   { name: "(생일파티용)헬륨풍선으로 변경", desc: "거치대 설치형 풍선에서 헬륨가스 풍선 7개로 변경", price: 30000 },
-  { name: "모형 빅토리아케이크(딸기)", desc: "촬영용 딸기 빅토리아 모형 케이크", price: 15000 }
+  { name: "모형 빅토리아케이크(체리)", desc: "촬영용 체리 빅토리아 모형 케이크", price: 15000 }
 ];
 
 const MILESTONE_OPTIONS_DATA = [
@@ -532,7 +532,7 @@ const MILESTONE_OPTIONS_DATA = [
   { name: "모형 시루떡", desc: "전통 시루떡 모형", price: 5000 },
   { name: "접시형 모형 떡", desc: "시루떡 / 무지개 접시형 절편", price: 7000 },
   { name: "캘리그라피 카드", desc: "자체제작 금박 캘리그라피 카드", price: 9900 },
-{ name: "모형 딸기 빅토리아 케이크", desc: "촬영용 모형 딸기 빅토리아 케이크", price: 15000 },
+{ name: "모형 체리 빅토리아 케이크", desc: "촬영용 모형 체리 빅토리아 케이크", price: 15000 },
 { name: "헬륨가스 10개용", desc: "실제 고무풍선 약 7~8개 주입 가능 / 컬링리본 동봉", price: 25000 },
 { name: "헬륨가스 20개용", desc: "실제 고무풍선 약 15~16개 주입 가능 / 컬링리본 동봉", price: 33000 }
 ];
@@ -1782,7 +1782,7 @@ if (postData.numberBalloon === 'on') {
 }
 
 if (postData.victoriaCake === 'on') {
-  extraLines.push('- 모형 빅토리아케이크(딸기)');
+  extraLines.push('- 모형 빅토리아케이크(체리)');
 }
 
 // 카테고리 정리
@@ -1901,7 +1901,7 @@ if (postData.modelPlateTeok === 'on') propLines.push('- 접시형 모형 떡');
 if (postData.dolGrabbingSet === 'on') extraLines.push('- 돌잡이 세트');
 if (postData.calligraphyCard === 'on') extraLines.push('- 금박 캘리그라피 카드');
 
-if (postData.victoriaCake === 'on') birthdayLines.push('- 모형 딸기 빅토리아 케이크');
+if (postData.victoriaCake === 'on') birthdayLines.push('- 모형 체리 빅토리아 케이크');
 if (postData.helium10 === 'on') birthdayLines.push('- 헬륨가스 10개용');
 if (postData.helium20 === 'on') birthdayLines.push('- 헬륨가스 20개용');  
 
