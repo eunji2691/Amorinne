@@ -2021,3 +2021,19 @@ button {
 #faq .notice-content {
   line-height: 1.8;
 }
+
+
+
+.option-image-row {
+  display: flex;
+  gap: 8px;
+  padding: 12px 12px 0;
+}
+
+.option-image-row img {
+  width: 50%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+}
