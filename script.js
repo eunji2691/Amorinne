@@ -1102,6 +1102,7 @@ if (cameraVal) {
 }
   if (form.iphoneSnap.checked) total += 80000;
   if (form.cameraSnap.checked) total += 100000;
+  if (form.anniversaryTopper?.checked) total += 12000;
   if (form.screenBackground.checked) total += 30000;
   if (form.calligraphyCard.checked) total += 9900;
   if (form.numberBalloon.checked) total += 5000;
@@ -1144,6 +1145,7 @@ if (form.querySelector('[name="dolHanbok"]')?.checked) total += 35000;
 if (form.waterproofMat.checked) total += 10000;
   if (form.foldingTable.checked) total += 10000;
   if (form.dolGrabbingSet.checked) total += 10000;
+  if (form.anniversaryTopper?.checked) total += 12000;
   if (form.premiumModelFruit.checked) total += 10000;
   if (form.modelBaekseolgi.checked) total += 5000;
   if (form.modelWoodBaekseolgi.checked) total += 10000;
@@ -1764,6 +1766,10 @@ if (postData.cameraSnap === 'on') {
   extraLines.push('- 카메라 스냅');
 }
 
+if (postData.anniversaryTopper === 'on') {
+  extraLines.push('- 기념일 토퍼');
+}
+
 if (postData.screenBackground === 'on') {
   extraLines.push('- 병풍');
 }
@@ -1903,6 +1909,7 @@ if (postData.modelPlateTeok === 'on') propLines.push('- 접시형 모형 떡');
 // 기타
 if (postData.dolGrabbingSet === 'on') extraLines.push('- 돌잡이 세트');
 if (postData.calligraphyCard === 'on') extraLines.push('- 금박 캘리그라피 카드');
+if (postData.anniversaryTopper === 'on') extraLines.push('- 기념일 토퍼');
 
 if (postData.victoriaCake === 'on') birthdayLines.push('- 모형 체리 빅토리아 케이크');
 if (postData.helium10 === 'on') birthdayLines.push('- 헬륨가스 10개용');
