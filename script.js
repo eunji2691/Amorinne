@@ -525,7 +525,7 @@ const STUDIO_OPTIONS = [
 const MILESTONE_OPTIONS_DATA = [
   { name: "돌잡이 세트", desc: "전통 돌잡이 소품 세트", price: 10000, img: "images/toy.jpg" },
   { name: "범보의자/양털의자/돌방석", desc: "아기 의자 또는 돌방석", price: 5000 },
-  { name: "접이식 테이블", desc: "추가 테이블", price: 10000 },
+  { name: "접이식 테이블", desc: "1800 테이블", price: 10000 },
   { name: "고급 모형 과일", desc: "촬영용 모형 과일 세트", price: 10000 },
   { name: "모형 백설기", desc: "촬영용 모형 백설기", price: 5000 },
   { name: "모형 우드 백설기", desc: "우드 스타일 모형 백설기", price: 10000 },
