@@ -516,7 +516,7 @@ const STUDIO_OPTIONS = [
   { name: "폴라로이드 대여", desc: "폴라로이드 카메라 대여 / 필름 10장 포함", price: 20000 },
   { name: "아이폰 스냅", desc: "(1H) 원본일체+20장 내외 색감 보정 / 업로드 동의 시 10,000원 할인", price: 80000 },
   { name: "카메라 스냅", desc: "(1H) 미러리스 촬영 + 원본일체 / 업로드 동의 시 10,000원 할인", price: 100000 },
-  { name: "기념일 토퍼", desc: "생일/기념일 맞춤 토퍼", price: 12000, images: ["images/topper1.jpg", "images/topper2.jpg"] },{ name: "기념일 토퍼", desc: "아이 이름이 들어간 백일/첫돌 맞춤제작 토퍼", price: 12000, images: ["images/topper1.jpg", "images/topper2.jpg"] },
+  { name: "기념일 토퍼", desc: "아이 이름이 들어간 백일/첫돌 맞춤제작 토퍼", price: 12000, images: ["images/topper1.jpg", "images/topper2.jpg"] },
   { name: "병풍 추가", desc: "전통 병풍 배경 추가", price: 30000 },
   { name: "대형 숫자 풍선", desc: "생일/기념일 숫자 풍선", price: 5000 },
   { name: "(생일파티용)헬륨풍선으로 변경", desc: "거치대 설치형 풍선에서 헬륨가스 풍선 7개로 변경", price: 30000 },
@@ -812,11 +812,21 @@ html += '<div class="card-desc">정장/드레스 사진은 정장·드레스 대
 html += '<div class="card-price">50,000원</div></div></div>';
 
   // Other options
-  STUDIO_OPTIONS.forEach(function(opt) {
-    html += '<div class="card"><div class="card-header"><div><div class="card-title">' + opt.name + '</div>';
-    html += '<div class="card-desc">' + opt.desc + '</div></div>';
-    html += '<div class="card-price">' + opt.price.toLocaleString() + '원</div></div></div>';
-  });
+STUDIO_OPTIONS.forEach(function(opt) {
+  html += '<div class="card">';
+
+  if (opt.images) {
+    html += '<div class="option-image-row">';
+    opt.images.forEach(function(img) {
+      html += '<img src="' + img + '" alt="' + opt.name + '" onclick="openImageModal(\'' + opt.name.replace(/'/g, "\\'") + '\', \'' + img + '\')" />';
+    });
+    html += '</div>';
+  }
+
+  html += '<div class="card-header"><div><div class="card-title">' + opt.name + '</div>';
+  html += '<div class="card-desc">' + opt.desc + '</div></div>';
+  html += '<div class="card-price">' + opt.price.toLocaleString() + '원</div></div></div>';
+});
 
   html += '</div>';
   container.innerHTML = html;
@@ -872,17 +882,25 @@ html += '</div></div>';
   html += '</div></div>';
 
   // Other options
-  MILESTONE_OPTIONS_DATA.forEach(function(opt) {
-    html += '<div class="card">';
-    if (opt.img) {
-      html += '<div class="card-img-wrapper" onclick="openImageModal(\'' + opt.name.replace(/'/g, "\\'") + '\', \'' + opt.img + '\')">';
-      html += '<img src="' + opt.img + '" alt="' + opt.name + '" style="height:8rem;" />';
-      html += '<div class="card-img-overlay"><span>클릭하여 확대</span></div></div>';
-    }
-    html += '<div class="card-header"><div><div class="card-title">' + opt.name + '</div>';
-    html += '<div class="card-desc">' + opt.desc + '</div></div>';
-    html += '<div class="card-price">' + opt.price.toLocaleString() + '원</div></div></div>';
-  });
+MILESTONE_OPTIONS_DATA.forEach(function(opt) {
+  html += '<div class="card">';
+
+  if (opt.images) {
+    html += '<div class="option-image-row">';
+    opt.images.forEach(function(img) {
+      html += '<img src="' + img + '" alt="' + opt.name + '" onclick="openImageModal(\'' + opt.name.replace(/'/g, "\\'") + '\', \'' + img + '\')" />';
+    });
+    html += '</div>';
+  } else if (opt.img) {
+    html += '<div class="card-img-wrapper" onclick="openImageModal(\'' + opt.name.replace(/'/g, "\\'") + '\', \'' + opt.img + '\')">';
+    html += '<img src="' + opt.img + '" alt="' + opt.name + '" style="height:8rem;" />';
+    html += '<div class="card-img-overlay"><span>클릭하여 확대</span></div></div>';
+  }
+
+  html += '<div class="card-header"><div><div class="card-title">' + opt.name + '</div>';
+  html += '<div class="card-desc">' + opt.desc + '</div></div>';
+  html += '<div class="card-price">' + opt.price.toLocaleString() + '원</div></div></div>';
+});
 
   html += '</div>';
   container.innerHTML = html;
