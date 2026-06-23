@@ -1402,25 +1402,17 @@ onchange="toggleStudioHanbokField(); updateStudioPrice()" />
               <label><input type="radio" name="cameraRental" value="폴라로이드" onchange="updateStudioPrice()" /> 폴라로이드 (20,000원)</label>
             </div>
           </div>
-          <div class="checkbox-group">
-  <input type="checkbox" id="studioCameraSnap" name="cameraSnap" onchange="toggleCameraSnapConsent(); updateStudioPrice()" />
-  <label for="studioCameraSnap" class="tooltip-trigger">
-    카메라 스냅 <span class="tooltip">업로드 동의 90,000원 / 비동의 100,000원</span>
+         <div class="form-group" style="margin-top:0.5rem;">
+  <label class="form-label tooltip-trigger">
+    카메라 스냅
+    <span class="tooltip">업로드 동의 90,000원 / 비동의 100,000원</span>
   </label>
-</div>
 
-<div id="cameraSnapConsentField" style="display:none; margin:8px 0 12px 28px;">
-  <label class="form-label">업로드 동의 여부</label>
-  <div class="radio-group">
-    <label>
-      <input type="radio" name="cameraSnapConsent" value="동의" checked onchange="updateStudioPrice()" />
-      동의 90,000원
-    </label>
-    <label>
-      <input type="radio" name="cameraSnapConsent" value="비동의" onchange="updateStudioPrice()" />
-      비동의 100,000원
-    </label>
-  </div>
+  <select class="form-input" id="cameraSnapConsent" name="cameraSnapConsent" onchange="updateStudioPrice()">
+    <option value="">선택안함</option>
+    <option value="동의">업로드 동의 (90,000원)</option>
+    <option value="비동의">업로드 비동의 (100,000원)</option>
+  </select>
 </div>
           <div class="checkbox-group">
   <input type="checkbox" id="studioAnniversaryTopper" name="anniversaryTopper" onchange="updateStudioPrice()" />
