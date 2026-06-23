@@ -1119,8 +1119,15 @@ if (cameraVal) {
   if (cameraVal.value === '미러리스') total += 30000;
   if (cameraVal.value === '폴라로이드') total += 20000;
 }
-  if (form.iphoneSnap.checked) total += 80000;
-  if (form.cameraSnap.checked) total += 100000;
+  const cameraSnapConsent = form.querySelector('[name="cameraSnapConsent"]')?.value || '';
+
+if (cameraSnapConsent === '동의') {
+  total += 90000;
+}
+
+if (cameraSnapConsent === '비동의') {
+  total += 100000;
+}
   if (form.anniversaryTopper?.checked) total += 12000;
   if (form.screenBackground.checked) total += 30000;
   if (form.calligraphyCard.checked) total += 9900;
@@ -1777,12 +1784,8 @@ if (postData.cameraRental && postData.cameraRental !== 'none') {
   extraLines.push('- 카메라 대여: ' + postData.cameraRental);
 }
 
-if (postData.iphoneSnap === 'on') {
-  extraLines.push('- 아이폰 스냅');
-}
-
-if (postData.cameraSnap === 'on') {
-  extraLines.push('- 카메라 스냅');
+if (postData.cameraSnapConsent) {
+  extraLines.push('- 카메라 스냅: ' + postData.cameraSnapConsent);
 }
 
 if (postData.anniversaryTopper === 'on') {
