@@ -776,8 +776,8 @@ function renderStudioOptions() {
   var html = '<div class="space-y-3">';
 
   // Hanbok section
-html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.25rem;">백일 한복 (25,000원)</h4>';
-html += '<p style="font-size:0.72rem;color:#888;margin-bottom:0.5rem;">※ 2벌 대여 시 40,000원 (카카오톡 문의)</p>';
+html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.25rem;">백일 한복 (15,000원)</h4>';
+html += '<p style="font-size:0.72rem;color:#888;margin-bottom:0.5rem;">※ 2벌 대여 시 25,000원 (카카오톡 문의)</p>';
   html += '<div class="gallery-grid">';
   BAEKIL_HANBOK_DATA.forEach(function(h) {
     html += '<div class="gallery-item" onclick="openImageModal(\'' + h.name.replace(/'/g, "\\'") + '\', \'' + h.img + '\')">';
@@ -787,7 +787,7 @@ html += '<p style="font-size:0.72rem;color:#888;margin-bottom:0.5rem;">※ 2벌 
   html += '</div></div>';
 
   // Premium baekil section
-html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.5rem;">프리미엄 백일 의상 (35,000원)</h4>';
+html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.5rem;">프리미엄 백일 의상 (30,000원)</h4>';
 html += '<div class="gallery-grid">';
 
 PREMIUM_BAEKIL_DATA.forEach(function(h) {
@@ -799,7 +799,7 @@ PREMIUM_BAEKIL_DATA.forEach(function(h) {
 html += '</div></div>';
 
 // Dol hanbok section
-html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.5rem;">돌 한복 (40,000원)</h4>';
+html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.5rem;">돌 한복 (35,000원)</h4>';
 html += '<div class="gallery-grid">';
 DOL_HANBOK_DATA.forEach(function(h) {
   html += '<div class="gallery-item" onclick="openImageModal(\'' + h.name.replace(/'/g, "\\'") + '\', \'' + h.img + '\')">';
@@ -840,8 +840,8 @@ function renderMilestoneOptions() {
   var html = '<div class="space-y-3">';
 
   // Hanbok section
-html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.25rem;">백일 한복 (15,000원)</h4>';
-html += '<p style="font-size:0.72rem;color:#888;margin-bottom:0.5rem;">※ 2벌 대여 시 25,000원 (카카오톡 문의)</p>';
+html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.25rem;">백일 한복 (25,000원)</h4>';
+html += '<p style="font-size:0.72rem;color:#888;margin-bottom:0.5rem;">※ 2벌 대여 시 40,000원 (카카오톡 문의)</p>';
   html += '<div class="gallery-grid">';
   BAEKIL_HANBOK_DATA.forEach(function(h) {
     html += '<div class="gallery-item" onclick="openImageModal(\'' + h.name.replace(/'/g, "\\'") + '\', \'' + h.img + '\')">';
@@ -851,7 +851,7 @@ html += '<p style="font-size:0.72rem;color:#888;margin-bottom:0.5rem;">※ 2벌 
   html += '</div></div>';
 
   // Premium baekil section
-html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.5rem;">프리미엄 백일 의상 (30,000원)</h4>';
+html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.5rem;">프리미엄 백일 의상 (35,000원)</h4>';
 html += '<div class="gallery-grid">';
 
 PREMIUM_BAEKIL_DATA.forEach(function(h) {
@@ -863,7 +863,7 @@ PREMIUM_BAEKIL_DATA.forEach(function(h) {
 html += '</div></div>';
 
 // Dol hanbok section
-html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.5rem;">돌 한복 (35,000원)</h4>';
+html += '<div style="margin-bottom:1rem;"><h4 style="font-weight:600;font-size:0.875rem;margin-bottom:0.5rem;">돌 한복 (40,000원)</h4>';
 html += '<div class="gallery-grid">';
 DOL_HANBOK_DATA.forEach(function(h) {
   html += '<div class="gallery-item" onclick="openImageModal(\'' + h.name.replace(/'/g, "\\'") + '\', \'' + h.img + '\')">';
