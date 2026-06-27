@@ -1156,9 +1156,9 @@ function updateMilestonePrice() {
 
   // Options
 if (form.babyClothes && form.babyClothes.checked) total += 10000;
-if (form.baekilHanbok.checked) total += 15000;
-if (form.querySelector('[name="premiumBaekil"]')?.checked) total += 30000;
-if (form.querySelector('[name="dolHanbok"]')?.checked) total += 35000;
+if (form.baekilHanbok.checked) total += 25000;
+if (form.querySelector('[name="premiumBaekil"]')?.checked) total += 35000;
+if (form.querySelector('[name="dolHanbok"]')?.checked) total += 40000;
 
   // Accessories
   if (form.acc_jeongjagwan.checked) total += 5000;
