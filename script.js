@@ -561,12 +561,15 @@ const BAEKIL_HANBOK_DATA = [
   { name: "여아한복 베이지", img: "images/g100beige.jpg" },
   { name: "여아한복 노랑", img: "images/g100yellow.jpg" },
   { name: "여아한복 민트", img: "images/g100mint.jpg" },
-  { name: "여아한복 색동", img: "images/g100colorful.jpg" }
+  { name: "여아한복 색동", img: "images/g100colorful.jpg" },
+  { name: "여아한복 파랑", img: "images/g100blue.jpg" }
 ];
 
 const PREMIUM_BAEKIL_DATA = [
   { name: "미카도 드레스", img: "images/g100premium1.jpg" },
-  { name: "드레스 한복", img: "images/g100premium2.JPG" }
+  { name: "드레스 한복", img: "images/g100premium2.JPG" },
+  { name: "남아 백(白)의", img: "images/b100premium1.jpg" },
+  { name: "여아 백(白)의", img: "images/g100premium3.jpg" }
 ];
 
 const DOL_HANBOK_DATA = [
