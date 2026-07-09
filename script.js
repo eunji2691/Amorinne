@@ -832,13 +832,21 @@ if (containerId === "studio-tables-list") {
       }
 
     } else {
-      // 무인 스튜디오 탭은 전부 이미지 팝업
-      clickEvent = "openImageModal('"
-        + t.name.replace(/'/g, "\\'")
-        + "', '"
-        + t.img
-        + "')";
-    }
+  // 무인 스튜디오 탭은 이미지 팝업
+  if (t.detailImages) {
+    clickEvent = "openImageModal('"
+      + t.name.replace(/'/g, "\\'")
+      + "', "
+      + JSON.stringify(t.detailImages || [t.img]).replace(/"/g, "'")
+      + ")";
+  } else {
+    clickEvent = "openImageModal('"
+      + t.name.replace(/'/g, "\\'")
+      + "', '"
+      + t.img
+      + "')";
+  }
+}
 
     html += '<div class="card" onclick="' + clickEvent + '">';
     html += '<div class="card-img-wrapper"><img src="' + t.img + '" alt="' + t.name + '" />';
@@ -994,31 +1002,38 @@ MILESTONE_OPTIONS_DATA.forEach(function(opt) {
 function openImageModal(name, img) {
   const modalImg = document.getElementById("imageModalImg");
 
-  // 담연상 상세 슬라이더에서 생긴 화살표/점 제거
   document.querySelectorAll(".detail-slider-controls, .detail-slider-dots").forEach(function(el) {
     el.remove();
   });
 
-  // 이미지가 table-detail-slider 안에 들어가 있으면 다시 원래 위치로 빼기
   const wrapper = modalImg.closest(".table-detail-slider");
   if (wrapper) {
     wrapper.parentNode.insertBefore(modalImg, wrapper);
     wrapper.remove();
   }
 
-  // 터치 이벤트 초기화
-  modalImg.ontouchstart = null;
-  modalImg.ontouchend = null;
-
   document.getElementById("imageModalTitle").textContent = name;
-  modalImg.src = img;
-  modalImg.alt = name;
 
   const descEl = document.getElementById("imageModalDesc");
   const extraEl = document.getElementById("imageModalExtra");
-
   if (descEl) descEl.textContent = "";
   if (extraEl) extraEl.innerHTML = "";
+
+  if (Array.isArray(img)) {
+    tableDetailImages = img;
+    tableDetailImageIndex = 0;
+
+    modalImg.src = tableDetailImages[0];
+    modalImg.alt = name;
+
+    setupTableDetailSlider();
+  } else {
+    tableDetailImages = [];
+    tableDetailImageIndex = 0;
+
+    modalImg.src = img;
+    modalImg.alt = name;
+  }
 
   document.getElementById("imageModal").classList.remove("hidden");
   document.body.style.overflow = "hidden";
