@@ -2048,30 +2048,57 @@ button {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 14px;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
+  justify-content: space-between;
+  padding: 0 14px;
   pointer-events: none;
 }
 
 .table-slider-btn {
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   border: none;
-  background: rgba(255, 255, 255, 0.85);
-  font-size: 24px;
+  background: rgba(255, 255, 255, 0.75);
+  color: #555;
+  font-size: 28px;
   line-height: 1;
   cursor: pointer;
   pointer-events: auto;
 }
 
-.table-slider-count {
-  padding: 5px 10px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.85);
-  font-size: 13px;
-  color: #555;
+.table-slider-btn:hover {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.table-slider-dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 14px;
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+}
+
+.table-slider-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.65);
+  cursor: pointer;
+}
+
+.table-slider-dot.active {
+  background: #fff;
+}
+
+@media (max-width: 768px) {
+  .table-slider-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 24px;
+  }
 }
