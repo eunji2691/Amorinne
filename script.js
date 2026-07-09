@@ -1041,8 +1041,15 @@ function setupTableDetailSlider() {
   const img = document.getElementById('imageModalImg');
   if (!img) return;
 
-  const wrapper = img.parentElement;
-  wrapper.classList.add('table-detail-slider');
+  let wrapper = img.closest('.table-detail-slider');
+
+if (!wrapper) {
+  wrapper = document.createElement('div');
+  wrapper.className = 'table-detail-slider';
+
+  img.parentNode.insertBefore(wrapper, img);
+  wrapper.appendChild(img);
+}
 
   const oldControls = wrapper.querySelector('.table-slider-controls');
   if (oldControls) oldControls.remove();
