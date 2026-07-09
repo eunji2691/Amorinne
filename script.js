@@ -341,6 +341,74 @@ const safariDetailHtml = `
   </div>
 `;
 
+const damyeonDetailHtml = `
+<p class="table-detail-desc">
+  <strong>담연상 (淡然床)</strong><br><br>
+
+  '담담할 담(淡), 그러할 연(然)'<br><br>
+
+  화려함보다 여백을,<br>
+  장식보다 분위기를 담았습니다.<br><br>
+
+  담연상은<br>
+  전통의 아름다움을 현대적인 감성으로 재해석한<br>
+  아모린느의 새로운 전통상입니다.<br><br>
+
+  절제된 백색 오브제와 차분한 색감,<br>
+  그리고 균형감 있는 구성이 어우러져<br>
+  요즘 감성의 미니멀한 분위기를 완성합니다.<br><br>
+
+  과하지 않지만 오래 바라보게 되는 아름다움,<br>
+  아이의 첫 기념일을 더욱 담백하고 세련되게 남겨드립니다.
+</p>
+
+<div class="detail-section">
+  <h4>기본 구성</h4>
+  <ul class="detail-list">
+    <li>테이블보 및 범보의자 커버</li>
+    <li>백합 모빌 + 꼭꼬핀</li>
+    <li>달항아리 + 조화 부케</li>
+    <li>과일 그릇</li>
+    <li>떡접시 3종</li>
+    <li>백색 나주반</li>
+    <li>백색 화병 + 그린 조화</li>
+    <li>백일카드 + 카드꽂이</li>
+    <li>대형 굽접시</li>
+    <li>미니 굽접시 2종</li>
+    <li>모형 대추 10개</li>
+    <li>명주실 + 청자 오브제</li>
+  </ul>
+</div>
+
+<div class="detail-section">
+  <h4>선택 옵션</h4>
+  <ul class="detail-list">
+    <li>테이블보 컬러 선택 (화이트 / 네이비)</li>
+  </ul>
+</div>
+
+<div class="detail-section">
+  <h4>연출 TIP</h4>
+
+  <p class="table-detail-desc">
+    담연상은 여백의 미를 살린 테이블입니다.<br>
+    소품을 많이 채우기보다 공간감을 살려 촬영하면<br>
+    훨씬 분위기 있게 완성됩니다.<br><br>
+
+    범보의자 촬영도 좋지만,<br>
+    방수요를 추가해 자연스럽게 눕혀 촬영하면<br>
+    담연상 특유의 차분한 분위기가 더욱 살아납니다.<br><br>
+
+    전통 한복은 물론,<br>
+    화이트 계열의 심플한 의상과도 잘 어울려<br>
+    요즘 감성의 백일 사진을 남기실 수 있습니다.
+  </p>
+</div>
+`;
+
+
+
+
 const seorinDetailHtml = `
   <p class="table-detail-desc">
     과하지 않은 장식과<br>
@@ -684,6 +752,17 @@ if (containerId === "studio-tables-list") {
           + "', royalYellowDetailHtml)";
       }
 
+        else if (t.id === "damyeon") {
+  clickEvent = "openTableDetailModal('"
+    + t.name.replace(/'/g, "\\'")
+    + "', '"
+    + t.img
+    + "', '"
+    + t.desc.replace(/'/g, "\\'")
+    + "', damyeonDetailHtml)";
+}
+
+        
       else if (t.id === "seorin") {
         clickEvent = "openTableDetailModal('"
           + t.name.replace(/'/g, "\\'")
