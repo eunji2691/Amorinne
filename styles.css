@@ -2042,8 +2042,17 @@ button {
 
 .table-detail-slider {
   position: relative;
+  display: block;
 }
 
+.table-detail-slider img,
+#imageModalImg {
+  display: block;
+  width: 100%;
+  border-radius: 12px;
+}
+
+/* 화살표 영역 */
 .table-slider-controls {
   position: absolute;
   left: 0;
@@ -2052,53 +2061,47 @@ button {
   transform: translateY(-50%);
   display: flex;
   justify-content: space-between;
-  padding: 0 14px;
+  padding: 0 12px;
   pointer-events: none;
+  z-index: 10;
 }
 
+/* 동그란 화살표 버튼 */
 .table-slider-btn {
-  width: 38px;
-  height: 38px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   border: none;
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.85);
   color: #555;
-  font-size: 28px;
-  line-height: 1;
+  font-size: 30px;
+  line-height: 38px;
   cursor: pointer;
   pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .table-slider-btn:hover {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 1);
 }
 
+/* 아래 점은 안 보이게 */
 .table-slider-dots {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 14px;
-  display: flex;
-  justify-content: center;
-  gap: 7px;
-}
-
-.table-slider-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.65);
-  cursor: pointer;
-}
-
-.table-slider-dot.active {
-  background: #fff;
+  display: none;
 }
 
 @media (max-width: 768px) {
+  .table-slider-controls {
+    padding: 0 8px;
+  }
+
   .table-slider-btn {
-    width: 32px;
-    height: 32px;
-    font-size: 24px;
+    width: 36px;
+    height: 36px;
+    font-size: 26px;
+    line-height: 32px;
   }
 }
