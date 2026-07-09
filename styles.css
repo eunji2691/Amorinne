@@ -2052,8 +2052,7 @@ button {
   border-radius: 12px;
 }
 
-/* 화살표 영역 */
-.table-slider-controls {
+.detail-slider-controls {
   position: absolute;
   left: 0;
   right: 0;
@@ -2066,8 +2065,7 @@ button {
   z-index: 20;
 }
 
-/* 동그란 화살표 버튼 */
-.table-slider-btn {
+.detail-slider-btn {
   width: 42px;
   height: 42px;
   border-radius: 50%;
@@ -2084,21 +2082,20 @@ button {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
-.table-slider-btn:hover {
+.detail-slider-btn:hover {
   background: #fff;
 }
 
-/* 점 숨김 */
-.table-slider-dots {
+.detail-slider-dots {
   display: none;
 }
 
 @media (max-width: 768px) {
-  .table-slider-controls {
+  .detail-slider-controls {
     padding: 0 8px;
   }
 
-  .table-slider-btn {
+  .detail-slider-btn {
     width: 36px;
     height: 36px;
     font-size: 26px;
