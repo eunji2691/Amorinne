@@ -44,7 +44,7 @@ const TABLE_DATA = [
   { id: "pure", name: "퓨어 테이블", desc: "차분한 화이트 톤에 은은한 온기를 더한 테이블", img: "images/pure.jpg", studioPrice: 35000, milestonePrice: 69000 },
   { id: "royal-white", name: "로얄 테이블 (WHITE)", desc: "아모린느의 시그니처 감성을 가장 우아하게 담아낸 테이블", img: "images/royalwhite.jpg", studioPrice: 40000, milestonePrice: 89000 },
   { id: "royal-yellow", name: "로얄 테이블 (YELLOW)", desc: "아모린느 시그니처 라인에 따뜻함을 더한 테이블", img: "images/royalyellow.jpg", studioPrice: 40000, milestonePrice: 89000 },
-  { id: "damyeon", name: "담연상", desc: "'담담할 담(淡), 그러할 연(然)', 단정한 여백과 전통미를 현대적인 감성으로 재해석한 전통상입니다", img: "images/damyeon.jpg", studioPrice: 45000, milestonePrice: 99000 },
+  { id: "damyeon", name: "담연상", desc: "'담담할 담(淡), 그러할 연(然)', 전통의 아름다움을 요즘 감성으로 재해석한 트렌디한 전통상입니다", img: "images/damyeon.jpg", detailImages: ["images/damyeon.jpg", "images/damyeon2.jpg"], studioPrice: 45000, milestonePrice: 99000 },
   { id: "seorin", name: "서린상", desc: "'상서로울 서(瑞)' '맑을 린(潾)', 좋은 기운이 겹겹이 스며들기를 바라는 마음을 담았습니다", img: "images/seorin.jpg", studioPrice: 40000, milestonePrice: 89000 },
   { id: "daon", name: "다온상", desc: "‘많을 다(多), 따뜻할 온(溫)’, 차분함 속에 아이의 순간을 온기있게 담아냈습니다.", img: "images/daon.jpg", studioPrice: 40000, milestonePrice: 89000 },
   { id: "hayeon", name: "하연상", desc: "맑고 단정한 백색의 아름다움에 전통미를 더했습니다.", img: "images/hayeon.jpg", studioPrice: 35000, milestonePrice: 79000 },
@@ -755,9 +755,9 @@ if (containerId === "studio-tables-list") {
         else if (t.id === "damyeon") {
   clickEvent = "openTableDetailModal('"
     + t.name.replace(/'/g, "\\'")
-    + "', '"
-    + t.img
-    + "', '"
+    + "', "
+    + JSON.stringify(t.detailImages || [t.img]).replace(/"/g, "'")
+    + ", '"
     + t.desc.replace(/'/g, "\\'")
     + "', damyeonDetailHtml)";
 }
@@ -1014,12 +1014,20 @@ function closeImageModal() {
   document.body.style.overflow = "";
 }
 
+let tableDetailImages = [];
+let tableDetailImageIndex = 0;
+
 function openTableDetailModal(title, image, desc, extraHtml) {
+  tableDetailImages = Array.isArray(image) ? image : [image];
+  tableDetailImageIndex = 0;
+
   document.getElementById('imageModalTitle').textContent = title;
-  document.getElementById('imageModalImg').src = image;
+  document.getElementById('imageModalImg').src = tableDetailImages[0];
   document.getElementById('imageModalImg').alt = title;
   document.getElementById('imageModalDesc').textContent = desc || '';
   document.getElementById('imageModalExtra').innerHTML = extraHtml || '';
+
+  setupTableDetailSlider(title);
 
   document.getElementById('imageModal').classList.remove('hidden');
   document.body.style.overflow = 'hidden';
@@ -1027,6 +1035,60 @@ function openTableDetailModal(title, image, desc, extraHtml) {
   const modalBody = document.querySelector('#imageModal .modal-body');
   if (modalBody) modalBody.scrollTop = 0;
 }
+
+function setupTableDetailSlider(title) {
+  const img = document.getElementById('imageModalImg');
+  if (!img) return;
+
+  let wrapper = img.parentElement;
+  if (!wrapper.classList.contains('table-detail-slider')) {
+    wrapper.classList.add('table-detail-slider');
+  }
+
+  const oldControls = wrapper.querySelector('.table-slider-controls');
+  if (oldControls) oldControls.remove();
+
+  if (tableDetailImages.length <= 1) return;
+
+  const controls = document.createElement('div');
+  controls.className = 'table-slider-controls';
+  controls.innerHTML = `
+    <button type="button" class="table-slider-btn" onclick="changeTableDetailImage(-1); event.stopPropagation();">‹</button>
+    <span class="table-slider-count">${tableDetailImageIndex + 1} / ${tableDetailImages.length}</span>
+    <button type="button" class="table-slider-btn" onclick="changeTableDetailImage(1); event.stopPropagation();">›</button>
+  `;
+
+  wrapper.appendChild(controls);
+}
+
+function changeTableDetailImage(direction) {
+  if (!tableDetailImages.length) return;
+
+  tableDetailImageIndex += direction;
+
+  if (tableDetailImageIndex < 0) {
+    tableDetailImageIndex = tableDetailImages.length - 1;
+  }
+
+  if (tableDetailImageIndex >= tableDetailImages.length) {
+    tableDetailImageIndex = 0;
+  }
+
+  const img = document.getElementById('imageModalImg');
+  const title = document.getElementById('imageModalTitle').textContent;
+
+  img.src = tableDetailImages[tableDetailImageIndex];
+  img.alt = title;
+
+  const count = document.querySelector('.table-slider-count');
+  if (count) {
+    count.textContent = `${tableDetailImageIndex + 1} / ${tableDetailImages.length}`;
+  }
+}
+
+
+
+
 // ===== RESERVATION MODALS =====
 function openModal(id) {
   document.getElementById(id).classList.remove("hidden");
