@@ -343,7 +343,7 @@ const safariDetailHtml = `
 
 const damyeonDetailHtml = `
 <p class="table-detail-desc">
-  <strong>담연상 (淡然床)</strong><br><br>
+
 
   '담담할 담(淡), 그러할 연(然)'<br><br>
 
