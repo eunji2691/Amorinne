@@ -1051,25 +1051,25 @@ if (!wrapper) {
   wrapper.appendChild(img);
 }
 
-  const oldControls = wrapper.querySelector('.table-slider-controls');
-  if (oldControls) oldControls.remove();
+  const oldControls = wrapper.querySelector('.detail-slider-controls');
+if (oldControls) oldControls.remove();
 
-  const oldDots = wrapper.querySelector('.table-slider-dots');
-  if (oldDots) oldDots.remove();
+  const oldDots = wrapper.querySelector('.detail-slider-dots');
+if (oldDots) oldDots.remove();
 
   if (tableDetailImages.length <= 1) return;
 
   const controls = document.createElement('div');
-  controls.className = 'table-slider-controls';
-  controls.innerHTML = `
-    <button type="button" class="table-slider-btn table-slider-prev" onclick="changeTableDetailImage(-1); event.stopPropagation();">‹</button>
-    <button type="button" class="table-slider-btn table-slider-next" onclick="changeTableDetailImage(1); event.stopPropagation();">›</button>
-  `;
+  controls.className = 'detail-slider-controls';
+controls.innerHTML = `
+  <button type="button" class="detail-slider-btn detail-slider-prev" onclick="changeTableDetailImage(-1); event.stopPropagation();">‹</button>
+  <button type="button" class="detail-slider-btn detail-slider-next" onclick="changeTableDetailImage(1); event.stopPropagation();">›</button>
+`;
 
   const dots = document.createElement('div');
-  dots.className = 'table-slider-dots';
+  dots.className = 'detail-slider-dots';
   dots.innerHTML = tableDetailImages.map((_, i) =>
-    `<span class="table-slider-dot ${i === 0 ? 'active' : ''}" onclick="goTableDetailImage(${i}); event.stopPropagation();"></span>`
+    `<span class="detail-slider-dot ${i === 0 ? 'active' : ''}" onclick="goTableDetailImage(${i}); event.stopPropagation();"></span>`
   ).join('');
 
   wrapper.appendChild(controls);
@@ -1119,9 +1119,9 @@ function updateTableDetailImage() {
   img.src = tableDetailImages[tableDetailImageIndex];
   img.alt = title;
 
-  document.querySelectorAll('.table-slider-dot').forEach((dot, i) => {
-    dot.classList.toggle('active', i === tableDetailImageIndex);
-  });
+  document.querySelectorAll('.detail-slider-dot').forEach((dot, i) => {
+  dot.classList.toggle('active', i === tableDetailImageIndex);
+});
 }
 
 
