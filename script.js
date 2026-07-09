@@ -587,6 +587,7 @@ const STUDIO_OPTIONS = [
   { name: "폴라로이드 대여", desc: "폴라로이드 카메라 대여 / 필름 10장 포함", price: 20000 },
   { name: "카메라 스냅", desc: "(1H) 미러리스 촬영 + 원본일체 / 업로드 동의 시 90,000원, 비동의 시 100,000원", price: 100000 },
   { name: "기념일 토퍼", desc: "아이 이름이 들어간 백일/첫돌 맞춤제작 토퍼", price: 12000, images: ["images/topper1.jpg", "images/topper2.jpg"] },
+  { name: "미니 반지 케이스 3개", desc: "와인 또는 네이비 컬러 선택 가능", price: 10000, img: "images/case.jpg" },
   { name: "병풍 추가", desc: "전통 병풍 배경 추가", price: 30000 },
   { name: "대형 숫자 풍선", desc: "생일/기념일 숫자 풍선", price: 5000 },
   { name: "(생일파티용)헬륨풍선으로 변경", desc: "거치대 설치형 풍선에서 헬륨가스 풍선 7개로 변경", price: 30000 },
@@ -596,6 +597,7 @@ const STUDIO_OPTIONS = [
 const MILESTONE_OPTIONS_DATA = [
   { name: "돌잡이 세트", desc: "전통 돌잡이 소품 세트", price: 10000, img: "images/toy.jpg" },
   { name: "기념일 토퍼", desc: "생일/기념일 맞춤 토퍼", price: 12000, images: ["images/topper1.jpg", "images/topper2.jpg"] },
+  { name: "미니 반지 케이스 3개", desc: "와인 또는 네이비 컬러 선택 가능", price: 10000, img: "images/case.jpg" },
   { name: "범보의자/양털의자/돌방석", desc: "아기 의자 또는 돌방석", price: 5000 },
   { name: "접이식 테이블", desc: "1800 테이블", price: 10000 },
   { name: "고급 모형 과일", desc: "촬영용 모형 과일 세트", price: 10000 },
@@ -1345,6 +1347,7 @@ if (cameraSnapConsent === '비동의') {
   total += 100000;
 }
   if (form.anniversaryTopper?.checked) total += 12000;
+  if (form.ringCase?.checked) total += 10000;
   if (form.screenBackground.checked) total += 30000;
   if (form.calligraphyCard.checked) total += 9900;
   if (form.numberBalloon.checked) total += 5000;
@@ -1388,6 +1391,7 @@ if (form.waterproofMat.checked) total += 10000;
   if (form.foldingTable.checked) total += 10000;
   if (form.dolGrabbingSet.checked) total += 10000;
   if (form.anniversaryTopper?.checked) total += 12000;
+  if (form.ringCase?.checked) total += 10000;
   if (form.premiumModelFruit.checked) total += 10000;
   if (form.modelBaekseolgi.checked) total += 5000;
   if (form.modelWoodBaekseolgi.checked) total += 10000;
