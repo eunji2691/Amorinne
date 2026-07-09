@@ -1016,6 +1016,7 @@ function closeImageModal() {
 
 let tableDetailImages = [];
 let tableDetailImageIndex = 0;
+let touchStartX = 0;
 
 function openTableDetailModal(title, image, desc, extraHtml) {
   tableDetailImages = Array.isArray(image) ? image : [image];
@@ -1027,7 +1028,7 @@ function openTableDetailModal(title, image, desc, extraHtml) {
   document.getElementById('imageModalDesc').textContent = desc || '';
   document.getElementById('imageModalExtra').innerHTML = extraHtml || '';
 
-  setupTableDetailSlider(title);
+  setupTableDetailSlider();
 
   document.getElementById('imageModal').classList.remove('hidden');
   document.body.style.overflow = 'hidden';
@@ -1036,34 +1037,56 @@ function openTableDetailModal(title, image, desc, extraHtml) {
   if (modalBody) modalBody.scrollTop = 0;
 }
 
-function setupTableDetailSlider(title) {
+function setupTableDetailSlider() {
   const img = document.getElementById('imageModalImg');
   if (!img) return;
 
-  let wrapper = img.parentElement;
-  if (!wrapper.classList.contains('table-detail-slider')) {
-    wrapper.classList.add('table-detail-slider');
-  }
+  const wrapper = img.parentElement;
+  wrapper.classList.add('table-detail-slider');
 
   const oldControls = wrapper.querySelector('.table-slider-controls');
   if (oldControls) oldControls.remove();
+
+  const oldDots = wrapper.querySelector('.table-slider-dots');
+  if (oldDots) oldDots.remove();
 
   if (tableDetailImages.length <= 1) return;
 
   const controls = document.createElement('div');
   controls.className = 'table-slider-controls';
   controls.innerHTML = `
-    <button type="button" class="table-slider-btn" onclick="changeTableDetailImage(-1); event.stopPropagation();">‹</button>
-    <span class="table-slider-count">${tableDetailImageIndex + 1} / ${tableDetailImages.length}</span>
-    <button type="button" class="table-slider-btn" onclick="changeTableDetailImage(1); event.stopPropagation();">›</button>
+    <button type="button" class="table-slider-btn table-slider-prev" onclick="changeTableDetailImage(-1); event.stopPropagation();">‹</button>
+    <button type="button" class="table-slider-btn table-slider-next" onclick="changeTableDetailImage(1); event.stopPropagation();">›</button>
   `;
 
+  const dots = document.createElement('div');
+  dots.className = 'table-slider-dots';
+  dots.innerHTML = tableDetailImages.map((_, i) =>
+    `<span class="table-slider-dot ${i === 0 ? 'active' : ''}" onclick="goTableDetailImage(${i}); event.stopPropagation();"></span>`
+  ).join('');
+
   wrapper.appendChild(controls);
+  wrapper.appendChild(dots);
+
+  wrapper.ontouchstart = function(e) {
+    touchStartX = e.touches[0].clientX;
+  };
+
+  wrapper.ontouchend = function(e) {
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX - touchEndX;
+
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        changeTableDetailImage(1);
+      } else {
+        changeTableDetailImage(-1);
+      }
+    }
+  };
 }
 
 function changeTableDetailImage(direction) {
-  if (!tableDetailImages.length) return;
-
   tableDetailImageIndex += direction;
 
   if (tableDetailImageIndex < 0) {
@@ -1074,18 +1097,25 @@ function changeTableDetailImage(direction) {
     tableDetailImageIndex = 0;
   }
 
+  updateTableDetailImage();
+}
+
+function goTableDetailImage(index) {
+  tableDetailImageIndex = index;
+  updateTableDetailImage();
+}
+
+function updateTableDetailImage() {
   const img = document.getElementById('imageModalImg');
   const title = document.getElementById('imageModalTitle').textContent;
 
   img.src = tableDetailImages[tableDetailImageIndex];
   img.alt = title;
 
-  const count = document.querySelector('.table-slider-count');
-  if (count) {
-    count.textContent = `${tableDetailImageIndex + 1} / ${tableDetailImages.length}`;
-  }
+  document.querySelectorAll('.table-slider-dot').forEach((dot, i) => {
+    dot.classList.toggle('active', i === tableDetailImageIndex);
+  });
 }
-
 
 
 
