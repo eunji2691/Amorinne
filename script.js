@@ -992,9 +992,27 @@ MILESTONE_OPTIONS_DATA.forEach(function(opt) {
 
 // ===== IMAGE MODAL =====
 function openImageModal(name, img) {
+  const modalImg = document.getElementById("imageModalImg");
+
+  // 담연상 상세 슬라이더에서 생긴 화살표/점 제거
+  document.querySelectorAll(".detail-slider-controls, .detail-slider-dots").forEach(function(el) {
+    el.remove();
+  });
+
+  // 이미지가 table-detail-slider 안에 들어가 있으면 다시 원래 위치로 빼기
+  const wrapper = modalImg.closest(".table-detail-slider");
+  if (wrapper) {
+    wrapper.parentNode.insertBefore(modalImg, wrapper);
+    wrapper.remove();
+  }
+
+  // 터치 이벤트 초기화
+  modalImg.ontouchstart = null;
+  modalImg.ontouchend = null;
+
   document.getElementById("imageModalTitle").textContent = name;
-  document.getElementById("imageModalImg").src = img;
-  document.getElementById("imageModalImg").alt = name;
+  modalImg.src = img;
+  modalImg.alt = name;
 
   const descEl = document.getElementById("imageModalDesc");
   const extraEl = document.getElementById("imageModalExtra");
