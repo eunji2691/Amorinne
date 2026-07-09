@@ -2037,3 +2037,41 @@ button {
   border-radius: 10px;
   cursor: pointer;
 }
+
+
+
+.table-detail-slider {
+  position: relative;
+}
+
+.table-slider-controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.table-slider-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.85);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.table-slider-count {
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+  color: #555;
+}
