@@ -1007,13 +1007,14 @@ function getTablePrice(tableName, type) {
       "퓨어테이블": 0,
       "로얄 테이블(WHITE)": 1,
       "로얄 테이블(YELLOW)": 2,
-      "서린상": 3,
-      "다온상": 4,
-      "하연상": 5,
-      "사파리테이블": 6,
+      "담연상": 3,
+      "서린상": 4,
+      "다온상": 5,
+      "하연상": 6,
+      "사파리테이블": 7,
       "프리미엄 연화상(스튜디오 전용)": -1,
-"생일상(HAPPY BIRTHDAY MODE: ON)": 8,
-"브라이덜샤워": 7
+"생일상(HAPPY BIRTHDAY MODE: ON)": 9,
+"브라이덜샤워": 8
     };
     var idx = map[tableName];
     if (idx === -1) return 85000; // Premium
