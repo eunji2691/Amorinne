@@ -647,13 +647,14 @@ const DOL_HANBOK_DATA = [
   { name: "남아한복 전통색동", img: "images/b1color.jpg" },
   { name: "남아한복 노랑", img: "images/b1yellow.jpg" },
   { name: "남아한복 하늘", img: "images/b1sky.jpg" },
-  { name: "여아한복 전통색동", img: "images/g1color.jpg" }
+
+  { name: "여아한복 전통색동", img: "images/g1color.jpg" },
   { name: "여아한복 색동", img: "images/g1colorful.jpg" },
   { name: "여아한복 하루", img: "images/g1haru.jpg" },
   { name: "여아한복 파랑", img: "images/g1blue.jpg" },
   { name: "여아한복 빨강", img: "images/g1red.jpg" },
   { name: "여아한복 분홍", img: "images/g1pink.jpg" },
-  { name: "여아한복 노랑", img: "images/g1blueyellow.jpg" },
+  { name: "여아한복 노랑", img: "images/g1blueyellow.jpg" }
 ];
 
 // ===== MOBILE MENU =====
