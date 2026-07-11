@@ -1198,28 +1198,17 @@ function closeModal(id) {
 function resetStudioPackageOptions(form) {
   if (!form) return;
 
-  // 기념일 종류 초기화
+  // 1. 기념일 종류 / 이용시간 / 종료시간 초기화
   const eventType = form.querySelector('[name="eventType"]');
-
-  if (eventType) {
-    eventType.value = '';
-  }
-
-  // 이용시간 초기화
   const rentalHours = form.querySelector('[name="rentalHours"]');
-
-  if (rentalHours) {
-    rentalHours.value = '';
-  }
-
-  // 종료시간 초기화
   const endTime = document.getElementById('endTime');
 
-  if (endTime) {
-    endTime.value = '';
-  }
+  if (eventType) eventType.value = '';
+  if (rentalHours) rentalHours.value = '';
+  if (endTime) endTime.value = '';
 
-  // 테이블 선택 초기화
+
+  // 2. 기념일 테이블 초기화
   const tableCheckbox = form.querySelector(
     '[name="memoTableSetting"]'
   );
@@ -1228,82 +1217,125 @@ function resetStudioPackageOptions(form) {
     '[name="memoTableSettingDetails"]'
   );
 
-  if (tableCheckbox) {
-    tableCheckbox.checked = false;
-  }
+  if (tableCheckbox) tableCheckbox.checked = false;
+  if (tableSelect) tableSelect.value = '';
 
-  if (tableSelect) {
-    tableSelect.value = '';
-  }
 
-  // 백일한복 초기화
-  const baekilHanbok = form.querySelector(
-    '[name="baekilHanbok"]'
-  );
+  // 3. 스튜디오 예약 옵션 체크박스 전부 초기화
+  const optionNames = [
+    'baekilHanbok',
+    'premiumBaekil',
+    'dolHanbok',
+    'formalWear',
+    'anniversaryTopper',
+    'ringCase',
+    'screenBackground',
+    'calligraphyCard',
+    'numberBalloon'
+  ];
 
-  if (baekilHanbok) {
-    baekilHanbok.checked = false;
-  }
+  optionNames.forEach(function(name) {
+    form
+      .querySelectorAll('[name="' + name + '"]')
+      .forEach(function(input) {
+        input.checked = false;
+      });
+  });
 
-  // 돌한복 초기화
-  const dolHanbok = form.querySelector(
-    '[name="dolHanbok"]'
-  );
 
-  if (dolHanbok) {
-    dolHanbok.checked = false;
-  }
-
-  // 추가 컨셉 전부 초기화
-  form
-    .querySelectorAll('input[name="extraConcept"]')
-    .forEach(function(input) {
-      input.checked = false;
-    });
-
-    // 카메라 대여 선택 초기화
+  // 4. 카메라 대여 초기화
   form
     .querySelectorAll('input[name="cameraRental"]')
     .forEach(function(input) {
       input.checked = false;
     });
 
-  // 대형 숫자풍선 초기화
-  const numberBalloon = form.querySelector(
-    '[name="numberBalloon"]'
+
+  // 5. 카메라 스냅 초기화
+  const cameraSnapConsent = form.querySelector(
+    '[name="cameraSnapConsent"]'
   );
 
-  if (numberBalloon) {
-    numberBalloon.checked = false;
+  if (cameraSnapConsent) {
+    cameraSnapConsent.value = '';
   }
 
-  // 헬륨풍선 변경 초기화
+
+  // 6. 추가 컨셉 전부 초기화
+  form
+    .querySelectorAll('input[name="extraConcept"]')
+    .forEach(function(input) {
+      input.checked = false;
+    });
+
+
+  // 7. 헬륨풍선 / 모형 케이크 초기화
   const heliumBalloon = document.getElementById(
     'studioHeliumBalloon'
   );
 
-  if (heliumBalloon) {
-    heliumBalloon.checked = false;
-  }
+  const victoriaCake = document.getElementById(
+    'studioVictoriaCake'
+  );
 
-  // 기타 기념일 입력칸 상태 반영
+  if (heliumBalloon) heliumBalloon.checked = false;
+  if (victoriaCake) victoriaCake.checked = false;
+
+
+  // 8. 한복 및 의상 세부 선택값 초기화
+  const detailFieldNames = [
+    'baekilHanbokDetail',
+    'premiumBaekilDetail',
+    'dolHanbokDetail',
+    'formalWearDetail'
+  ];
+
+  detailFieldNames.forEach(function(name) {
+    const field = form.querySelector('[name="' + name + '"]');
+
+    if (field) {
+      field.value = '';
+    }
+  });
+
+
+  // 9. 조건에 따라 열리는 영역 정리
   if (typeof toggleStudioEventTypeEtc === 'function') {
     toggleStudioEventTypeEtc();
   }
 
-  // 테이블 선택창 닫기
   if (typeof toggleStudioTableSelect === 'function') {
     toggleStudioTableSelect();
   }
 
-  // 백일한복 세부 선택창 닫기
   if (typeof toggleStudioHanbokField === 'function') {
     toggleStudioHanbokField();
   }
 
-  // 돌한복 세부 선택창 닫기
   if (typeof toggleStudioDolHanbokField === 'function') {
     toggleStudioDolHanbokField();
+  }
+
+
+  // 10. 추천 카드 선택 표시 초기화
+  document
+    .querySelectorAll('.recommend-package-card')
+    .forEach(function(card) {
+      card.classList.remove('selected');
+
+      const cardButton = card.querySelector(
+        '.recommend-package-btn'
+      );
+
+      if (cardButton) {
+        cardButton.textContent = '이 구성으로 선택하기';
+      }
+    });
+
+
+  // 11. 예상 금액 다시 계산
+  if (typeof updateStudioPrice === 'function') {
+    updateStudioPrice();
   }
 }
 
