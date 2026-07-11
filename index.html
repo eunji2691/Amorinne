@@ -1248,6 +1248,103 @@
     </div>
     <div class="modal-body">
       <form id="studioForm" onsubmit="submitStudioForm(event)">
+        <!-- 추천 구성 -->
+<div class="recommend-package-section">
+
+  <div class="recommend-package-heading">
+    <p class="recommend-package-title">어떤 구성을 선택해야 할지 고민되시나요?</p>
+    <p class="recommend-package-subtitle">
+      아모린느에서 추천하는 구성을 선택하면 예약 항목이 자동으로 채워집니다.
+    </p>
+  </div>
+
+  <div class="recommend-package-list">
+
+    <div class="recommend-package-card">
+      <span class="recommend-package-badge">100일 · 포근하게</span>
+      <h4>봄의 요람 백일 구성</h4>
+      <p class="recommend-package-target">약 7kg 이하, 누워서 촬영하는 아기에게 추천</p>
+
+      <ul>
+        <li>공간대여 2시간</li>
+        <li>봄의 요람 컨셉</li>
+        <li>백일한복 1벌</li>
+      </ul>
+
+      <button type="button"
+              class="recommend-package-btn"
+              onclick="applyStudioPackage('baekil-cradle', this)">
+        이 구성으로 선택하기
+      </button>
+    </div>
+
+
+    <div class="recommend-package-card">
+      <span class="recommend-package-badge">100일 · 단정하게</span>
+      <h4>담연상 백일 구성</h4>
+      <p class="recommend-package-target">전통적이면서 깔끔한 분위기를 원하는 가족에게 추천</p>
+
+      <ul>
+        <li>공간대여 2시간</li>
+        <li>담연상</li>
+        <li>백일한복 1벌</li>
+      </ul>
+
+      <button type="button"
+              class="recommend-package-btn"
+              onclick="applyStudioPackage('baekil-damyeon', this)">
+        이 구성으로 선택하기
+      </button>
+    </div>
+
+
+    <div class="recommend-package-card">
+      <span class="recommend-package-badge">첫돌 · 전통적으로</span>
+      <h4>담연상 돌 구성</h4>
+      <p class="recommend-package-target">차분하고 고급스러운 돌 사진을 남기고 싶을 때 추천</p>
+
+      <ul>
+        <li>공간대여 2시간</li>
+        <li>담연상</li>
+        <li>돌한복 1벌</li>
+      </ul>
+
+      <button type="button"
+              class="recommend-package-btn"
+              onclick="applyStudioPackage('dol-damyeon', this)">
+        이 구성으로 선택하기
+      </button>
+    </div>
+
+
+    <div class="recommend-package-card">
+      <span class="recommend-package-badge">첫돌 · 화사하게</span>
+      <h4>로얄 옐로우 돌 구성</h4>
+      <p class="recommend-package-target">밝고 사랑스러운 돌 사진을 남기고 싶을 때 추천</p>
+
+      <ul>
+        <li>공간대여 2시간</li>
+        <li>로얄 테이블 YELLOW</li>
+        <li>돌한복 1벌</li>
+        <li>플라워샤워 컨셉</li>
+      </ul>
+
+      <button type="button"
+              class="recommend-package-btn"
+              onclick="applyStudioPackage('dol-royal', this)">
+        이 구성으로 선택하기
+      </button>
+    </div>
+
+  </div>
+
+  <p class="recommend-package-note">
+    ※ 추천 구성 선택 후에도 아래 예약 항목에서 자유롭게 추가하거나 변경하실 수 있습니다.
+  </p>
+
+</div>
+
+        
         <div class="form-group">
           <label class="form-label">예약자 성함 *</label>
           <input type="text" class="form-input" name="customerName" required />
