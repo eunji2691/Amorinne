@@ -1193,6 +1193,186 @@ function closeModal(id) {
   document.body.style.overflow = "";
 }
 
+// ===== STUDIO RECOMMENDED PACKAGES =====
+
+function resetStudioPackageOptions(form) {
+  if (!form) return;
+
+  // 추천 구성에서 사용하는 테이블 옵션 초기화
+  const tableCheckbox = form.querySelector('[name="memoTableSetting"]');
+  const tableSelect = form.querySelector('[name="memoTableSettingDetails"]');
+
+  if (tableCheckbox) {
+    tableCheckbox.checked = false;
+  }
+
+  if (tableSelect) {
+    tableSelect.value = '';
+  }
+
+  // 추천 구성에서 사용하는 의상 초기화
+  const baekilHanbok = form.querySelector('[name="baekilHanbok"]');
+  const dolHanbok = form.querySelector('[name="dolHanbok"]');
+
+  if (baekilHanbok) {
+    baekilHanbok.checked = false;
+  }
+
+  if (dolHanbok) {
+    dolHanbok.checked = false;
+  }
+
+  // 추천 구성에서 사용하는 추가 컨셉 초기화
+  form.querySelectorAll('input[name="extraConcept"]').forEach(function(input) {
+    input.checked = false;
+  });
+
+  // 입력칸 노출 상태 정리
+  if (typeof toggleStudioTableSelect === 'function') {
+    toggleStudioTableSelect();
+  }
+
+  if (typeof toggleStudioHanbokField === 'function') {
+    toggleStudioHanbokField();
+  }
+
+  if (typeof toggleStudioDolHanbokField === 'function') {
+    toggleStudioDolHanbokField();
+  }
+}
+
+
+function applyStudioPackage(packageName, button) {
+  const form = document.getElementById('studioForm');
+
+  if (!form) {
+    alert('예약폼을 찾을 수 없습니다.');
+    return;
+  }
+
+  resetStudioPackageOptions(form);
+
+  const eventType = form.querySelector('[name="eventType"]');
+  const rentalHours = form.querySelector('[name="rentalHours"]');
+  const tableCheckbox = form.querySelector('[name="memoTableSetting"]');
+  const tableSelect = form.querySelector('[name="memoTableSettingDetails"]');
+  const baekilHanbok = form.querySelector('[name="baekilHanbok"]');
+  const dolHanbok = form.querySelector('[name="dolHanbok"]');
+
+  // 기본 2시간 선택
+  if (rentalHours) {
+    rentalHours.value = '2';
+  }
+
+  if (packageName === 'baekil-cradle') {
+    if (eventType) eventType.value = '백일';
+    if (baekilHanbok) baekilHanbok.checked = true;
+
+    setExtraConcept(form, '봄의 요람');
+  }
+
+
+  if (packageName === 'baekil-damyeon') {
+    if (eventType) eventType.value = '백일';
+    if (baekilHanbok) baekilHanbok.checked = true;
+
+    if (tableCheckbox) tableCheckbox.checked = true;
+    if (tableSelect) tableSelect.value = '담연상';
+  }
+
+
+  if (packageName === 'dol-damyeon') {
+    if (eventType) eventType.value = '첫돌';
+    if (dolHanbok) dolHanbok.checked = true;
+
+    if (tableCheckbox) tableCheckbox.checked = true;
+    if (tableSelect) tableSelect.value = '담연상';
+  }
+
+
+  if (packageName === 'dol-royal') {
+    if (eventType) eventType.value = '첫돌';
+    if (dolHanbok) dolHanbok.checked = true;
+
+    if (tableCheckbox) tableCheckbox.checked = true;
+    if (tableSelect) tableSelect.value = '로얄 테이블(YELLOW)';
+
+    setExtraConcept(form, '플라워샤워');
+  }
+
+  // 기타 기념일 입력란 상태 반영
+  if (typeof toggleStudioEventTypeEtc === 'function') {
+    toggleStudioEventTypeEtc();
+  }
+
+  // 테이블 선택창 노출
+  if (typeof toggleStudioTableSelect === 'function') {
+    toggleStudioTableSelect();
+  }
+
+  // 한복 세부 입력창 노출
+  if (typeof toggleStudioHanbokField === 'function') {
+    toggleStudioHanbokField();
+  }
+
+  if (typeof toggleStudioDolHanbokField === 'function') {
+    toggleStudioDolHanbokField();
+  }
+
+  // 이용 종료시간 및 가격 다시 계산
+  if (typeof updateEndTime === 'function') {
+    updateEndTime();
+  }
+
+  if (typeof updateStudioPrice === 'function') {
+    updateStudioPrice();
+  }
+
+  // 선택된 카드 표시
+  document.querySelectorAll('.recommend-package-card').forEach(function(card) {
+    card.classList.remove('selected');
+
+    const cardButton = card.querySelector('.recommend-package-btn');
+    if (cardButton) {
+      cardButton.textContent = '이 구성으로 선택하기';
+    }
+  });
+
+  const selectedCard = button ? button.closest('.recommend-package-card') : null;
+
+  if (selectedCard) {
+    selectedCard.classList.add('selected');
+    button.textContent = '선택 완료 ✓';
+  }
+
+  // 실제 선택된 예약 항목으로 이동
+  const tableArea = document.getElementById('studioTableSetting');
+
+  if (tableArea) {
+    tableArea.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
+  }
+}
+
+
+function setExtraConcept(form, value) {
+  const concept = Array.from(
+    form.querySelectorAll('input[name="extraConcept"]')
+  ).find(function(input) {
+    return input.value === value;
+  });
+
+  if (concept) {
+    concept.checked = true;
+  }
+}
+
+
+
+
+
 // ===== PRICE CALCULATION =====
 function isWeekend(dateStr) {
   if (!dateStr) return false;
