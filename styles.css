@@ -2246,3 +2246,19 @@ button {
     min-height: auto;
   }
 }
+
+
+/* 추천 구성 버튼 글자 안 보이는 문제 수정 */
+.recommend-package-btn {
+  color: #6e5749 !important;
+  -webkit-text-fill-color: #6e5749;
+  font-size: 0.78rem !important;
+  font-weight: 600;
+  opacity: 1 !important;
+}
+
+.recommend-package-card.selected .recommend-package-btn {
+  background: #806758;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff;
+}
