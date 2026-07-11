@@ -1198,9 +1198,35 @@ function closeModal(id) {
 function resetStudioPackageOptions(form) {
   if (!form) return;
 
-  // 추천 구성에서 사용하는 테이블 옵션 초기화
-  const tableCheckbox = form.querySelector('[name="memoTableSetting"]');
-  const tableSelect = form.querySelector('[name="memoTableSettingDetails"]');
+  // 기념일 종류 초기화
+  const eventType = form.querySelector('[name="eventType"]');
+
+  if (eventType) {
+    eventType.value = '';
+  }
+
+  // 이용시간 초기화
+  const rentalHours = form.querySelector('[name="rentalHours"]');
+
+  if (rentalHours) {
+    rentalHours.value = '';
+  }
+
+  // 종료시간 초기화
+  const endTime = document.getElementById('endTime');
+
+  if (endTime) {
+    endTime.value = '';
+  }
+
+  // 테이블 선택 초기화
+  const tableCheckbox = form.querySelector(
+    '[name="memoTableSetting"]'
+  );
+
+  const tableSelect = form.querySelector(
+    '[name="memoTableSettingDetails"]'
+  );
 
   if (tableCheckbox) {
     tableCheckbox.checked = false;
@@ -1210,32 +1236,47 @@ function resetStudioPackageOptions(form) {
     tableSelect.value = '';
   }
 
-  // 추천 구성에서 사용하는 의상 초기화
-  const baekilHanbok = form.querySelector('[name="baekilHanbok"]');
-  const dolHanbok = form.querySelector('[name="dolHanbok"]');
+  // 백일한복 초기화
+  const baekilHanbok = form.querySelector(
+    '[name="baekilHanbok"]'
+  );
 
   if (baekilHanbok) {
     baekilHanbok.checked = false;
   }
 
+  // 돌한복 초기화
+  const dolHanbok = form.querySelector(
+    '[name="dolHanbok"]'
+  );
+
   if (dolHanbok) {
     dolHanbok.checked = false;
   }
 
-  // 추천 구성에서 사용하는 추가 컨셉 초기화
-  form.querySelectorAll('input[name="extraConcept"]').forEach(function(input) {
-    input.checked = false;
-  });
+  // 추가 컨셉 전부 초기화
+  form
+    .querySelectorAll('input[name="extraConcept"]')
+    .forEach(function(input) {
+      input.checked = false;
+    });
 
-  // 입력칸 노출 상태 정리
+  // 기타 기념일 입력칸 상태 반영
+  if (typeof toggleStudioEventTypeEtc === 'function') {
+    toggleStudioEventTypeEtc();
+  }
+
+  // 테이블 선택창 닫기
   if (typeof toggleStudioTableSelect === 'function') {
     toggleStudioTableSelect();
   }
 
+  // 백일한복 세부 선택창 닫기
   if (typeof toggleStudioHanbokField === 'function') {
     toggleStudioHanbokField();
   }
 
+  // 돌한복 세부 선택창 닫기
   if (typeof toggleStudioDolHanbokField === 'function') {
     toggleStudioDolHanbokField();
   }
@@ -1250,67 +1291,142 @@ function applyStudioPackage(packageName, button) {
     return;
   }
 
+  const selectedCard = button
+    ? button.closest('.recommend-package-card')
+    : null;
+
+  // 이미 선택된 추천 구성 버튼을 다시 누르면 전체 해제
+  if (
+    selectedCard &&
+    selectedCard.classList.contains('selected')
+  ) {
+    resetStudioPackageOptions(form);
+
+    selectedCard.classList.remove('selected');
+    button.textContent = '이 구성으로 선택하기';
+
+    // 가격 다시 계산
+    if (typeof updateStudioPrice === 'function') {
+      updateStudioPrice();
+    }
+
+    return;
+  }
+
+  // 다른 추천 구성을 선택하는 경우
+  // 기존 추천 구성으로 선택됐던 항목 먼저 초기화
   resetStudioPackageOptions(form);
 
-  const eventType = form.querySelector('[name="eventType"]');
-  const rentalHours = form.querySelector('[name="rentalHours"]');
-  const tableCheckbox = form.querySelector('[name="memoTableSetting"]');
-  const tableSelect = form.querySelector('[name="memoTableSettingDetails"]');
-  const baekilHanbok = form.querySelector('[name="baekilHanbok"]');
-  const dolHanbok = form.querySelector('[name="dolHanbok"]');
+  const eventType = form.querySelector(
+    '[name="eventType"]'
+  );
 
-  // 기본 2시간 선택
+  const rentalHours = form.querySelector(
+    '[name="rentalHours"]'
+  );
+
+  const tableCheckbox = form.querySelector(
+    '[name="memoTableSetting"]'
+  );
+
+  const tableSelect = form.querySelector(
+    '[name="memoTableSettingDetails"]'
+  );
+
+  const baekilHanbok = form.querySelector(
+    '[name="baekilHanbok"]'
+  );
+
+  const dolHanbok = form.querySelector(
+    '[name="dolHanbok"]'
+  );
+
+  // 모든 추천 구성은 2시간으로 선택
   if (rentalHours) {
     rentalHours.value = '2';
   }
 
+  // 봄의 요람 백일 구성
   if (packageName === 'baekil-cradle') {
-    if (eventType) eventType.value = '백일';
-    if (baekilHanbok) baekilHanbok.checked = true;
+    if (eventType) {
+      eventType.value = '백일';
+    }
+
+    if (baekilHanbok) {
+      baekilHanbok.checked = true;
+    }
 
     setExtraConcept(form, '봄의 요람');
   }
 
-
+  // 담연상 백일 구성
   if (packageName === 'baekil-damyeon') {
-    if (eventType) eventType.value = '백일';
-    if (baekilHanbok) baekilHanbok.checked = true;
+    if (eventType) {
+      eventType.value = '백일';
+    }
 
-    if (tableCheckbox) tableCheckbox.checked = true;
-    if (tableSelect) tableSelect.value = '담연상';
+    if (baekilHanbok) {
+      baekilHanbok.checked = true;
+    }
+
+    if (tableCheckbox) {
+      tableCheckbox.checked = true;
+    }
+
+    if (tableSelect) {
+      tableSelect.value = '담연상';
+    }
   }
 
-
+  // 담연상 돌 구성
   if (packageName === 'dol-damyeon') {
-    if (eventType) eventType.value = '첫돌';
-    if (dolHanbok) dolHanbok.checked = true;
+    if (eventType) {
+      eventType.value = '첫돌';
+    }
 
-    if (tableCheckbox) tableCheckbox.checked = true;
-    if (tableSelect) tableSelect.value = '담연상';
+    if (dolHanbok) {
+      dolHanbok.checked = true;
+    }
+
+    if (tableCheckbox) {
+      tableCheckbox.checked = true;
+    }
+
+    if (tableSelect) {
+      tableSelect.value = '담연상';
+    }
   }
 
-
+  // 로얄 옐로우 돌 구성
   if (packageName === 'dol-royal') {
-    if (eventType) eventType.value = '첫돌';
-    if (dolHanbok) dolHanbok.checked = true;
+    if (eventType) {
+      eventType.value = '첫돌';
+    }
 
-    if (tableCheckbox) tableCheckbox.checked = true;
-    if (tableSelect) tableSelect.value = '로얄 테이블(YELLOW)';
+    if (dolHanbok) {
+      dolHanbok.checked = true;
+    }
+
+    if (tableCheckbox) {
+      tableCheckbox.checked = true;
+    }
+
+    if (tableSelect) {
+      tableSelect.value = '로얄 테이블(YELLOW)';
+    }
 
     setExtraConcept(form, '플라워샤워');
   }
 
-  // 기타 기념일 입력란 상태 반영
+  // 각 입력창의 노출 상태 반영
   if (typeof toggleStudioEventTypeEtc === 'function') {
     toggleStudioEventTypeEtc();
   }
 
-  // 테이블 선택창 노출
   if (typeof toggleStudioTableSelect === 'function') {
     toggleStudioTableSelect();
   }
 
-  // 한복 세부 입력창 노출
   if (typeof toggleStudioHanbokField === 'function') {
     toggleStudioHanbokField();
   }
@@ -1319,34 +1435,42 @@ function applyStudioPackage(packageName, button) {
     toggleStudioDolHanbokField();
   }
 
-  // 이용 종료시간 및 가격 다시 계산
+  // 이용 종료시간 자동 계산
   if (typeof updateEndTime === 'function') {
     updateEndTime();
   }
 
+  // 예상 금액 다시 계산
   if (typeof updateStudioPrice === 'function') {
     updateStudioPrice();
   }
 
-  // 선택된 카드 표시
-  document.querySelectorAll('.recommend-package-card').forEach(function(card) {
-    card.classList.remove('selected');
+  // 모든 추천 카드의 선택 표시 초기화
+  document
+    .querySelectorAll('.recommend-package-card')
+    .forEach(function(card) {
+      card.classList.remove('selected');
 
-    const cardButton = card.querySelector('.recommend-package-btn');
-    if (cardButton) {
-      cardButton.textContent = '이 구성으로 선택하기';
-    }
-  });
+      const cardButton = card.querySelector(
+        '.recommend-package-btn'
+      );
 
-  const selectedCard = button ? button.closest('.recommend-package-card') : null;
+      if (cardButton) {
+        cardButton.textContent =
+          '이 구성으로 선택하기';
+      }
+    });
 
+  // 현재 선택한 카드만 선택 완료 표시
   if (selectedCard) {
     selectedCard.classList.add('selected');
     button.textContent = '선택 완료 ✓';
   }
 
-  // 실제 선택된 예약 항목으로 이동
-  const tableArea = document.getElementById('studioTableSetting');
+  // 선택된 예약 항목 근처로 이동
+  const tableArea = document.getElementById(
+    'studioTableSetting'
+  );
 
   if (tableArea) {
     tableArea.scrollIntoView({
