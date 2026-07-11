@@ -2101,3 +2101,148 @@ button {
     font-size: 26px;
   }
 }
+
+
+/* ===== 추천 구성 ===== */
+
+.recommend-package-section {
+  margin-bottom: 1.75rem;
+  padding: 1.25rem;
+  border: 1px solid #ece7e2;
+  border-radius: 16px;
+  background: #fcfaf8;
+}
+
+.recommend-package-heading {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.recommend-package-title {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 700;
+  color: #2f2925;
+  word-break: keep-all;
+}
+
+.recommend-package-subtitle {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: #817973;
+  word-break: keep-all;
+}
+
+.recommend-package-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.recommend-package-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border: 1px solid #e8e1db;
+  border-radius: 13px;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recommend-package-card.selected {
+  border-color: #806758;
+  box-shadow: 0 0 0 1px #806758;
+}
+
+.recommend-package-badge {
+  display: inline-block;
+  align-self: flex-start;
+  margin-bottom: 0.55rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  background: #f2ece7;
+  color: #6e5749;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.recommend-package-card h4 {
+  margin: 0 0 0.3rem;
+  font-size: 0.95rem;
+  color: #2f2925;
+}
+
+.recommend-package-target {
+  min-height: 2.8rem;
+  margin: 0 0 0.7rem;
+  font-size: 0.74rem;
+  line-height: 1.55;
+  color: #817973;
+  word-break: keep-all;
+}
+
+.recommend-package-card ul {
+  flex: 1;
+  margin: 0 0 0.85rem;
+  padding: 0;
+  list-style: none;
+}
+
+.recommend-package-card li {
+  position: relative;
+  margin: 0.3rem 0;
+  padding-left: 1rem;
+  font-size: 0.76rem;
+  line-height: 1.5;
+  color: #504943;
+}
+
+.recommend-package-card li::before {
+  position: absolute;
+  left: 0;
+  content: "✓";
+  color: #806758;
+  font-weight: 700;
+}
+
+.recommend-package-btn {
+  width: 100%;
+  padding: 0.7rem 0.5rem;
+  border: 1px solid #806758;
+  border-radius: 8px;
+  background: #fff;
+  color: #6e5749;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.recommend-package-card.selected .recommend-package-btn {
+  background: #806758;
+  color: #fff;
+}
+
+.recommend-package-note {
+  margin: 0.85rem 0 0;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  color: #918983;
+  text-align: center;
+  word-break: keep-all;
+}
+
+@media (max-width: 640px) {
+  .recommend-package-section {
+    padding: 1rem;
+  }
+
+  .recommend-package-list {
+    grid-template-columns: 1fr;
+  }
+
+  .recommend-package-target {
+    min-height: auto;
+  }
+}
