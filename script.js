@@ -1261,6 +1261,31 @@ function resetStudioPackageOptions(form) {
       input.checked = false;
     });
 
+    // 카메라 대여 선택 초기화
+  form
+    .querySelectorAll('input[name="cameraRental"]')
+    .forEach(function(input) {
+      input.checked = false;
+    });
+
+  // 대형 숫자풍선 초기화
+  const numberBalloon = form.querySelector(
+    '[name="numberBalloon"]'
+  );
+
+  if (numberBalloon) {
+    numberBalloon.checked = false;
+  }
+
+  // 헬륨풍선 변경 초기화
+  const heliumBalloon = document.getElementById(
+    'studioHeliumBalloon'
+  );
+
+  if (heliumBalloon) {
+    heliumBalloon.checked = false;
+  }
+
   // 기타 기념일 입력칸 상태 반영
   if (typeof toggleStudioEventTypeEtc === 'function') {
     toggleStudioEventTypeEtc();
@@ -1341,81 +1366,142 @@ function applyStudioPackage(packageName, button) {
     '[name="dolHanbok"]'
   );
 
-  // 모든 추천 구성은 2시간으로 선택
-  if (rentalHours) {
-    rentalHours.value = '2';
-  }
 
-  // 봄의 요람 백일 구성
-  if (packageName === 'baekil-cradle') {
+    // 추천 구성 공통으로 사용할 항목
+  const cameraMirrorless = Array.from(
+    form.querySelectorAll('input[name="cameraRental"]')
+  ).find(function(input) {
+    return input.value === '미러리스';
+  });
+
+  const numberBalloon = form.querySelector(
+    '[name="numberBalloon"]'
+  );
+
+  const heliumBalloon = document.getElementById(
+    'studioHeliumBalloon'
+  );
+
+
+  // 1. 로얄 화이트 백일 구성
+  if (packageName === 'baekil-royal-white') {
     if (eventType) {
       eventType.value = '백일';
     }
 
+    if (rentalHours) {
+      rentalHours.value = '2';
+    }
+
+    if (tableCheckbox) {
+      tableCheckbox.checked = true;
+    }
+
+    if (tableSelect) {
+      tableSelect.value = '로얄 테이블(WHITE)';
+    }
+
     if (baekilHanbok) {
       baekilHanbok.checked = true;
+    }
+
+    if (cameraMirrorless) {
+      cameraMirrorless.checked = true;
     }
 
     setExtraConcept(form, '봄의 요람');
   }
 
-  // 담연상 백일 구성
+
+  // 2. 담연상 백일 구성
   if (packageName === 'baekil-damyeon') {
     if (eventType) {
       eventType.value = '백일';
+    }
+
+    if (rentalHours) {
+      rentalHours.value = '2';
+    }
+
+    if (tableCheckbox) {
+      tableCheckbox.checked = true;
+    }
+
+    if (tableSelect) {
+      tableSelect.value = '담연상';
     }
 
     if (baekilHanbok) {
       baekilHanbok.checked = true;
     }
 
+    if (cameraMirrorless) {
+      cameraMirrorless.checked = true;
+    }
+  }
+
+
+  // 3. 생일상 구성
+  if (packageName === 'birthday-party') {
+    if (eventType) {
+      eventType.value = '생일';
+    }
+
+    if (rentalHours) {
+      rentalHours.value = '1';
+    }
+
     if (tableCheckbox) {
       tableCheckbox.checked = true;
     }
 
     if (tableSelect) {
-      tableSelect.value = '담연상';
+      tableSelect.value =
+        '생일상(HAPPY BIRTHDAY MODE: ON)';
+    }
+
+    if (heliumBalloon) {
+      heliumBalloon.checked = true;
+    }
+
+    if (numberBalloon) {
+      numberBalloon.checked = true;
+    }
+
+    if (cameraMirrorless) {
+      cameraMirrorless.checked = true;
     }
   }
 
-  // 담연상 돌 구성
-  if (packageName === 'dol-damyeon') {
+
+  // 4. 프리미엄 연화상 돌 구성
+  if (packageName === 'dol-yeonhwa') {
     if (eventType) {
       eventType.value = '첫돌';
+    }
+
+    if (rentalHours) {
+      rentalHours.value = '2';
+    }
+
+    if (tableCheckbox) {
+      tableCheckbox.checked = true;
+    }
+
+    if (tableSelect) {
+      tableSelect.value =
+        '프리미엄 연화상(스튜디오 전용)';
     }
 
     if (dolHanbok) {
       dolHanbok.checked = true;
     }
 
-    if (tableCheckbox) {
-      tableCheckbox.checked = true;
+    if (cameraMirrorless) {
+      cameraMirrorless.checked = true;
     }
 
-    if (tableSelect) {
-      tableSelect.value = '담연상';
-    }
-  }
-
-  // 로얄 옐로우 돌 구성
-  if (packageName === 'dol-royal') {
-    if (eventType) {
-      eventType.value = '첫돌';
-    }
-
-    if (dolHanbok) {
-      dolHanbok.checked = true;
-    }
-
-    if (tableCheckbox) {
-      tableCheckbox.checked = true;
-    }
-
-    if (tableSelect) {
-      tableSelect.value = '로얄 테이블(YELLOW)';
-    }
-
-    setExtraConcept(form, '플라워샤워');
+    setExtraConcept(form, '달항아리');
   }
 
   // 각 입력창의 노출 상태 반영
