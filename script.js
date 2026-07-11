@@ -1929,11 +1929,24 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-function openConceptModal(imageSrc, title, price) {
+function openConceptModal(imageSrc, title, price, description) {
   document.getElementById('conceptModalImg').src = imageSrc;
   document.getElementById('conceptModalImg').alt = title;
-  document.getElementById('conceptModalTitle').textContent = title + ' (' + price + ')';
+
+  document.getElementById('conceptModalTitle').textContent =
+    title + ' (' + price + ')';
+
+  document.getElementById('conceptModalDesc').textContent =
+    description || '';
+
   document.getElementById('conceptImageModal').classList.add('show');
+
+  document.body.style.overflow = 'hidden';
+}
+
+function closeConceptModal() {
+  document.getElementById('conceptImageModal').classList.remove('show');
+  document.body.style.overflow = '';
 }
 
 function closeConceptModal() {
